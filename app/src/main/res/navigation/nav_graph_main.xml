@@ -24,6 +24,13 @@
             app:exitAnim="@anim/exit_anim"
             app:popEnterAnim="@anim/pop_in"
             app:popExitAnim="@anim/pop_out" />
+        <action
+            android:id="@+id/action_exploreFragment_to_noNetworkFragment"
+            app:destination="@id/noNetworkFragment"
+            app:enterAnim="@anim/enter_anim"
+            app:exitAnim="@anim/exit_anim"
+            app:popEnterAnim="@anim/pop_in"
+            app:popExitAnim="@anim/pop_out" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -91,6 +98,13 @@
             app:exitAnim="@anim/exit_anim"
             app:popEnterAnim="@anim/pop_in"
             app:popExitAnim="@anim/pop_out" />
+        <action
+            android:id="@+id/action_gameDetailsFragment_to_noNetworkFragment"
+            app:destination="@id/noNetworkFragment"
+            app:enterAnim="@anim/enter_anim"
+            app:exitAnim="@anim/exit_anim"
+            app:popEnterAnim="@anim/pop_in"
+            app:popExitAnim="@anim/pop_out" />
         <argument
             android:name="game"
             android:defaultValue="@null"
@@ -112,9 +126,6 @@
         android:name="com.sidharth.geemu.presentation.creator.CreatorDetailsFragment"
         android:label="fragment_creator_details"
         tools:layout="@layout/fragment_creator_details">
-        <argument
-            android:name="id"
-            app:argType="integer" />
         <action
             android:id="@+id/action_creatorDetailsFragment_to_gameDetailsFragment"
             app:destination="@id/gameDetailsFragment"
@@ -122,6 +133,16 @@
             app:exitAnim="@anim/exit_anim"
             app:popEnterAnim="@anim/pop_in"
             app:popExitAnim="@anim/pop_out" />
+        <action
+            android:id="@+id/action_creatorDetailsFragment_to_noNetworkFragment"
+            app:destination="@id/noNetworkFragment"
+            app:enterAnim="@anim/enter_anim"
+            app:exitAnim="@anim/exit_anim"
+            app:popEnterAnim="@anim/pop_in"
+            app:popExitAnim="@anim/pop_out" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/gamesFragment"
@@ -131,6 +152,13 @@
         <action
             android:id="@+id/action_gamesFragment_to_gameDetailsFragment"
             app:destination="@id/gameDetailsFragment"
+            app:enterAnim="@anim/enter_anim"
+            app:exitAnim="@anim/exit_anim"
+            app:popEnterAnim="@anim/pop_in"
+            app:popExitAnim="@anim/pop_out" />
+        <action
+            android:id="@+id/action_gamesFragment_to_noNetworkFragment"
+            app:destination="@id/noNetworkFragment"
             app:enterAnim="@anim/enter_anim"
             app:exitAnim="@anim/exit_anim"
             app:popEnterAnim="@anim/pop_in"
@@ -166,6 +194,11 @@
             android:name="preview"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/noNetworkFragment"
+        android:name="com.sidharth.geemu.presentation.nonetwork.NoNetworkFragment"
+        android:label="fragment_no_network"
+        tools:layout="@layout/fragment_no_network" />
     <dialog
         android:id="@+id/modalBottomSheet"
         android:name="com.sidharth.geemu.presentation.game.ModalBottomSheet"
