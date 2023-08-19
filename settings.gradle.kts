@@ -12,5 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Gemmu"
-include ':app'
+
+rootProject.name = "mosam"
+include(":app")
