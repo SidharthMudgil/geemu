@@ -1,4 +1,4 @@
-package com.sidharth.gemmu
+package com.sidharth.geemu
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "mosam"
+rootProject.name = "geemu"
 include(":app")

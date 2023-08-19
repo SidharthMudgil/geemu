@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Gemmu" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.geemu" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.Gemmu" parent="Base.Theme.Gemmu" />
+    <style name="Theme.geemu" parent="Base.Theme.geemu" />
 </resources>
