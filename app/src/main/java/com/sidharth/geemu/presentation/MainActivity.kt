@@ -1,4 +1,4 @@
-package com.sidharth.geemu.ui
+package com.sidharth.geemu.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
