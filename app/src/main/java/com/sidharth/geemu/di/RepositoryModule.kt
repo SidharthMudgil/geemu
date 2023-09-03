@@ -1,4 +1,4 @@
 package com.sidharth.geemu.di
 
-class RetrofitModule {
+class RepositoryModule {
 }
