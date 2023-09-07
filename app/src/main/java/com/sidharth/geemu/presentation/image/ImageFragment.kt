@@ -1,4 +1,4 @@
-package com.sidharth.geemu.presentation
+package com.sidharth.geemu.presentation.image
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
