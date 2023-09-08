@@ -4,8 +4,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_genre"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_genre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -13,13 +13,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.constraintlayout.helper.widget.Flow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="iv_genre,tv_genre"
+        app:layout_constraintBottom_toBottomOf="@id/cv_genre"
+        app:layout_constraintEnd_toEndOf="@id/cv_genre"
+        app:layout_constraintStart_toStartOf="@id/cv_genre"
+        app:layout_constraintTop_toTopOf="@id/cv_genre" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_genre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_genre"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/iv_genre"
-        app:layout_constraintEnd_toEndOf="@id/iv_genre"
-        app:layout_constraintStart_toStartOf="@id/iv_genre"
-        app:layout_constraintTop_toTopOf="@id/iv_genre"/>
+        android:layout_height="wrap_content" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
