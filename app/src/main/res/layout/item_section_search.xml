@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_search_box"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_search_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="tv_search_label,cv_search_bar"
+        app:layout_constraintBottom_toBottomOf="@id/cv_search_box"
+        app:layout_constraintEnd_toEndOf="@+id/cv_search_box"
+        app:layout_constraintStart_toStartOf="@+id/cv_search_box"
+        app:layout_constraintTop_toTopOf="@+id/cv_search_box" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_search_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="iv_search_icon,tv_search_hint"
+        app:layout_constraintBottom_toBottomOf="@id/cv_search_bar"
+        app:layout_constraintEnd_toEndOf="@+id/cv_search_bar"
+        app:layout_constraintStart_toStartOf="@+id/cv_search_bar"
+        app:layout_constraintTop_toBottomOf="@+id/cv_search_bar" />
+
+    <ImageView
+        android:id="@+id/iv_search_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no" />
+
+    <TextView
+        android:id="@+id/tv_search_hint"
+        android:background="#FF0022"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
