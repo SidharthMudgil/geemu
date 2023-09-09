@@ -1,5 +1,13 @@
 package com.sidharth.geemu.data.remote
 
+import com.sidharth.geemu.data.remote.response.CreatorDetailsResponse
+import com.sidharth.geemu.data.remote.response.DeveloperDetailsResponse
+import com.sidharth.geemu.data.remote.response.GenreDetailsResponse
+import com.sidharth.geemu.data.remote.response.PlatformDetailsResponse
+import com.sidharth.geemu.data.remote.response.PublisherDetailsResponse
+import com.sidharth.geemu.data.remote.response.StoreDetailsResponse
+import com.sidharth.geemu.data.remote.response.TagDetailsResponse
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -42,35 +50,35 @@ interface RAWGService {
     @GET("genres/{id}")
     suspend fun getGenreDetails(
         @Path("id") id: Int
-    )
+    ): Response<GenreDetailsResponse>
 
     @GET("creators/{id}")
     suspend fun getCreatorDetails(
         @Path("id") id: Int
-    )
+    ): Response<CreatorDetailsResponse>
 
     @GET("developers/{id}")
     suspend fun getDeveloperDetails(
         @Path("id") id: Int
-    )
+    ): Response<DeveloperDetailsResponse>
 
     @GET("platforms/{id}")
     suspend fun getPlatformDetails(
         @Path("id") id: Int
-    )
+    ): Response<PlatformDetailsResponse>
 
     @GET("publishers/{id}")
     suspend fun getPublisherDetails(
         @Path("id") id: Int
-    )
+    ): Response<PublisherDetailsResponse>
 
     @GET("stores/{id}")
     suspend fun getStoreDetails(
         @Path("id") id: Int
-    )
+    ): Response<StoreDetailsResponse>
 
     @GET("tags/{id}")
     suspend fun getTagDetails(
         @Path("id") id: Int
-    )
+    ): Response<TagDetailsResponse>
 }
