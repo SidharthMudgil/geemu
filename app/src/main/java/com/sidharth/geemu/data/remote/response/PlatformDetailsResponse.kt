@@ -7,9 +7,9 @@ class PlatformDetailsResponse(
     @SerializedName("name") val name: String,
     @SerializedName("slug") val slug: String,
     @SerializedName("games_count") val gamesCount: Int,
-    @SerializedName("image_background") val background: String,
+    @SerializedName("image_background") val imageBackground: String,
     @SerializedName("description") val description: String,
     @SerializedName("image") val image: String?,
-    @SerializedName("year_start") val start: Int?,
-    @SerializedName("year_end") val end: Int?,
+    @SerializedName("year_start") val yearStart: Int?,
+    @SerializedName("year_end") val yearEnd: Int?,
 )

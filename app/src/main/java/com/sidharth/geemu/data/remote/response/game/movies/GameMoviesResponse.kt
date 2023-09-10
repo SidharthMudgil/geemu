@@ -1,4 +1,4 @@
-package com.sidharth.geemu.data.remote.response
+package com.sidharth.geemu.data.remote.response.game.movies
 
 import com.google.gson.annotations.SerializedName
 

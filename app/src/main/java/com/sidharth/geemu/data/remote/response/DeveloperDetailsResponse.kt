@@ -7,6 +7,6 @@ data class DeveloperDetailsResponse(
     @SerializedName("name") val name: String,
     @SerializedName("slug") val slug: String,
     @SerializedName("games_count") val gamesCount: Int,
-    @SerializedName("image_background") val background: String,
+    @SerializedName("image_background") val imageBackground: String,
     @SerializedName("description") val description: String,
 )
