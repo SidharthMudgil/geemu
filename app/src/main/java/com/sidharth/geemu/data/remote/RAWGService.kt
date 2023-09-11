@@ -9,11 +9,10 @@ import com.sidharth.geemu.data.remote.response.PublisherDetailsResponse
 import com.sidharth.geemu.data.remote.response.StoreDetailsResponse
 import com.sidharth.geemu.data.remote.response.TagDetailsResponse
 import com.sidharth.geemu.data.remote.response.game.achievements.GameAchievementsResponse
-import com.sidharth.geemu.data.remote.response.game.additions.GameAdditionsResponse
 import com.sidharth.geemu.data.remote.response.game.details.GameDetailsResponse
+import com.sidharth.geemu.data.remote.response.game.games.GamesAdditionsResponse
 import com.sidharth.geemu.data.remote.response.game.movies.GameMoviesResponse
 import com.sidharth.geemu.data.remote.response.game.screenshots.GameScreenshotsResponse
-import com.sidharth.geemu.data.remote.response.games.GamesResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -46,7 +45,7 @@ interface RAWGService {
         @Query("exclude_game_series") excludeGameSeries: Boolean?,
         @Query("exclude_stores") excludeStores: String?,
         @Query("ordering") ordering: String?,
-    ): Response<GamesResponse>
+    ): Response<GamesAdditionsResponse>
 
     @GET("games/{id}")
     suspend fun getGameDetails(
@@ -67,7 +66,7 @@ interface RAWGService {
         @Query("page") page:Int = 1,
         @Query("page_size") pageSize: Int = 20,
         @Query("ordering") ordering: String = "name",
-    ): Response<GameAdditionsResponse>
+    ): Response<GamesAdditionsResponse>
 
     @GET("games/{id}/screenshots")
     suspend fun getGameScreenshots(

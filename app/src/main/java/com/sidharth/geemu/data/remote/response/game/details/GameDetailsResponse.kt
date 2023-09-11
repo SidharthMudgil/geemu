@@ -143,7 +143,7 @@ data class Requirements(
 
 data class Store(
     @SerializedName("id") val id: Int,
-    @SerializedName("url") val url: String,
+    @SerializedName("url") val url: String?,
     @SerializedName("store") val store: StoreDetails,
 )
 
