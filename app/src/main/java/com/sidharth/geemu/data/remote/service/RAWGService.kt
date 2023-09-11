@@ -1,4 +1,4 @@
-package com.sidharth.geemu.data.remote
+package com.sidharth.geemu.data.remote.service
 
 import com.sidharth.geemu.data.remote.response.creator.CreatorDetailsResponse
 import com.sidharth.geemu.data.remote.response.DeveloperDetailsResponse
