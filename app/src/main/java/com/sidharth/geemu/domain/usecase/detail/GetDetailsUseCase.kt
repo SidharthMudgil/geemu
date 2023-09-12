@@ -1,6 +1,8 @@
 package com.sidharth.geemu.domain.usecase.detail
 
-interface DetailsUseCase {
+interface GetDetailsUseCase {
+    suspend fun getGameDetails(id: Int)
+
     suspend fun getCreatorDetails(id: Int)
 
     suspend fun getDeveloperDetails(id: Int)
