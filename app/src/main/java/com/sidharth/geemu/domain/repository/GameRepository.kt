@@ -30,19 +30,31 @@ interface GameRepository {
     suspend fun getGameDetails(id: Int)
 
     suspend fun getGameAchievements(
-        id: Int, page: Int? = null, pageSize: Int? = null, order: String? = null
+        id: Int,
+        page: Int? = null,
+        pageSize: Int? = null,
+        ordering: String? = null
     )
 
     suspend fun getGameDLCs(
-        id: Int, page: Int? = null, pageSize: Int? = null, order: String? = null
+        id: Int,
+        page: Int? = null,
+        pageSize: Int? = null,
+        ordering: String? = null
     )
 
     suspend fun getGameScreenshots(
-        id: Int, page: Int? = null, pageSize: Int? = null, order: String? = null
+        id: Int,
+        page: Int? = null,
+        pageSize: Int? = null,
+        ordering: String? = null
     )
 
     suspend fun getGameTrailers(
-        id: Int, page: Int? = null, pageSize: Int? = null, order: String? = null
+        id: Int,
+        page: Int? = null,
+        pageSize: Int? = null,
+        ordering: String? = null
     )
 
     suspend fun getCreatorDetails(id: Int)

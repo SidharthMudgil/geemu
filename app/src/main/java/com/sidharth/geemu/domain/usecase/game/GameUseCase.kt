@@ -26,11 +26,11 @@ interface GameUseCase {
 
     suspend fun getGamesByTags(tags: String)
 
-    suspend fun getGameAchievements(id: Int, count: Int?)
+    suspend fun getGameAchievements(id: Int)
 
-    suspend fun getGameDLCs(id: Int, count: Int?)
+    suspend fun getGameDLCs(id: Int)
 
-    suspend fun getGameScreenshots(id: Int, count: Int?)
+    suspend fun getGameScreenshots(id: Int)
 
-    suspend fun getGameTrailers(id: Int, count: Int?)
+    suspend fun getGameTrailers(id: Int)
 }

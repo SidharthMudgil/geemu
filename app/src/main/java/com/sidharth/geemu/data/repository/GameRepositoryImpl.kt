@@ -1,8 +1,11 @@
 package com.sidharth.geemu.data.repository
 
+import com.sidharth.geemu.data.remote.source.RemoteDataSource
 import com.sidharth.geemu.domain.repository.GameRepository
 
-class GameRepositoryImpl: GameRepository {
+class GameRepositoryImpl(
+    private val remoteDataSource: RemoteDataSource,
+) : GameRepository {
     override suspend fun getGames(
         page: Int?,
         pageSize: Int?,
@@ -28,54 +31,102 @@ class GameRepositoryImpl: GameRepository {
         excludeParents: Boolean?,
         excludeGameSeries: Boolean?
     ) {
-        TODO("Not yet implemented")
+        remoteDataSource.getGames(
+            page = page,
+            pageSize = pageSize,
+            ordering = ordering,
+            search = search,
+            searchPrecise = searchPrecise,
+            searchExact = searchExact,
+            parentPlatforms = parentPlatforms,
+            platforms = platforms,
+            platformsCount = platformsCount,
+            creators = creators,
+            developers = developers,
+            publishers = publishers,
+            genres = genres,
+            tags = tags,
+            stores = stores,
+            dates = dates,
+            updated = updated,
+            metacritic = metacritic,
+            excludeStores = excludeStores,
+            excludeCollection = excludeCollection,
+            excludeAdditions = excludeAdditions,
+            excludeParents = excludeParents,
+            excludeGameSeries = excludeGameSeries
+        )
     }
 
     override suspend fun getGameDetails(id: Int) {
-        TODO("Not yet implemented")
+        remoteDataSource.getGameDetails(id)
     }
 
-    override suspend fun getGameAchievements(id: Int, page: Int?, pageSize: Int?, order: String?) {
-        TODO("Not yet implemented")
+    override suspend fun getGameAchievements(id: Int, page: Int?, pageSize: Int?, ordering: String?) {
+        remoteDataSource.getGameAchievements(
+            id = id,
+            page = page,
+            pageSize = pageSize,
+            ordering = ordering
+        )
     }
 
-    override suspend fun getGameDLCs(id: Int, page: Int?, pageSize: Int?, order: String?) {
-        TODO("Not yet implemented")
+    override suspend fun getGameDLCs(id: Int, page: Int?, pageSize: Int?, ordering: String?) {
+        remoteDataSource.getGameAdditions(
+            id = id,
+            page = page,
+            pageSize = pageSize,
+            ordering = ordering
+        )
     }
 
-    override suspend fun getGameScreenshots(id: Int, page: Int?, pageSize: Int?, order: String?) {
-        TODO("Not yet implemented")
+    override suspend fun getGameScreenshots(id: Int, page: Int?, pageSize: Int?, ordering: String?) {
+        remoteDataSource.getGameScreenshots(
+            id = id,
+            page = page,
+            pageSize = pageSize,
+            ordering = ordering
+        )
     }
 
-    override suspend fun getGameTrailers(id: Int, page: Int?, pageSize: Int?, order: String?) {
-        TODO("Not yet implemented")
+    override suspend fun getGameTrailers(id: Int, page: Int?, pageSize: Int?, ordering: String?) {
+        remoteDataSource.getGameMovies(
+            id = id,
+            page = page,
+            pageSize = pageSize,
+            ordering = ordering
+        )
     }
 
     override suspend fun getCreatorDetails(id: Int) {
-        TODO("Not yet implemented")
+        remoteDataSource.getCreatorDetails(id)
     }
 
     override suspend fun getDeveloperDetails(id: Int) {
-        TODO("Not yet implemented")
+        remoteDataSource.getDeveloperDetails(id)
+    }
+
+    override suspend fun getGenres() {
+        remoteDataSource.getGenres()
     }
 
     override suspend fun getGenreDetails(id: Int) {
-        TODO("Not yet implemented")
+        remoteDataSource.getGenreDetails(id)
     }
 
     override suspend fun getPlatformDetails(id: Int) {
-        TODO("Not yet implemented")
+        remoteDataSource.getPlatformDetails(id)
     }
 
     override suspend fun getPublisherDetails(id: Int) {
-        TODO("Not yet implemented")
+        remoteDataSource.getPublisherDetails(id)
     }
 
     override suspend fun getStoreDetails(id: Int) {
-        TODO("Not yet implemented")
+        remoteDataSource.getStoreDetails(id)
     }
 
     override suspend fun getTagDetails(id: Int) {
-        TODO("Not yet implemented")
+        remoteDataSource.getTagDetails(id)
     }
 }

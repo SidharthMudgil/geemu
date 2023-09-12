@@ -65,20 +65,20 @@ class GameUseCaseImpl(
         gameRepository.getGames(tags = tags)
     }
 
-    override suspend fun getGameAchievements(id: Int, count: Int?) {
-        gameRepository.getGameAchievements(id = id)
+    override suspend fun getGameAchievements(id: Int) {
+        gameRepository.getGameAchievements(id)
     }
 
-    override suspend fun getGameDLCs(id: Int, count: Int?) {
-        gameRepository.getGameDLCs(id = id)
+    override suspend fun getGameDLCs(id: Int) {
+        gameRepository.getGameDLCs(id)
     }
 
-    override suspend fun getGameScreenshots(id: Int, count: Int?) {
-        gameRepository.getGameScreenshots(id = id)
+    override suspend fun getGameScreenshots(id: Int) {
+        gameRepository.getGameScreenshots(id)
     }
 
-    override suspend fun getGameTrailers(id: Int, count: Int?) {
-        gameRepository.getGameTrailers(id = id)
+    override suspend fun getGameTrailers(id: Int) {
+        gameRepository.getGameTrailers(id)
     }
 
 }
