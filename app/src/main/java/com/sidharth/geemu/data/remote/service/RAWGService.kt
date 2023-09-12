@@ -1,18 +1,18 @@
 package com.sidharth.geemu.data.remote.service
 
-import com.sidharth.geemu.data.remote.response.creator.CreatorDetailsResponse
 import com.sidharth.geemu.data.remote.response.DeveloperDetailsResponse
 import com.sidharth.geemu.data.remote.response.GenreDetailsResponse
-import com.sidharth.geemu.data.remote.response.genres.GenresResponse
 import com.sidharth.geemu.data.remote.response.PlatformDetailsResponse
 import com.sidharth.geemu.data.remote.response.PublisherDetailsResponse
 import com.sidharth.geemu.data.remote.response.StoreDetailsResponse
 import com.sidharth.geemu.data.remote.response.TagDetailsResponse
+import com.sidharth.geemu.data.remote.response.creator.CreatorDetailsResponse
 import com.sidharth.geemu.data.remote.response.game.achievements.GameAchievementsResponse
 import com.sidharth.geemu.data.remote.response.game.details.GameDetailsResponse
 import com.sidharth.geemu.data.remote.response.game.games.GamesAdditionsResponse
 import com.sidharth.geemu.data.remote.response.game.movies.GameMoviesResponse
 import com.sidharth.geemu.data.remote.response.game.screenshots.GameScreenshotsResponse
+import com.sidharth.geemu.data.remote.response.genres.GenresResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -22,29 +22,29 @@ interface RAWGService {
 
     @GET("games")
     suspend fun getGames(
-        @Query("page") page: Int?,
-        @Query("page_size") pageSize: Int?,
-        @Query("search") search: String?,
-        @Query("search_precise") searchPrecise: Boolean?,
-        @Query("search_exact") searchExact: Boolean?,
-        @Query("parent_platforms") parentPlatforms: String?,
-        @Query("platforms") platforms: String?,
-        @Query("stores") stores: String?,
-        @Query("developers") developers: String?,
-        @Query("publishers") publishers: String?,
-        @Query("genres") genres: String?,
-        @Query("tags") tags: String?,
-        @Query("creators") creators: String?,
-        @Query("dates") dates: String?,
-        @Query("updated") updated: String?,
-        @Query("platforms_count") platformsCount: Int?,
-        @Query("metacritic") metacritic: String?,
-        @Query("exclude_collection") excludeCollection: Int?,
-        @Query("exclude_additions") excludeAdditions: Boolean?,
-        @Query("exclude_parents") excludeParents: Boolean?,
-        @Query("exclude_game_series") excludeGameSeries: Boolean?,
-        @Query("exclude_stores") excludeStores: String?,
-        @Query("ordering") ordering: String?,
+        @Query("page") page: Int? = null,
+        @Query("page_size") pageSize: Int? = null,
+        @Query("search") search: String? = null,
+        @Query("search_precise") searchPrecise: Boolean? = null,
+        @Query("search_exact") searchExact: Boolean? = null,
+        @Query("parent_platforms") parentPlatforms: String? = null,
+        @Query("platforms") platforms: String? = null,
+        @Query("stores") stores: String? = null,
+        @Query("developers") developers: String? = null,
+        @Query("publishers") publishers: String? = null,
+        @Query("genres") genres: String? = null,
+        @Query("tags") tags: String? = null,
+        @Query("creators") creators: String? = null,
+        @Query("dates") dates: String? = null,
+        @Query("updated") updated: String? = null,
+        @Query("platforms_count") platformsCount: Int? = null,
+        @Query("metacritic") metacritic: String? = null,
+        @Query("exclude_collection") excludeCollection: Int? = null,
+        @Query("exclude_additions") excludeAdditions: Boolean? = null,
+        @Query("exclude_parents") excludeParents: Boolean? = null,
+        @Query("exclude_game_series") excludeGameSeries: Boolean? = null,
+        @Query("exclude_stores") excludeStores: String? = null,
+        @Query("ordering") ordering: String? = null,
     ): Response<GamesAdditionsResponse>
 
     @GET("games/{id}")
@@ -55,40 +55,40 @@ interface RAWGService {
     @GET("games/{id}/additions")
     suspend fun getGameAchievements(
         @Path("id") id: Int,
-        @Query("page") page:Int = 1,
-        @Query("page_size") pageSize: Int = 20,
-        @Query("ordering") ordering: String = "name",
+        @Query("page") page: Int? = null,
+        @Query("page_size") pageSize: Int? = null,
+        @Query("ordering") ordering: String? = null,
     ): Response<GameAchievementsResponse>
 
     @GET("games/{id}/additions")
     suspend fun getGameAdditions(
         @Path("id") id: Int,
-        @Query("page") page:Int = 1,
-        @Query("page_size") pageSize: Int = 20,
-        @Query("ordering") ordering: String = "name",
+        @Query("page") page: Int? = null,
+        @Query("page_size") pageSize: Int? = null,
+        @Query("ordering") ordering: String? = null,
     ): Response<GamesAdditionsResponse>
 
     @GET("games/{id}/screenshots")
     suspend fun getGameScreenshots(
         @Path("id") id: Int,
-        @Query("page") page:Int = 1,
-        @Query("page_size") pageSize: Int = 20,
-        @Query("ordering") ordering: String = "id",
+        @Query("page") page: Int? = null,
+        @Query("page_size") pageSize: Int? = null,
+        @Query("ordering") ordering: String? = null,
     ): Response<GameScreenshotsResponse>
 
     @GET("games/{id}/movies")
     suspend fun getGameMovies(
         @Path("id") id: Int,
-        @Query("page") page:Int = 1,
-        @Query("page_size") pageSize: Int = 20,
-        @Query("ordering") ordering: String = "name",
+        @Query("page") page: Int? = null,
+        @Query("page_size") pageSize: Int? = null,
+        @Query("ordering") ordering: String? = null,
     ): Response<GameMoviesResponse>
 
     @GET("genres")
     suspend fun getGenres(
-        @Query("page") page:Int = 1,
-        @Query("page_size") pageSize: Int = 20,
-        @Query("ordering") ordering: String = "name",
+        @Query("page") page: Int? = null,
+        @Query("page_size") pageSize: Int? = null,
+        @Query("ordering") ordering: String? = null,
     ): Response<GenresResponse>
 
     @GET("genres/{id}")
