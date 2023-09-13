@@ -1,6 +1,5 @@
 package com.sidharth.geemu.data.remote.service
 
-import com.sidharth.geemu.data.remote.response.DetailsResponse
 import com.sidharth.geemu.data.remote.response.creator.CreatorDetailsResponse
 import com.sidharth.geemu.data.remote.response.game.details.GameDetailsResponse
 import com.sidharth.geemu.data.remote.response.game.games.GamesAdditionsResponse
@@ -90,14 +89,4 @@ interface RAWGService {
     suspend fun getCreatorDetails(
         @Path("id") id: Int
     ): Response<CreatorDetailsResponse>
-
-    @GET("developers/{id}")
-    suspend fun getDeveloperDetails(
-        @Path("id") id: Int
-    ): Response<DetailsResponse>
-
-    @GET("publishers/{id}")
-    suspend fun getPublisherDetails(
-        @Path("id") id: Int
-    ): Response<DetailsResponse>
 }

@@ -122,7 +122,7 @@ data class ParentPlatformDetails(
 data class Platform(
     @SerializedName("platform") val platform: PlatformDetails,
     @SerializedName("released_at") val releasedAt: String,
-    @SerializedName("requirements") val requirements: Requirements?,
+    @SerializedName("requirements") val requirements: Requirements,
 )
 
 data class PlatformDetails(
