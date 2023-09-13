@@ -1,7 +1,7 @@
 package com.sidharth.geemu.domain.model
 
 data class GameDetails(
-    val id: String,
+    val id: Int,
     val name: String,
     val image: String,
     val background: String,
@@ -10,10 +10,9 @@ data class GameDetails(
     val playtime: Int,
     val website: String?,
     val metacritic: Int?,
-    val rating: String,
+    val rating: Double,
     val esrbRating: String,
     val ratings: List<Rating>,
-    val reactions: List<Reaction>,
     val screenshots: List<String>,
     val trailers: List<Trailer>,
     val alternativeNames: List<String>,
@@ -22,6 +21,7 @@ data class GameDetails(
     val minimumRequirements: String?,
     val recommendedRequirements: String?,
     val creators: List<Creator>,
+    val additions: List<Game>,
     val developers: List<Developer>,
     val publishers: List<Publisher>,
     val platforms: List<Platform>,
@@ -37,7 +37,7 @@ data class Trailer(
 
 data class Platform(
     val id: Int,
-    val name: Int,
+    val name: String,
 )
 
 data class Developer(
@@ -63,13 +63,8 @@ data class Creator(
 
 data class Publisher(
     val id: Int,
-    val name: Int,
+    val name: String,
     val image: String,
-)
-
-data class Reaction(
-    val title: String,
-    val count: Int,
 )
 
 data class Tag(

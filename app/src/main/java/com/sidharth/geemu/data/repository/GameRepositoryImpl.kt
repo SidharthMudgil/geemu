@@ -1,6 +1,14 @@
 package com.sidharth.geemu.data.repository
 
+import com.sidharth.geemu.data.mapper.ResponseMapper
+import com.sidharth.geemu.data.mapper.ResponseMapper.toCreatorDetails
+import com.sidharth.geemu.data.mapper.ResponseMapper.toGames
+import com.sidharth.geemu.data.mapper.ResponseMapper.toGenres
 import com.sidharth.geemu.data.remote.source.RemoteDataSource
+import com.sidharth.geemu.domain.model.CreatorDetails
+import com.sidharth.geemu.domain.model.Game
+import com.sidharth.geemu.domain.model.GameDetails
+import com.sidharth.geemu.domain.model.Genre
 import com.sidharth.geemu.domain.repository.GameRepository
 
 class GameRepositoryImpl(
@@ -30,8 +38,8 @@ class GameRepositoryImpl(
         excludeAdditions: Boolean?,
         excludeParents: Boolean?,
         excludeGameSeries: Boolean?
-    ) {
-        remoteDataSource.getGames(
+    ): List<Game> {
+        return remoteDataSource.getGames(
             page = page,
             pageSize = pageSize,
             ordering = ordering,
@@ -55,62 +63,42 @@ class GameRepositoryImpl(
             excludeAdditions = excludeAdditions,
             excludeParents = excludeParents,
             excludeGameSeries = excludeGameSeries
-        )
+        )?.toGames() ?: listOf()
     }
 
-    override suspend fun getGameDetails(id: Int) {
-        remoteDataSource.getGameDetails(id)
-    }
+    override suspend fun getGameDetails(id: Int): GameDetails {
+        val gameDetails = remoteDataSource.getGameDetails(id)
+        val gameDevelopmentTeam = remoteDataSource.getGameDevelopmentTeam(id)
 
-    override suspend fun getGameDevelopmentTeam(id: Int, page: Int?, pageSize: Int?, ordering: String?) {
-        remoteDataSource.getGameDevelopmentTeam(
+        val gameAdditions = remoteDataSource.getGameAdditions(
             id = id,
-            page = page,
-            pageSize = pageSize,
-            ordering = ordering
+            count = gameDetails?.additionsCount ?: 0,
         )
-    }
 
-    override suspend fun getGameDLCs(id: Int, page: Int?, pageSize: Int?, ordering: String?) {
-        remoteDataSource.getGameAdditions(
+        val gameScreenshots = remoteDataSource.getGameScreenshots(
             id = id,
-            page = page,
-            pageSize = pageSize,
-            ordering = ordering
+            count = gameDetails?.screenshotsCount ?: 0,
         )
-    }
 
-    override suspend fun getGameScreenshots(id: Int, page: Int?, pageSize: Int?, ordering: String?) {
-        remoteDataSource.getGameScreenshots(
+        val gameMovies = remoteDataSource.getGameMovies(
             id = id,
-            page = page,
-            pageSize = pageSize,
-            ordering = ordering
+            count = gameDetails?.moviesCount ?: 0,
+        )
+
+        return ResponseMapper.toGameDetails(
+            details = gameDetails,
+            additions = gameAdditions,
+            screenshots = gameScreenshots,
+            movies = gameMovies,
+            creators = gameDevelopmentTeam
         )
     }
 
-    override suspend fun getGameTrailers(id: Int, page: Int?, pageSize: Int?, ordering: String?) {
-        remoteDataSource.getGameMovies(
-            id = id,
-            page = page,
-            pageSize = pageSize,
-            ordering = ordering
-        )
+    override suspend fun getCreatorDetails(id: Int): CreatorDetails {
+        return remoteDataSource.getCreatorDetails(id)!!.toCreatorDetails()
     }
 
-    override suspend fun getCreatorDetails(id: Int) {
-        remoteDataSource.getCreatorDetails(id)
-    }
-
-    override suspend fun getDeveloperDetails(id: Int) {
-        remoteDataSource.getDeveloperDetails(id)
-    }
-
-    override suspend fun getGenres() {
-        remoteDataSource.getGenres()
-    }
-
-    override suspend fun getPublisherDetails(id: Int) {
-        remoteDataSource.getPublisherDetails(id)
+    override suspend fun getGenres(): List<Genre> {
+        return remoteDataSource.getGenres()?.toGenres() ?: listOf()
     }
 }

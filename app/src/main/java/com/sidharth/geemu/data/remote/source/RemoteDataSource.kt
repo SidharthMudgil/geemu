@@ -1,5 +1,12 @@
 package com.sidharth.geemu.data.remote.source
 
+import com.sidharth.geemu.data.remote.response.GenresResponse
+import com.sidharth.geemu.data.remote.response.creator.CreatorDetailsResponse
+import com.sidharth.geemu.data.remote.response.game.details.GameDetailsResponse
+import com.sidharth.geemu.data.remote.response.game.games.GamesAdditionsResponse
+import com.sidharth.geemu.data.remote.response.game.movies.GameMoviesResponse
+import com.sidharth.geemu.data.remote.response.game.screenshots.GameScreenshotsResponse
+import com.sidharth.geemu.data.remote.response.game.team.GameDevelopmentTeamResponse
 import com.sidharth.geemu.data.remote.service.RAWGService
 
 class RemoteDataSource(
@@ -29,8 +36,8 @@ class RemoteDataSource(
         excludeGameSeries: Boolean? = null,
         excludeStores: String? = null,
         ordering: String? = null,
-    ) {
-        rawgService.getGames(
+    ): GamesAdditionsResponse? {
+        val response = rawgService.getGames(
             page = page,
             pageSize = pageSize,
             ordering = ordering,
@@ -55,83 +62,110 @@ class RemoteDataSource(
             excludeParents = excludeParents,
             excludeGameSeries = excludeGameSeries
         )
+
+        return when (response.isSuccessful) {
+            true -> response.body()
+            else -> null
+        }
     }
 
-    suspend fun getGameDetails(id: Int) {
-        rawgService.getGameDetails(id)
+    suspend fun getGenres(): GenresResponse? {
+        val response = rawgService.getGenres(
+            pageSize = 20,
+        )
+
+        return when (response.isSuccessful) {
+            true -> response.body()
+            else -> null
+        }
+    }
+
+    suspend fun getGameDetails(
+        id: Int
+    ): GameDetailsResponse? {
+        val response = rawgService.getGameDetails(id)
+
+        return when (response.isSuccessful) {
+            true -> response.body()
+            else -> null
+        }
     }
 
     suspend fun getGameAdditions(
         id: Int,
-        page: Int? = null,
-        pageSize: Int? = null,
-        ordering: String? = null,
-    ) {
-        rawgService.getGameAdditions(
+        count: Int,
+    ): GamesAdditionsResponse? {
+        val response = rawgService.getGameAdditions(
             id = id,
-            page = page,
-            pageSize = pageSize,
-            ordering = ordering
+            page = 1,
+            pageSize = count,
+            ordering = "name"
         )
+
+        return when (response.isSuccessful) {
+            true -> response.body()
+            else -> null
+        }
     }
 
     suspend fun getGameScreenshots(
         id: Int,
-        page: Int? = null,
-        pageSize: Int? = null,
-        ordering: String? = null,
-    ) {
-        rawgService.getGameScreenshots(
+        count: Int,
+    ): GameScreenshotsResponse? {
+        val response = rawgService.getGameScreenshots(
             id = id,
-            page = page,
-            pageSize = pageSize,
-            ordering = ordering
+            page = 1,
+            pageSize = count,
+            ordering = "id"
         )
+
+        return when (response.isSuccessful) {
+            true -> response.body()
+            else -> null
+        }
     }
 
     suspend fun getGameDevelopmentTeam(
-        id: Int,
-        page: Int? = null,
-        pageSize: Int? = null,
-        ordering: String? = null,
-    ) {
-        rawgService.getGameDevelopmentTeam(
+        id: Int
+    ): GameDevelopmentTeamResponse? { // TODO paging for this too
+        val response = rawgService.getGameDevelopmentTeam(
             id = id,
-            page = page,
-            pageSize = pageSize,
-            ordering = ordering
+            page = 1,
+            pageSize = 12,
+            ordering = "name",
         )
+
+        return when (response.isSuccessful) {
+            true -> response.body()
+            else -> null
+        }
     }
 
     suspend fun getGameMovies(
         id: Int,
-        page: Int? = null,
-        pageSize: Int? = null,
-        ordering: String? = null,
-    ) {
-        rawgService.getGameMovies(
+        count: Int,
+    ): GameMoviesResponse? {
+        val response = rawgService.getGameMovies(
             id = id,
-            page = page,
-            pageSize = pageSize,
-            ordering = ordering
+            page = 1,
+            pageSize = count,
+            ordering = "name"
         )
+
+        return when (response.isSuccessful) {
+            true -> response.body()
+            else -> null
+        }
     }
 
-    suspend fun getGenres() {
-        rawgService.getGenres(
-            pageSize = 20,
-        )
-    }
+    suspend fun getCreatorDetails(
+        id: Int
+    ): CreatorDetailsResponse? {
+        val response = rawgService.getCreatorDetails(id)
 
-    suspend fun getCreatorDetails(id: Int) {
-        rawgService.getCreatorDetails(id)
-    }
-
-    suspend fun getDeveloperDetails(id: Int) {
-        rawgService.getDeveloperDetails(id)
-    }
-
-    suspend fun getPublisherDetails(id: Int) {
-        rawgService.getPublisherDetails(id)
+        return when (response.isSuccessful) {
+            true -> response.body()
+            else -> null
+        }
     }
 }

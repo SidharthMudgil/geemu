@@ -1,5 +1,10 @@
 package com.sidharth.geemu.domain.repository
 
+import com.sidharth.geemu.domain.model.CreatorDetails
+import com.sidharth.geemu.domain.model.Game
+import com.sidharth.geemu.domain.model.GameDetails
+import com.sidharth.geemu.domain.model.Genre
+
 interface GameRepository {
     suspend fun getGames(
         page: Int? = null,
@@ -25,43 +30,12 @@ interface GameRepository {
         excludeAdditions: Boolean? = null,
         excludeParents: Boolean? = null,
         excludeGameSeries: Boolean? = null,
-    )
+    ): List<Game>
 
-    suspend fun getGameDetails(id: Int)
+    suspend fun getGameDetails(id: Int): GameDetails
 
-    suspend fun getGameDevelopmentTeam(
-        id: Int,
-        page: Int? = null,
-        pageSize: Int? = null,
-        ordering: String? = null
-    )
+    suspend fun getCreatorDetails(id: Int): CreatorDetails
 
-    suspend fun getGameDLCs(
-        id: Int,
-        page: Int? = null,
-        pageSize: Int? = null,
-        ordering: String? = null
-    )
+    suspend fun getGenres(): List<Genre>
 
-    suspend fun getGameScreenshots(
-        id: Int,
-        page: Int? = null,
-        pageSize: Int? = null,
-        ordering: String? = null
-    )
-
-    suspend fun getGameTrailers(
-        id: Int,
-        page: Int? = null,
-        pageSize: Int? = null,
-        ordering: String? = null
-    )
-
-    suspend fun getCreatorDetails(id: Int)
-
-    suspend fun getDeveloperDetails(id: Int)
-
-    suspend fun getGenres()
-
-    suspend fun getPublisherDetails(id: Int)
 }

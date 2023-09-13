@@ -9,7 +9,7 @@ data class CreatorDetails(
     val rating: String,
     val gamesCount: Int,
     val ratings: List<Rating>,
-    val timeLine: List<Timeline>,
+    val timeline: List<Timeline>,
 )
 
 data class Timeline(
