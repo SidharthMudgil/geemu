@@ -72,12 +72,6 @@ data class Reaction(
     val count: Int,
 )
 
-data class Rating(
-    val title: String,
-    val count: Int,
-    val percent: Double,
-)
-
 data class Tag(
     val id: Int,
     val name: String,
