@@ -1,4 +1,4 @@
-package com.sidharth.geemu.data.remote.response.genres
+package com.sidharth.geemu.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 

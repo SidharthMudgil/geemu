@@ -1,14 +1,13 @@
 package com.sidharth.geemu.data.remote.service
 
-import com.sidharth.geemu.data.remote.response.DeveloperDetailsResponse
-import com.sidharth.geemu.data.remote.response.PublisherDetailsResponse
+import com.sidharth.geemu.data.remote.response.DetailsResponse
 import com.sidharth.geemu.data.remote.response.creator.CreatorDetailsResponse
 import com.sidharth.geemu.data.remote.response.game.details.GameDetailsResponse
 import com.sidharth.geemu.data.remote.response.game.games.GamesAdditionsResponse
 import com.sidharth.geemu.data.remote.response.game.movies.GameMoviesResponse
 import com.sidharth.geemu.data.remote.response.game.screenshots.GameScreenshotsResponse
 import com.sidharth.geemu.data.remote.response.game.team.GameDevelopmentTeamResponse
-import com.sidharth.geemu.data.remote.response.genres.GenresResponse
+import com.sidharth.geemu.data.remote.response.GenresResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -95,10 +94,10 @@ interface RAWGService {
     @GET("developers/{id}")
     suspend fun getDeveloperDetails(
         @Path("id") id: Int
-    ): Response<DeveloperDetailsResponse>
+    ): Response<DetailsResponse>
 
     @GET("publishers/{id}")
     suspend fun getPublisherDetails(
         @Path("id") id: Int
-    ): Response<PublisherDetailsResponse>
+    ): Response<DetailsResponse>
 }
