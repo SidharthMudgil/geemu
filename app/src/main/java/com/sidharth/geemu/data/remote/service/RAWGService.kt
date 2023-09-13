@@ -4,14 +4,12 @@ import com.sidharth.geemu.data.remote.response.DeveloperDetailsResponse
 import com.sidharth.geemu.data.remote.response.GenreDetailsResponse
 import com.sidharth.geemu.data.remote.response.PlatformDetailsResponse
 import com.sidharth.geemu.data.remote.response.PublisherDetailsResponse
-import com.sidharth.geemu.data.remote.response.StoreDetailsResponse
-import com.sidharth.geemu.data.remote.response.TagDetailsResponse
 import com.sidharth.geemu.data.remote.response.creator.CreatorDetailsResponse
-import com.sidharth.geemu.data.remote.response.game.achievements.GameAchievementsResponse
 import com.sidharth.geemu.data.remote.response.game.details.GameDetailsResponse
 import com.sidharth.geemu.data.remote.response.game.games.GamesAdditionsResponse
 import com.sidharth.geemu.data.remote.response.game.movies.GameMoviesResponse
 import com.sidharth.geemu.data.remote.response.game.screenshots.GameScreenshotsResponse
+import com.sidharth.geemu.data.remote.response.game.team.GameDevelopmentTeamResponse
 import com.sidharth.geemu.data.remote.response.genres.GenresResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -52,13 +50,13 @@ interface RAWGService {
         @Path("id") id: Int
     ): Response<GameDetailsResponse>
 
-    @GET("games/{id}/additions")
-    suspend fun getGameAchievements(
+    @GET("games/{id}/development-team")
+    suspend fun getGameDevelopmentTeam(
         @Path("id") id: Int,
         @Query("page") page: Int? = null,
         @Query("page_size") pageSize: Int? = null,
         @Query("ordering") ordering: String? = null,
-    ): Response<GameAchievementsResponse>
+    ): Response<GameDevelopmentTeamResponse>
 
     @GET("games/{id}/additions")
     suspend fun getGameAdditions(
@@ -115,14 +113,4 @@ interface RAWGService {
     suspend fun getPublisherDetails(
         @Path("id") id: Int
     ): Response<PublisherDetailsResponse>
-
-    @GET("stores/{id}")
-    suspend fun getStoreDetails(
-        @Path("id") id: Int
-    ): Response<StoreDetailsResponse>
-
-    @GET("tags/{id}")
-    suspend fun getTagDetails(
-        @Path("id") id: Int
-    ): Response<TagDetailsResponse>
 }

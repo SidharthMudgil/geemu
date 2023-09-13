@@ -61,20 +61,6 @@ class RemoteDataSource(
         rawgService.getGameDetails(id)
     }
 
-    suspend fun getGameAchievements(
-        id: Int,
-        page: Int? = null,
-        pageSize: Int? = null,
-        ordering: String? = null,
-    ) {
-        rawgService.getGameAchievements(
-            id = id,
-            page = page,
-            pageSize = pageSize,
-            ordering = ordering
-        )
-    }
-
     suspend fun getGameAdditions(
         id: Int,
         page: Int? = null,
@@ -96,6 +82,20 @@ class RemoteDataSource(
         ordering: String? = null,
     ) {
         rawgService.getGameScreenshots(
+            id = id,
+            page = page,
+            pageSize = pageSize,
+            ordering = ordering
+        )
+    }
+
+    suspend fun getGameDevelopmentTeam(
+        id: Int,
+        page: Int? = null,
+        pageSize: Int? = null,
+        ordering: String? = null,
+    ) {
+        rawgService.getGameDevelopmentTeam(
             id = id,
             page = page,
             pageSize = pageSize,
@@ -141,13 +141,5 @@ class RemoteDataSource(
 
     suspend fun getPublisherDetails(id: Int) {
         rawgService.getPublisherDetails(id)
-    }
-
-    suspend fun getStoreDetails(id: Int) {
-        rawgService.getStoreDetails(id)
-    }
-
-    suspend fun getTagDetails(id: Int) {
-        rawgService.getTagDetails(id)
     }
 }

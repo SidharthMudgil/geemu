@@ -62,8 +62,8 @@ class GameRepositoryImpl(
         remoteDataSource.getGameDetails(id)
     }
 
-    override suspend fun getGameAchievements(id: Int, page: Int?, pageSize: Int?, ordering: String?) {
-        remoteDataSource.getGameAchievements(
+    override suspend fun getGameDevelopmentTeam(id: Int, page: Int?, pageSize: Int?, ordering: String?) {
+        remoteDataSource.getGameDevelopmentTeam(
             id = id,
             page = page,
             pageSize = pageSize,
@@ -120,13 +120,5 @@ class GameRepositoryImpl(
 
     override suspend fun getPublisherDetails(id: Int) {
         remoteDataSource.getPublisherDetails(id)
-    }
-
-    override suspend fun getStoreDetails(id: Int) {
-        remoteDataSource.getStoreDetails(id)
-    }
-
-    override suspend fun getTagDetails(id: Int) {
-        remoteDataSource.getTagDetails(id)
     }
 }

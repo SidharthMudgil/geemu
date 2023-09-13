@@ -26,7 +26,7 @@ interface GameUseCase {
 
     suspend fun getGamesByTags(tags: String)
 
-    suspend fun getGameAchievements(id: Int)
+    suspend fun getGameDevelopmentTeam(id: Int)
 
     suspend fun getGameDLCs(id: Int)
 

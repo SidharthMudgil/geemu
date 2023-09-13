@@ -29,7 +29,7 @@ interface GameRepository {
 
     suspend fun getGameDetails(id: Int)
 
-    suspend fun getGameAchievements(
+    suspend fun getGameDevelopmentTeam(
         id: Int,
         page: Int? = null,
         pageSize: Int? = null,
@@ -68,8 +68,4 @@ interface GameRepository {
     suspend fun getPlatformDetails(id: Int)
 
     suspend fun getPublisherDetails(id: Int)
-
-    suspend fun getStoreDetails(id: Int)
-
-    suspend fun getTagDetails(id: Int)
 }

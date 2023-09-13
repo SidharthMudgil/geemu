@@ -65,8 +65,8 @@ class GameUseCaseImpl(
         gameRepository.getGames(tags = tags)
     }
 
-    override suspend fun getGameAchievements(id: Int) {
-        gameRepository.getGameAchievements(id)
+    override suspend fun getGameDevelopmentTeam(id: Int) {
+        gameRepository.getGameDevelopmentTeam(id)
     }
 
     override suspend fun getGameDLCs(id: Int) {

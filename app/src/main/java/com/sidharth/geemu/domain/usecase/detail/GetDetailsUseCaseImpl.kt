@@ -28,12 +28,4 @@ class GetDetailsUseCaseImpl(
     override suspend fun getPublisherDetails(id: Int) {
         gameRepository.getPublisherDetails(id)
     }
-
-    override suspend fun getStoreDetails(id: Int) {
-        gameRepository.getStoreDetails(id)
-    }
-
-    override suspend fun getTagDetails(id: Int) {
-        gameRepository.getTagDetails(id)
-    }
 }
