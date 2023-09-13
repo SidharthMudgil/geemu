@@ -1,8 +1,6 @@
 package com.sidharth.geemu.data.remote.service
 
 import com.sidharth.geemu.data.remote.response.DeveloperDetailsResponse
-import com.sidharth.geemu.data.remote.response.GenreDetailsResponse
-import com.sidharth.geemu.data.remote.response.PlatformDetailsResponse
 import com.sidharth.geemu.data.remote.response.PublisherDetailsResponse
 import com.sidharth.geemu.data.remote.response.creator.CreatorDetailsResponse
 import com.sidharth.geemu.data.remote.response.game.details.GameDetailsResponse
@@ -89,11 +87,6 @@ interface RAWGService {
         @Query("ordering") ordering: String? = null,
     ): Response<GenresResponse>
 
-    @GET("genres/{id}")
-    suspend fun getGenreDetails(
-        @Path("id") id: Int
-    ): Response<GenreDetailsResponse>
-
     @GET("creators/{id}")
     suspend fun getCreatorDetails(
         @Path("id") id: Int
@@ -103,11 +96,6 @@ interface RAWGService {
     suspend fun getDeveloperDetails(
         @Path("id") id: Int
     ): Response<DeveloperDetailsResponse>
-
-    @GET("platforms/{id}")
-    suspend fun getPlatformDetails(
-        @Path("id") id: Int
-    ): Response<PlatformDetailsResponse>
 
     @GET("publishers/{id}")
     suspend fun getPublisherDetails(

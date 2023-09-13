@@ -7,9 +7,5 @@ interface GetDetailsUseCase {
 
     suspend fun getDeveloperDetails(id: Int)
 
-    suspend fun getGenreDetails(id: Int)
-
-    suspend fun getPlatformDetails(id: Int)
-
     suspend fun getPublisherDetails(id: Int)
 }

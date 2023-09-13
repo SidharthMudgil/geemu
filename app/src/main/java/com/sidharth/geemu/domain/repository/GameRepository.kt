@@ -63,9 +63,5 @@ interface GameRepository {
 
     suspend fun getGenres()
 
-    suspend fun getGenreDetails(id: Int)
-
-    suspend fun getPlatformDetails(id: Int)
-
     suspend fun getPublisherDetails(id: Int)
 }

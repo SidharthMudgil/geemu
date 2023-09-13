@@ -123,20 +123,12 @@ class RemoteDataSource(
         )
     }
 
-    suspend fun getGenreDetails(id: Int) {
-        rawgService.getGenreDetails(id)
-    }
-
     suspend fun getCreatorDetails(id: Int) {
         rawgService.getCreatorDetails(id)
     }
 
     suspend fun getDeveloperDetails(id: Int) {
         rawgService.getDeveloperDetails(id)
-    }
-
-    suspend fun getPlatformDetails(id: Int) {
-        rawgService.getPlatformDetails(id)
     }
 
     suspend fun getPublisherDetails(id: Int) {

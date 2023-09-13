@@ -17,14 +17,6 @@ class GetDetailsUseCaseImpl(
         gameRepository.getDeveloperDetails(id)
     }
 
-    override suspend fun getGenreDetails(id: Int) {
-        gameRepository.getGenreDetails(id)
-    }
-
-    override suspend fun getPlatformDetails(id: Int) {
-        gameRepository.getPlatformDetails(id)
-    }
-
     override suspend fun getPublisherDetails(id: Int) {
         gameRepository.getPublisherDetails(id)
     }

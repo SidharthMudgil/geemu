@@ -110,14 +110,6 @@ class GameRepositoryImpl(
         remoteDataSource.getGenres()
     }
 
-    override suspend fun getGenreDetails(id: Int) {
-        remoteDataSource.getGenreDetails(id)
-    }
-
-    override suspend fun getPlatformDetails(id: Int) {
-        remoteDataSource.getPlatformDetails(id)
-    }
-
     override suspend fun getPublisherDetails(id: Int) {
         remoteDataSource.getPublisherDetails(id)
     }
