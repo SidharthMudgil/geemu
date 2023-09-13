@@ -1,10 +1,12 @@
 package com.sidharth.geemu.domain.usecase.collection
 
+import com.sidharth.geemu.domain.model.Game
+
 interface CollectionUseCase {
 
-    suspend fun addGameToCollection(id: Int, collection: Int)
+    suspend fun addGameToCollection(game: Game, collection: Int)
 
-    suspend fun moveGameToCollection(id: Int, collection: Int)
+    suspend fun moveGameToCollection(game: Game, collection: Int)
 
-    suspend fun removeGameFromCollections(id: Int)
+    suspend fun removeGameFromCollections(game: Game)
 }

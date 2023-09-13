@@ -1,10 +1,12 @@
 package com.sidharth.geemu.domain.usecase.tag
 
+import com.sidharth.geemu.domain.model.Tag
+
 interface TagUseCase {
 
     suspend fun getTags()
 
-    suspend fun followTag(id: Int)
+    suspend fun followTag(tag: Tag)
 
-    suspend fun unfollowTag(id: Int)
+    suspend fun unfollowTag(tag: Tag)
 }

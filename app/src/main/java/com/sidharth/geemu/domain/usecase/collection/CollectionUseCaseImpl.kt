@@ -1,26 +1,27 @@
 package com.sidharth.geemu.domain.usecase.collection
 
+import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.repository.UserDataRepository
 
 class CollectionUseCaseImpl(
     private val userDataRepository: UserDataRepository
 ) : CollectionUseCase{
 
-    override suspend fun addGameToCollection(id: Int, collection: Int) {
+    override suspend fun addGameToCollection(game: Game, collection: Int) {
         userDataRepository.addGameToCollection(
-            id = id,
+            game = game,
             collection = collection
         )
     }
 
-    override suspend fun moveGameToCollection(id: Int, collection: Int) {
+    override suspend fun moveGameToCollection(game: Game, collection: Int) {
         userDataRepository.moveGameToCollection(
-            id = id,
+            game = game,
             collection = collection
         )
     }
 
-    override suspend fun removeGameFromCollections(id: Int) {
-        userDataRepository.removeGameFromCollections(id)
+    override suspend fun removeGameFromCollections(game: Game) {
+        userDataRepository.removeGameFromCollections(game)
     }
 }

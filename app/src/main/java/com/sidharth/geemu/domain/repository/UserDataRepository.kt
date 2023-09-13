@@ -1,16 +1,19 @@
 package com.sidharth.geemu.domain.repository
 
+import com.sidharth.geemu.domain.model.Game
+import com.sidharth.geemu.domain.model.Tag
+
 interface UserDataRepository {
 
-    suspend fun addGameToCollection(id: Int, collection: Int)
+    suspend fun addGameToCollection(game: Game, collection: Int)
 
-    suspend fun moveGameToCollection(id: Int, collection: Int)
+    suspend fun moveGameToCollection(game: Game, collection: Int)
 
-    suspend fun removeGameFromCollections(id: Int)
+    suspend fun removeGameFromCollections(game: Game)
 
     suspend fun getTags()
 
-    suspend fun followTag(id: Int)
+    suspend fun followTag(tag: Tag)
 
-    suspend fun unfollowTag(id: Int)
+    suspend fun unfollowTag(tag: Tag)
 }
