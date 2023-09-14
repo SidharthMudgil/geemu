@@ -4,7 +4,7 @@ import com.sidharth.geemu.domain.model.Tag
 
 interface TagUseCase {
 
-    suspend fun getTags()
+    suspend fun getTags(): List<Tag>
 
     suspend fun followTag(tag: Tag)
 

@@ -1,24 +1,37 @@
 package com.sidharth.geemu.data.local
 
+import com.sidharth.geemu.domain.model.Collection
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Tag
 
-class LocalDataSource {
-    fun unfollowTag(tag: Tag) {
+class LocalDataSource(
+    private val userDataDao: UserDataDao
+) {
+    suspend fun getGames(): List<GameEntity> {
+        return userDataDao.getGames()
     }
 
-    fun followTag(tag: Tag) {
+    suspend fun addGameToCollection(game: GameEntity) {
+        userDataDao.addGameToCollection(game)
     }
 
-    fun getTags() {
+    suspend fun removeGameFromCollection(id: Int) {
+        userDataDao.removeGameFromToCollection(id)
     }
 
-    fun removeGameFromCollection(game: Game) {
+    suspend fun moveGameToCollection(id: Int, collection: Int) {
+        userDataDao.moveGameToCollection(id, collection)
     }
 
-    fun moveGameToCollection(game: Game, collection: Int) {
+    suspend fun getTags(): List<TagEntity> {
+        return userDataDao.getTags()
     }
 
-    fun addGameToCollection(game: Game, collection: Int) {
+    suspend fun unfollowTag(tag: TagEntity) {
+        userDataDao.unfollowTag(tag.id)
+    }
+
+    suspend fun followTag(tag: TagEntity) {
+        userDataDao.followTag(tag)
     }
 }

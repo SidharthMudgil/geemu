@@ -7,8 +7,8 @@ class TagUseCaseImpl(
     private val userDataRepository: UserDataRepository
 ) : TagUseCase{
 
-    override suspend fun getTags() {
-        userDataRepository.getTags()
+    override suspend fun getTags(): List<Tag> {
+        return userDataRepository.getTags()
     }
 
     override suspend fun followTag(tag: Tag) {
