@@ -1,11 +1,12 @@
 package com.sidharth.geemu.domain.usecase.game
 
-import com.sidharth.geemu.core.utils.DateTimeUtils
+import com.sidharth.geemu.core.util.DateTimeUtils
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Genre
 import com.sidharth.geemu.domain.repository.GameRepository
+import javax.inject.Inject
 
-class GameUseCaseImpl(
+class GameUseCaseImpl @Inject constructor(
     private val gameRepository: GameRepository
 ) : GameUseCase {
 

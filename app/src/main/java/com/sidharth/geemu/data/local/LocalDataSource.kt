@@ -1,6 +1,8 @@
 package com.sidharth.geemu.data.local
 
-class LocalDataSource(
+import javax.inject.Inject
+
+class LocalDataSource @Inject constructor(
     private val userDataDao: UserDataDao
 ) {
     suspend fun getGames(): List<GameEntity> {

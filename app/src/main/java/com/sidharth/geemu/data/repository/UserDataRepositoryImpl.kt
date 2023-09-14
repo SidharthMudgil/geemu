@@ -9,8 +9,9 @@ import com.sidharth.geemu.domain.model.Collection
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Tag
 import com.sidharth.geemu.domain.repository.UserDataRepository
+import javax.inject.Inject
 
-class UserDataRepositoryImpl(
+class UserDataRepositoryImpl @Inject constructor(
     private val localDataSource: LocalDataSource
 ) : UserDataRepository {
     override suspend fun getGamesCollections(): List<Collection> {

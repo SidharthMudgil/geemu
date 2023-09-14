@@ -1,4 +1,4 @@
-package com.sidharth.geemu.core.utils
+package com.sidharth.geemu.core.util
 
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter

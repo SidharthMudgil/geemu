@@ -1,5 +1,6 @@
 package com.sidharth.geemu.data.repository
 
+import com.sidharth.geemu.data.local.LocalDataSource
 import com.sidharth.geemu.data.mapper.ResponseMapper
 import com.sidharth.geemu.data.mapper.ResponseMapper.toCreatorDetails
 import com.sidharth.geemu.data.mapper.ResponseMapper.toGames
@@ -10,8 +11,10 @@ import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.GameDetails
 import com.sidharth.geemu.domain.model.Genre
 import com.sidharth.geemu.domain.repository.GameRepository
+import javax.inject.Inject
 
-class GameRepositoryImpl(
+class GameRepositoryImpl @Inject constructor(
+    private val localDataSource: LocalDataSource,
     private val remoteDataSource: RemoteDataSource,
 ) : GameRepository {
     override suspend fun getGames(

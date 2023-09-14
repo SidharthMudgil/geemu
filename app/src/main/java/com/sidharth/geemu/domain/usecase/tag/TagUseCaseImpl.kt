@@ -2,8 +2,9 @@ package com.sidharth.geemu.domain.usecase.tag
 
 import com.sidharth.geemu.domain.model.Tag
 import com.sidharth.geemu.domain.repository.UserDataRepository
+import javax.inject.Inject
 
-class TagUseCaseImpl(
+class TagUseCaseImpl @Inject constructor(
     private val userDataRepository: UserDataRepository
 ) : TagUseCase{
 

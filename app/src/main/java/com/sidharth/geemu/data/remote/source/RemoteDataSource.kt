@@ -8,8 +8,9 @@ import com.sidharth.geemu.data.remote.response.game.movies.GameMoviesResponse
 import com.sidharth.geemu.data.remote.response.game.screenshots.GameScreenshotsResponse
 import com.sidharth.geemu.data.remote.response.game.team.GameDevelopmentTeamResponse
 import com.sidharth.geemu.data.remote.service.RAWGService
+import javax.inject.Inject
 
-class RemoteDataSource(
+class RemoteDataSource @Inject constructor(
     private val rawgService: RAWGService,
 ) {
     suspend fun getGames(
