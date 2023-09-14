@@ -1,10 +1,12 @@
 package com.sidharth.geemu.data.local
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
-import com.google.gson.annotations.SerializedName
+import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "tags")
 data class TagEntity(
-    @SerializedName("id") val id: Int,
-    @SerializedName("name") val name: String,
+    @PrimaryKey
+    @ColumnInfo("id") val id: Int,
+    @ColumnInfo("name") val name: String,
 )

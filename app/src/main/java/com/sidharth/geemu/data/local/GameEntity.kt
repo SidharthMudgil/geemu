@@ -1,16 +1,18 @@
 package com.sidharth.geemu.data.local
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
-import com.google.gson.annotations.SerializedName
+import androidx.room.PrimaryKey
 import com.sidharth.geemu.domain.model.Genre
 
-@Entity
+@Entity(tableName = "games")
 data class GameEntity(
-    @SerializedName("id") val id: Int,
-    @SerializedName("name") val name: String,
-    @SerializedName("image") val image: String,
-    @SerializedName("genres") val genres: List<Genre>,
-    @SerializedName("release") val release: String,
-    @SerializedName("rating") val rating: String,
-    @SerializedName("collection") val collection: Int,
+    @PrimaryKey
+    @ColumnInfo("id") val id: Int,
+    @ColumnInfo("name") val name: String,
+    @ColumnInfo("image") val image: String,
+    @ColumnInfo("genres") val genres: List<Genre>,
+    @ColumnInfo("release") val release: String,
+    @ColumnInfo("rating") val rating: String,
+    @ColumnInfo("collection") val collection: Int,
 )

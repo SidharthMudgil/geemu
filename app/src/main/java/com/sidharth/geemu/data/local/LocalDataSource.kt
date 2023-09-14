@@ -1,9 +1,5 @@
 package com.sidharth.geemu.data.local
 
-import com.sidharth.geemu.domain.model.Collection
-import com.sidharth.geemu.domain.model.Game
-import com.sidharth.geemu.domain.model.Tag
-
 class LocalDataSource(
     private val userDataDao: UserDataDao
 ) {
