@@ -1,4 +1,4 @@
-package com.sidharth.geemu.presentation.game
+package com.sidharth.geemu.presentation
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.sidharth.geemu.R
 
-class InfoFragment : Fragment() {
+class AllGamesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -16,7 +16,7 @@ class InfoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_item_info, container, false)
+        return inflater.inflate(R.layout.fragment_all_games, container, false)
     }
 
 }

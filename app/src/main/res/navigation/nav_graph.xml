@@ -62,9 +62,9 @@
         tools:layout="@layout/fragment_video" />
     <fragment
         android:id="@+id/infoFragment"
-        android:name="com.sidharth.geemu.presentation.game.InfoFragment"
+        android:name="com.sidharth.geemu.presentation.game.CreatorDetailsFragment"
         android:label="fragment_item_info"
-        tools:layout="@layout/fragment_item_info" />
+        tools:layout="@layout/fragment_creator_details" />
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.sidharth.geemu.presentation.search.SearchFragment"

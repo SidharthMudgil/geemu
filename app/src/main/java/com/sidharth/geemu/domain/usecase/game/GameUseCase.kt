@@ -2,7 +2,6 @@ package com.sidharth.geemu.domain.usecase.game
 
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Genre
-import com.sidharth.geemu.domain.model.Tag
 
 interface GameUseCase {
 
