@@ -63,6 +63,11 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
     implementation("androidx.activity:activity-ktx:1.7.2")
 
+    // navigation
+    val navigationVersion = "2.7.2"
+    implementation("androidx.navigation:navigation-fragment-ktx:$navigationVersion")
+    implementation("androidx.navigation:navigation-ui-ktx:$navigationVersion")
+
     // database - Room
     val roomVersion = "2.5.2"
     implementation("androidx.room:room-ktx:$roomVersion")
