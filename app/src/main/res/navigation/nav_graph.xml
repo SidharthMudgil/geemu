@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_allGamesFragment"
+            app:destination="@id/allGamesFragment" />
     </fragment>
     <fragment
         android:id="@+id/exploreFragment"
@@ -25,6 +28,9 @@
         <action
             android:id="@+id/action_exploreFragment_to_gameDetailsFragment"
             app:destination="@id/gameDetailsFragment" />
+        <action
+            android:id="@+id/action_exploreFragment_to_allGamesFragment"
+            app:destination="@id/allGamesFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -34,6 +40,9 @@
         <action
             android:id="@+id/action_profileFragment_to_gameDetailsFragment"
             app:destination="@id/gameDetailsFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_allGamesFragment"
+            app:destination="@id/allGamesFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameDetailsFragment"
@@ -74,4 +83,9 @@
             android:id="@+id/action_searchFragment2_to_gameDetailsFragment"
             app:destination="@id/gameDetailsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/allGamesFragment"
+        android:name="com.sidharth.geemu.presentation.AllGamesFragment"
+        android:label="fragment_all_games"
+        tools:layout="@layout/fragment_all_games" />
 </navigation>
