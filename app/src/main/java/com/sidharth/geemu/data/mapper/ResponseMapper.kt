@@ -162,13 +162,7 @@ object ResponseMapper {
                 id = response.id,
                 name = response.name,
                 image = response.backgroundImage ?: "",
-                genres = response.genres.map {
-                    Genre(
-                        id = it.id,
-                        name = it.name,
-                        image = it.imageBackground,
-                    )
-                },
+                genres = response.genres.joinToString(", ") { it.name },
                 release = response.released,
                 rating = "$response.rating / 5",
             )
