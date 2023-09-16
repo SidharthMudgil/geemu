@@ -7,7 +7,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cv_search_box"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintVertical_bias="0"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintBottom_toBottomOf="parent"
