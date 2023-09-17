@@ -11,12 +11,22 @@ import com.sidharth.geemu.presentation.home.callback.OnGenreClickCallback
 
 class GenresAdapter(
     private val genres: List<Genre>,
-    private val onGenreClickListener: OnGenreClickCallback,
+    private val onGenreClickCallback: OnGenreClickCallback,
 ) : Adapter<GenresAdapter.GenreViewHolder>() {
 
-    class GenreViewHolder(
-        val binding: ItemCardGenreBinding
-    ) : RecyclerView.ViewHolder(binding.root)
+    inner class GenreViewHolder(
+        private val binding: ItemCardGenreBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(genre: Genre) {
+            binding.apply {
+                ivGenre.load(genre.image)
+                tvGenre.text = genre.name
+                cvGenre.setOnClickListener {
+                    onGenreClickCallback.onGenreClick(genre)
+                }
+            }
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GenreViewHolder {
         val binding = ItemCardGenreBinding.inflate(
@@ -28,13 +38,7 @@ class GenresAdapter(
     }
 
     override fun onBindViewHolder(holder: GenreViewHolder, position: Int) {
-        genres[position].apply {
-            holder.binding.ivGenre.load(this.image)
-            holder.binding.tvGenre.text = this.name
-            holder.binding.cvGenre.setOnClickListener {
-                onGenreClickListener.onGenreClick(this)
-            }
-        }
+        holder.bind(genres[position])
     }
 
     override fun getItemCount(): Int {
