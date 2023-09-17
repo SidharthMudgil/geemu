@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.sidharth.geemu.databinding.ItemSectionGamesBinding
 import com.sidharth.geemu.domain.model.Collection
+import com.sidharth.geemu.presentation.profile.callback.OnGameClickCallback
 
 class CollectionsAdapter(
-    private val collections: List<Collection>
+    private val collections: List<Collection>,
+    private val onGameClickCallback: OnGameClickCallback,
 ) : Adapter<CollectionsAdapter.CollectionViewHolder>() {
 
     inner class CollectionViewHolder(
@@ -22,7 +24,10 @@ class CollectionsAdapter(
                 rvGames.layoutManager = LinearLayoutManager(
                     binding.root.context, HORIZONTAL, false
                 )
-                rvGames.adapter = SavedGamesAdapter(collection.games)
+                rvGames.adapter = SavedGamesAdapter(
+                    games = collection.games,
+                    onGameClickCallback = onGameClickCallback
+                )
             }
         }
     }
