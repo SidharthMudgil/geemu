@@ -21,18 +21,6 @@
             app:destination="@id/allGamesFragment" />
     </fragment>
     <fragment
-        android:id="@+id/exploreFragment"
-        android:name="com.sidharth.geemu.presentation.explore.ExploreFragment"
-        android:label="fragment_explore"
-        tools:layout="@layout/fragment_explore" >
-        <action
-            android:id="@+id/action_exploreFragment_to_gameDetailsFragment"
-            app:destination="@id/gameDetailsFragment" />
-        <action
-            android:id="@+id/action_exploreFragment_to_allGamesFragment"
-            app:destination="@id/allGamesFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/profileFragment"
         android:name="com.sidharth.geemu.presentation.profile.ProfileFragment"
         android:label="fragment_profile"
@@ -56,8 +44,8 @@
             android:id="@+id/action_gameDetailsFragment_to_imageFragment"
             app:destination="@id/imageFragment" />
         <action
-            android:id="@+id/action_gameDetailsFragment_to_infoFragment"
-            app:destination="@id/infoFragment" />
+            android:id="@+id/action_gameDetailsFragment_to_fragmentCreatorDetails"
+            app:destination="@id/fragmentCreatorDetails" />
     </fragment>
     <fragment
         android:id="@+id/imageFragment"
@@ -70,7 +58,7 @@
         android:label="fragment_video"
         tools:layout="@layout/fragment_video" />
     <fragment
-        android:id="@+id/infoFragment"
+        android:id="@+id/fragmentCreatorDetails"
         android:name="com.sidharth.geemu.presentation.game.CreatorDetailsFragment"
         android:label="fragment_item_info"
         tools:layout="@layout/fragment_creator_details" />
