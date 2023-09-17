@@ -17,7 +17,9 @@ class GameUseCaseImpl @Inject constructor(
     override suspend fun getUpcomingGames(): List<Game> {
         return gameRepository.getGames(
             dates = DateTimeUtils.getOneYearRange(),
-            ordering = "-released"
+            ordering = "-released",
+            page = 1,
+            pageSize = 20,
         )
     }
 
@@ -26,6 +28,8 @@ class GameUseCaseImpl @Inject constructor(
             dates = DateTimeUtils.getOneYearRange(past = true),
             ordering = "-rating",
             metacritic = "1,100",
+            page = 1,
+            pageSize = 20,
         )
     }
 
