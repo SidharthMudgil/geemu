@@ -1,4 +1,4 @@
-package com.sidharth.geemu.presentation.home
+package com.sidharth.geemu.presentation.explore
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,31 +8,31 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
-import com.sidharth.geemu.databinding.FragmentHomeBinding
+import com.sidharth.geemu.databinding.FragmentExploreBinding
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Genre
-import com.sidharth.geemu.presentation.home.adapter.HomeAdapter
-import com.sidharth.geemu.presentation.home.callback.OnGameClickCallback
-import com.sidharth.geemu.presentation.home.callback.OnGenreClickCallback
-import com.sidharth.geemu.presentation.home.callback.OnSearchBarClickCallback
-import com.sidharth.geemu.presentation.home.viewmodel.HomeViewModel
+import com.sidharth.geemu.presentation.explore.adapter.ExplorePageAdapter
+import com.sidharth.geemu.presentation.explore.callback.OnGameClickCallback
+import com.sidharth.geemu.presentation.explore.callback.OnGenreClickCallback
+import com.sidharth.geemu.presentation.explore.callback.OnSearchBarClickCallback
+import com.sidharth.geemu.presentation.explore.viewmodel.ExploreViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(),
+class ExploreFragment : Fragment(),
     OnSearchBarClickCallback, OnGenreClickCallback, OnGameClickCallback {
 
-    private val homeViewModel by viewModels<HomeViewModel>()
+    private val exploreViewModel by viewModels<ExploreViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentHomeBinding.inflate(inflater)
+        val binding = FragmentExploreBinding.inflate(inflater)
 
-        binding.rvHome.layoutManager = LinearLayoutManager(requireContext(), VERTICAL, false)
-        homeViewModel.homeData.observe(viewLifecycleOwner) {
-            binding.rvHome.adapter = HomeAdapter(
+        binding.rvExplore.layoutManager = LinearLayoutManager(requireContext(), VERTICAL, false)
+        exploreViewModel.exploreData.observe(viewLifecycleOwner) {
+            binding.rvExplore.adapter = ExplorePageAdapter(
                 onSearchBarClickCallback = this,
                 onGenreClickCallback = this,
                 onGameClickCallback = this,

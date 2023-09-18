@@ -1,4 +1,4 @@
-package com.sidharth.geemu.presentation.home.adapter
+package com.sidharth.geemu.presentation.explore.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import coil.load
 import com.sidharth.geemu.databinding.ItemCardGenreBinding
 import com.sidharth.geemu.domain.model.Genre
-import com.sidharth.geemu.presentation.home.callback.OnGenreClickCallback
+import com.sidharth.geemu.presentation.explore.callback.OnGenreClickCallback
 
 class GenresAdapter(
     private val genres: List<Genre>,

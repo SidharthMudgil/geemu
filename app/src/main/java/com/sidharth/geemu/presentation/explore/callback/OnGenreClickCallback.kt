@@ -1,4 +1,4 @@
-package com.sidharth.geemu.presentation.home.callback
+package com.sidharth.geemu.presentation.explore.callback
 
 import com.sidharth.geemu.domain.model.Genre
 

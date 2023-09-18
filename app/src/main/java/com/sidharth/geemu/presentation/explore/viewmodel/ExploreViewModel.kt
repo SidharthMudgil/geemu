@@ -1,4 +1,4 @@
-package com.sidharth.geemu.presentation.home.viewmodel
+package com.sidharth.geemu.presentation.explore.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,13 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Genre
 import com.sidharth.geemu.domain.usecase.game.GameUseCase
-import com.sidharth.geemu.presentation.home.HomeData
+import com.sidharth.geemu.presentation.explore.ExploreData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class ExploreViewModel @Inject constructor(
     private val gameUseCase: GameUseCase,
 ) : ViewModel() {
     private val _genres = MutableLiveData<List<Genre>>()
@@ -21,9 +21,9 @@ class HomeViewModel @Inject constructor(
     private val _bestOfYear = MutableLiveData<List<Game>>()
     private val _bestOfAllTime = MutableLiveData<List<Game>>()
 
-    private val _homeData = MutableLiveData<HomeData>()
+    private val _exploreData = MutableLiveData<ExploreData>()
 
-    val homeData: LiveData<HomeData> get() = _homeData
+    val exploreData: LiveData<ExploreData> get() = _exploreData
 
     init {
         viewModelScope.launch {
@@ -32,8 +32,8 @@ class HomeViewModel @Inject constructor(
             _bestOfYear.postValue(gameUseCase.getBestOfTheYear())
             _bestOfAllTime.postValue(gameUseCase.getBestOfAllTime())
 
-            _homeData.postValue(
-                HomeData(
+            _exploreData.postValue(
+                ExploreData(
                     genres = _genres.value ?: listOf(),
                     upcoming = _upcoming.value ?: listOf(),
                     bestOfYear = _bestOfYear.value ?: listOf(),

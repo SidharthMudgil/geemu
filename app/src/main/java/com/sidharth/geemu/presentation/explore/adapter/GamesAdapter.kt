@@ -1,4 +1,4 @@
-package com.sidharth.geemu.presentation.home.adapter
+package com.sidharth.geemu.presentation.explore.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +9,7 @@ import com.sidharth.geemu.databinding.ItemCardGame1Binding
 import com.sidharth.geemu.databinding.ItemCardGame2Binding
 import com.sidharth.geemu.databinding.ItemCardGame3Binding
 import com.sidharth.geemu.domain.model.Game
-import com.sidharth.geemu.presentation.home.callback.OnGameClickCallback
+import com.sidharth.geemu.presentation.explore.callback.OnGameClickCallback
 
 class GamesAdapter(
     private val type: CardType,

@@ -1,9 +1,9 @@
-package com.sidharth.geemu.presentation.home
+package com.sidharth.geemu.presentation.explore
 
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Genre
 
-data class HomeData(
+data class ExploreData(
     val genres: List<Genre>,
     val upcoming: List<Game>,
     val bestOfYear: List<Game>,

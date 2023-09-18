@@ -1,4 +1,4 @@
-package com.sidharth.geemu.presentation.home.adapter
+package com.sidharth.geemu.presentation.explore.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,12 +12,12 @@ import com.sidharth.geemu.databinding.ItemSectionGenresBinding
 import com.sidharth.geemu.databinding.ItemSectionSearchBinding
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Genre
-import com.sidharth.geemu.presentation.home.callback.OnGameClickCallback
-import com.sidharth.geemu.presentation.home.callback.OnGenreClickCallback
-import com.sidharth.geemu.presentation.home.callback.OnSearchBarClickCallback
+import com.sidharth.geemu.presentation.explore.callback.OnGameClickCallback
+import com.sidharth.geemu.presentation.explore.callback.OnGenreClickCallback
+import com.sidharth.geemu.presentation.explore.callback.OnSearchBarClickCallback
 
 
-class HomeAdapter(
+class ExplorePageAdapter(
     private val onSearchBarClickCallback: OnSearchBarClickCallback,
     private val onGenreClickCallback: OnGenreClickCallback,
     private val onGameClickCallback: OnGameClickCallback,
@@ -26,7 +26,7 @@ class HomeAdapter(
     private val bestOfYear: List<Game>,
     private val bestOfAllTime: List<Game>,
 ) : Adapter<ViewHolder>() {
-    enum class HomeSection {
+    enum class ExploreSection {
         SEARCH, GENRES, GAMES_TYPE1, GAMES_TYPE2, GAMES_TYPE3
     }
 
@@ -82,11 +82,11 @@ class HomeAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {
-            0 -> HomeSection.SEARCH.ordinal
-            1 -> HomeSection.GENRES.ordinal
-            2 -> HomeSection.GAMES_TYPE1.ordinal
-            3 -> HomeSection.GAMES_TYPE2.ordinal
-            4 -> HomeSection.GAMES_TYPE3.ordinal
+            0 -> ExploreSection.SEARCH.ordinal
+            1 -> ExploreSection.GENRES.ordinal
+            2 -> ExploreSection.GAMES_TYPE1.ordinal
+            3 -> ExploreSection.GAMES_TYPE2.ordinal
+            4 -> ExploreSection.GAMES_TYPE3.ordinal
             else -> throw IllegalStateException("Invalid ViewType")
         }
     }
@@ -95,7 +95,7 @@ class HomeAdapter(
         val inflater = LayoutInflater.from(parent.context)
 
         return when (viewType) {
-            HomeSection.SEARCH.ordinal -> {
+            ExploreSection.SEARCH.ordinal -> {
                 SearchSectionViewHolder(
                     ItemSectionSearchBinding.inflate(
                         inflater, parent, false
@@ -103,7 +103,7 @@ class HomeAdapter(
                 )
             }
 
-            HomeSection.GENRES.ordinal -> {
+            ExploreSection.GENRES.ordinal -> {
                 GenresSectionViewHolder(
                     ItemSectionGenresBinding.inflate(
                         inflater, parent, false
@@ -111,7 +111,7 @@ class HomeAdapter(
                 )
             }
 
-            HomeSection.GAMES_TYPE1.ordinal -> {
+            ExploreSection.GAMES_TYPE1.ordinal -> {
                 GamesSectionViewHolder(
                     type = GamesAdapter.CardType.TYPE1,
                     binding = ItemSectionGamesBinding.inflate(
@@ -120,7 +120,7 @@ class HomeAdapter(
                 )
             }
 
-            HomeSection.GAMES_TYPE2.ordinal -> {
+            ExploreSection.GAMES_TYPE2.ordinal -> {
                 GamesSectionViewHolder(
                     type = GamesAdapter.CardType.TYPE2,
                     binding = ItemSectionGamesBinding.inflate(
@@ -129,7 +129,7 @@ class HomeAdapter(
                 )
             }
 
-            HomeSection.GAMES_TYPE3.ordinal -> {
+            ExploreSection.GAMES_TYPE3.ordinal -> {
                 GamesSectionViewHolder(
                     type = GamesAdapter.CardType.TYPE3,
                     binding = ItemSectionGamesBinding.inflate(
