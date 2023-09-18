@@ -3,21 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/exploreFragment">
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/exploreFragment"
         android:name="com.sidharth.geemu.presentation.explore.ExploreFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_explore" >
         <action
-            android:id="@+id/action_homeFragment_to_gameDetailsFragment"
+            android:id="@+id/action_exploreFragment_to_gameDetailsFragment"
             app:destination="@id/gameDetailsFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_searchFragment"
+            android:id="@+id/action_exploreFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_gamesFragment"
+            android:id="@+id/action_exploreFragment_to_gamesFragment"
             app:destination="@id/gamesFragment" />
     </fragment>
     <fragment
@@ -77,11 +77,11 @@
         android:label="fragment_all_games"
         tools:layout="@layout/fragment_games" />
     <fragment
-        android:id="@+id/followingFragment2"
+        android:id="@+id/followingFragment"
         android:name="com.sidharth.geemu.presentation.following.FollowingFragment"
         android:label="FollowingFragment" >
         <action
-            android:id="@+id/action_followingFragment2_to_gameDetailsFragment"
+            android:id="@+id/action_followingFragment_to_gameDetailsFragment"
             app:destination="@id/gameDetailsFragment" />
     </fragment>
 </navigation>
