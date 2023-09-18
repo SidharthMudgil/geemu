@@ -6,6 +6,7 @@ import androidx.room.RoomDatabase
 @Database(
     version = 1,
     entities = [GameEntity::class, TagEntity::class],
+    exportSchema = false,
 )
 abstract class AppDatabase(): RoomDatabase() {
     abstract fun getUserDataDao(): UserDataDao

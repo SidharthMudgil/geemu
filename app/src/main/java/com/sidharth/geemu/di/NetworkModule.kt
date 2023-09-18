@@ -1,5 +1,6 @@
 package com.sidharth.geemu.di
 
+import com.sidharth.geemu.BuildConfig
 import com.sidharth.geemu.core.constant.Constants.BASE_URL
 import com.sidharth.geemu.data.remote.service.RAWGService
 import com.sidharth.geemu.data.remote.source.RemoteDataSource
@@ -25,7 +26,7 @@ class NetworkModule {
             .client(
                 OkHttpClient.Builder().addInterceptor {
                     val url = it.request().url.newBuilder()
-                        .addQueryParameter("key", "BuildConfig.API_KEY")
+                        .addQueryParameter("key", BuildConfig.API_KEY)
                         .build()
 
                     val request = it.request().newBuilder().url(url).build()

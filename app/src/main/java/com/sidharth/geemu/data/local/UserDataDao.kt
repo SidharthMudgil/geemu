@@ -14,10 +14,10 @@ interface UserDataDao {
     @Upsert(GameEntity::class)
     suspend fun addGameToCollection(gameEntity: GameEntity)
 
-    @Delete(GameEntity::class)
+    @Query("delete from games where id = :id")
     suspend fun removeGameFromToCollection(id: Int)
 
-    @Query("update games set collection = :collection where id == :id")
+    @Query("update games set collection = :collection where id = :id")
     suspend fun moveGameToCollection(id: Int, collection: Int)
 
     @Query("select * from tags")
@@ -27,5 +27,5 @@ interface UserDataDao {
     suspend fun followTag(tag: TagEntity)
 
     @Delete(TagEntity::class)
-    suspend fun unfollowTag(id: Int)
+    suspend fun unfollowTag(tag: TagEntity)
 }

@@ -26,7 +26,7 @@ class LocalDataSource @Inject constructor(
     }
 
     suspend fun unfollowTag(tag: TagEntity) {
-        userDataDao.unfollowTag(tag.id)
+        userDataDao.unfollowTag(tag)
     }
 
     suspend fun followTag(tag: TagEntity) {
