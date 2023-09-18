@@ -3,8 +3,8 @@ package com.sidharth.geemu.presentation.explore.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
+import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.sidharth.geemu.databinding.ItemSectionGamesBinding
@@ -34,7 +34,9 @@ class ExplorePageAdapter(
         binding: ItemSectionSearchBinding
     ) : ViewHolder(binding.root) {
         init {
-            binding.flowSearchBar.setOnClickListener { onSearchBarClickCallback.onSearchBarClick() }
+            binding.flowSearchBar.setOnClickListener {
+                onSearchBarClickCallback.onSearchBarClick()
+            }
         }
     }
 
@@ -43,6 +45,9 @@ class ExplorePageAdapter(
     ) : ViewHolder(binding.root) {
         fun bind(genres: List<Genre>) {
             binding.apply {
+                rvGenres.layoutManager = LinearLayoutManager(
+                    binding.root.context, HORIZONTAL, false
+                )
                 rvGenres.adapter = GenresAdapter(
                     genres = genres,
                     onGenreClickCallback = onGenreClickCallback
@@ -62,20 +67,20 @@ class ExplorePageAdapter(
                     GamesAdapter.CardType.TYPE2 -> "Best of the Year"
                     GamesAdapter.CardType.TYPE3 -> "Best of All Time"
                 }
+                rvGames.layoutManager = when (type) {
+                    GamesAdapter.CardType.TYPE3 -> LinearLayoutManager(
+                        binding.root.context, VERTICAL, false
+                    )
+
+                    else -> LinearLayoutManager(
+                        binding.root.context, HORIZONTAL, false
+                    )
+                }
                 rvGames.adapter = GamesAdapter(
                     type = type,
                     games = games,
                     onGameClickCallback = onGameClickCallback
                 )
-                rvGames.layoutManager = when (type) {
-                    GamesAdapter.CardType.TYPE1 -> LinearLayoutManager(
-                        binding.root.context, VERTICAL, false
-                    )
-
-                    else -> LinearLayoutManager(
-                        binding.root.context, RecyclerView.HORIZONTAL, false
-                    )
-                }
             }
         }
     }

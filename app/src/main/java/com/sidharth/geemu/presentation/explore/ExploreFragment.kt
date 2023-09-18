@@ -30,7 +30,9 @@ class ExploreFragment : Fragment(),
     ): View {
         val binding = FragmentExploreBinding.inflate(inflater)
 
-        binding.rvExplore.layoutManager = LinearLayoutManager(requireContext(), VERTICAL, false)
+        binding.rvExplore.layoutManager = LinearLayoutManager(
+            requireContext(), VERTICAL, false
+        )
         exploreViewModel.exploreData.observe(viewLifecycleOwner) {
             binding.rvExplore.adapter = ExplorePageAdapter(
                 onSearchBarClickCallback = this,

@@ -36,7 +36,7 @@ class GameUseCaseImpl @Inject constructor(
     override suspend fun getBestOfAllTime(): List<Game> {
         return gameRepository.getGames(
             ordering = "-rating",
-            metacritic = "1,100"
+            metacritic = "1,100",
         )
     }
 

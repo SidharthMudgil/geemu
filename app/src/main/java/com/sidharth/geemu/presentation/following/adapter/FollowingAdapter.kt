@@ -14,7 +14,7 @@ import com.sidharth.geemu.presentation.following.callback.OnUnfollowButtonClickC
 class FollowingAdapter(
     private val followings: List<Following>,
     private val onGameClickCallback: OnGameClickCallback,
-    private val unfollowButtonClickCallback: OnUnfollowButtonClickCallback,
+    private val onUnfollowButtonClickCallback: OnUnfollowButtonClickCallback,
 ) : Adapter<FollowingAdapter.FollowingViewHolder>() {
 
     inner class FollowingViewHolder(
@@ -23,7 +23,7 @@ class FollowingAdapter(
         fun bind(following: Following) {
             binding.apply {
                 btnUnfollow.setOnClickListener {
-                    unfollowButtonClickCallback.onUnfollowButtonClick(following.tag)
+                    onUnfollowButtonClickCallback.onUnfollowButtonClick(following.tag)
                 }
                 tvFollowing.text = following.tag.name
                 rvFollowing.layoutManager = LinearLayoutManager(

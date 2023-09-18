@@ -29,9 +29,15 @@ class FollowingFragment: Fragment(), OnGameClickCallback, OnUnfollowButtonClickC
     ): View {
         val binding = FragmentFollowingBinding.inflate(inflater)
 
-        binding.rvFollowing.layoutManager = LinearLayoutManager(requireContext(), VERTICAL, false)
+        binding.rvFollowing.layoutManager = LinearLayoutManager(
+            requireContext(), VERTICAL, false
+        )
         followingViewModel.following.observe(viewLifecycleOwner) {
-            binding.rvFollowing.adapter = FollowingAdapter(it, this, this)
+            binding.rvFollowing.adapter = FollowingAdapter(
+                followings = it,
+                onGameClickCallback = this,
+                onUnfollowButtonClickCallback = this,
+            )
         }
 
         return binding.root
