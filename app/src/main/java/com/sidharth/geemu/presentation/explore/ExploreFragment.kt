@@ -52,7 +52,7 @@ class ExploreFragment : Fragment(),
     override fun onGenreClick(genre: Genre) {
     }
 
-    override fun onClick() {
+    override fun onSearchBarClick() {
     }
 
 }

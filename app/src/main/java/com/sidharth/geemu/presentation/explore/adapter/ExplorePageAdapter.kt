@@ -34,7 +34,7 @@ class ExplorePageAdapter(
         binding: ItemSectionSearchBinding
     ) : ViewHolder(binding.root) {
         init {
-            binding.flowSearchBar.setOnClickListener { onSearchBarClickCallback.onClick() }
+            binding.flowSearchBar.setOnClickListener { onSearchBarClickCallback.onSearchBarClick() }
         }
     }
 
