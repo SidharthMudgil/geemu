@@ -57,8 +57,8 @@ class GamesAdapter(
             binding.apply {
                 ivGame.load(game.image)
                 tvGame.text = game.name
-                tvGenre.text = game.genres
-                tvRating.text = game.rating
+                tvGenres.text = game.genres
+                tvRatings.text = game.rating
                 cvGame.setOnClickListener { onGameClickCallback.onGameClick(game) }
             }
         }

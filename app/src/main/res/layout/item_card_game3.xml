@@ -1,49 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_game"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="120dp"
+    app:cardBackgroundColor="#EEEEEE"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:strokeWidth="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <androidx.constraintlayout.helper.widget.Flow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:constraint_referenced_ids="iv_game,flow_data"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:padding="10dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_game"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow_data"
-            android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:constraint_referenced_ids="tv_game,tv_genre,tv_rating" />
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:orientation="vertical"
+            app:layout_constraintHorizontal_bias="0"
+            app:constraint_referenced_ids="tv_game,flow_genres,flow_ratings"
+            app:flow_horizontalAlign="start"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_game"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_game"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:textFontWeight="700"
+            android:textSize="18sp"
+            tools:text="Action, Adventure" />
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/flow_genres"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:constraint_referenced_ids="tv_genres_label,tv_genres"
+            app:flow_horizontalGap="10dp"
+            app:flow_horizontalStyle="packed"
+            app:flow_verticalAlign="center" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_genre"
+            android:id="@+id/tv_genres_label"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="@string/genres"
+            android:textSize="11sp" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_rating"
+            android:id="@+id/tv_genres"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:textFontWeight="700"
+            android:textSize="12sp"
+            tools:text="Action, Adventure" />
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/flow_ratings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:constraint_referenced_ids="tv_rating_label,tv_ratings"
+            app:flow_horizontalGap="10dp"
+            app:flow_horizontalStyle="packed"
+            app:flow_verticalAlign="center" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_rating_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="@string/rating"
+            android:textSize="11sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_ratings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:textFontWeight="700"
+            android:textSize="12sp"
+            tools:text="4.41 / 5" />
+
+        <!--        <com.google.android.material.textview.MaterialTextView-->
+        <!--            android:id="@+id/tv_genre"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:includeFontPadding="false"-->
+        <!--            android:maxLength="20"-->
+        <!--            android:maxLines="1"-->
+        <!--            android:textFontWeight="700"-->
+        <!--            android:textSize="12sp"-->
+        <!--            tools:text="Action, Adventure" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
