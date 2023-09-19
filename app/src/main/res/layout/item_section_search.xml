@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardBackgroundColor="#EEEEEE"
-        app:cardCornerRadius="15dp"
+        app:cardCornerRadius="@dimen/card_corner_radius"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
@@ -47,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:clickable="true"
-        app:cardCornerRadius="@dimen/corner_radius"
+        app:cardCornerRadius="@dimen/card_corner_radius"
         app:strokeWidth="0dp" />
 
     <androidx.constraintlayout.helper.widget.Flow

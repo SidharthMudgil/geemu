@@ -37,7 +37,7 @@
         android:id="@+id/tv_release"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#0C000000"
+        android:background="#40000000"
         android:includeFontPadding="false"
         android:textColor="#EEEEEE"
         android:textSize="11sp"
@@ -47,7 +47,7 @@
         android:id="@+id/tv_game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#0C000000"
+        android:background="#40000000"
         android:includeFontPadding="false"
         android:textColor="#EEEEEE"
         android:textFontWeight="600"
@@ -58,9 +58,10 @@
         android:id="@+id/tv_genres"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#0C000000"
+        android:background="#40000000"
         android:includeFontPadding="false"
         android:textColor="#EEEEEE"
+        android:textSize="13sp"
         tools:text="Action, Adventure" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

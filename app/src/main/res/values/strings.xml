@@ -6,4 +6,7 @@
     <string name="following">Following</string>
     <string name="explore">Explore</string>
     <string name="search_label">Which game would you like\nto check out?</string>
+    <string name="genres">Genres</string>
+    <string name="rating">Rating</string>
+    <string name="release">Release</string>
 </resources>

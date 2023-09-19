@@ -1,90 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_game"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="200dp"
+    android:layout_height="250dp"
+    android:layout_marginEnd="10dp"
+    app:cardBackgroundColor="#EEEEEE"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:strokeWidth="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <androidx.constraintlayout.helper.widget.Flow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:constraint_referenced_ids="iv_cover,tv_name,flow_genres,flow_release_rating"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_cover"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="0dp"
+            android:layout_marginBottom="5dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toTopOf="@+id/tv_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:maxLength="17"
+            android:maxLines="1"
+            android:textFontWeight="700"
+            app:layout_constraintBottom_toTopOf="@+id/flow_genres"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1"
+            tools:text="Elden Ring" />
 
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow_genres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:constraint_referenced_ids="tv_genres_label,tv_genres" />
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
+            app:constraint_referenced_ids="tv_genres_label,tv_genres"
+            app:flow_horizontalStyle="spread_inside"
+            app:flow_verticalAlign="center"
+            app:layout_constraintBottom_toTopOf="@+id/flow_release_Date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_genres_label"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="@string/genres"
+            android:textSize="11sp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_genres"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:textFontWeight="700"
+            android:textSize="12sp"
+            tools:text="Action, Adventure" />
 
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow_release_rating"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#CCCCCC"
             android:orientation="vertical"
-            app:constraint_referenced_ids="flow_release_Date,flow_ratings" />
+            android:padding="10dp"
+            app:constraint_referenced_ids="flow_release_Date,flow_ratings"
+            app:flow_horizontalAlign="center"
+            app:flow_verticalGap="10dp"
+            app:flow_verticalStyle="packed"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1" />
 
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow_release_Date"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:constraint_referenced_ids="tv_release_label,tv_release_date" />
+            android:orientation="horizontal"
+            app:constraint_referenced_ids="tv_release_label,tv_release_date"
+            app:flow_horizontalStyle="spread_inside"
+            app:flow_verticalAlign="center" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_release_label"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="@string/release"
+            android:textSize="11sp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_release_date"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:textFontWeight="700"
+            android:textSize="12sp"
+            tools:text="2022-02-45" />
 
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow_ratings"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:constraint_referenced_ids="tv_rating_label,tv_ratings" />
+            android:orientation="horizontal"
+            app:constraint_referenced_ids="tv_rating_label,tv_ratings"
+            app:flow_horizontalStyle="spread_inside"
+            app:flow_verticalAlign="center" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_rating_label"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="@string/rating"
+            android:textSize="11sp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_ratings"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:textFontWeight="700"
+            android:textSize="12sp"
+            tools:text="4.41 / 5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </com.google.android.material.card.MaterialCardView>

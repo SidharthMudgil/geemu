@@ -162,7 +162,7 @@ object ResponseMapper {
                 id = response.id,
                 name = response.name,
                 image = response.backgroundImage ?: "",
-                genres = response.genres.sortedBy { it.name }
+                genres = response.genres.take(2)
                     .joinToString(", ") { it.name },
                 release = response.released,
                 rating = "${response.rating} / 5",
