@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_game"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="100dp"
+    android:layout_marginBottom="10dp"
     app:cardBackgroundColor="#EEEEEE"
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:strokeWidth="0dp">
@@ -31,13 +32,13 @@
             android:id="@+id/flow_data"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="20dp"
             android:orientation="vertical"
-            app:layout_constraintHorizontal_bias="0"
             app:constraint_referenced_ids="tv_game,flow_genres,flow_ratings"
             app:flow_horizontalAlign="start"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toEndOf="@+id/iv_game"
             app:layout_constraintTop_toTopOf="parent" />
 
