@@ -79,7 +79,7 @@
     <fragment
         android:id="@+id/followingFragment"
         android:name="com.sidharth.geemu.presentation.following.FollowingFragment"
-        android:label="FollowingFragment" >
+        android:label="fragment_following" >
         <action
             android:id="@+id/action_followingFragment_to_gameDetailsFragment"
             app:destination="@id/gameDetailsFragment" />
