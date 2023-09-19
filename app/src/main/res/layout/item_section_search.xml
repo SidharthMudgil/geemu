@@ -76,6 +76,7 @@
     <com.sidharth.geemu.core.util.TypewriterTextView
         android:id="@+id/tv_search_hint"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

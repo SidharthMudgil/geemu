@@ -1,10 +1,12 @@
 package com.sidharth.geemu.presentation.explore.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
+import com.sidharth.geemu.core.util.DateTimeUtils.toDdMmmYyyy
 import com.sidharth.geemu.databinding.ItemCardGame1Binding
 import com.sidharth.geemu.databinding.ItemCardGame2Binding
 import com.sidharth.geemu.databinding.ItemCardGame3Binding
@@ -22,11 +24,13 @@ class GamesAdapter(
     inner class GameCard1ViewHolder(
         private val binding: ItemCardGame1Binding
     ) : ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(game: Game) {
             binding.apply {
                 ivPoster.load(game.image)
                 tvGame.text = game.name
-                tvRelease.text = game.release
+                tvRelease.text = "Releasing on ${game.release.toDdMmmYyyy()}"
+                tvGenres.text = game.genres
             }
         }
     }
