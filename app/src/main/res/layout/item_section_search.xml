@@ -2,26 +2,33 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-
     android:layout_height="150dp">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cv_search_box"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintHorizontal_bias="0"
+        android:clickable="true"
+        app:cardBackgroundColor="#EEEEEE"
+        app:cardCornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
+        app:strokeWidth="0dp" />
 
     <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/flow_search_box"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
         app:constraint_referenced_ids="tv_search_label,cv_search_bar"
+        app:flow_horizontalAlign="center"
+        app:flow_verticalStyle="spread"
         app:layout_constraintBottom_toBottomOf="@id/cv_search_box"
         app:layout_constraintEnd_toEndOf="@+id/cv_search_box"
         app:layout_constraintStart_toStartOf="@+id/cv_search_box"
@@ -29,33 +36,45 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_search_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/search_label"
+        android:textAlignment="center"
+        android:textFontWeight="600"
+        android:textSize="24sp" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cv_search_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="50dp"
+        app:cardCornerRadius="@dimen/corner_radius"
+        app:strokeWidth="0dp" />
 
     <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/flow_search_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:padding="15dp"
         app:constraint_referenced_ids="iv_search_icon,tv_search_hint"
+        app:flow_horizontalGap="10dp"
+        app:flow_horizontalStyle="packed"
+        app:flow_verticalAlign="center"
         app:layout_constraintBottom_toBottomOf="@id/cv_search_bar"
         app:layout_constraintEnd_toEndOf="@+id/cv_search_bar"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="@+id/cv_search_bar"
-        app:layout_constraintTop_toBottomOf="@+id/cv_search_bar" />
+        app:layout_constraintTop_toTopOf="@+id/cv_search_bar" />
 
     <ImageView
         android:id="@+id/iv_search_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:importantForAccessibility="no" />
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_search" />
 
-    <TextView
+    <com.sidharth.geemu.core.util.TypewriterTextView
         android:id="@+id/tv_search_hint"
-        android:background="#FF0022"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

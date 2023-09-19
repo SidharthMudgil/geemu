@@ -37,6 +37,7 @@ class GameUseCaseImpl @Inject constructor(
         return gameRepository.getGames(
             ordering = "-rating",
             metacritic = "1,100",
+            excludeAdditions = true,
         )
     }
 

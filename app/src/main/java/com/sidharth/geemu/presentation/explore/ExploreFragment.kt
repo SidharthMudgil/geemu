@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.sidharth.geemu.databinding.FragmentExploreBinding
 import com.sidharth.geemu.domain.model.Game
@@ -23,12 +24,25 @@ class ExploreFragment : Fragment(),
     OnSearchBarClickCallback, OnGenreClickCallback, OnGameClickCallback {
 
     private val exploreViewModel by viewModels<ExploreViewModel>()
+    private lateinit var recyclerView: RecyclerView
+
+    override fun onPause() {
+        super.onPause()
+        stopTypewriterAnimation()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        stopTypewriterAnimation()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentExploreBinding.inflate(inflater)
+
+        recyclerView = binding.rvExplore
 
         binding.rvExplore.layoutManager = LinearLayoutManager(
             requireContext(), VERTICAL, false
@@ -48,6 +62,10 @@ class ExploreFragment : Fragment(),
         return binding.root
     }
 
+    private fun stopTypewriterAnimation() {
+//        val holder = recyclerView.adapter.findRelativeAdapterPositionIn()//        recyclerView.adapter?.stopAnimation()
+    }
+
     override fun onGameClick(game: Game) {
     }
 
@@ -56,5 +74,4 @@ class ExploreFragment : Fragment(),
 
     override fun onSearchBarClick() {
     }
-
 }

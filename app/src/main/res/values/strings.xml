@@ -5,4 +5,5 @@
     <string name="profile">Profile</string>
     <string name="following">Following</string>
     <string name="explore">Explore</string>
+    <string name="search_label">Which game would you like\nto check out?</string>
 </resources>

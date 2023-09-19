@@ -2,6 +2,7 @@ package com.sidharth.geemu.presentation.explore.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AccelerateInterpolator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
@@ -31,12 +32,21 @@ class ExplorePageAdapter(
     }
 
     inner class SearchSectionViewHolder(
-        binding: ItemSectionSearchBinding
+        private val binding: ItemSectionSearchBinding
     ) : ViewHolder(binding.root) {
-        init {
-            binding.flowSearchBar.setOnClickListener {
-                onSearchBarClickCallback.onSearchBarClick()
+        fun bind() {
+            binding.apply {
+                tvSearchHint.setAnimationDelay(200)
+                tvSearchHint.setInterpolator(AccelerateInterpolator())
+                tvSearchHint.startTypewriterAnimation(textList)
+                flowSearchBar.setOnClickListener {
+                    onSearchBarClickCallback.onSearchBarClick()
+                }
             }
+        }
+
+        fun stopTypewriterAnimation() {
+            binding.tvSearchHint.stopTypewriterAnimation()
         }
     }
 
@@ -149,6 +159,7 @@ class ExplorePageAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (position) {
+            0 -> ((holder) as SearchSectionViewHolder).bind()
             1 -> (holder as GenresSectionViewHolder).bind(genres)
             2 -> (holder as GamesSectionViewHolder).bind(upcoming)
             3 -> (holder as GamesSectionViewHolder).bind(bestOfYear)
@@ -158,5 +169,21 @@ class ExplorePageAdapter(
 
     override fun getItemCount(): Int {
         return 5
+    }
+
+    override fun onViewRecycled(holder: ViewHolder) {
+        if (holder is SearchSectionViewHolder) {
+            holder.stopTypewriterAnimation()
+        }
+        super.onViewRecycled(holder)
+    }
+
+    companion object {
+        private val textList = listOf(
+            "Grand Theft Auto V",
+            "Cyberpunk 2077",
+            "Red Dead Redemption 2",
+            "God of War Ragnarok"
+        )
     }
 }
