@@ -8,7 +8,6 @@
         android:id="@+id/cv_search_box"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clickable="true"
         app:cardBackgroundColor="#EEEEEE"
         app:cardCornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -47,6 +46,7 @@
         android:id="@+id/cv_search_bar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:clickable="true"
         app:cardCornerRadius="@dimen/corner_radius"
         app:strokeWidth="0dp" />
 
@@ -54,8 +54,8 @@
         android:id="@+id/flow_search_bar"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_margin="15dp"
         android:orientation="horizontal"
-        android:padding="15dp"
         app:constraint_referenced_ids="iv_search_icon,tv_search_hint"
         app:flow_horizontalGap="10dp"
         app:flow_horizontalStyle="packed"

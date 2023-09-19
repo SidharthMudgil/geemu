@@ -72,7 +72,9 @@ class RemoteDataSource @Inject constructor(
 
     suspend fun getGenres(): GenresResponse? {
         val response = rawgService.getGenres(
+            page = 1,
             pageSize = 20,
+            ordering = "name",
         )
 
         return when (response.isSuccessful) {

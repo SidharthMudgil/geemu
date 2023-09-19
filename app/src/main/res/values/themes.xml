@@ -1,8 +1,18 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.geemu" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="fontFamily">@font/inter</item>
     </style>
 
     <style name="Theme.geemu" parent="Base.Theme.geemu" />
+
+    <style name="CircularImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="RoundedImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">15dp</item>
+    </style>
 </resources>

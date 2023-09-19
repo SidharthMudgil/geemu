@@ -28,12 +28,10 @@ class ExploreFragment : Fragment(),
 
     override fun onPause() {
         super.onPause()
-        stopTypewriterAnimation()
     }
 
     override fun onStop() {
         super.onStop()
-        stopTypewriterAnimation()
     }
 
     override fun onCreateView(
@@ -60,10 +58,6 @@ class ExploreFragment : Fragment(),
         }
 
         return binding.root
-    }
-
-    private fun stopTypewriterAnimation() {
-//        val holder = recyclerView.adapter.findRelativeAdapterPositionIn()//        recyclerView.adapter?.stopAnimation()
     }
 
     override fun onGameClick(game: Game) {

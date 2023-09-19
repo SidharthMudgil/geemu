@@ -183,7 +183,9 @@ class ExplorePageAdapter(
             "Grand Theft Auto V",
             "Cyberpunk 2077",
             "Red Dead Redemption 2",
-            "God of War Ragnarok"
+            "God of War Ragnarok",
+            "The Legend of Zelda",
+            "Resident Evil Village",
         )
     }
 }
