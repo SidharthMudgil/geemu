@@ -70,4 +70,6 @@ data class Publisher(
 data class Tag(
     val id: Int,
     val name: String,
+    val image: String,
+    val count: Int,
 )

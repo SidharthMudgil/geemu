@@ -72,6 +72,8 @@ object ResponseMapper {
                 Tag(
                     id = it.id,
                     name = it.name,
+                    image = it.imageBackground,
+                    count = it.gamesCount,
                 )
             } ?: listOf(),
             minimumRequirements = details?.platforms?.mapNotNull {

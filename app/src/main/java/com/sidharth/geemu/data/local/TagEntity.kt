@@ -9,4 +9,6 @@ data class TagEntity(
     @PrimaryKey
     @ColumnInfo("id") val id: Int,
     @ColumnInfo("name") val name: String,
+    @ColumnInfo("image") val image: String,
+    @ColumnInfo("count") val count: Int,
 )

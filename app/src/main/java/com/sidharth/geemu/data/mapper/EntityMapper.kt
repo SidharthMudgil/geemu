@@ -20,10 +20,10 @@ object EntityMapper {
 
     private fun Int.toCollectionName(): String {
         return when (this) {
-            1 -> "Playing"
-            2 -> "Not Played"
-            3 -> "Completed"
-            4 -> "Played"
+            0 -> "Playing"
+            1 -> "Not Played"
+            2 -> "Completed"
+            3 -> "Played"
             else -> "Uncategorized"
         }
     }
@@ -55,6 +55,8 @@ object EntityMapper {
         return Tag(
             id = this.id,
             name = this.name,
+            image = this.image,
+            count = this.count,
         )
     }
 
@@ -62,6 +64,8 @@ object EntityMapper {
         return TagEntity(
             id = this.id,
             name = this.name,
+            image = this.image,
+            count = this.count,
         )
     }
 }
