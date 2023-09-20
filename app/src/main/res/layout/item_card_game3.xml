@@ -47,11 +47,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            android:maxLength="20"
+            android:maxLength="25"
             android:maxLines="1"
             android:textFontWeight="700"
             android:textSize="18sp"
-            tools:text="Action, Adventure" />
+            tools:text="Action, Adve uas dasfu gasuf gasu gfaus ag dasi nture" />
 
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow_genres"
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:constraint_referenced_ids="tv_genres_label,tv_genres"
-            app:flow_horizontalGap="10dp"
+            app:flow_horizontalGap="15dp"
             app:flow_horizontalStyle="packed"
             app:flow_verticalAlign="center" />
 
@@ -88,7 +88,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:constraint_referenced_ids="tv_rating_label,tv_ratings"
-            app:flow_horizontalGap="10dp"
+            app:flow_horizontalGap="19dp"
             app:flow_horizontalStyle="packed"
             app:flow_verticalAlign="center" />
 
@@ -108,17 +108,6 @@
             android:textFontWeight="700"
             android:textSize="12sp"
             tools:text="4.41 / 5" />
-
-        <!--        <com.google.android.material.textview.MaterialTextView-->
-        <!--            android:id="@+id/tv_genre"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:includeFontPadding="false"-->
-        <!--            android:maxLength="20"-->
-        <!--            android:maxLines="1"-->
-        <!--            android:textFontWeight="700"-->
-        <!--            android:textSize="12sp"-->
-        <!--            tools:text="Action, Adventure" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

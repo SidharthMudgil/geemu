@@ -9,4 +9,5 @@
     <string name="genres">Genres</string>
     <string name="rating">Rating</string>
     <string name="release">Release</string>
+    <string name="filtered_games">Filtered Games</string>
 </resources>

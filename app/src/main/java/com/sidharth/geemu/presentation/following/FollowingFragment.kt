@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.sidharth.geemu.databinding.FragmentFollowingBinding
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Tag
-import com.sidharth.geemu.presentation.following.adapter.FollowingAdapter
+import com.sidharth.geemu.presentation.following.adapter.GamesAdapter
 import com.sidharth.geemu.presentation.following.callback.OnGameClickCallback
 import com.sidharth.geemu.presentation.following.callback.OnUnfollowButtonClickCallback
 import com.sidharth.geemu.presentation.following.viewmodel.FollowingViewModel
@@ -33,10 +33,11 @@ class FollowingFragment: Fragment(), OnGameClickCallback, OnUnfollowButtonClickC
             requireContext(), VERTICAL, false
         )
         followingViewModel.following.observe(viewLifecycleOwner) {
-            binding.rvFollowing.adapter = FollowingAdapter(
-                followings = it,
+            binding.rvFollowing.adapter = GamesAdapter(
+//                followings = it,
+//                onGameClickCallback = this,
                 onGameClickCallback = this,
-                onUnfollowButtonClickCallback = this,
+                games = listOf()
             )
         }
 
