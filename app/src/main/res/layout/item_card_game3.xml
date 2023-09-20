@@ -5,7 +5,7 @@
     android:id="@+id/cv_game"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:layout_marginBottom="10dp"
+    android:layout_marginBottom="@dimen/item_space"
     app:cardBackgroundColor="#EEEEEE"
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:strokeWidth="0dp">

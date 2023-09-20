@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
     tools:context=".presentation.following.FollowingFragment">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/white_space"
         android:text="@string/following"
         android:textFontWeight="600"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,6 +22,7 @@
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/cg_following"
+        style="@style/Widget.Material3.ChipGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -40,8 +41,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="All"
-            app:iconEndPadding="0dp"
-            app:chipIcon="@drawable/ic_tag"
             app:chipIconVisible="true" />
 
         <com.google.android.material.chip.Chip
@@ -54,21 +53,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="alihdas"
-            app:chipIcon="@drawable/ic_tag"
             app:chipIconVisible="true" />
 
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="alihdas"
-            app:chipIcon="@drawable/ic_tag"
             app:chipIconVisible="true" />
 
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="alihdas"
-            app:chipIcon="@drawable/ic_tag"
+            app:chipIconVisible="true" />
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="alihdas"
             app:chipIconVisible="true" />
 
     </com.google.android.material.chip.ChipGroup>
@@ -77,6 +79,7 @@
         android:id="@+id/tv_following"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/white_space"
         android:layout_marginTop="10dp"
         android:text="@string/filtered_games"
         android:textFontWeight="600"
@@ -91,7 +94,8 @@
         android:id="@+id/rv_following"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="5dp"
+        android:clipToPadding="false"
+        android:padding="@dimen/white_space"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

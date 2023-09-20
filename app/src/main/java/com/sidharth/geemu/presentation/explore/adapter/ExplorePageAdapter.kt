@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
@@ -62,6 +63,7 @@ class ExplorePageAdapter(
                     genres = genres,
                     onGenreClickCallback = onGenreClickCallback
                 )
+                LinearSnapHelper().attachToRecyclerView(rvGenres)
             }
         }
     }
@@ -91,6 +93,7 @@ class ExplorePageAdapter(
                     games = games,
                     onGameClickCallback = onGameClickCallback
                 )
+                LinearSnapHelper().attachToRecyclerView(rvGames)
             }
         }
     }
