@@ -17,11 +17,10 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_game"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +29,7 @@
 
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow_data"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="20dp"
             android:orientation="vertical"
@@ -38,7 +37,6 @@
             app:flow_horizontalAlign="start"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toEndOf="@+id/iv_game"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,8 +44,8 @@
             android:id="@+id/tv_game"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
             android:includeFontPadding="false"
-            android:maxLength="25"
             android:maxLines="1"
             android:textFontWeight="700"
             android:textSize="18sp"
@@ -55,7 +53,7 @@
 
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow_genres"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:constraint_referenced_ids="tv_genres_label,tv_genres"
@@ -84,7 +82,7 @@
 
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/flow_ratings"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:constraint_referenced_ids="tv_rating_label,tv_ratings"
