@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/exploreFragment">
+
+    <fragment
+        android:id="@+id/exploreFragment"
+        android:name="com.sidharth.geemu.presentation.explore.ExploreFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_explore" >
+        <action
+            android:id="@+id/action_exploreFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_exploreFragment_to_nav_graph_game_details"
+            app:destination="@id/nav_graph_game_details" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.sidharth.geemu.presentation.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_nav_graph_game_details"
+            app:destination="@id/nav_graph_game_details" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.sidharth.geemu.presentation.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_nav_graph_game_details"
+            app:destination="@id/nav_graph_game_details" />
+    </fragment>
+    <fragment
+        android:id="@+id/followingFragment"
+        android:name="com.sidharth.geemu.presentation.following.FollowingFragment"
+        android:label="fragment_following"
+        tools:layout="@layout/fragment_following" >
+        <action
+            android:id="@+id/action_followingFragment_to_nav_graph_game_details"
+            app:destination="@id/nav_graph_game_details" />
+    </fragment>
+    <include app:graph="@navigation/nav_graph_game_details" />
+</navigation>

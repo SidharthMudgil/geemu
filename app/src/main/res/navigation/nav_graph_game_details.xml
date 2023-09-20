@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_game_details"
+    app:startDestination="@id/gameDetailsFragment">
+
+    <fragment
+        android:id="@+id/gameDetailsFragment"
+        android:name="com.sidharth.geemu.presentation.game.GameDetailsFragment"
+        android:label="fragment_game_details"
+        tools:layout="@layout/fragment_game_details" >
+        <action
+            android:id="@+id/action_gameDetailsFragment_to_videoFragment"
+            app:destination="@id/videoFragment" />
+        <action
+            android:id="@+id/action_gameDetailsFragment_to_imageFragment"
+            app:destination="@id/imageFragment" />
+        <action
+            android:id="@+id/action_gameDetailsFragment_to_gamesFragment"
+            app:destination="@id/gamesFragment" />
+        <action
+            android:id="@+id/action_gameDetailsFragment_to_creatorDetailsFragment"
+            app:destination="@id/creatorDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/creatorDetailsFragment"
+        android:name="com.sidharth.geemu.presentation.game.CreatorDetailsFragment"
+        android:label="fragment_creator_details"
+        tools:layout="@layout/fragment_creator_details" />
+    <fragment
+        android:id="@+id/gamesFragment"
+        android:name="com.sidharth.geemu.presentation.games.GamesFragment"
+        android:label="fragment_games"
+        tools:layout="@layout/fragment_games" >
+        <action
+            android:id="@+id/action_gamesFragment_to_gameDetailsFragment"
+            app:destination="@id/gameDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageFragment"
+        android:name="com.sidharth.geemu.presentation.image.ImageFragment"
+        android:label="fragment_image"
+        tools:layout="@layout/fragment_image" />
+    <fragment
+        android:id="@+id/videoFragment"
+        android:name="com.sidharth.geemu.presentation.video.VideoFragment"
+        android:label="fragment_video"
+        tools:layout="@layout/fragment_video" />
+</navigation>
