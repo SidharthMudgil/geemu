@@ -20,60 +20,67 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/cg_following"
-        style="@style/Widget.Material3.ChipGroup"
+    <HorizontalScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_label"
-        app:layout_constraintVertical_bias="0"
-        app:singleLine="true"
-        app:singleSelection="true">
+        app:layout_constraintVertical_bias="0">
 
-        <com.google.android.material.chip.Chip
-            style="@style/Widget.Material3.Chip.Filter"
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cg_following"
+            style="@style/Widget.Material3.ChipGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="All"
-            app:chipIconVisible="true" />
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            app:singleLine="true"
+            app:singleSelection="true">
 
-        <com.google.android.material.chip.Chip
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="#All"
-            app:chipIconVisible="true" />
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All"
+                app:chipIconVisible="true" />
 
-        <com.google.android.material.chip.Chip
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="alihdas"
-            app:chipIconVisible="true" />
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#All"
+                app:chipIconVisible="true" />
 
-        <com.google.android.material.chip.Chip
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="alihdas"
-            app:chipIconVisible="true" />
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="alihdas"
+                app:chipIconVisible="true" />
 
-        <com.google.android.material.chip.Chip
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="alihdas"
-            app:chipIconVisible="true" />
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="alihdas"
+                app:chipIconVisible="true" />
 
-        <com.google.android.material.chip.Chip
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="alihdas"
-            app:chipIconVisible="true" />
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="alihdas"
+                app:chipIconVisible="true" />
 
-    </com.google.android.material.chip.ChipGroup>
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="alihdas"
+                app:chipIconVisible="true" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </HorizontalScrollView>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_following"
@@ -87,7 +94,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cg_following"
+        app:layout_constraintTop_toBottomOf="@+id/scroll_view"
         app:layout_constraintVertical_bias="0" />
 
     <androidx.recyclerview.widget.RecyclerView

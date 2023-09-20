@@ -63,7 +63,6 @@ class ExplorePageAdapter(
                     genres = genres,
                     onGenreClickCallback = onGenreClickCallback
                 )
-                LinearSnapHelper().attachToRecyclerView(rvGenres)
             }
         }
     }
