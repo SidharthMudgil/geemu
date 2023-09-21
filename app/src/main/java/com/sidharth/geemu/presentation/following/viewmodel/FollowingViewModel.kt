@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Tag
-import com.sidharth.geemu.domain.usecase.game.GameUseCase
+import com.sidharth.geemu.domain.usecase.game.GetGameUseCase
 import com.sidharth.geemu.domain.usecase.tag.TagUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class FollowingViewModel @Inject constructor(
     private val tagUseCase: TagUseCase,
-    private val gameUseCase: GameUseCase,
+    private val getGameUseCase: GetGameUseCase,
 ) : ViewModel() {
 
     private val _following = MutableLiveData<List<Tag>>()
@@ -33,9 +33,9 @@ class FollowingViewModel @Inject constructor(
         viewModelScope.launch {
             if (tag == null && following.value?.isNotEmpty() == true) {
                 val tagIds = following.value?.joinToString(",") { it.id.toString() } ?: ""
-                _games.postValue(gameUseCase.getGamesByTags(tagIds))
+                _games.postValue(getGameUseCase.getGamesByTags(tagIds))
             } else if (tag != null) {
-                _games.postValue(gameUseCase.getGamesByTags(tag))
+                _games.postValue(getGameUseCase.getGamesByTags(tag))
             }
         }
     }

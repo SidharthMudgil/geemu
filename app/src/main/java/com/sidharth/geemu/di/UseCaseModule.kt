@@ -8,8 +8,8 @@ import com.sidharth.geemu.domain.usecase.detail.GetCreatorDetailsUseCase
 import com.sidharth.geemu.domain.usecase.detail.GetCreatorDetailsUseCaseImpl
 import com.sidharth.geemu.domain.usecase.detail.GetGameDetailsUseCase
 import com.sidharth.geemu.domain.usecase.detail.GetGameDetailsUseCaseImpl
-import com.sidharth.geemu.domain.usecase.game.GameUseCase
-import com.sidharth.geemu.domain.usecase.game.GameUseCaseImpl
+import com.sidharth.geemu.domain.usecase.game.GetGameUseCase
+import com.sidharth.geemu.domain.usecase.game.GetGameUseCaseImpl
 import com.sidharth.geemu.domain.usecase.tag.TagUseCase
 import com.sidharth.geemu.domain.usecase.tag.TagUseCaseImpl
 import dagger.Module
@@ -42,8 +42,8 @@ class UseCaseModule {
     @Singleton
     fun provideGameUseCase(
         gameRepository: GameRepository
-    ): GameUseCase {
-        return GameUseCaseImpl(gameRepository)
+    ): GetGameUseCase {
+        return GetGameUseCaseImpl(gameRepository)
     }
 
     @Provides

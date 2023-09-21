@@ -8,7 +8,7 @@ import com.sidharth.geemu.domain.model.Creator
 import com.sidharth.geemu.domain.model.CreatorDetails
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.usecase.detail.GetCreatorDetailsUseCase
-import com.sidharth.geemu.domain.usecase.game.GameUseCase
+import com.sidharth.geemu.domain.usecase.game.GetGameUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CreatorViewModel @Inject constructor(
     private val creatorDetailsUseCase: GetCreatorDetailsUseCase,
-    private val gameUseCase: GameUseCase,
+    private val getGameUseCase: GetGameUseCase,
 ) : ViewModel() {
     private val _creatorDetails = MutableLiveData<CreatorDetails>()
     private val _games = MutableLiveData<List<Game>>()
@@ -27,7 +27,7 @@ class CreatorViewModel @Inject constructor(
     fun fetchData(creator: Creator) {
         viewModelScope.launch {
             _creatorDetails.postValue(creatorDetailsUseCase.getCreatorDetails(creator.id))
-            _games.postValue(gameUseCase.getGamesByCreators(creator.id.toString()))
+            _games.postValue(getGameUseCase.getGamesByCreators(creator.id.toString()))
         }
     }
 }

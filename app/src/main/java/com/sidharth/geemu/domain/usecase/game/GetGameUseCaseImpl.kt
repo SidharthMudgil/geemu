@@ -6,9 +6,9 @@ import com.sidharth.geemu.domain.model.Genre
 import com.sidharth.geemu.domain.repository.GameRepository
 import javax.inject.Inject
 
-class GameUseCaseImpl @Inject constructor(
+class GetGameUseCaseImpl @Inject constructor(
     private val gameRepository: GameRepository
-) : GameUseCase {
+) : GetGameUseCase {
 
     override suspend fun getGenres(): List<Genre> {
         return gameRepository.getGenres()

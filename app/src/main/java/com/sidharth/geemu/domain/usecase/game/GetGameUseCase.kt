@@ -3,7 +3,7 @@ package com.sidharth.geemu.domain.usecase.game
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Genre
 
-interface GameUseCase {
+interface GetGameUseCase {
 
     suspend fun getGenres(): List<Genre>
 
