@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/creatorDetailsFragment"
-        android:name="com.sidharth.geemu.presentation.game.CreatorDetailsFragment"
+        android:name="com.sidharth.geemu.presentation.creator.CreatorDetailsFragment"
         android:label="fragment_creator_details"
         tools:layout="@layout/fragment_creator_details" />
     <fragment

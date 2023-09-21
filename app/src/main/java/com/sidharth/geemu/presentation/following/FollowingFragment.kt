@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
+import com.google.android.material.chip.Chip
 import com.sidharth.geemu.databinding.FragmentFollowingBinding
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Tag
@@ -18,7 +19,7 @@ import com.sidharth.geemu.presentation.following.viewmodel.FollowingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FollowingFragment: Fragment(), OnGameClickCallback, OnUnfollowButtonClickCallback {
+class FollowingFragment : Fragment(), OnGameClickCallback, OnUnfollowButtonClickCallback {
 
     private val followingViewModel by viewModels<FollowingViewModel>()
 
@@ -33,11 +34,17 @@ class FollowingFragment: Fragment(), OnGameClickCallback, OnUnfollowButtonClickC
             requireContext(), VERTICAL, false
         )
         followingViewModel.following.observe(viewLifecycleOwner) {
+            it.forEach { tag ->
+                val chip = Chip(requireContext())
+                chip.text = tag.name
+                chip.isCheckable = true
+                binding.cgFollowing.addView(chip)
+            }
+        }
+        followingViewModel.games.observe(viewLifecycleOwner) {
             binding.rvFollowing.adapter = GamesAdapter(
-//                followings = it,
-//                onGameClickCallback = this,
                 onGameClickCallback = this,
-                games = listOf()
+                games = it
             )
         }
 

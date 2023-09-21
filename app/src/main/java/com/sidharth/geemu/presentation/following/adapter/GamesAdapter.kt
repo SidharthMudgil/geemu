@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
-import com.sidharth.geemu.databinding.ItemCardGame2Binding
+import com.sidharth.geemu.databinding.ItemCardGame3Binding
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.presentation.following.callback.OnGameClickCallback
 
@@ -15,22 +15,21 @@ class GamesAdapter(
 ) : Adapter<GamesAdapter.GameViewHolder>() {
 
     inner class GameViewHolder(
-        private val binding: ItemCardGame2Binding
+        private val binding: ItemCardGame3Binding
     ) : ViewHolder(binding.root) {
         fun bind(game: Game) {
             binding.apply {
-                ivCover.load(game.image)
-                tvName.text = game.name
+                ivGame.load(game.image)
+                tvGame.text = game.name
                 tvRatings.text = game.rating
                 tvGenres.text = game.genres
-                tvReleaseDate.text = game.release
                 cvGame.setOnClickListener { onGameClickCallback.onGameClick(game) }
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
-        val binding = ItemCardGame2Binding.inflate(
+        val binding = ItemCardGame3Binding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
 
