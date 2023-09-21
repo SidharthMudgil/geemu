@@ -1,18 +1,265 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.game.CreatorDetailsFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_creator"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_background"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="@dimen/white_space"
+            android:background="#001122"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0"
+            app:shapeAppearanceOverlay="@style/RoundedImageView" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_image"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:background="#112233"
+            app:layout_constraintBottom_toTopOf="@+id/tv_name"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="@+id/iv_background"
+            app:layout_constraintStart_toStartOf="@+id/iv_background"
+            app:layout_constraintTop_toTopOf="@+id/iv_background"
+            app:shapeAppearanceOverlay="@style/CircularImageView" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:textAlignment="center"
+            android:textFontWeight="600"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/flow_ratings"
+            app:layout_constraintEnd_toEndOf="@+id/iv_background"
+            app:layout_constraintStart_toStartOf="@+id/iv_background"
+            app:layout_constraintTop_toBottomOf="@+id/iv_image"
+            tools:text="Shree Ram Janki baithi hai mere seene me" />
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/flow_ratings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:constraint_referenced_ids="tv_ratings,tv_rating_label"
+            app:flow_horizontalAlign="center"
+            app:flow_verticalStyle="packed"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_background"
+            app:layout_constraintEnd_toEndOf="@+id/iv_image"
+            app:layout_constraintStart_toStartOf="@+id/iv_image"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_ratings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textFontWeight="600"
+            android:textSize="16sp"
+            tools:text="4.92" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_rating_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rating"
+            android:textSize="12sp" />
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/flow_games_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:constraint_referenced_ids="tv_games_count,tv_games_label"
+            app:flow_horizontalAlign="center"
+            app:flow_verticalStyle="packed"
+            app:layout_constraintBottom_toBottomOf="@+id/flow_ratings"
+            app:layout_constraintEnd_toStartOf="@+id/flow_ratings"
+            app:layout_constraintStart_toStartOf="@id/iv_background"
+            app:layout_constraintTop_toTopOf="@+id/flow_ratings" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_games_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textFontWeight="600"
+            android:textSize="13sp"
+            tools:text="10" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_games_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/games"
+            android:textSize="11sp" />
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/flow_reviews_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:constraint_referenced_ids="tv_reviews,tv_reviews_label"
+            app:flow_horizontalAlign="center"
+            app:flow_verticalStyle="packed"
+            app:layout_constraintBottom_toBottomOf="@+id/flow_ratings"
+            app:layout_constraintEnd_toEndOf="@id/iv_background"
+            app:layout_constraintStart_toEndOf="@+id/flow_ratings"
+            app:layout_constraintTop_toTopOf="@+id/flow_ratings" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_reviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textFontWeight="600"
+            android:textSize="13sp"
+            tools:text="2149" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_reviews_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reviews"
+            android:textSize="11sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_description_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/white_space"
+            android:layout_marginTop="@dimen/section_margin"
+            android:text="@string/description"
+            android:textFontWeight="600"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_background"
+            app:layout_constraintVertical_bias="0" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/white_space"
+            android:layout_marginTop="@dimen/label_list_gap"
+            android:includeFontPadding="false"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_description_label"
+            app:layout_constraintVertical_bias="0"
+            tools:text="My name is Sidharth Mudgil" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_ratings_chart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/white_space"
+            android:layout_marginTop="@dimen/section_margin"
+            android:text="@string/rating"
+            android:textFontWeight="600"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_description"
+            app:layout_constraintVertical_bias="0" />
+
+        <View
+            android:id="@+id/chart_rating"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginStart="@dimen/white_space"
+            android:layout_marginEnd="@dimen/white_space"
+            android:background="#FFF2EE"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_ratings_chart"
+            app:layout_constraintVertical_bias="0" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_timeline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/white_space"
+            android:layout_marginTop="@dimen/section_margin"
+            android:text="@string/timeline"
+            android:textFontWeight="600"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chart_rating"
+            app:layout_constraintVertical_bias="0" />
+
+        <View
+            android:id="@+id/chart_timeline"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginStart="@dimen/white_space"
+            android:layout_marginEnd="@dimen/white_space"
+            android:background="#FFF2EE"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_timeline"
+            app:layout_constraintVertical_bias="0" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_games"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/white_space"
+            android:layout_marginTop="@dimen/section_margin"
+            android:text="@string/games"
+            android:textFontWeight="600"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chart_timeline"
+            app:layout_constraintVertical_bias="0" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_games"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/label_list_gap"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/white_space"
+            android:paddingEnd="@dimen/white_space"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_games"
+            app:layout_constraintVertical_bias="0"
+            tools:itemCount="1"
+            tools:listitem="@layout/item_card_game2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
