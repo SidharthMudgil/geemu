@@ -48,7 +48,7 @@
             android:includeFontPadding="false"
             android:maxLines="1"
             android:textFontWeight="700"
-            android:textSize="18sp"
+            android:textSize="16sp"
             tools:text="Action, Adve uas dasfu gasuf gasu gfaus ag dasi nture" />
 
         <androidx.constraintlayout.helper.widget.Flow
