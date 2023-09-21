@@ -4,8 +4,10 @@ import com.sidharth.geemu.domain.repository.GameRepository
 import com.sidharth.geemu.domain.repository.UserDataRepository
 import com.sidharth.geemu.domain.usecase.collection.CollectionUseCase
 import com.sidharth.geemu.domain.usecase.collection.CollectionUseCaseImpl
-import com.sidharth.geemu.domain.usecase.detail.GetDetailsUseCase
-import com.sidharth.geemu.domain.usecase.detail.GetDetailsUseCaseImpl
+import com.sidharth.geemu.domain.usecase.detail.GetCreatorDetailsUseCase
+import com.sidharth.geemu.domain.usecase.detail.GetCreatorDetailsUseCaseImpl
+import com.sidharth.geemu.domain.usecase.detail.GetGameDetailsUseCase
+import com.sidharth.geemu.domain.usecase.detail.GetGameDetailsUseCaseImpl
 import com.sidharth.geemu.domain.usecase.game.GameUseCase
 import com.sidharth.geemu.domain.usecase.game.GameUseCaseImpl
 import com.sidharth.geemu.domain.usecase.tag.TagUseCase
@@ -22,10 +24,18 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideGetDetailsUseCase(
+    fun provideGetGameDetailsUseCase(
         gameRepository: GameRepository
-    ): GetDetailsUseCase {
-        return GetDetailsUseCaseImpl(gameRepository)
+    ): GetGameDetailsUseCase {
+        return GetGameDetailsUseCaseImpl(gameRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetCreatorDetailsUseCase(
+        gameRepository: GameRepository
+    ): GetCreatorDetailsUseCase {
+        return GetCreatorDetailsUseCaseImpl(gameRepository)
     }
 
     @Provides
@@ -49,6 +59,6 @@ class UseCaseModule {
     fun provideTagUseCase(
         userDataRepository: UserDataRepository
     ): TagUseCase {
-        return  TagUseCaseImpl(userDataRepository)
+        return TagUseCaseImpl(userDataRepository)
     }
 }

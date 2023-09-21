@@ -46,7 +46,11 @@ class GameUseCaseImpl @Inject constructor(
     }
 
     override suspend fun getGamesByCreators(creators: String): List<Game> {
-        return gameRepository.getGames(creators = creators)
+        return gameRepository.getGames(
+            creators = creators,
+            page = 1,
+            pageSize = 20,
+        )
     }
 
     override suspend fun getGamesByDevelopers(developers: String): List<Game> {
