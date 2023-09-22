@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.sidharth.geemu.core.enum.GameFilterType
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.usecase.game.GetGameUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,21 +15,18 @@ import javax.inject.Inject
 class GamesViewModel @Inject constructor(
     private val getGameUseCase: GetGameUseCase
 ) : ViewModel() {
-    enum class FilterOption {
-        DEVELOPER, GENRES, TAGS, PUBLISHER
-    }
 
     private val _games = MutableLiveData<List<Game>>()
     val games: LiveData<List<Game>> get() = _games
 
-    fun fetchGames(filter: FilterOption, data: String) {
+    fun fetchGames(filter: GameFilterType, data: String) {
         viewModelScope.launch {
             _games.postValue(
                 when (filter) {
-                    FilterOption.DEVELOPER -> getGameUseCase.getGamesByDevelopers(data)
-                    FilterOption.GENRES -> getGameUseCase.getGamesByGenres(data)
-                    FilterOption.TAGS -> getGameUseCase.getGamesByTags(data)
-                    FilterOption.PUBLISHER -> getGameUseCase.getGamesByPublishers(data)
+                    GameFilterType.DEVELOPER -> getGameUseCase.getGamesByDevelopers(data)
+                    GameFilterType.GENRES -> getGameUseCase.getGamesByGenres(data)
+                    GameFilterType.TAGS -> getGameUseCase.getGamesByTags(data)
+                    GameFilterType.PUBLISHER -> getGameUseCase.getGamesByPublishers(data)
                 }
             )
         }

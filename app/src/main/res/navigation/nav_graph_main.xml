@@ -14,7 +14,7 @@
             android:id="@+id/action_exploreFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
         <action
-            android:id="@+id/action_exploreFragment_to_nav_graph_game_details"
+            android:id="@+id/action_exploreFragment_to_gameDetailsFragment"
             app:destination="@id/nav_graph_game_details" />
     </fragment>
     <fragment
@@ -23,7 +23,7 @@
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
-            android:id="@+id/action_profileFragment_to_nav_graph_game_details"
+            android:id="@+id/action_profileFragment_to_gameDetailsFragment"
             app:destination="@id/nav_graph_game_details" />
     </fragment>
     <fragment
@@ -32,7 +32,7 @@
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <action
-            android:id="@+id/action_searchFragment_to_nav_graph_game_details"
+            android:id="@+id/action_searchFragment_to_gameDetailsFragment"
             app:destination="@id/nav_graph_game_details" />
     </fragment>
     <fragment
@@ -41,7 +41,7 @@
         android:label="fragment_following"
         tools:layout="@layout/fragment_following" >
         <action
-            android:id="@+id/action_followingFragment_to_nav_graph_game_details"
+            android:id="@+id/action_followingFragment_to_gameDetailsFragment"
             app:destination="@id/nav_graph_game_details" />
     </fragment>
     <include app:graph="@navigation/nav_graph_game_details" />
