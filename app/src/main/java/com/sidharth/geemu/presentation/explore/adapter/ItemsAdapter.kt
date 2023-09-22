@@ -10,16 +10,35 @@ import com.sidharth.geemu.core.util.DateTimeUtils.toDdMmmYyyy
 import com.sidharth.geemu.databinding.ItemCardGame1Binding
 import com.sidharth.geemu.databinding.ItemCardGame2Binding
 import com.sidharth.geemu.databinding.ItemCardGame3Binding
+import com.sidharth.geemu.databinding.ItemCardGenreBinding
 import com.sidharth.geemu.domain.model.Game
+import com.sidharth.geemu.domain.model.Genre
 import com.sidharth.geemu.presentation.explore.callback.OnGameClickCallback
+import com.sidharth.geemu.presentation.explore.callback.OnGenreClickCallback
 
-class GamesAdapter(
+class ItemsAdapter(
     private val type: CardType,
-    private val games: List<Game>,
-    private val onGameClickCallback: OnGameClickCallback,
+    private val items: List<Any>,
+    private val onItemClickCallback: Any,
 ) : Adapter<ViewHolder>() {
 
-    enum class CardType { TYPE1, TYPE2, TYPE3 }
+    enum class CardType {
+        GENRE, GAME_TYPE1, GAME_TYPE2, GAME_TYPE3
+    }
+
+    inner class GenreViewHolder(
+        private val binding: ItemCardGenreBinding
+    ) : ViewHolder(binding.root) {
+        fun bind(genre: Genre) {
+            binding.apply {
+                ivGenre.load(genre.image)
+                tvGenre.text = genre.name
+                cvGenre.setOnClickListener {
+                    (onItemClickCallback as OnGenreClickCallback).onGenreClick(genre)
+                }
+            }
+        }
+    }
 
     inner class GameCard1ViewHolder(
         private val binding: ItemCardGame1Binding
@@ -45,7 +64,11 @@ class GamesAdapter(
                 tvRatings.text = game.rating
                 tvGenres.text = game.genres
                 tvReleaseDate.text = game.release
-                cvGame.setOnClickListener { onGameClickCallback.onGameClick(game) }
+                cvGame.setOnClickListener {
+                    (onItemClickCallback as OnGameClickCallback).onGameClick(
+                        game
+                    )
+                }
             }
         }
     }
@@ -59,7 +82,11 @@ class GamesAdapter(
                 tvGame.text = game.name
                 tvGenres.text = game.genres
                 tvRatings.text = game.rating
-                cvGame.setOnClickListener { onGameClickCallback.onGameClick(game) }
+                cvGame.setOnClickListener {
+                    (onItemClickCallback as OnGameClickCallback).onGameClick(
+                        game
+                    )
+                }
             }
         }
     }
@@ -68,19 +95,25 @@ class GamesAdapter(
         val inflater = LayoutInflater.from(parent.context)
 
         return when (type) {
-            CardType.TYPE1 -> GameCard1ViewHolder(
+            CardType.GENRE -> GenreViewHolder(
+                ItemCardGenreBinding.inflate(
+                    inflater, parent, false
+                )
+            )
+
+            CardType.GAME_TYPE1 -> GameCard1ViewHolder(
                 ItemCardGame1Binding.inflate(
                     inflater, parent, false
                 )
             )
 
-            CardType.TYPE2 -> GameCard2ViewHolder(
+            CardType.GAME_TYPE2 -> GameCard2ViewHolder(
                 ItemCardGame2Binding.inflate(
                     inflater, parent, false
                 )
             )
 
-            CardType.TYPE3 -> GameCard3ViewHolder(
+            CardType.GAME_TYPE3 -> GameCard3ViewHolder(
                 ItemCardGame3Binding.inflate(
                     inflater, parent, false
                 )
@@ -90,21 +123,25 @@ class GamesAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (type) {
-            CardType.TYPE1 -> {
-                (holder as GameCard1ViewHolder).bind(games[position])
+            CardType.GENRE -> {
+                (holder as GenreViewHolder).bind(items[position] as Genre)
             }
 
-            CardType.TYPE2 -> {
-                (holder as GameCard2ViewHolder).bind(games[position])
+            CardType.GAME_TYPE1 -> {
+                (holder as GameCard1ViewHolder).bind(items[position] as Game)
             }
 
-            CardType.TYPE3 -> {
-                (holder as GameCard3ViewHolder).bind(games[position])
+            CardType.GAME_TYPE2 -> {
+                (holder as GameCard2ViewHolder).bind(items[position] as Game)
+            }
+
+            CardType.GAME_TYPE3 -> {
+                (holder as GameCard3ViewHolder).bind(items[position] as Game)
             }
         }
     }
 
     override fun getItemCount(): Int {
-        return games.size
+        return items.size
     }
 }

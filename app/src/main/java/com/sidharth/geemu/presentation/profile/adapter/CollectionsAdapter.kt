@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.sidharth.geemu.databinding.ItemSectionGamesBinding
+import com.sidharth.geemu.databinding.ItemSectionItemsBinding
 import com.sidharth.geemu.domain.model.Collection
 import com.sidharth.geemu.presentation.profile.callback.OnGameClickCallback
 
@@ -16,15 +16,15 @@ class CollectionsAdapter(
 ) : Adapter<CollectionsAdapter.CollectionViewHolder>() {
 
     inner class CollectionViewHolder(
-        private val binding: ItemSectionGamesBinding
+        private val binding: ItemSectionItemsBinding
     ) : ViewHolder(binding.root) {
         fun bind(collection: Collection) {
             binding.apply {
                 tvLabel.text = collection.name
-                rvGames.layoutManager = LinearLayoutManager(
+                rvItems.layoutManager = LinearLayoutManager(
                     binding.root.context, HORIZONTAL, false
                 )
-                rvGames.adapter = SavedGamesAdapter(
+                rvItems.adapter = SavedGamesAdapter(
                     games = collection.games,
                     onGameClickCallback = onGameClickCallback
                 )
@@ -33,7 +33,7 @@ class CollectionsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CollectionViewHolder {
-        val binding = ItemSectionGamesBinding.inflate(
+        val binding = ItemSectionItemsBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
 

@@ -37,11 +37,11 @@ class CreatorDetailsFragment : Fragment(), OnGameClickCallback {
         }
 
         creatorViewModel.games.observe(viewLifecycleOwner) {
-            binding.rvGames.layoutManager = LinearLayoutManager(
+            binding.rvItems.layoutManager = LinearLayoutManager(
                 binding.root.context, HORIZONTAL, false
             )
-            LinearSnapHelper().attachToRecyclerView(binding.rvGames)
-            binding.rvGames.adapter = GamesAdapter(
+            LinearSnapHelper().attachToRecyclerView(binding.rvItems)
+            binding.rvItems.adapter = GamesAdapter(
                 games = it,
                 onGameClickCallback = this
             )

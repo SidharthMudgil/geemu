@@ -9,8 +9,7 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.sidharth.geemu.databinding.ItemSectionGamesBinding
-import com.sidharth.geemu.databinding.ItemSectionGenresBinding
+import com.sidharth.geemu.databinding.ItemSectionItemsBinding
 import com.sidharth.geemu.databinding.ItemSectionSearchBinding
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Genre
@@ -51,35 +50,20 @@ class ExplorePageAdapter(
         }
     }
 
-    inner class GenresSectionViewHolder(
-        private val binding: ItemSectionGenresBinding
+    inner class ItemsSectionViewHolder(
+        private val type: ItemsAdapter.CardType,
+        private val binding: ItemSectionItemsBinding
     ) : ViewHolder(binding.root) {
-        fun bind(genres: List<Genre>) {
-            binding.apply {
-                rvGenres.layoutManager = LinearLayoutManager(
-                    binding.root.context, HORIZONTAL, false
-                )
-                rvGenres.adapter = GenresAdapter(
-                    genres = genres,
-                    onGenreClickCallback = onGenreClickCallback
-                )
-            }
-        }
-    }
-
-    inner class GamesSectionViewHolder(
-        private val type: GamesAdapter.CardType,
-        private val binding: ItemSectionGamesBinding
-    ) : ViewHolder(binding.root) {
-        fun bind(games: List<Game>) {
+        fun bind(games: List<Any>) {
             binding.apply {
                 tvLabel.text = when (type) {
-                    GamesAdapter.CardType.TYPE1 -> "Upcoming"
-                    GamesAdapter.CardType.TYPE2 -> "Best of the Year"
-                    GamesAdapter.CardType.TYPE3 -> "Best of All Time"
+                    ItemsAdapter.CardType.GENRE -> "Genres"
+                    ItemsAdapter.CardType.GAME_TYPE1 -> "Upcoming"
+                    ItemsAdapter.CardType.GAME_TYPE2 -> "Best of the Year"
+                    ItemsAdapter.CardType.GAME_TYPE3 -> "Best of All Time"
                 }
-                rvGames.layoutManager = when (type) {
-                    GamesAdapter.CardType.TYPE3 -> LinearLayoutManager(
+                rvItems.layoutManager = when (type) {
+                    ItemsAdapter.CardType.GAME_TYPE3 -> LinearLayoutManager(
                         binding.root.context, VERTICAL, false
                     )
 
@@ -87,12 +71,23 @@ class ExplorePageAdapter(
                         binding.root.context, HORIZONTAL, false
                     )
                 }
-                rvGames.adapter = GamesAdapter(
-                    type = type,
-                    games = games,
-                    onGameClickCallback = onGameClickCallback
-                )
-                LinearSnapHelper().attachToRecyclerView(rvGames)
+                rvItems.adapter = when (type) {
+                    ItemsAdapter.CardType.GENRE -> ItemsAdapter(
+                        type = type,
+                        items = genres,
+                        onItemClickCallback = onGenreClickCallback
+                    )
+
+                    else -> {
+                        LinearSnapHelper().attachToRecyclerView(rvItems)
+
+                        ItemsAdapter(
+                            type = type,
+                            items = games,
+                            onItemClickCallback = onGameClickCallback
+                        )
+                    }
+                }
             }
         }
     }
@@ -121,35 +116,36 @@ class ExplorePageAdapter(
             }
 
             ExploreSection.GENRES.ordinal -> {
-                GenresSectionViewHolder(
-                    ItemSectionGenresBinding.inflate(
+                ItemsSectionViewHolder(
+                    type = ItemsAdapter.CardType.GENRE,
+                    binding = ItemSectionItemsBinding.inflate(
                         inflater, parent, false
                     )
                 )
             }
 
             ExploreSection.GAMES_TYPE1.ordinal -> {
-                GamesSectionViewHolder(
-                    type = GamesAdapter.CardType.TYPE1,
-                    binding = ItemSectionGamesBinding.inflate(
+                ItemsSectionViewHolder(
+                    type = ItemsAdapter.CardType.GAME_TYPE1,
+                    binding = ItemSectionItemsBinding.inflate(
                         inflater, parent, false
                     )
                 )
             }
 
             ExploreSection.GAMES_TYPE2.ordinal -> {
-                GamesSectionViewHolder(
-                    type = GamesAdapter.CardType.TYPE2,
-                    binding = ItemSectionGamesBinding.inflate(
+                ItemsSectionViewHolder(
+                    type = ItemsAdapter.CardType.GAME_TYPE2,
+                    binding = ItemSectionItemsBinding.inflate(
                         inflater, parent, false
                     )
                 )
             }
 
             ExploreSection.GAMES_TYPE3.ordinal -> {
-                GamesSectionViewHolder(
-                    type = GamesAdapter.CardType.TYPE3,
-                    binding = ItemSectionGamesBinding.inflate(
+                ItemsSectionViewHolder(
+                    type = ItemsAdapter.CardType.GAME_TYPE3,
+                    binding = ItemSectionItemsBinding.inflate(
                         inflater, parent, false
                     )
                 )
@@ -162,10 +158,10 @@ class ExplorePageAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (position) {
             0 -> ((holder) as SearchSectionViewHolder).bind()
-            1 -> (holder as GenresSectionViewHolder).bind(genres)
-            2 -> (holder as GamesSectionViewHolder).bind(upcoming)
-            3 -> (holder as GamesSectionViewHolder).bind(bestOfYear)
-            4 -> (holder as GamesSectionViewHolder).bind(bestOfAllTime)
+            1 -> (holder as ItemsSectionViewHolder).bind(genres)
+            2 -> (holder as ItemsSectionViewHolder).bind(upcoming)
+            3 -> (holder as ItemsSectionViewHolder).bind(bestOfYear)
+            4 -> (holder as ItemsSectionViewHolder).bind(bestOfAllTime)
         }
     }
 

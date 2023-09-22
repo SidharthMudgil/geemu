@@ -32,11 +32,11 @@ class GamesFragment : Fragment(), OnGameClickCallback {
             id = args.id.toString(),
             filter = args.filter
         )
-        binding.rvGames.layoutManager = LinearLayoutManager(
+        binding.rvItems.layoutManager = LinearLayoutManager(
             requireContext(), VERTICAL, false
         )
         gamesViewModel.games.observe(viewLifecycleOwner) {
-            binding.rvGames.adapter = GamesAdapter(
+            binding.rvItems.adapter = GamesAdapter(
                 games = it,
                 onGameClickCallback = this,
             )
