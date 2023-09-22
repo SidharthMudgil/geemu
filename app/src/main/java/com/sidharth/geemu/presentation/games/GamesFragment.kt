@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.sidharth.geemu.databinding.FragmentGamesBinding
@@ -18,7 +19,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class GamesFragment : Fragment(), OnGameClickCallback {
 
-    private val gamesViewModel by viewModels<GamesViewModel>()
+    private val gamesViewModel: GamesViewModel by viewModels()
+    private val args: GamesFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +28,10 @@ class GamesFragment : Fragment(), OnGameClickCallback {
     ): View {
         val binding = FragmentGamesBinding.inflate(inflater)
 
+        gamesViewModel.fetchGames(
+            id = args.id.toString(),
+            filter = args.filter
+        )
         binding.rvGames.layoutManager = LinearLayoutManager(
             requireContext(), VERTICAL, false
         )
@@ -35,8 +41,6 @@ class GamesFragment : Fragment(), OnGameClickCallback {
                 onGameClickCallback = this,
             )
         }
-//        binding.tvTitle.text =
-//        gamesViewModel.fetchGames()
 
         return binding.root
     }

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
@@ -19,7 +20,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class CreatorDetailsFragment : Fragment(), OnGameClickCallback {
 
-    private val creatorViewModel by viewModels<CreatorViewModel>()
+    private val creatorViewModel: CreatorViewModel by viewModels()
+    private val args: CreatorDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +29,7 @@ class CreatorDetailsFragment : Fragment(), OnGameClickCallback {
     ): View {
         val binding = FragmentCreatorDetailsBinding.inflate(inflater)
 
-//        creatorViewModel.fetchData()
+        creatorViewModel.fetchData(args.id)
         creatorViewModel.creatorDetails.observe(viewLifecycleOwner) {
             binding.apply {
 

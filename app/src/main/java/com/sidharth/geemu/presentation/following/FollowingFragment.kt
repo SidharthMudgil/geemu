@@ -21,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class FollowingFragment : Fragment(), OnGameClickCallback, OnUnfollowButtonClickCallback {
 
-    private val followingViewModel by viewModels<FollowingViewModel>()
+    private val followingViewModel: FollowingViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

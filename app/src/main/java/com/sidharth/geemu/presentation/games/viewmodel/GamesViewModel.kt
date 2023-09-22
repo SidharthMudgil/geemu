@@ -19,14 +19,14 @@ class GamesViewModel @Inject constructor(
     private val _games = MutableLiveData<List<Game>>()
     val games: LiveData<List<Game>> get() = _games
 
-    fun fetchGames(filter: GameFilterType, data: String) {
+    fun fetchGames(id: String, filter: GameFilterType) {
         viewModelScope.launch {
             _games.postValue(
                 when (filter) {
-                    GameFilterType.DEVELOPER -> getGameUseCase.getGamesByDevelopers(data)
-                    GameFilterType.GENRES -> getGameUseCase.getGamesByGenres(data)
-                    GameFilterType.TAGS -> getGameUseCase.getGamesByTags(data)
-                    GameFilterType.PUBLISHER -> getGameUseCase.getGamesByPublishers(data)
+                    GameFilterType.DEVELOPER -> getGameUseCase.getGamesByDevelopers(id)
+                    GameFilterType.GENRES -> getGameUseCase.getGamesByGenres(id)
+                    GameFilterType.TAGS -> getGameUseCase.getGamesByTags(id)
+                    GameFilterType.PUBLISHER -> getGameUseCase.getGamesByPublishers(id)
                 }
             )
         }

@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sidharth.geemu.domain.model.Creator
 import com.sidharth.geemu.domain.model.CreatorDetails
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.usecase.detail.GetCreatorDetailsUseCase
@@ -24,10 +23,10 @@ class CreatorViewModel @Inject constructor(
     val creatorDetails: LiveData<CreatorDetails> get() = _creatorDetails
     val games: LiveData<List<Game>> get() = _games
 
-    fun fetchData(creator: Creator) {
+    fun fetchData(id: Int) {
         viewModelScope.launch {
-            _creatorDetails.postValue(creatorDetailsUseCase.getCreatorDetails(creator.id))
-            _games.postValue(getGameUseCase.getGamesByCreators(creator.id.toString()))
+            _creatorDetails.postValue(creatorDetailsUseCase.getCreatorDetails(id))
+            _games.postValue(getGameUseCase.getGamesByCreators(id.toString()))
         }
     }
 }

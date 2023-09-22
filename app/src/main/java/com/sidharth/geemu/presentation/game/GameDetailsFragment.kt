@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.sidharth.geemu.databinding.FragmentGameDetailsBinding
 import com.sidharth.geemu.domain.model.Creator
 import com.sidharth.geemu.presentation.game.callback.OnCreatorClickCallback
@@ -18,7 +19,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class GameDetailsFragment
     : Fragment(), OnCreatorClickCallback, OnItemClickCallback, OnMediaClickCallback {
 
-    private val gameDetailsViewModel by viewModels<GameDetailsViewModel>()
+    private val gameDetailsViewModel: GameDetailsViewModel by viewModels()
+    private val args: GameDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +28,7 @@ class GameDetailsFragment
     ): View {
         val binding = FragmentGameDetailsBinding.inflate(inflater)
 
+        gameDetailsViewModel.fetchGameDetails(args.id)
         gameDetailsViewModel.gameDetails.observe(viewLifecycleOwner) {
 
         }

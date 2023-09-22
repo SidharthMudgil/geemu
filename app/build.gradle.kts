@@ -5,6 +5,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.dagger.hilt.android")
     id("com.google.devtools.ksp")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -64,7 +65,7 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.7.2")
 
     // navigation
-    val navigationVersion = "2.7.2"
+    val navigationVersion = "2.7.3"
     implementation("androidx.navigation:navigation-fragment-ktx:$navigationVersion")
     implementation("androidx.navigation:navigation-ui-ktx:$navigationVersion")
 
