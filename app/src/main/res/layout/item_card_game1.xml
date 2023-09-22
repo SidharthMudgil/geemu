@@ -38,7 +38,6 @@
         android:id="@+id/tv_release"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#40000000"
         android:includeFontPadding="false"
         android:textColor="#EEEEEE"
         android:textSize="11sp"
@@ -48,20 +47,18 @@
         android:id="@+id/tv_game"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:background="#40000000"
         android:ellipsize="end"
         android:includeFontPadding="false"
         android:maxLines="1"
         android:textColor="#EEEEEE"
         android:textFontWeight="600"
         android:textSize="22sp"
-        tools:text="Mortal Kombat 1: The new Age of Ultron" />
+        tools:text="Mortal Kombat 1: The new Age of Ul tron" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_genres"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#40000000"
         android:includeFontPadding="false"
         android:textColor="#EEEEEE"
         android:textSize="13sp"

@@ -8,9 +8,10 @@ import com.sidharth.geemu.domain.model.GameDetails
 import com.sidharth.geemu.domain.usecase.detail.GetGameDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
-class GameDetailsViewModel(
+class GameDetailsViewModel @Inject constructor(
     private val getGameDetailsUseCase: GetGameDetailsUseCase,
 ) : ViewModel() {
 
