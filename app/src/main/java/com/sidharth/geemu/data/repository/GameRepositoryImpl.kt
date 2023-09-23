@@ -75,17 +75,17 @@ class GameRepositoryImpl @Inject constructor(
 
         val gameAdditions = remoteDataSource.getGameAdditions(
             id = id,
-            count = gameDetails?.additionsCount ?: 0,
+            count = gameDetails?.additionsCount ?: 10,
         )
 
         val gameScreenshots = remoteDataSource.getGameScreenshots(
             id = id,
-            count = gameDetails?.screenshotsCount ?: 0,
+            count = gameDetails?.screenshotsCount ?: 10,
         )
 
         val gameMovies = remoteDataSource.getGameMovies(
             id = id,
-            count = gameDetails?.moviesCount ?: 0,
+            count = gameDetails?.moviesCount ?: 10,
         )
 
         return ResponseMapper.toGameDetails(

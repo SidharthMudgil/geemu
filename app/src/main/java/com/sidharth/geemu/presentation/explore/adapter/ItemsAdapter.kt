@@ -67,9 +67,7 @@ class ItemsAdapter(
                 tvName.isSelected = true
                 tvReleaseDate.text = game.release
                 cvGame.setOnClickListener {
-                    (onItemClickCallback as OnGameClickCallback).onGameClick(
-                        game
-                    )
+                    (onItemClickCallback as OnGameClickCallback).onGameClick(game)
                 }
             }
         }
@@ -86,9 +84,7 @@ class ItemsAdapter(
                 tvGenres.text = game.genres
                 tvRatings.text = game.rating
                 cvGame.setOnClickListener {
-                    (onItemClickCallback as OnGameClickCallback).onGameClick(
-                        game
-                    )
+                    (onItemClickCallback as OnGameClickCallback).onGameClick(game)
                 }
             }
         }

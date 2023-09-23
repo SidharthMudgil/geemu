@@ -20,7 +20,7 @@ class GameDetailsViewModel @Inject constructor(
 
     fun fetchGameDetails(id: Int) {
         viewModelScope.launch {
-            getGameDetailsUseCase.getGameDetails(id)
+            _gameDetails.postValue(getGameDetailsUseCase.getGameDetails(id))
         }
     }
 }

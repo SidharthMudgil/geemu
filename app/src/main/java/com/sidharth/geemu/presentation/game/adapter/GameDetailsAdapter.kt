@@ -125,14 +125,6 @@ class GameDetailsAdapter(
                 )
             }
 
-            GameDetailsSection.GAME_INFO2.ordinal -> {
-                GameInfo2ViewHolder(
-                    ItemSectionGameInfo2Binding.inflate(
-                        inflater, parent, false
-                    )
-                )
-            }
-
             GameDetailsSection.SCREENSHOTS.ordinal -> {
                 ItemSectionViewHolder(
                     type = ItemsAdapter.CardType.SCREENSHOT,
@@ -175,6 +167,14 @@ class GameDetailsAdapter(
                     binding = ItemSectionItemsBinding.inflate(
                         inflater, parent, false
                     ),
+                )
+            }
+
+            GameDetailsSection.GAME_INFO2.ordinal -> {
+                GameInfo2ViewHolder(
+                    ItemSectionGameInfo2Binding.inflate(
+                        inflater, parent, false
+                    )
                 )
             }
 

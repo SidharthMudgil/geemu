@@ -46,7 +46,6 @@ class GameDetailsFragment
                 onItemClickCallback = this,
             )
         }
-
         return binding.root
     }
 

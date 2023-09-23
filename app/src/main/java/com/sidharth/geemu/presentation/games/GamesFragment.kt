@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
@@ -30,7 +31,7 @@ class GamesFragment : Fragment(), OnGameClickCallback {
 
         gamesViewModel.fetchGames(
             id = args.id.toString(),
-            filter = args.filter
+            filter = args.type,
         )
         binding.rvItems.layoutManager = LinearLayoutManager(
             requireContext(), VERTICAL, false
@@ -46,5 +47,9 @@ class GamesFragment : Fragment(), OnGameClickCallback {
     }
 
     override fun onGameClick(game: Game) {
+        val action = GamesFragmentDirections.actionGamesFragmentToGameDetailsFragment(
+            game.id
+        )
+        findNavController().navigate(action)
     }
 }

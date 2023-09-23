@@ -77,8 +77,8 @@ object ResponseMapper {
                 Creator(
                     id = it.id,
                     name = it.name,
-                    image = it.image,
-                    background = it.imageBackground,
+                    image = it.image ?: "",
+                    background = it.imageBackground ?: "",
                     role = it.positions[0].name
                 )
             } ?: listOf(),

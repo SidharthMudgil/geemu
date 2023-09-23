@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
@@ -25,14 +26,6 @@ class ExploreFragment : Fragment(),
 
     private val exploreViewModel by viewModels<ExploreViewModel>()
     private lateinit var recyclerView: RecyclerView
-
-    override fun onPause() {
-        super.onPause()
-    }
-
-    override fun onStop() {
-        super.onStop()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,11 +54,19 @@ class ExploreFragment : Fragment(),
     }
 
     override fun onGameClick(game: Game) {
+        val action = ExploreFragmentDirections.actionExploreFragmentToGameDetailsFragment(
+            game.id
+        )
+        findNavController().navigate(action)
     }
 
     override fun onGenreClick(genre: Genre) {
+//        val action = ExploreFragmentDirections.actionExploreFragmentToGameDetailsFragment()
+//        findNavController().navigate(action)
     }
 
     override fun onSearchBarClick() {
+//        val action = ExploreFragmentDirections.actionExploreFragmentToSearchFragment()
+//        findNavController().navigate(action)
     }
 }
