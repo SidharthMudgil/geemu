@@ -10,11 +10,12 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
+import coil.load
 import com.sidharth.geemu.databinding.FragmentCreatorDetailsBinding
 import com.sidharth.geemu.domain.model.Game
+import com.sidharth.geemu.presentation.creator.adapter.GamesAdapter
 import com.sidharth.geemu.presentation.creator.callback.OnGameClickCallback
 import com.sidharth.geemu.presentation.creator.viewmodel.CreatorViewModel
-import com.sidharth.geemu.presentation.creator.adapter.GamesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,9 +31,15 @@ class CreatorDetailsFragment : Fragment(), OnGameClickCallback {
         val binding = FragmentCreatorDetailsBinding.inflate(inflater)
 
         creatorViewModel.fetchData(args.id)
-        creatorViewModel.creatorDetails.observe(viewLifecycleOwner) {
+        creatorViewModel.creatorDetails.observe(viewLifecycleOwner) { creator ->
             binding.apply {
-
+                ivImage.load(creator.image)
+                ivBackground.load(creator.background)
+                tvName.text = creator.name
+                tvRatings.text = creator.rating
+                tvReviews.text = "${creator.reviewsCount}"
+                tvGamesCount.text = "${creator.gamesCount}"
+                tvDescription.text = creator.description
             }
         }
 

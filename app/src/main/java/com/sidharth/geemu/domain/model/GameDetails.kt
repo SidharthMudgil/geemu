@@ -6,26 +6,20 @@ data class GameDetails(
     val image: String,
     val background: String,
     val description: String,
-    val released: String,
-    val playtime: Int,
-    val website: String?,
-    val metacritic: Int?,
+    val platforms: List<Platform>,
     val rating: Double,
+    val release: String,
+    val genres: List<Genre>,
     val esrbRating: String,
-    val ratings: List<Rating>,
     val screenshots: List<String>,
     val trailers: List<Trailer>,
-    val alternativeNames: List<String>,
-    val genres: List<Genre>,
-    val tags: List<Tag>,
-    val minimumRequirements: String?,
-    val recommendedRequirements: String?,
-    val creators: List<Creator>,
     val additions: List<Game>,
+    val creators: List<Creator>,
     val developers: List<Developer>,
     val publishers: List<Publisher>,
-    val platforms: List<Platform>,
     val stores: List<Store>,
+    val ratings: List<Rating>,
+    val tags: List<Tag>,
 )
 
 data class Trailer(
@@ -58,7 +52,7 @@ data class Creator(
     val name: String,
     val image: String,
     val background: String,
-    val title: String,
+    val role: String,
 )
 
 data class Publisher(

@@ -28,7 +28,7 @@ object ResponseMapper {
         additions: GamesAdditionsResponse?,
         screenshots: GameScreenshotsResponse?,
         movies: GameMoviesResponse?,
-        creators: GameDevelopmentTeamResponse?
+        creators: GameDevelopmentTeamResponse?,
     ): GameDetails {
         return GameDetails(
             id = details?.id ?: 0,
@@ -36,13 +36,9 @@ object ResponseMapper {
             image = details?.backgroundImage ?: "",
             background = details?.backgroundImage ?: "",
             description = details?.description ?: "",
-            released = details?.released ?: "",
-            playtime = details?.playtime ?: 0,
-            website = details?.website ?: "",
-            metacritic = details?.metacritic ?: 0,
+            release = details?.released ?: "",
             rating = details?.rating ?: 0.0,
             esrbRating = details?.esrbRating?.name ?: "",
-            alternativeNames = details?.alternativeNames ?: listOf(),
             ratings = details?.ratings?.map {
                 Rating(
                     title = it.title,
@@ -76,12 +72,6 @@ object ResponseMapper {
                     count = it.gamesCount,
                 )
             } ?: listOf(),
-            minimumRequirements = details?.platforms?.mapNotNull {
-                it.requirements.minimum
-            }?.getOrNull(0) ?: "",
-            recommendedRequirements = details?.platforms?.mapNotNull {
-                it.requirements.minimum
-            }?.getOrNull(0) ?: "",
             additions = additions?.toGames() ?: listOf(),
             creators = creators?.results?.map {
                 Creator(
@@ -89,9 +79,7 @@ object ResponseMapper {
                     name = it.name,
                     image = it.image,
                     background = it.imageBackground,
-                    title = it.positions.joinToString(", ") { position ->
-                        position.name
-                    }
+                    role = it.positions[0].name
                 )
             } ?: listOf(),
             developers = details?.developers?.map {
@@ -141,6 +129,7 @@ object ResponseMapper {
             background = this.imageBackground,
             description = this.description,
             rating = this.rating,
+            reviewsCount = this.reviewsCount,
             gamesCount = this.gamesCount,
             ratings = this.ratings.map {
                 Rating(

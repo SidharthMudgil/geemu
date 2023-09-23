@@ -21,7 +21,7 @@ object DateTimeUtils {
         }
     }
 
-    fun String.toDdMmmYyyy(
+    fun String.toPrettyFormat(
         inputFormat: String = "yyyy-MM-dd",
         outputFormat: String = "dd MMM yyyy",
     ): String {

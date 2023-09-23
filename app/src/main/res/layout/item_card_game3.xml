@@ -44,7 +44,7 @@
             android:id="@+id/tv_game"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
+            android:ellipsize="marquee"
             android:includeFontPadding="false"
             android:maxLines="1"
             android:textFontWeight="600"

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
-import com.sidharth.geemu.core.util.DateTimeUtils.toDdMmmYyyy
+import com.sidharth.geemu.core.util.DateTimeUtils.toPrettyFormat
 import com.sidharth.geemu.databinding.ItemCardGame1Binding
 import com.sidharth.geemu.databinding.ItemCardGame2Binding
 import com.sidharth.geemu.databinding.ItemCardGame3Binding
@@ -48,7 +48,8 @@ class ItemsAdapter(
             binding.apply {
                 ivPoster.load(game.image)
                 tvGame.text = game.name
-                tvRelease.text = "Releasing on ${game.release.toDdMmmYyyy()}"
+                tvGame.isSelected = true
+                tvRelease.text = "Releasing on ${game.release.toPrettyFormat()}"
                 tvGenres.text = game.genres
             }
         }
@@ -63,6 +64,7 @@ class ItemsAdapter(
                 tvName.text = game.name
                 tvRatings.text = game.rating
                 tvGenres.text = game.genres
+                tvName.isSelected = true
                 tvReleaseDate.text = game.release
                 cvGame.setOnClickListener {
                     (onItemClickCallback as OnGameClickCallback).onGameClick(
@@ -80,6 +82,7 @@ class ItemsAdapter(
             binding.apply {
                 ivGame.load(game.image)
                 tvGame.text = game.name
+                tvGame.isSelected = true
                 tvGenres.text = game.genres
                 tvRatings.text = game.rating
                 cvGame.setOnClickListener {

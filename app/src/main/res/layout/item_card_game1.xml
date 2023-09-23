@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="@dimen/poster_height"
     android:layout_marginEnd="@dimen/item_space"
-    android:clickable="false"
+    android:clickable="true"
     android:paddingBottom="5dp">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -47,7 +47,7 @@
         android:id="@+id/tv_game"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
+        android:ellipsize="marquee"
         android:includeFontPadding="false"
         android:maxLines="1"
         android:textColor="#EEEEEE"

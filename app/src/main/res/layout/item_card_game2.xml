@@ -30,7 +30,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:ellipsize="end"
+            android:ellipsize="marquee"
             android:includeFontPadding="false"
             android:maxLines="1"
             android:textFontWeight="700"

@@ -7,6 +7,7 @@ data class CreatorDetails(
     val background: String,
     val description: String,
     val rating: String,
+    val reviewsCount: Int,
     val gamesCount: Int,
     val ratings: List<Rating>,
     val timeline: List<Timeline>,
