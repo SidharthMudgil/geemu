@@ -49,6 +49,7 @@
         android:layout_height="wrap_content"
         android:ellipsize="marquee"
         android:includeFontPadding="false"
+        android:marqueeRepeatLimit="marquee_forever"
         android:maxLines="1"
         android:textColor="#EEEEEE"
         android:textFontWeight="600"

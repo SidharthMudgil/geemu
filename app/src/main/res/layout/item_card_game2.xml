@@ -32,6 +32,7 @@
             android:layout_margin="10dp"
             android:ellipsize="marquee"
             android:includeFontPadding="false"
+            android:marqueeRepeatLimit="marquee_forever"
             android:maxLines="1"
             android:textFontWeight="700"
             android:textSize="16sp"

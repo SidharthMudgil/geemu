@@ -36,6 +36,7 @@ class GameDetailsAdapter(
                 ivBackground.load(gameDetails.background)
                 tvEsrb.text = gameDetails.esrbRating
                 tvName.text = gameDetails.name
+                tvName.isSelected = true
                 tvGenres.text = gameDetails.genres.joinToString(", ") { it.name }
                 tvRelease.text = gameDetails.release.toPrettyFormat()
                 tvDescription.text = gameDetails.description
@@ -74,7 +75,6 @@ class GameDetailsAdapter(
                     ItemsAdapter.CardType.PUBLISHER -> "Publishers"
                     ItemsAdapter.CardType.DEVELOPER -> "Developers"
                 }
-                LinearSnapHelper().attachToRecyclerView(rvItems)
                 rvItems.layoutManager = LinearLayoutManager(
                     binding.root.context, HORIZONTAL, false
                 )
@@ -95,6 +95,9 @@ class GameDetailsAdapter(
                         items = items,
                         onItemClickCallback = onItemClickCallback,
                     )
+                }
+                if (rvItems.onFlingListener == null) {
+                    LinearSnapHelper().attachToRecyclerView(rvItems)
                 }
             }
         }

@@ -33,8 +33,8 @@ object ResponseMapper {
         return GameDetails(
             id = details?.id ?: 0,
             name = details?.name ?: "",
-            image = details?.backgroundImage ?: "",
-            background = details?.backgroundImage ?: "",
+            image = details?.backgroundImage ?: details?.backgroundImageAdditional ?: "",
+            background = details?.backgroundImageAdditional ?: details?.backgroundImage ?: "",
             description = details?.description ?: "",
             release = details?.released ?: "",
             rating = details?.rating ?: 0.0,

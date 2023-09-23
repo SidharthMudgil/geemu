@@ -79,7 +79,9 @@ class ExplorePageAdapter(
                     )
 
                     else -> {
-                        LinearSnapHelper().attachToRecyclerView(rvItems)
+                        if (rvItems.onFlingListener == null) {
+                            LinearSnapHelper().attachToRecyclerView(rvItems)
+                        }
 
                         ItemsAdapter(
                             type = type,

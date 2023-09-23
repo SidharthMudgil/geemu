@@ -5,6 +5,7 @@
     android:id="@+id/layout_item"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/item_space"
     android:clickable="true">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -12,6 +13,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:background="#127412"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
