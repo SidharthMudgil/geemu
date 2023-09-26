@@ -15,7 +15,7 @@ data class Game(
     @SerializedName("id") val id: Int,
     @SerializedName("slug") val slug: String,
     @SerializedName("name") val name: String,
-    @SerializedName("released") val released: String,
+    @SerializedName("released") val released: String?,
     @SerializedName("tba") val tba: Boolean,
     @SerializedName("background_image") val backgroundImage: String?,
     @SerializedName("rating") val rating: Double,

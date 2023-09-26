@@ -16,6 +16,7 @@
             android:layout_height="300dp"
             android:layout_margin="@dimen/white_space"
             android:background="#001122"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
@@ -29,6 +30,7 @@
             android:layout_width="0dp"
             android:layout_height="150dp"
             android:background="#112233"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toTopOf="@+id/tv_name"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="@+id/iv_background"
@@ -45,6 +47,7 @@
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             android:textAlignment="center"
+            android:textColor="#EEEEEE"
             android:textFontWeight="600"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/flow_ratings"
@@ -70,6 +73,7 @@
             android:id="@+id/tv_ratings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#EEEEEE"
             android:textFontWeight="600"
             android:textSize="16sp"
             tools:text="4.92" />
@@ -79,6 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/rating"
+            android:textColor="#EEEEEE"
             android:textSize="12sp" />
 
         <androidx.constraintlayout.helper.widget.Flow
@@ -98,6 +103,7 @@
             android:id="@+id/tv_games_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#EEEEEE"
             android:textFontWeight="600"
             android:textSize="13sp"
             tools:text="10" />
@@ -107,6 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/games"
+            android:textColor="#EEEEEE"
             android:textSize="11sp" />
 
         <androidx.constraintlayout.helper.widget.Flow
@@ -126,6 +133,7 @@
             android:id="@+id/tv_reviews"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#EEEEEE"
             android:textFontWeight="600"
             android:textSize="13sp"
             tools:text="2149" />
@@ -135,6 +143,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/reviews"
+            android:textColor="#EEEEEE"
             android:textSize="11sp" />
 
         <com.google.android.material.textview.MaterialTextView

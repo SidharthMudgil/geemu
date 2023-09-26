@@ -125,8 +125,8 @@ object ResponseMapper {
         return CreatorDetails(
             id = this.id,
             name = this.name,
-            image = this.image,
-            background = this.imageBackground,
+            image = this.image ?: "",
+            background = this.imageBackground ?: "",
             description = this.description,
             rating = this.rating,
             reviewsCount = this.reviewsCount,
@@ -155,8 +155,8 @@ object ResponseMapper {
                 image = response.backgroundImage ?: "",
                 genres = response.genres.take(2)
                     .joinToString(", ") { it.name },
-                release = response.released,
-                rating = "${response.rating} / 5",
+                release = response.released ?: "",
+                rating = "${response.rating} / ${response.ratingTop}",
             )
         }
     }
