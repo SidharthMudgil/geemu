@@ -36,7 +36,7 @@
         android:id="@+id/rv_items"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/label_list_gap"
+        android:layout_marginTop="@dimen/section_margin"
         android:clipToPadding="false"
         android:paddingStart="@dimen/white_space"
         android:paddingEnd="@dimen/white_space"

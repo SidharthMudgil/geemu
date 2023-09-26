@@ -21,6 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/white_space"
+        app:cardBackgroundColor="#34000000"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:contentPadding="@dimen/label_list_gap"
         app:layout_constraintBottom_toBottomOf="@+id/iv_background"
@@ -28,7 +29,9 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="@+id/iv_background"
         app:layout_constraintTop_toBottomOf="@+id/btn_back"
-        app:layout_constraintVertical_bias="0">
+        app:layout_constraintVertical_bias="0"
+        app:strokeColor="@color/white"
+        app:strokeWidth="1dp">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_esrb"
@@ -36,8 +39,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:includeFontPadding="false"
-            android:textFontWeight="600"
-            android:textSize="16sp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:textColor="@color/white"
+            android:textFontWeight="700"
+            android:textSize="11sp"
             tools:text="mature" />
 
     </com.google.android.material.card.MaterialCardView>
