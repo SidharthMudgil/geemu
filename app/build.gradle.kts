@@ -96,4 +96,5 @@ dependencies {
     // ui
     implementation("com.flaviofaria:kenburnsview:1.0.7") // ken burns effect
     implementation("androidx.core:core-splashscreen:1.0.1") // splash screen
+    implementation("com.github.AAChartModel:AAChartCore-Kotlin:7.2.1") // chart
 }
