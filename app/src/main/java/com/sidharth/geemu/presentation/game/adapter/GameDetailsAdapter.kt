@@ -80,7 +80,7 @@ class GameDetailsAdapter(
                         (onItemClickCallback as OnItemClickCallback).onItemClick(
                             id = tag.id,
                             name = tag.name,
-                            type = GameFilterType.GENRES,
+                            type = GameFilterType.TAGS,
                         )
                     }
                 }
