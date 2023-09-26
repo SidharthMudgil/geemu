@@ -156,7 +156,12 @@ object ResponseMapper {
                 genres = response.genres.take(2)
                     .joinToString(", ") { it.name },
                 release = response.released ?: "",
-                rating = "${response.rating} / ${response.ratingTop}",
+                rating = "${response.rating} / ${
+                    when {
+                        response.ratingTop < response.rating -> response.ratingTop + 1
+                        else -> response.ratingTop
+                    }
+                }",
             )
         }
     }
