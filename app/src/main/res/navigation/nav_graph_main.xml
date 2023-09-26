@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_exploreFragment_to_gameDetailsFragment"
             app:destination="@id/gameDetailsFragment" />
+        <action
+            android:id="@+id/action_exploreFragment_to_gamesFragment"
+            app:destination="@id/gamesFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -91,6 +94,9 @@
         <argument
             android:name="type"
             app:argType="com.sidharth.geemu.core.enum.GameFilterType" />
+        <argument
+            android:name="name"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/imageFragment"
@@ -111,6 +117,9 @@
             app:argType="string" />
         <argument
             android:name="high"
+            app:argType="string" />
+        <argument
+            android:name="preview"
             app:argType="string" />
     </fragment>
 </navigation>
