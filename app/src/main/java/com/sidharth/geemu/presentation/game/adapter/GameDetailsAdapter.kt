@@ -76,7 +76,7 @@ class GameDetailsAdapter(
                     chip.text = tag.name
                     chip.isClickable = true
                     cgTags.addView(chip)
-                    cgTags.setOnClickListener {
+                    chip.setOnClickListener {
                         (onItemClickCallback as OnItemClickCallback).onItemClick(
                             id = tag.id,
                             name = tag.name,
