@@ -33,6 +33,7 @@ class GamesFragment : Fragment(), OnGameClickCallback {
             id = args.id.toString(),
             filter = args.type,
         )
+        binding.tvTitle.text = args.name
         binding.rvItems.layoutManager = LinearLayoutManager(
             requireContext(), VERTICAL, false
         )

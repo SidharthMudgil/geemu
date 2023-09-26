@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.VISIBLE
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
+import com.sidharth.geemu.core.enum.GameFilterType
 import com.sidharth.geemu.databinding.ItemCardCreatorBinding
 import com.sidharth.geemu.databinding.ItemCardGame2Binding
 import com.sidharth.geemu.databinding.ItemCardLabelImageBinding
@@ -16,6 +17,7 @@ import com.sidharth.geemu.domain.model.Developer
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Publisher
 import com.sidharth.geemu.domain.model.Trailer
+import com.sidharth.geemu.presentation.game.callback.OnCreatorClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnItemClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnMediaClickCallback
 
@@ -34,22 +36,23 @@ class ItemsAdapter(
         fun bind(item: Any) {
             binding.apply {
                 when (item) {
-                    is String -> {
-                        ivImage.load(item)
-                        btnPlay.visibility = GONE
-                        ivImage.setOnClickListener {
-                            (onItemClickCallback as OnMediaClickCallback).onImageClick(item)
-                        }
-                    }
-
                     is Trailer -> {
                         ivImage.load(item.preview)
                         btnPlay.visibility = VISIBLE
                         ivImage.setOnClickListener {
                             (onItemClickCallback as OnMediaClickCallback).onVideoClick(
-                                item.qualityLow,
-                                item.qualityMax
+                                preview = item.preview,
+                                low = item.qualityLow,
+                                high = item.qualityMax,
                             )
+                        }
+                    }
+
+                    is String -> {
+                        ivImage.load(item)
+                        btnPlay.visibility = GONE
+                        ivImage.setOnClickListener {
+                            (onItemClickCallback as OnMediaClickCallback).onImageClick(item)
                         }
                     }
                 }
@@ -66,10 +69,7 @@ class ItemsAdapter(
                 tvName.text = item.name
                 tvRole.text = item.role
                 layoutCreator.setOnClickListener {
-                    (onItemClickCallback as OnItemClickCallback).onItemClick(
-                        id = item.id,
-                        type = type,
-                    )
+                    (onItemClickCallback as OnCreatorClickCallback).onCreatorClick(item)
                 }
             }
         }
@@ -101,7 +101,8 @@ class ItemsAdapter(
                         layoutItem.setOnClickListener {
                             (onItemClickCallback as OnItemClickCallback).onItemClick(
                                 id = item.id,
-                                type = type,
+                                name = item.name,
+                                type = GameFilterType.DEVELOPER,
                             )
                         }
                     }
@@ -112,7 +113,8 @@ class ItemsAdapter(
                         layoutItem.setOnClickListener {
                             (onItemClickCallback as OnItemClickCallback).onItemClick(
                                 id = item.id,
-                                type = type,
+                                name = item.name,
+                                type = GameFilterType.PUBLISHER,
                             )
                         }
                     }

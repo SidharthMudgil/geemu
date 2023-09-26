@@ -8,12 +8,16 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
+import com.google.android.material.chip.Chip
+import com.sidharth.geemu.core.enum.GameFilterType
 import com.sidharth.geemu.core.util.DateTimeUtils.toPrettyFormat
 import com.sidharth.geemu.databinding.ItemSectionGameInfo1Binding
 import com.sidharth.geemu.databinding.ItemSectionGameInfo2Binding
 import com.sidharth.geemu.databinding.ItemSectionItemsBinding
 import com.sidharth.geemu.domain.model.GameDetails
 import com.sidharth.geemu.presentation.game.callback.OnActionButtonClickListener
+import com.sidharth.geemu.presentation.game.callback.OnCreatorClickCallback
+import com.sidharth.geemu.presentation.game.callback.OnItemClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnMediaClickCallback
 
 class GameDetailsAdapter(
@@ -21,6 +25,7 @@ class GameDetailsAdapter(
     private val onActionButtonClickListener: OnActionButtonClickListener,
     private val onMediaClickCallback: OnMediaClickCallback,
     private val onItemClickCallback: OnMediaClickCallback,
+    private val onCreatorClickCallback: OnCreatorClickCallback,
 ) : Adapter<ViewHolder>() {
 
     enum class GameDetailsSection {
@@ -41,6 +46,12 @@ class GameDetailsAdapter(
                 tvRelease.text = gameDetails.release.toPrettyFormat()
                 tvDescription.text = gameDetails.description
                 rbRating.rating = gameDetails.rating.toFloat()
+                gameDetails.platforms.forEach {
+                    val chip = Chip(root.context)
+                    chip.text = it.name
+                    chip.isClickable = true
+                    cgPlatforms.addView(chip)
+                }
                 btnBack.setOnClickListener {
                     onActionButtonClickListener.onBackButtonClick()
                 }
@@ -58,13 +69,27 @@ class GameDetailsAdapter(
         private val binding: ItemSectionGameInfo2Binding
     ) : ViewHolder(binding.root) {
         fun bind() {
-
+            binding.apply {
+                cgTags.isClickable = true
+                gameDetails.tags.forEach { tag ->
+                    val chip = Chip(root.context)
+                    chip.text = tag.name
+                    chip.isClickable = true
+                    cgTags.addView(chip)
+                    cgTags.setOnClickListener {
+                        (onItemClickCallback as OnItemClickCallback).onItemClick(
+                            id = tag.id,
+                            name = tag.name,
+                            type = GameFilterType.GENRES,
+                        )
+                    }
+                }
+            }
         }
     }
 
     inner class ItemSectionViewHolder(
-        private val type: ItemsAdapter.CardType,
-        private val binding: ItemSectionItemsBinding
+        private val type: ItemsAdapter.CardType, private val binding: ItemSectionItemsBinding
     ) : ViewHolder(binding.root) {
         fun bind(items: List<Any>) {
             binding.apply {
@@ -90,13 +115,19 @@ class GameDetailsAdapter(
                         items = items,
                     )
 
+                    ItemsAdapter.CardType.CREATOR -> ItemsAdapter(
+                        type = type,
+                        items = items,
+                        onItemClickCallback = onCreatorClickCallback,
+                    )
+
                     else -> ItemsAdapter(
                         type = type,
                         items = items,
                         onItemClickCallback = onItemClickCallback,
                     )
                 }
-                if (rvItems.onFlingListener == null) {
+                if (rvItems.onFlingListener == null && type == ItemsAdapter.CardType.SCREENSHOT) {
                     LinearSnapHelper().attachToRecyclerView(rvItems)
                 }
             }

@@ -10,8 +10,8 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_image"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:background="#127412"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,14 +20,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0"
-        app:shapeAppearanceOverlay="@style/RoundedImageView" />
+        app:shapeAppearanceOverlay="@style/CircularImageView" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:textFontWeight="500"
+        android:textFontWeight="600"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@id/iv_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/iv_image"

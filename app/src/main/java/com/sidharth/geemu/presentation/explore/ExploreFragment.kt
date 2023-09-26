@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
+import com.sidharth.geemu.core.enum.GameFilterType
 import com.sidharth.geemu.databinding.FragmentExploreBinding
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Genre
@@ -61,12 +62,16 @@ class ExploreFragment : Fragment(),
     }
 
     override fun onGenreClick(genre: Genre) {
-//        val action = ExploreFragmentDirections.actionExploreFragmentToGameDetailsFragment()
-//        findNavController().navigate(action)
+        val action = ExploreFragmentDirections.actionExploreFragmentToGamesFragment(
+            id = genre.id,
+            name = genre.name,
+            type = GameFilterType.GENRES,
+        )
+        findNavController().navigate(action)
     }
 
     override fun onSearchBarClick() {
-//        val action = ExploreFragmentDirections.actionExploreFragmentToSearchFragment()
-//        findNavController().navigate(action)
+        val action = ExploreFragmentDirections.actionExploreFragmentToSearchFragment()
+        findNavController().navigate(action)
     }
 }
