@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import coil.load
+import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
+import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
+import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
 import com.sidharth.geemu.databinding.FragmentCreatorDetailsBinding
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.presentation.creator.adapter.GamesAdapter
@@ -33,6 +36,37 @@ class CreatorDetailsFragment : Fragment(), OnGameClickCallback {
         creatorViewModel.fetchData(args.id)
         creatorViewModel.creatorDetails.observe(viewLifecycleOwner) { creator ->
             binding.apply {
+                AAChartModel()
+                    .chartType(AAChartType.Pie)
+                    .series(
+                        arrayOf(
+                            AASeriesElement().name("Rating Count")
+                                .data(
+                                    creator.ratings.map {
+                                        arrayOf(it.title, it.count)
+                                    }.toTypedArray()
+                                )
+                        )
+                    ).apply {
+                        chartRating.aa_drawChartWithChartModel(this)
+                    }
+
+                AAChartModel()
+                    .chartType(AAChartType.Area)
+                    .polar(true)
+                    .dataLabelsEnabled(false)
+                    .categories(
+                        creator.timeline.map { it.year.toString() }.toTypedArray()
+                    )
+                    .series(
+                        arrayOf(
+                            AASeriesElement().name("Games Count")
+                                .data(creator.timeline.map { it.count }.toTypedArray())
+                        )
+                    ).apply {
+                        chartTimeline.aa_drawChartWithChartModel(this)
+                    }
+
                 ivImage.load(creator.image)
                 ivBackground.load(creator.background)
                 tvName.text = creator.name

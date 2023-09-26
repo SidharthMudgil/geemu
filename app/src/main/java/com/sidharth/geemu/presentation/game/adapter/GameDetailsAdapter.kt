@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
+import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
+import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
+import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
 import com.google.android.material.chip.Chip
 import com.sidharth.geemu.core.enum.GameFilterType
 import com.sidharth.geemu.core.util.DateTimeUtils.toPrettyFormat
@@ -70,6 +73,21 @@ class GameDetailsAdapter(
     ) : ViewHolder(binding.root) {
         fun bind() {
             binding.apply {
+                AAChartModel()
+                    .chartType(AAChartType.Pie)
+                    .series(
+                        arrayOf(
+                            AASeriesElement().name("Rating Count")
+                                .data(
+                                    gameDetails.ratings.map {
+                                        arrayOf(it.title, it.count)
+                                    }.toTypedArray()
+                                )
+                        )
+                    ).apply {
+                        chartRating.aa_drawChartWithChartModel(this)
+                    }
+
                 cgTags.isClickable = true
                 gameDetails.tags.forEach { tag ->
                     val chip = Chip(root.context)

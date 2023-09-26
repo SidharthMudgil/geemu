@@ -5,7 +5,7 @@
     android:id="@+id/layout_item"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="@dimen/item_space"
+    android:layout_marginEnd="@dimen/item_space_large"
     android:clickable="true">
 
     <com.google.android.material.imageview.ShapeableImageView

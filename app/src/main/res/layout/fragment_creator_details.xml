@@ -194,13 +194,12 @@
             app:layout_constraintTop_toBottomOf="@id/tv_description"
             app:layout_constraintVertical_bias="0" />
 
-        <View
+        <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
             android:id="@+id/chart_rating"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="250dp"
             android:layout_marginStart="@dimen/white_space"
             android:layout_marginEnd="@dimen/white_space"
-            android:background="#FFF2EE"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
@@ -224,13 +223,12 @@
             app:layout_constraintTop_toBottomOf="@id/chart_rating"
             app:layout_constraintVertical_bias="0" />
 
-        <View
+        <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
             android:id="@+id/chart_timeline"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="200dp"
             android:layout_marginStart="@dimen/white_space"
             android:layout_marginEnd="@dimen/white_space"
-            android:background="#FFF2EE"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
