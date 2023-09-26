@@ -125,8 +125,8 @@ object ResponseMapper {
         return CreatorDetails(
             id = this.id,
             name = this.name,
-            image = this.image ?: "",
-            background = this.imageBackground ?: "",
+            image = this.image ?: this.imageBackground ?: "",
+            background = this.imageBackground ?: this.image ?: "",
             description = this.description,
             rating = this.rating,
             reviewsCount = this.reviewsCount,
