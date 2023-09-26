@@ -1,7 +1,9 @@
 package com.sidharth.geemu.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View.GONE
+import android.view.View.VISIBLE
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -26,9 +28,22 @@ class MainActivity : AppCompatActivity() {
     private fun setupBottomNavigationBar() {
         navHostFragment?.findNavController()?.apply {
             activityMainBinding.bottomNavigationView.setupWithNavController(this)
-//            this.addOnDestinationChangedListener { _, destination, _ ->
-//                checkBottomNavigationViewMenuItem(destination.id)
-//            }
+            this.addOnDestinationChangedListener { _, destination, _ ->
+                when (destination.id) {
+                    R.id.exploreFragment, R.id.followingFragment, R.id.profileFragment -> {
+                        showBottomNavigation()
+                    }
+                    else -> hideBottomNavigation()
+                }
+            }
         }
+    }
+
+    private fun showBottomNavigation() {
+        activityMainBinding.bottomNavigationView.visibility = VISIBLE
+    }
+
+    private fun hideBottomNavigation() {
+        activityMainBinding.bottomNavigationView.visibility = GONE
     }
 }
