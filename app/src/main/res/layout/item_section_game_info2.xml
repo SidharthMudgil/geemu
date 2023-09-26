@@ -10,7 +10,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/white_space"
-        android:layout_marginTop="@dimen/section_margin"
         android:text="@string/tags"
         android:textFontWeight="600"
         android:textSize="16sp"

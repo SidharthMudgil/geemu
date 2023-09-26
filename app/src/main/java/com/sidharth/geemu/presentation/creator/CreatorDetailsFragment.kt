@@ -53,15 +53,12 @@ class CreatorDetailsFragment : Fragment(), OnGameClickCallback {
 
                 AAChartModel()
                     .chartType(AAChartType.Area)
-                    .polar(true)
-                    .dataLabelsEnabled(false)
-                    .categories(
-                        creator.timeline.map { it.year.toString() }.toTypedArray()
-                    )
                     .series(
                         arrayOf(
                             AASeriesElement().name("Games Count")
-                                .data(creator.timeline.map { it.count }.toTypedArray())
+                                .data(creator.timeline.map {
+                                    arrayOf(it.year, it.count)
+                                }.toTypedArray())
                         )
                     ).apply {
                         chartTimeline.aa_drawChartWithChartModel(this)
