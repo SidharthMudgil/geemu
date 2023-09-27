@@ -75,11 +75,6 @@ class GameDetailsFragment
         findNavController().navigate(action)
     }
 
-    override fun onImageClick(url: String) {
-        val action = GameDetailsFragmentDirections.actionGameDetailsFragmentToImageFragment(url)
-        findNavController().navigate(action)
-    }
-
     override fun onVideoClick(preview: String, low: String, high: String) {
         val action = GameDetailsFragmentDirections.actionGameDetailsFragmentToVideoFragment(
             preview = preview,

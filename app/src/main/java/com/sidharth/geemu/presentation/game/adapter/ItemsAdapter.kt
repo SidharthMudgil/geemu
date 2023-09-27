@@ -20,6 +20,7 @@ import com.sidharth.geemu.domain.model.Trailer
 import com.sidharth.geemu.presentation.game.callback.OnCreatorClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnItemClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnMediaClickCallback
+import com.stfalcon.imageviewer.StfalconImageViewer
 
 class ItemsAdapter(
     private val type: CardType,
@@ -51,8 +52,13 @@ class ItemsAdapter(
                     is String -> {
                         ivImage.load(item)
                         btnPlay.visibility = GONE
+                        val iv = StfalconImageViewer.Builder(
+                            root.context,
+                            items.map { it as String }
+                        ) { view, url -> view.load(url) }
+
                         ivImage.setOnClickListener {
-                            (onItemClickCallback as OnMediaClickCallback).onImageClick(item)
+                            iv.show()
                         }
                     }
                 }

@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:strokeWidth="0dp" />
+        app:strokeWidth="1dp" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_image"
@@ -37,6 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/item_space"
+        android:layout_marginEnd="@dimen/label_list_gap"
         android:ellipsize="end"
         android:maxLines="1"
         android:textFontWeight="600"
@@ -52,6 +53,7 @@
         android:id="@+id/tv_role"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/label_list_gap"
         android:ellipsize="end"
         android:maxLines="1"
         android:textSize="14sp"

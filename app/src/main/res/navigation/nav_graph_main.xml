@@ -59,9 +59,6 @@
             android:id="@+id/action_gameDetailsFragment_to_videoFragment"
             app:destination="@id/videoFragment" />
         <action
-            android:id="@+id/action_gameDetailsFragment_to_imageFragment"
-            app:destination="@id/imageFragment" />
-        <action
             android:id="@+id/action_gameDetailsFragment_to_gamesFragment"
             app:destination="@id/gamesFragment" />
         <action
@@ -96,15 +93,6 @@
             app:argType="com.sidharth.geemu.core.enum.GameFilterType" />
         <argument
             android:name="name"
-            app:argType="string" />
-    </fragment>
-    <fragment
-        android:id="@+id/imageFragment"
-        android:name="com.sidharth.geemu.presentation.image.ImageFragment"
-        android:label="fragment_image"
-        tools:layout="@layout/fragment_image">
-        <argument
-            android:name="image"
             app:argType="string" />
     </fragment>
     <fragment
