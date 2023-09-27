@@ -68,7 +68,7 @@ class ItemsAdapter(
                 ivImage.load((item as Creator).image)
                 tvName.text = item.name
                 tvRole.text = item.role
-                layoutCreator.setOnClickListener {
+                cvCreator.setOnClickListener {
                     (onItemClickCallback as OnCreatorClickCallback).onCreatorClick(item)
                 }
             }
@@ -98,7 +98,7 @@ class ItemsAdapter(
                     CardType.DEVELOPER -> {
                         ivImage.load((item as Developer).image)
                         tvLabel.text = item.name
-                        layoutItem.setOnClickListener {
+                        cvLabelImage.setOnClickListener {
                             (onItemClickCallback as OnItemClickCallback).onItemClick(
                                 id = item.id,
                                 name = item.name,
@@ -110,7 +110,7 @@ class ItemsAdapter(
                     CardType.PUBLISHER -> {
                         ivImage.load((item as Publisher).image)
                         tvLabel.text = item.name
-                        layoutItem.setOnClickListener {
+                        cvLabelImage.setOnClickListener {
                             (onItemClickCallback as OnItemClickCallback).onItemClick(
                                 id = item.id,
                                 name = item.name,
