@@ -54,9 +54,8 @@ class ItemsAdapter(
                         btnPlay.visibility = GONE
                         val iv = StfalconImageViewer.Builder(
                             root.context,
-                            items.map { it as String }
+                            listOf(item)
                         ) { view, url -> view.load(url) }
-
                         ivImage.setOnClickListener {
                             iv.show()
                         }
