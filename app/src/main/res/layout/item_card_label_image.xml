@@ -8,6 +8,18 @@
     android:layout_marginEnd="@dimen/item_space_large"
     android:clickable="true">
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_label_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cardBackgroundColor="#EFEEFF"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="0dp" />
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_image"
         android:layout_width="36dp"
@@ -20,13 +32,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0"
-        app:shapeAppearanceOverlay="@style/CircularImageView" />
+        app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_margin="@dimen/item_space"
         android:textFontWeight="600"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@id/iv_image"

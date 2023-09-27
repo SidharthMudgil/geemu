@@ -6,5 +6,5 @@
     <dimen name="section_margin">15dp</dimen>
     <dimen name="label_list_gap">5dp</dimen>
     <dimen name="poster_height">200dp</dimen>
-    <dimen name="item_space_large">15dp</dimen>
+    <dimen name="item_space_large">20dp</dimen>
 </resources>

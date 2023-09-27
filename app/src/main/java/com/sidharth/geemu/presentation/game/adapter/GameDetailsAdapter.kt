@@ -1,6 +1,7 @@
 package com.sidharth.geemu.presentation.game.adapter
 
 import android.view.LayoutInflater
+import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
@@ -31,8 +32,14 @@ class GameDetailsAdapter(
     private val onCreatorClickCallback: OnCreatorClickCallback,
 ) : Adapter<ViewHolder>() {
 
-    enum class GameDetailsSection {
-        GAME_INFO1, SCREENSHOTS, ADDITIONS, CREATORS, DEVELOPERS, PUBLISHERS, GAME_INFO2
+    private enum class GameDetailsSection {
+        GAME_INFO1,
+        SCREENSHOTS,
+        CREATORS,
+        DEVELOPERS,
+        PUBLISHERS,
+        ADDITIONS,
+        GAME_INFO2,
     }
 
     inner class GameInfo1ViewHolder(
@@ -41,8 +48,11 @@ class GameDetailsAdapter(
         fun bind() {
             binding.apply {
                 ivImage.load(gameDetails.image)
-                ivBackground.load(gameDetails.background)
                 tvEsrb.text = gameDetails.esrbRating
+                if (gameDetails.esrbRating.isBlank()) {
+                    cvEsrb.visibility = GONE
+                }
+                ivBackground.load(gameDetails.background)
                 tvName.text = gameDetails.name
                 tvName.isSelected = true
                 tvGenres.text = gameDetails.genres.joinToString(", ") { it.name }
@@ -110,6 +120,12 @@ class GameDetailsAdapter(
         private val type: ItemsAdapter.CardType, private val binding: ItemSectionItemsBinding
     ) : ViewHolder(binding.root) {
         fun bind(items: List<Any>) {
+            if (items.isEmpty()) {
+                binding.tvLabel.visibility = GONE
+                binding.rvItems.visibility = GONE
+                return
+            }
+
             binding.apply {
                 tvLabel.text = when (type) {
                     ItemsAdapter.CardType.SCREENSHOT -> "Screenshots"
@@ -156,10 +172,10 @@ class GameDetailsAdapter(
         return when (position) {
             0 -> GameDetailsSection.GAME_INFO1.ordinal
             1 -> GameDetailsSection.SCREENSHOTS.ordinal
-            2 -> GameDetailsSection.ADDITIONS.ordinal
-            3 -> GameDetailsSection.CREATORS.ordinal
-            4 -> GameDetailsSection.DEVELOPERS.ordinal
-            5 -> GameDetailsSection.PUBLISHERS.ordinal
+            2 -> GameDetailsSection.CREATORS.ordinal
+            3 -> GameDetailsSection.DEVELOPERS.ordinal
+            4 -> GameDetailsSection.PUBLISHERS.ordinal
+            5 -> GameDetailsSection.ADDITIONS.ordinal
             6 -> GameDetailsSection.GAME_INFO2.ordinal
             else -> throw IllegalStateException("Invalid ViewType")
         }
@@ -238,10 +254,10 @@ class GameDetailsAdapter(
         when (position) {
             0 -> (holder as GameInfo1ViewHolder).bind()
             1 -> (holder as ItemSectionViewHolder).bind(gameDetails.trailers.plus(gameDetails.screenshots))
-            2 -> (holder as ItemSectionViewHolder).bind(gameDetails.additions)
-            3 -> (holder as ItemSectionViewHolder).bind(gameDetails.creators)
-            4 -> (holder as ItemSectionViewHolder).bind(gameDetails.developers)
-            5 -> (holder as ItemSectionViewHolder).bind(gameDetails.publishers)
+            2 -> (holder as ItemSectionViewHolder).bind(gameDetails.creators)
+            3 -> (holder as ItemSectionViewHolder).bind(gameDetails.developers)
+            4 -> (holder as ItemSectionViewHolder).bind(gameDetails.publishers)
+            5 -> (holder as ItemSectionViewHolder).bind(gameDetails.additions)
             6 -> (holder as GameInfo2ViewHolder).bind()
         }
     }

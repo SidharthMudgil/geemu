@@ -14,6 +14,7 @@ import coil.load
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
+import com.sidharth.geemu.core.util.BlurTransformation
 import com.sidharth.geemu.databinding.FragmentCreatorDetailsBinding
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.presentation.creator.adapter.GamesAdapter
@@ -65,7 +66,9 @@ class CreatorDetailsFragment : Fragment(), OnGameClickCallback {
                     }
 
                 ivImage.load(creator.image)
-                ivBackground.load(creator.background)
+                ivBackground.load(creator.background) {
+                    transformations(BlurTransformation(10))
+                }
                 tvName.text = creator.name
                 tvRatings.text = creator.rating
                 tvReviews.text = "${creator.reviewsCount}"

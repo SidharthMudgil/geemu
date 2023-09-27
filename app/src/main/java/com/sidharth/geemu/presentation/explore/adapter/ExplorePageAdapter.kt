@@ -27,8 +27,12 @@ class ExplorePageAdapter(
     private val bestOfYear: List<Game>,
     private val bestOfAllTime: List<Game>,
 ) : Adapter<ViewHolder>() {
-    enum class ExploreSection {
-        SEARCH, GENRES, GAMES_TYPE1, GAMES_TYPE2, GAMES_TYPE3
+    private enum class ExploreSection {
+        SEARCH,
+        GENRES,
+        GAMES_TYPE1,
+        GAMES_TYPE2,
+        GAMES_TYPE3
     }
 
     inner class SearchSectionViewHolder(

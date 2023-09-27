@@ -33,9 +33,9 @@ object ResponseMapper {
         return GameDetails(
             id = details?.id ?: 0,
             name = details?.name ?: "",
-            image = details?.backgroundImage ?: details?.backgroundImageAdditional ?: "",
-            background = details?.backgroundImageAdditional ?: details?.backgroundImage ?: "",
-            description = details?.description ?: "",
+            image = details?.backgroundImage ?: details?.backgroundImageAdditional ?: "https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700200186.jpg",
+            background = details?.backgroundImageAdditional ?: details?.backgroundImage ?: "https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700200186.jpg",
+            description = details?.descriptionRaw ?: "",
             release = details?.released ?: "",
             rating = details?.rating ?: 0.0,
             esrbRating = details?.esrbRating?.name ?: "",
@@ -77,8 +77,8 @@ object ResponseMapper {
                 Creator(
                     id = it.id,
                     name = it.name,
-                    image = it.image ?: "",
-                    background = it.imageBackground ?: "",
+                    image = it.image ?: "https://i.pinimg.com/736x/b2/ea/a0/b2eaa0d4918d54021f9c7aa3fc3d3cf3.jpg",
+                    background = it.imageBackground ?: "https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700200186.jpg",
                     role = it.positions[0].name
                 )
             } ?: listOf(),
@@ -125,8 +125,8 @@ object ResponseMapper {
         return CreatorDetails(
             id = this.id,
             name = this.name,
-            image = this.image ?: this.imageBackground ?: "",
-            background = this.imageBackground ?: this.image ?: "",
+            image = this.image ?: "https://i.pinimg.com/736x/b2/ea/a0/b2eaa0d4918d54021f9c7aa3fc3d3cf3.jpg",
+            background = this.imageBackground ?: "https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700200186.jpg",
             description = this.description,
             rating = this.rating,
             reviewsCount = this.reviewsCount,

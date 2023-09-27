@@ -14,16 +14,15 @@
             android:id="@+id/iv_background"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_margin="@dimen/white_space"
             android:background="#001122"
+            android:alpha="0.9"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0"
-            app:shapeAppearanceOverlay="@style/RoundedImageView" />
+            app:layout_constraintVertical_bias="0" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_image"
@@ -199,6 +198,7 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_marginStart="@dimen/white_space"
+            android:layout_marginTop="@dimen/label_list_gap"
             android:layout_marginEnd="@dimen/white_space"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -228,6 +228,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginStart="@dimen/white_space"
+            android:layout_marginTop="@dimen/label_list_gap"
             android:layout_marginEnd="@dimen/white_space"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
