@@ -1,5 +1,7 @@
 package com.sidharth.geemu.data.mapper
 
+import com.sidharth.geemu.core.constant.Constants.BACKGROUND_IMAGE
+import com.sidharth.geemu.core.constant.Constants.PROFILE_IMAGE
 import com.sidharth.geemu.data.remote.response.GenresResponse
 import com.sidharth.geemu.data.remote.response.creator.CreatorDetailsResponse
 import com.sidharth.geemu.data.remote.response.game.details.GameDetailsResponse
@@ -33,8 +35,8 @@ object ResponseMapper {
         return GameDetails(
             id = details?.id ?: 0,
             name = details?.name ?: "",
-            image = details?.backgroundImage ?: details?.backgroundImageAdditional ?: "https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700200186.jpg",
-            background = details?.backgroundImageAdditional ?: details?.backgroundImage ?: "https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700200186.jpg",
+            image = details?.backgroundImage ?: details?.backgroundImageAdditional ?: "",
+            background = details?.backgroundImageAdditional ?: details?.backgroundImage ?: "",
             description = details?.descriptionRaw ?: "",
             release = details?.released ?: "",
             rating = details?.rating ?: 0.0,
@@ -77,8 +79,8 @@ object ResponseMapper {
                 Creator(
                     id = it.id,
                     name = it.name,
-                    image = it.image ?: "https://i.pinimg.com/736x/b2/ea/a0/b2eaa0d4918d54021f9c7aa3fc3d3cf3.jpg",
-                    background = it.imageBackground ?: "https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700200186.jpg",
+                    image = it.image ?: PROFILE_IMAGE,
+                    background = it.imageBackground ?: BACKGROUND_IMAGE,
                     role = it.positions[0].name
                 )
             } ?: listOf(),

@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
+import com.sidharth.geemu.core.constant.Constants
+import com.sidharth.geemu.core.util.BlurTransformation
 import com.sidharth.geemu.core.util.DateTimeUtils.toPrettyFormat
 import com.sidharth.geemu.databinding.ItemCardGame1Binding
 import com.sidharth.geemu.databinding.ItemCardGame2Binding
@@ -46,7 +48,15 @@ class ItemsAdapter(
         @SuppressLint("SetTextI18n")
         fun bind(game: Game) {
             binding.apply {
-                ivPoster.load(game.image)
+                when {
+                    game.image.isBlank() -> {
+                        ivPoster.load(Constants.BACKGROUND_IMAGE) {
+                            transformations(BlurTransformation(5))
+                        }
+                    }
+
+                    else -> ivPoster.load(game.image)
+                }
                 tvGame.text = game.name
                 tvGame.isSelected = true
                 tvRelease.text = "Releasing on ${game.release.toPrettyFormat()}"
@@ -60,7 +70,15 @@ class ItemsAdapter(
     ) : ViewHolder(binding.root) {
         fun bind(game: Game) {
             binding.apply {
-                ivCover.load(game.image)
+                when {
+                    game.image.isBlank() -> {
+                        ivCover.load(Constants.BACKGROUND_IMAGE) {
+                            transformations(BlurTransformation(5))
+                        }
+                    }
+
+                    else -> ivCover.load(game.image)
+                }
                 tvName.text = game.name
                 tvRatings.text = game.rating
                 tvGenres.text = game.genres
@@ -78,7 +96,15 @@ class ItemsAdapter(
     ) : ViewHolder(binding.root) {
         fun bind(game: Game) {
             binding.apply {
-                ivGame.load(game.image)
+                when {
+                    game.image.isBlank() -> {
+                        ivGame.load(Constants.BACKGROUND_IMAGE) {
+                            transformations(BlurTransformation(5))
+                        }
+                    }
+
+                    else -> ivGame.load(game.image)
+                }
                 tvGame.text = game.name
                 tvGame.isSelected = true
                 tvGenres.text = game.genres

@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.VISIBLE
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
+import com.sidharth.geemu.core.constant.Constants
 import com.sidharth.geemu.core.enum.GameFilterType
+import com.sidharth.geemu.core.util.BlurTransformation
 import com.sidharth.geemu.databinding.ItemCardCreatorBinding
 import com.sidharth.geemu.databinding.ItemCardGame2Binding
 import com.sidharth.geemu.databinding.ItemCardLabelImageBinding
@@ -85,7 +87,15 @@ class ItemsAdapter(
     ) : ViewHolder(binding.root) {
         fun bind(item: Any) {
             binding.apply {
-                ivCover.load((item as Game).image)
+                when {
+                    (item as Game).image.isBlank() -> {
+                        ivCover.load(Constants.BACKGROUND_IMAGE) {
+                            transformations(BlurTransformation(5))
+                        }
+                    }
+
+                    else -> ivCover.load(item.image)
+                }
                 tvName.text = item.name
                 tvRatings.text = item.rating
                 tvGenres.text = item.genres

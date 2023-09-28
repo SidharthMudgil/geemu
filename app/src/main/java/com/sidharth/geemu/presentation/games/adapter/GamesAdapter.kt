@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
+import com.sidharth.geemu.core.constant.Constants
+import com.sidharth.geemu.core.util.BlurTransformation
 import com.sidharth.geemu.databinding.ItemCardGame3Binding
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.presentation.games.callback.OnGameClickCallback
@@ -19,7 +21,15 @@ class GamesAdapter(
     ) : ViewHolder(binding.root) {
         fun bind(game: Game) {
             binding.apply {
-                ivGame.load(game.image)
+                when {
+                    game.image.isBlank() -> {
+                        ivGame.load(Constants.BACKGROUND_IMAGE) {
+                            transformations(BlurTransformation(5))
+                        }
+                    }
+
+                    else -> ivGame.load(game.image)
+                }
                 tvGame.text = game.name
                 tvRatings.text = game.rating
                 tvGenres.text = game.genres
