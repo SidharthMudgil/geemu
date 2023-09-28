@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +23,7 @@ import com.sidharth.geemu.presentation.game.callback.OnItemClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnMediaClickCallback
 import com.sidharth.geemu.presentation.game.viewmodel.GameDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class GameDetailsFragment
@@ -38,13 +42,17 @@ class GameDetailsFragment
         binding.rvGameDetails.layoutManager = LinearLayoutManager(
             requireContext(), VERTICAL, false
         )
-        gameDetailsViewModel.gameDetails.observe(viewLifecycleOwner) {
-            binding.rvGameDetails.adapter = GameDetailsAdapter(
-                gameDetails = it,
-                onMediaClickCallback = this,
-                onItemClickCallback = this,
-                onCreatorClickCallback = this,
-            )
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                gameDetailsViewModel.gameDetails.collect {
+                    binding.rvGameDetails.adapter = GameDetailsAdapter(
+                        gameDetails = it,
+                        onMediaClickCallback = this@GameDetailsFragment,
+                        onItemClickCallback = this@GameDetailsFragment,
+                        onCreatorClickCallback = this@GameDetailsFragment,
+                    )
+                }
+            }
         }
         binding.btnBack.setOnClickListener {
             findNavController().popBackStack()

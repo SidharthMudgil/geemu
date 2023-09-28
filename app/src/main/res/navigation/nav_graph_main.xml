@@ -76,6 +76,9 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_creatorDetailsFragment_to_gameDetailsFragment"
+            app:destination="@id/gameDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/gamesFragment"

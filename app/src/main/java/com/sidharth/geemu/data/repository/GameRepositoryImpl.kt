@@ -1,20 +1,15 @@
 package com.sidharth.geemu.data.repository
 
-import com.sidharth.geemu.data.local.LocalDataSource
 import com.sidharth.geemu.data.mapper.ResponseMapper
 import com.sidharth.geemu.data.mapper.ResponseMapper.toCreatorDetails
 import com.sidharth.geemu.data.mapper.ResponseMapper.toGames
 import com.sidharth.geemu.data.mapper.ResponseMapper.toGenres
 import com.sidharth.geemu.data.remote.source.RemoteDataSource
-import com.sidharth.geemu.domain.model.CreatorDetails
-import com.sidharth.geemu.domain.model.Game
-import com.sidharth.geemu.domain.model.GameDetails
-import com.sidharth.geemu.domain.model.Genre
 import com.sidharth.geemu.domain.repository.GameRepository
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class GameRepositoryImpl @Inject constructor(
-    private val localDataSource: LocalDataSource,
     private val remoteDataSource: RemoteDataSource,
 ) : GameRepository {
     override suspend fun getGames(
@@ -41,35 +36,37 @@ class GameRepositoryImpl @Inject constructor(
         excludeAdditions: Boolean?,
         excludeParents: Boolean?,
         excludeGameSeries: Boolean?
-    ): List<Game> {
-        return remoteDataSource.getGames(
-            page = page,
-            pageSize = pageSize,
-            ordering = ordering,
-            search = search,
-            searchPrecise = searchPrecise,
-            searchExact = searchExact,
-            parentPlatforms = parentPlatforms,
-            platforms = platforms,
-            platformsCount = platformsCount,
-            creators = creators,
-            developers = developers,
-            publishers = publishers,
-            genres = genres,
-            tags = tags,
-            stores = stores,
-            dates = dates,
-            updated = updated,
-            metacritic = metacritic,
-            excludeStores = excludeStores,
-            excludeCollection = excludeCollection,
-            excludeAdditions = excludeAdditions,
-            excludeParents = excludeParents,
-            excludeGameSeries = excludeGameSeries
-        )?.toGames() ?: listOf()
+    ) = flow {
+        emit(
+            remoteDataSource.getGames(
+                page = page,
+                pageSize = pageSize,
+                ordering = ordering,
+                search = search,
+                searchPrecise = searchPrecise,
+                searchExact = searchExact,
+                parentPlatforms = parentPlatforms,
+                platforms = platforms,
+                platformsCount = platformsCount,
+                creators = creators,
+                developers = developers,
+                publishers = publishers,
+                genres = genres,
+                tags = tags,
+                stores = stores,
+                dates = dates,
+                updated = updated,
+                metacritic = metacritic,
+                excludeStores = excludeStores,
+                excludeCollection = excludeCollection,
+                excludeAdditions = excludeAdditions,
+                excludeParents = excludeParents,
+                excludeGameSeries = excludeGameSeries
+            )?.toGames() ?: listOf()
+        )
     }
 
-    override suspend fun getGameDetails(id: Int): GameDetails {
+    override suspend fun getGameDetails(id: Int) = flow {
         val gameDetails = remoteDataSource.getGameDetails(id)
         val gameDevelopmentTeam = remoteDataSource.getGameDevelopmentTeam(id)
 
@@ -88,20 +85,22 @@ class GameRepositoryImpl @Inject constructor(
             count = gameDetails?.moviesCount ?: 10,
         )
 
-        return ResponseMapper.toGameDetails(
-            details = gameDetails,
-            additions = gameAdditions,
-            screenshots = gameScreenshots,
-            movies = gameMovies,
-            creators = gameDevelopmentTeam
+        emit(
+            ResponseMapper.toGameDetails(
+                details = gameDetails,
+                additions = gameAdditions,
+                screenshots = gameScreenshots,
+                movies = gameMovies,
+                creators = gameDevelopmentTeam
+            )
         )
     }
 
-    override suspend fun getCreatorDetails(id: Int): CreatorDetails {
-        return remoteDataSource.getCreatorDetails(id)!!.toCreatorDetails()
+    override suspend fun getCreatorDetails(id: Int) = flow {
+        emit(remoteDataSource.getCreatorDetails(id)!!.toCreatorDetails())
     }
 
-    override suspend fun getGenres(): List<Genre> {
-        return remoteDataSource.getGenres()?.toGenres() ?: listOf()
+    override suspend fun getGenres() = flow {
+        emit(remoteDataSource.getGenres()?.toGenres() ?: listOf())
     }
 }

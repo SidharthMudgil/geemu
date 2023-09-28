@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +19,7 @@ import com.sidharth.geemu.presentation.games.adapter.GamesAdapter
 import com.sidharth.geemu.presentation.games.callback.OnGameClickCallback
 import com.sidharth.geemu.presentation.games.viewmodel.GamesViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class GamesFragment : Fragment(), OnGameClickCallback {
@@ -37,11 +41,16 @@ class GamesFragment : Fragment(), OnGameClickCallback {
         binding.rvItems.layoutManager = LinearLayoutManager(
             requireContext(), VERTICAL, false
         )
-        gamesViewModel.games.observe(viewLifecycleOwner) {
-            binding.rvItems.adapter = GamesAdapter(
-                games = it,
-                onGameClickCallback = this,
-            )
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                gamesViewModel.games.collect {
+                    binding.rvItems.adapter = GamesAdapter(
+                        games = it,
+                        onGameClickCallback = this@GamesFragment,
+                    )
+                }
+            }
         }
 
         return binding.root

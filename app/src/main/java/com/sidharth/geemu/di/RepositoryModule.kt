@@ -19,11 +19,9 @@ class RepositoryModule {
     @Provides
     @Singleton
     fun provideGameRepository(
-        localDataSource: LocalDataSource,
         remoteDataSource: RemoteDataSource
     ): GameRepository {
         return GameRepositoryImpl(
-            localDataSource = localDataSource ,
             remoteDataSource = remoteDataSource,
         )
     }

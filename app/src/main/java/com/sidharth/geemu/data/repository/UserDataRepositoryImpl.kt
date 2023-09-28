@@ -5,17 +5,17 @@ import com.sidharth.geemu.data.mapper.EntityMapper
 import com.sidharth.geemu.data.mapper.EntityMapper.toGameEntity
 import com.sidharth.geemu.data.mapper.EntityMapper.toTag
 import com.sidharth.geemu.data.mapper.EntityMapper.toTagEntity
-import com.sidharth.geemu.domain.model.Collection
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Tag
 import com.sidharth.geemu.domain.repository.UserDataRepository
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class UserDataRepositoryImpl @Inject constructor(
     private val localDataSource: LocalDataSource
 ) : UserDataRepository {
-    override suspend fun getGamesCollections(): List<Collection> {
-        return EntityMapper.toGameCollections(localDataSource.getGames())
+    override suspend fun getGamesCollections() = flow {
+        emit(EntityMapper.toGameCollections(localDataSource.getGames()))
     }
 
     override suspend fun addGameToCollection(game: Game, collection: Int) {
@@ -36,8 +36,8 @@ class UserDataRepositoryImpl @Inject constructor(
     }
 
 
-    override suspend fun getTags(): List<Tag> {
-        return localDataSource.getTags().map { it.toTag() }
+    override suspend fun getTags() = flow {
+        emit(localDataSource.getTags().map { it.toTag() })
     }
 
     override suspend fun followTag(tag: Tag) {

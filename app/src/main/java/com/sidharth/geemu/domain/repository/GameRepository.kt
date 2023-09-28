@@ -4,6 +4,7 @@ import com.sidharth.geemu.domain.model.CreatorDetails
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.GameDetails
 import com.sidharth.geemu.domain.model.Genre
+import kotlinx.coroutines.flow.Flow
 
 interface GameRepository {
     suspend fun getGames(
@@ -30,12 +31,12 @@ interface GameRepository {
         excludeAdditions: Boolean? = null,
         excludeParents: Boolean? = null,
         excludeGameSeries: Boolean? = null,
-    ): List<Game>
+    ): Flow<List<Game>>
 
-    suspend fun getGameDetails(id: Int): GameDetails
+    suspend fun getGameDetails(id: Int): Flow<GameDetails>
 
-    suspend fun getCreatorDetails(id: Int): CreatorDetails
+    suspend fun getCreatorDetails(id: Int): Flow<CreatorDetails>
 
-    suspend fun getGenres(): List<Genre>
+    suspend fun getGenres(): Flow<List<Genre>>
 
 }

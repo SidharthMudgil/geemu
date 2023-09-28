@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +23,7 @@ import com.sidharth.geemu.presentation.explore.callback.OnGenreClickCallback
 import com.sidharth.geemu.presentation.explore.callback.OnSearchBarClickCallback
 import com.sidharth.geemu.presentation.explore.viewmodel.ExploreViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ExploreFragment : Fragment(),
@@ -39,16 +43,20 @@ class ExploreFragment : Fragment(),
         binding.rvExplore.layoutManager = LinearLayoutManager(
             requireContext(), VERTICAL, false
         )
-        exploreViewModel.exploreData.observe(viewLifecycleOwner) {
-            binding.rvExplore.adapter = ExplorePageAdapter(
-                onSearchBarClickCallback = this,
-                onGenreClickCallback = this,
-                onGameClickCallback = this,
-                genres = it.genres,
-                upcoming = it.upcoming,
-                bestOfYear = it.bestOfYear,
-                bestOfAllTime = it.bestOfAllTime,
-            )
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                exploreViewModel.exploreData.collect {
+                    binding.rvExplore.adapter = ExplorePageAdapter(
+                        onSearchBarClickCallback = this@ExploreFragment,
+                        onGenreClickCallback = this@ExploreFragment,
+                        onGameClickCallback = this@ExploreFragment,
+                        genres = it.genres,
+                        upcoming = it.upcoming,
+                        bestOfYear = it.bestOfYear,
+                        bestOfAllTime = it.bestOfAllTime,
+                    )
+                }
+            }
         }
 
         return binding.root

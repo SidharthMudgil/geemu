@@ -54,7 +54,9 @@ class GameDetailsAdapter(
                 tvName.text = gameDetails.name
                 tvName.isSelected = true
                 tvGenres.text = gameDetails.genres.joinToString(", ") { it.name }
-                tvRelease.text = gameDetails.release.toPrettyFormat()
+                tvRelease.text = if (gameDetails.release.isNotBlank())
+                    gameDetails.release.toPrettyFormat()
+                else gameDetails.release
                 tvDescription.text = gameDetails.description
                 rbRating.rating = gameDetails.rating.toFloat()
                 gameDetails.platforms.forEach {

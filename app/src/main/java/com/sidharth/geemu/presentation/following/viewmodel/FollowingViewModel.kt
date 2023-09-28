@@ -1,7 +1,5 @@
 package com.sidharth.geemu.presentation.following.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sidharth.geemu.domain.model.Game
@@ -9,6 +7,8 @@ import com.sidharth.geemu.domain.model.Tag
 import com.sidharth.geemu.domain.usecase.game.GetGameUseCase
 import com.sidharth.geemu.domain.usecase.tag.TagUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,51 +18,45 @@ class FollowingViewModel @Inject constructor(
     private val getGameUseCase: GetGameUseCase,
 ) : ViewModel() {
 
-    private val _following = MutableLiveData<List<Tag>>()
-    private val _games = MutableLiveData<List<Game>>()
+    private val _following = MutableStateFlow<List<Tag>>(emptyList())
+    private val _games = MutableStateFlow<List<Game>>(emptyList())
 
-    val following: LiveData<List<Tag>> get() = _following
-    val games: LiveData<List<Game>> get() = _games
+    val following: StateFlow<List<Tag>> get() = _following
+    val games: StateFlow<List<Game>> get() = _games
 
     init {
         fetchFollowingTags()
         fetchFilteredGames()
     }
 
-    private fun fetchFilteredGames(tag: String? = null) {
-        viewModelScope.launch {
-            if (tag == null && following.value?.isNotEmpty() == true) {
-                val tagIds = following.value?.joinToString(",") { it.id.toString() } ?: ""
-                _games.postValue(getGameUseCase.getGamesByTags(tagIds))
-            } else if (tag != null) {
-                _games.postValue(getGameUseCase.getGamesByTags(tag))
-            }
+    private fun fetchFilteredGames(tag: String? = null) = viewModelScope.launch {
+        if (tag == null && following.value.isNotEmpty()) {
+            val tagIds = following.value.joinToString(",") { it.id.toString() }
+            getGameUseCase.getGamesByTags(tagIds).collect { _games.emit(it) }
+        } else if (tag != null) {
+            getGameUseCase.getGamesByTags(tag).collect { _games.emit(it) }
         }
     }
 
-    private fun fetchFollowingTags() {
-        viewModelScope.launch {
-            _following.postValue(tagUseCase.getTags())
+    private fun fetchFollowingTags() = viewModelScope.launch {
+        tagUseCase.getTags().collect {
+            _following.emit(it)
         }
     }
 
-    fun followTag(tag: Tag) {
-        viewModelScope.launch {
-            val newFollowing = following.value?.toMutableList() ?: mutableListOf()
-            newFollowing.add(tag)
-            _following.postValue(newFollowing)
+    fun followTag(tag: Tag) = viewModelScope.launch {
+        val newFollowing = following.value.toMutableList()
+        newFollowing.add(tag)
+        _following.emit(newFollowing)
 
-            tagUseCase.followTag(tag)
-        }
+        tagUseCase.followTag(tag)
     }
 
-    fun unfollowTag(tag: Tag) {
-        viewModelScope.launch {
-            val newFollowing = following.value?.toMutableList() ?: mutableListOf()
-            newFollowing.remove(tag)
-            _following.postValue(newFollowing)
+    fun unfollowTag(tag: Tag) = viewModelScope.launch {
+        val newFollowing = following.value.toMutableList()
+        newFollowing.remove(tag)
+        _following.emit(newFollowing)
 
-            tagUseCase.unfollowTag(tag)
-        }
+        tagUseCase.unfollowTag(tag)
     }
 }
