@@ -46,9 +46,6 @@
         <action
             android:id="@+id/action_followingFragment_to_gameDetailsFragment"
             app:destination="@id/gameDetailsFragment" />
-        <action
-            android:id="@+id/action_followingFragment_to_gamesFragment"
-            app:destination="@id/gamesFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameDetailsFragment"

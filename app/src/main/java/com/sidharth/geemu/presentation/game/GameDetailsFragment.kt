@@ -21,6 +21,7 @@ import com.sidharth.geemu.presentation.game.adapter.GameDetailsAdapter
 import com.sidharth.geemu.presentation.game.callback.OnCreatorClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnItemClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnMediaClickCallback
+import com.sidharth.geemu.presentation.game.viewmodel.CollectionViewModel
 import com.sidharth.geemu.presentation.game.viewmodel.GameDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -30,6 +31,7 @@ class GameDetailsFragment
     : Fragment(), OnCreatorClickCallback, OnItemClickCallback, OnMediaClickCallback {
 
     private val gameDetailsViewModel: GameDetailsViewModel by viewModels()
+    private val collectionViewModel: CollectionViewModel by viewModels()
     private val args: GameDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -63,7 +65,7 @@ class GameDetailsFragment
         }
 
         binding.btnSave.setOnClickListener {
-
+//            collectionViewModel.deleteGameFromCollection()
         }
 
         return binding.root

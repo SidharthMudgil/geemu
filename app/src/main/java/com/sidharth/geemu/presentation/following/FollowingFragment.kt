@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.google.android.material.chip.Chip
@@ -64,7 +65,8 @@ class FollowingFragment : Fragment(), OnGameClickCallback, OnUnfollowButtonClick
     }
 
     override fun onGameClick(game: Game) {
-
+        val action = FollowingFragmentDirections.actionFollowingFragmentToGameDetailsFragment(game.id)
+        findNavController().navigate(action)
     }
 
     override fun onUnfollowButtonClick(tag: Tag) {
