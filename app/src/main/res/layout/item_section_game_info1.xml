@@ -29,7 +29,7 @@
         app:layout_constraintEnd_toEndOf="@+id/iv_background"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="@+id/iv_background"
-        app:layout_constraintTop_toBottomOf="@+id/btn_back"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0"
         app:strokeColor="@color/white"
         app:strokeWidth="1dp">
@@ -48,53 +48,6 @@
             tools:text="mature" />
 
     </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/btn_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/white_space"
-        android:importantForAccessibility="no"
-        android:src="@drawable/ic_back"
-        app:layout_constraintBottom_toBottomOf="@id/iv_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/iv_background"
-        app:layout_constraintVertical_bias="0"
-        app:shapeAppearanceOverlay="@style/RoundedImageView"
-        app:tint="@color/white" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/btn_share"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/white_space"
-        android:importantForAccessibility="no"
-        android:src="@drawable/ic_share"
-        app:layout_constraintBottom_toBottomOf="@id/iv_background"
-        app:layout_constraintEnd_toStartOf="@id/btn_save"
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintStart_toEndOf="@+id/btn_back"
-        app:layout_constraintTop_toTopOf="@id/iv_background"
-        app:layout_constraintVertical_bias="0"
-        app:shapeAppearanceOverlay="@style/RoundedImageView"
-        app:tint="@color/white" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/btn_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/white_space"
-        android:importantForAccessibility="no"
-        android:src="@drawable/ic_library"
-        app:layout_constraintBottom_toBottomOf="@id/iv_background"
-        app:layout_constraintEnd_toEndOf="@id/iv_background"
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintStart_toStartOf="@id/iv_background"
-        app:layout_constraintTop_toTopOf="@id/iv_background"
-        app:layout_constraintVertical_bias="0"
-        app:tint="@color/white" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_image"
@@ -198,7 +151,7 @@
         android:layout_marginStart="@dimen/white_space"
         android:layout_marginTop="@dimen/section_margin"
         android:layout_marginEnd="@dimen/white_space"
-        app:flow_firstHorizontalBias="0"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"

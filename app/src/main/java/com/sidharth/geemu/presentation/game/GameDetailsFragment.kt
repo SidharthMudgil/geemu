@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -14,7 +15,6 @@ import com.sidharth.geemu.core.enum.GameFilterType
 import com.sidharth.geemu.databinding.FragmentGameDetailsBinding
 import com.sidharth.geemu.domain.model.Creator
 import com.sidharth.geemu.presentation.game.adapter.GameDetailsAdapter
-import com.sidharth.geemu.presentation.game.callback.OnActionButtonClickListener
 import com.sidharth.geemu.presentation.game.callback.OnCreatorClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnItemClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnMediaClickCallback
@@ -23,8 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class GameDetailsFragment
-    : Fragment(), OnCreatorClickCallback, OnItemClickCallback, OnMediaClickCallback,
-    OnActionButtonClickListener {
+    : Fragment(), OnCreatorClickCallback, OnItemClickCallback, OnMediaClickCallback {
 
     private val gameDetailsViewModel: GameDetailsViewModel by viewModels()
     private val args: GameDetailsFragmentArgs by navArgs()
@@ -42,22 +41,24 @@ class GameDetailsFragment
         gameDetailsViewModel.gameDetails.observe(viewLifecycleOwner) {
             binding.rvGameDetails.adapter = GameDetailsAdapter(
                 gameDetails = it,
-                onActionButtonClickListener = this,
                 onMediaClickCallback = this,
                 onItemClickCallback = this,
                 onCreatorClickCallback = this,
             )
         }
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        binding.btnShare.setOnClickListener {
+            Toast.makeText(requireContext(), "Shared", Toast.LENGTH_LONG).show()
+        }
+
+        binding.btnSave.setOnClickListener {
+
+        }
+
         return binding.root
-    }
-
-    override fun onBackButtonClick() {
-    }
-
-    override fun onShareButtonClick() {
-    }
-
-    override fun onSaveButtonClick() {
     }
 
     override fun onCreatorClick(creator: Creator) {

@@ -19,14 +19,12 @@ import com.sidharth.geemu.databinding.ItemSectionGameInfo1Binding
 import com.sidharth.geemu.databinding.ItemSectionGameInfo2Binding
 import com.sidharth.geemu.databinding.ItemSectionItemsBinding
 import com.sidharth.geemu.domain.model.GameDetails
-import com.sidharth.geemu.presentation.game.callback.OnActionButtonClickListener
 import com.sidharth.geemu.presentation.game.callback.OnCreatorClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnItemClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnMediaClickCallback
 
 class GameDetailsAdapter(
     private val gameDetails: GameDetails,
-    private val onActionButtonClickListener: OnActionButtonClickListener,
     private val onMediaClickCallback: OnMediaClickCallback,
     private val onItemClickCallback: OnMediaClickCallback,
     private val onCreatorClickCallback: OnCreatorClickCallback,
@@ -64,15 +62,6 @@ class GameDetailsAdapter(
                     chip.text = it.name
                     chip.isClickable = true
                     cgPlatforms.addView(chip)
-                }
-                btnBack.setOnClickListener {
-                    onActionButtonClickListener.onBackButtonClick()
-                }
-                btnShare.setOnClickListener {
-                    onActionButtonClickListener.onShareButtonClick()
-                }
-                btnSave.setOnClickListener {
-                    onActionButtonClickListener.onSaveButtonClick()
                 }
             }
         }
