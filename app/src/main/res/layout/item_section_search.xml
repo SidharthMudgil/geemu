@@ -96,6 +96,7 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:gravity="start|center"
+        android:imeOptions="actionSearch"
         android:includeFontPadding="false"
         android:inputType="textPersonName"
         tools:text="ahf ai fha saud as odah " />

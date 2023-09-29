@@ -3,6 +3,7 @@ package com.sidharth.geemu.presentation.explore.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
+import android.view.inputmethod.EditorInfo
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView.Adapter
@@ -43,11 +44,19 @@ class ExplorePageAdapter(
                 inputSearch.setAnimationDelay(200)
                 inputSearch.setInterpolator(AccelerateInterpolator())
                 inputSearch.startTypewriterAnimation(textList)
-                btnSearch.setOnClickListener {
-                    if (inputSearch.text?.isNotBlank() == true) {
-                        onSearchButtonClickCallback.onSearchButtonClick(inputSearch.text.toString())
-                    }
+                btnSearch.setOnClickListener { search() }
+                inputSearch.setOnEditorActionListener { _, actionId, _ ->
+                    if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                        search()
+                        true
+                    } else false
                 }
+            }
+        }
+
+        fun search() {
+            if (binding.inputSearch.text?.isNotBlank() == true) {
+                onSearchButtonClickCallback.onSearchButtonClick(binding.inputSearch.text.toString())
             }
         }
 
