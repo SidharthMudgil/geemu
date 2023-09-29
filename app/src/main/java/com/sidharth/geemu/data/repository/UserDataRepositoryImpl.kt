@@ -35,7 +35,6 @@ class UserDataRepositoryImpl @Inject constructor(
         localDataSource.removeGameFromCollection(game.id)
     }
 
-
     override suspend fun getTags() = flow {
         emit(localDataSource.getTags().map { it.toTag() })
     }

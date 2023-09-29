@@ -26,13 +26,17 @@ class TypewriterEditText @JvmOverloads constructor(
     init {
         startTypewriterAnimation(textList)
         setOnClickListener {
-            stopTypewriterAnimation()
-            setText("")
+            requestFocus()
         }
         setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                setText("")
-                startTypewriterAnimation(textList)
+            setText("")
+            when (hasFocus) {
+                hasFocus -> stopTypewriterAnimation()
+                else -> {
+                    if (text?.isBlank() == true) {
+                        startTypewriterAnimation(textList)
+                    }
+                }
             }
         }
     }
