@@ -13,7 +13,7 @@ import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
 import com.google.android.material.chip.Chip
-import com.sidharth.geemu.core.enum.GameFilterType
+import com.sidharth.geemu.core.enums.GameFilterType
 import com.sidharth.geemu.core.util.DateTimeUtils.toPrettyFormat
 import com.sidharth.geemu.databinding.ItemSectionGameInfo1Binding
 import com.sidharth.geemu.databinding.ItemSectionGameInfo2Binding

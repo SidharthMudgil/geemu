@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView.VISIBLE
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
 import com.sidharth.geemu.core.constant.Constants
-import com.sidharth.geemu.core.enum.GameFilterType
+import com.sidharth.geemu.core.enums.GameFilterType
 import com.sidharth.geemu.core.util.BlurTransformation
 import com.sidharth.geemu.databinding.ItemCardCreatorBinding
 import com.sidharth.geemu.databinding.ItemCardGame2Binding

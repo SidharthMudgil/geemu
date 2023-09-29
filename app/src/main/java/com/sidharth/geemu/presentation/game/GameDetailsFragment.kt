@@ -14,7 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
-import com.sidharth.geemu.core.enum.GameFilterType
+import com.sidharth.geemu.core.enums.GameFilterType
 import com.sidharth.geemu.databinding.FragmentGameDetailsBinding
 import com.sidharth.geemu.domain.model.Creator
 import com.sidharth.geemu.presentation.game.adapter.GameDetailsAdapter

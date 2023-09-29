@@ -4,24 +4,38 @@ import android.animation.TimeInterpolator
 import android.content.Context
 import android.util.AttributeSet
 import android.view.animation.LinearInterpolator
-import com.google.android.material.textview.MaterialTextView
+import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class TypewriterTextView @JvmOverloads constructor(
+class TypewriterEditText @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet?,
     defStyleAttr: Int = 0,
-) : MaterialTextView(context, attrs, defStyleAttr) {
+) : TextInputEditText(context, attrs, defStyleAttr) {
 
     private var animationJob: Job? = null
     private var delayMillis: Long = 200
-    private var textList: List<String> = listOf("Type your text here")
+    private var textList: List<String> = emptyList()
     private var current = 0
     private var interpolator: TimeInterpolator = LinearInterpolator()
+
+    init {
+        startTypewriterAnimation(textList)
+        setOnClickListener {
+            stopTypewriterAnimation()
+            setText("")
+        }
+        setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                setText("")
+                startTypewriterAnimation(textList)
+            }
+        }
+    }
 
     fun startTypewriterAnimation(
         texts: List<String>,
@@ -52,7 +66,8 @@ class TypewriterTextView @JvmOverloads constructor(
         val textLength = text.length
 
         for (j in 0..textLength) {
-            val interpolatedDuration = interpolator.getInterpolation(j / textLength.toFloat()) * totalDuration
+            val interpolatedDuration =
+                interpolator.getInterpolation(j / textLength.toFloat()) * totalDuration
             setText(text.substring(0, j))
             delay(interpolatedDuration.toLong())
         }

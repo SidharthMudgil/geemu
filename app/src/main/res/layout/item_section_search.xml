@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:layout_margin="@dimen/white_space">
@@ -47,17 +48,16 @@
         android:id="@+id/cv_search_bar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:clickable="true"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:strokeWidth="0dp" />
 
     <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/flow_search_bar"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
         android:orientation="horizontal"
-        app:constraint_referenced_ids="iv_search_icon,tv_search_hint"
+        app:constraint_referenced_ids="iv_search_icon,input_search,btn_search"
         app:flow_horizontalGap="10dp"
         app:flow_horizontalStyle="packed"
         app:flow_verticalAlign="center"
@@ -67,17 +67,33 @@
         app:layout_constraintStart_toStartOf="@+id/cv_search_bar"
         app:layout_constraintTop_toTopOf="@+id/cv_search_bar" />
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/btn_search"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:scaleType="center"
+        android:src="@drawable/ic_send"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_search_icon"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintTop_toTopOf="@+id/flow_search_bar"
+        app:shapeAppearanceOverlay="@style/CircularImageView" />
+
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_search_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:importantForAccessibility="no"
         android:src="@drawable/ic_search" />
 
-    <com.sidharth.geemu.core.util.TypewriterTextView
-        android:id="@+id/tv_search_hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:includeFontPadding="false" />
+    <com.sidharth.geemu.core.util.TypewriterEditText
+        android:id="@+id/input_search"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@null"
+        android:includeFontPadding="false"
+        android:inputType="textPersonName"
+        tools:text="ahf ai fhai asi fhasih ajskh saud as odah " />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

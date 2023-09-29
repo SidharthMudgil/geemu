@@ -1,6 +1,6 @@
 package com.sidharth.geemu.presentation.game.callback
 
-import com.sidharth.geemu.core.enum.GameFilterType
+import com.sidharth.geemu.core.enums.GameFilterType
 
 interface OnItemClickCallback {
 

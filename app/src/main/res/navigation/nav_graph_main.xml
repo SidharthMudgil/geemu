@@ -78,7 +78,7 @@
             app:argType="string" />
         <argument
             android:name="type"
-            app:argType="com.sidharth.geemu.core.enum.GameFilterType" />
+            app:argType="com.sidharth.geemu.core.enums.GameFilterType" />
         <argument
             android:name="name"
             app:argType="string"

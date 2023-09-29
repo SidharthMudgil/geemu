@@ -2,7 +2,7 @@ package com.sidharth.geemu.presentation.games.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sidharth.geemu.core.enum.GameFilterType
+import com.sidharth.geemu.core.enums.GameFilterType
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Tag
 import com.sidharth.geemu.domain.usecase.game.GetGameUseCase

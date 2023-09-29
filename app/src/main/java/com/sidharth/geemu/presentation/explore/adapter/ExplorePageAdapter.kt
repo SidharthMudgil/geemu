@@ -40,17 +40,19 @@ class ExplorePageAdapter(
     ) : ViewHolder(binding.root) {
         fun bind() {
             binding.apply {
-                tvSearchHint.setAnimationDelay(200)
-                tvSearchHint.setInterpolator(AccelerateInterpolator())
-                tvSearchHint.startTypewriterAnimation(textList)
-                flowSearchBar.setOnClickListener {
-                    onSearchButtonClickCallback.onSearchButtonClick("")
+                inputSearch.setAnimationDelay(200)
+                inputSearch.setInterpolator(AccelerateInterpolator())
+                inputSearch.startTypewriterAnimation(textList)
+                btnSearch.setOnClickListener {
+                    if (inputSearch.text?.isNotBlank() == true) {
+                        onSearchButtonClickCallback.onSearchButtonClick(inputSearch.text.toString())
+                    }
                 }
             }
         }
 
         fun stopTypewriterAnimation() {
-            binding.tvSearchHint.stopTypewriterAnimation()
+            binding.inputSearch.stopTypewriterAnimation()
         }
     }
 
