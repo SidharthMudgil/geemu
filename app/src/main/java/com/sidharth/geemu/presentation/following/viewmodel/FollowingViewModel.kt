@@ -29,12 +29,12 @@ class FollowingViewModel @Inject constructor(
         fetchFilteredGames()
     }
 
-    private fun fetchFilteredGames(tag: String? = null) = viewModelScope.launch {
-        if (tag == null && following.value.isNotEmpty()) {
+    fun fetchFilteredGames(id: String? = null) = viewModelScope.launch {
+        if (id == null && following.value.isNotEmpty()) {
             val tagIds = following.value.joinToString(",") { it.id.toString() }
             getGameUseCase.getGamesByTags(tagIds).collect { _games.emit(it) }
-        } else if (tag != null) {
-            getGameUseCase.getGamesByTags(tag).collect { _games.emit(it) }
+        } else if (id != null) {
+            getGameUseCase.getGamesByTags(id).collect { _games.emit(it) }
         }
     }
 
@@ -44,19 +44,11 @@ class FollowingViewModel @Inject constructor(
         }
     }
 
-    fun followTag(tag: Tag) = viewModelScope.launch {
-        val newFollowing = following.value.toMutableList()
-        newFollowing.add(tag)
-        _following.emit(newFollowing)
-
-        tagUseCase.followTag(tag)
-    }
-
     fun unfollowTag(tag: Tag) = viewModelScope.launch {
         val newFollowing = following.value.toMutableList()
         newFollowing.remove(tag)
         _following.emit(newFollowing)
-
+        fetchFilteredGames()
         tagUseCase.unfollowTag(tag)
     }
 }

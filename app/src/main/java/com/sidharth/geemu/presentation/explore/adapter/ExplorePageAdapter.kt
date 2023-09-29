@@ -15,11 +15,11 @@ import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Genre
 import com.sidharth.geemu.presentation.explore.callback.OnGameClickCallback
 import com.sidharth.geemu.presentation.explore.callback.OnGenreClickCallback
-import com.sidharth.geemu.presentation.explore.callback.OnSearchBarClickCallback
+import com.sidharth.geemu.presentation.explore.callback.OnSearchButtonClickCallback
 
 
 class ExplorePageAdapter(
-    private val onSearchBarClickCallback: OnSearchBarClickCallback,
+    private val onSearchButtonClickCallback: OnSearchButtonClickCallback,
     private val onGenreClickCallback: OnGenreClickCallback,
     private val onGameClickCallback: OnGameClickCallback,
     private val genres: List<Genre>,
@@ -44,7 +44,7 @@ class ExplorePageAdapter(
                 tvSearchHint.setInterpolator(AccelerateInterpolator())
                 tvSearchHint.startTypewriterAnimation(textList)
                 flowSearchBar.setOnClickListener {
-                    onSearchBarClickCallback.onSearchBarClick()
+                    onSearchButtonClickCallback.onSearchButtonClick("")
                 }
             }
         }

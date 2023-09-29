@@ -107,8 +107,7 @@ class CreatorDetailsFragment : Fragment(), OnGameClickCallback {
     }
 
     override fun onGameClick(game: Game) {
-        val action =
-            CreatorDetailsFragmentDirections.actionCreatorDetailsFragmentToGameDetailsFragment(game.id)
+        val action = CreatorDetailsFragmentDirections.actionCreatorDetailsFragmentToGameDetailsFragment(game)
         findNavController().navigate(action)
     }
 }

@@ -20,14 +20,14 @@ import com.sidharth.geemu.domain.model.Genre
 import com.sidharth.geemu.presentation.explore.adapter.ExplorePageAdapter
 import com.sidharth.geemu.presentation.explore.callback.OnGameClickCallback
 import com.sidharth.geemu.presentation.explore.callback.OnGenreClickCallback
-import com.sidharth.geemu.presentation.explore.callback.OnSearchBarClickCallback
+import com.sidharth.geemu.presentation.explore.callback.OnSearchButtonClickCallback
 import com.sidharth.geemu.presentation.explore.viewmodel.ExploreViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ExploreFragment : Fragment(),
-    OnSearchBarClickCallback, OnGenreClickCallback, OnGameClickCallback {
+    OnSearchButtonClickCallback, OnGenreClickCallback, OnGameClickCallback {
 
     private val exploreViewModel by viewModels<ExploreViewModel>()
     private lateinit var recyclerView: RecyclerView
@@ -47,7 +47,7 @@ class ExploreFragment : Fragment(),
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 exploreViewModel.exploreData.collect {
                     binding.rvExplore.adapter = ExplorePageAdapter(
-                        onSearchBarClickCallback = this@ExploreFragment,
+                        onSearchButtonClickCallback = this@ExploreFragment,
                         onGenreClickCallback = this@ExploreFragment,
                         onGameClickCallback = this@ExploreFragment,
                         genres = it.genres,
@@ -63,23 +63,24 @@ class ExploreFragment : Fragment(),
     }
 
     override fun onGameClick(game: Game) {
-        val action = ExploreFragmentDirections.actionExploreFragmentToGameDetailsFragment(
-            game.id
-        )
+        val action = ExploreFragmentDirections.actionExploreFragmentToGameDetailsFragment(game)
         findNavController().navigate(action)
     }
 
     override fun onGenreClick(genre: Genre) {
         val action = ExploreFragmentDirections.actionExploreFragmentToGamesFragment(
-            id = genre.id,
+            query = genre.id.toString(),
             name = genre.name,
             type = GameFilterType.GENRES,
         )
         findNavController().navigate(action)
     }
 
-    override fun onSearchBarClick() {
-        val action = ExploreFragmentDirections.actionExploreFragmentToSearchFragment()
+    override fun onSearchButtonClick(query: String) {
+        val action = ExploreFragmentDirections.actionExploreFragmentToGamesFragment(
+            query = query,
+            type = GameFilterType.SEARCH,
+        )
         findNavController().navigate(action)
     }
 }

@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/white_space"
+        android:layout_marginTop="@dimen/white_space"
         android:text="@string/following"
         android:textFontWeight="600"
         app:layout_constraintBottom_toBottomOf="parent"

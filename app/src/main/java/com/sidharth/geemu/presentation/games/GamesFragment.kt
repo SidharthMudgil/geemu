@@ -13,6 +13,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
+import androidx.recyclerview.widget.RecyclerView.VISIBLE
+import com.sidharth.geemu.core.enum.GameFilterType
 import com.sidharth.geemu.databinding.FragmentGamesBinding
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.presentation.games.adapter.GamesAdapter
@@ -34,14 +36,19 @@ class GamesFragment : Fragment(), OnGameClickCallback {
         val binding = FragmentGamesBinding.inflate(inflater)
 
         gamesViewModel.fetchGames(
-            id = args.id.toString(),
+            query = args.query,
             filter = args.type,
         )
         binding.tvTitle.text = args.name
+        if (args.type == GameFilterType.TAGS) {
+            binding.btnSave.visibility = VISIBLE
+            binding.btnSave.setOnClickListener {
+                gamesViewModel.followTag(args.tag!!)
+            }
+        }
         binding.rvItems.layoutManager = LinearLayoutManager(
             requireContext(), VERTICAL, false
         )
-
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 gamesViewModel.games.collect {
@@ -57,9 +64,7 @@ class GamesFragment : Fragment(), OnGameClickCallback {
     }
 
     override fun onGameClick(game: Game) {
-        val action = GamesFragmentDirections.actionGamesFragmentToGameDetailsFragment(
-            game.id
-        )
+        val action = GamesFragmentDirections.actionGamesFragmentToGameDetailsFragment(game)
         findNavController().navigate(action)
     }
 }

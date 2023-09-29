@@ -18,13 +18,12 @@ import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Tag
 import com.sidharth.geemu.presentation.following.adapter.GamesAdapter
 import com.sidharth.geemu.presentation.following.callback.OnGameClickCallback
-import com.sidharth.geemu.presentation.following.callback.OnUnfollowButtonClickCallback
 import com.sidharth.geemu.presentation.following.viewmodel.FollowingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class FollowingFragment : Fragment(), OnGameClickCallback, OnUnfollowButtonClickCallback {
+class FollowingFragment : Fragment(), OnGameClickCallback {
 
     private val followingViewModel: FollowingViewModel by viewModels()
 
@@ -46,6 +45,18 @@ class FollowingFragment : Fragment(), OnGameClickCallback, OnUnfollowButtonClick
                         chip.text = tag.name
                         chip.isCheckable = true
                         binding.cgFollowing.addView(chip)
+                        chip.setOnClickListener {
+                            chip.isCloseIconVisible = false
+                            filterList(tag)
+                        }
+                        chip.setOnLongClickListener {
+                            chip.isCloseIconVisible = true
+                            true
+                        }
+                        chip.setOnCloseIconClickListener {
+                            binding.cgFollowing.removeView(chip)
+                            unfollow(tag)
+                        }
                     }
                 }
             }
@@ -64,12 +75,16 @@ class FollowingFragment : Fragment(), OnGameClickCallback, OnUnfollowButtonClick
         return binding.root
     }
 
+    private fun filterList(tag: Tag? = null) {
+        followingViewModel.fetchFilteredGames(tag?.name)
+    }
+
     override fun onGameClick(game: Game) {
-        val action = FollowingFragmentDirections.actionFollowingFragmentToGameDetailsFragment(game.id)
+        val action = FollowingFragmentDirections.actionFollowingFragmentToGameDetailsFragment(game)
         findNavController().navigate(action)
     }
 
-    override fun onUnfollowButtonClick(tag: Tag) {
+    private fun unfollow(tag: Tag) {
         followingViewModel.unfollowTag(tag)
     }
 }

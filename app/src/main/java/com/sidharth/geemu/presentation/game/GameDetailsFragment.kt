@@ -40,7 +40,7 @@ class GameDetailsFragment
     ): View {
         val binding = FragmentGameDetailsBinding.inflate(inflater)
 
-        gameDetailsViewModel.fetchGameDetails(args.id)
+        gameDetailsViewModel.fetchGameDetails(args.game.id)
         binding.rvGameDetails.layoutManager = LinearLayoutManager(
             requireContext(), VERTICAL, false
         )
@@ -65,7 +65,7 @@ class GameDetailsFragment
         }
 
         binding.btnSave.setOnClickListener {
-//            collectionViewModel.deleteGameFromCollection()
+            collectionViewModel.addGameToCollection(args.game, 0)
         }
 
         return binding.root
@@ -79,7 +79,7 @@ class GameDetailsFragment
 
     override fun onItemClick(id: Int, name: String, type: GameFilterType) {
         val action = GameDetailsFragmentDirections.actionGameDetailsFragmentToGamesFragment(
-            id = id,
+            query = id.toString(),
             name = name,
             type = type,
         )

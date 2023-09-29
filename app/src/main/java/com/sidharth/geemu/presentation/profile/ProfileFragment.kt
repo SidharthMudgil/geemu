@@ -49,7 +49,7 @@ class ProfileFragment : Fragment(), OnGameClickCallback {
     }
 
     override fun onGameClick(game: Game) {
-        val action = ProfileFragmentDirections.actionProfileFragmentToGameDetailsFragment(game.id)
+        val action = ProfileFragmentDirections.actionProfileFragmentToGameDetailsFragment(game)
         findNavController().navigate(action)
     }
 }
