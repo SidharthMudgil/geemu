@@ -11,9 +11,6 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_explore">
         <action
-            android:id="@+id/action_exploreFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
-        <action
             android:id="@+id/action_exploreFragment_to_gameDetailsFragment"
             app:destination="@id/gameDetailsFragment" />
         <action
@@ -27,15 +24,6 @@
         tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_gameDetailsFragment"
-            app:destination="@id/gameDetailsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.sidharth.geemu.presentation.search.SearchFragment"
-        android:label="fragment_search"
-        tools:layout="@layout/fragment_search">
-        <action
-            android:id="@+id/action_searchFragment_to_gameDetailsFragment"
             app:destination="@id/gameDetailsFragment" />
     </fragment>
     <fragment
@@ -62,8 +50,8 @@
             android:id="@+id/action_gameDetailsFragment_to_creatorDetailsFragment"
             app:destination="@id/creatorDetailsFragment" />
         <argument
-            android:name="id"
-            app:argType="integer" />
+            android:name="game"
+            app:argType="com.sidharth.geemu.domain.model.Game" />
     </fragment>
     <fragment
         android:id="@+id/creatorDetailsFragment"
@@ -86,14 +74,20 @@
             android:id="@+id/action_gamesFragment_to_gameDetailsFragment"
             app:destination="@id/gameDetailsFragment" />
         <argument
-            android:name="id"
-            app:argType="integer" />
+            android:name="query"
+            app:argType="string" />
         <argument
             android:name="type"
             app:argType="com.sidharth.geemu.core.enum.GameFilterType" />
         <argument
             android:name="name"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue="Search" />
+        <argument
+            android:name="tag"
+            app:argType="com.sidharth.geemu.domain.model.Tag"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/videoFragment"

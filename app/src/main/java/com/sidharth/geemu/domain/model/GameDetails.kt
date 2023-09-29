@@ -1,5 +1,8 @@
 package com.sidharth.geemu.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
 data class GameDetails(
     val id: Int,
     val name: String,
@@ -61,9 +64,10 @@ data class Publisher(
     val image: String,
 )
 
+@Parcelize
 data class Tag(
     val id: Int,
     val name: String,
     val image: String,
     val count: Int,
-)
+) : Parcelable
