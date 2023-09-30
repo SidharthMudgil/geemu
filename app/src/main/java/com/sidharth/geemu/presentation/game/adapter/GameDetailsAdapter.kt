@@ -100,6 +100,7 @@ class GameDetailsAdapter(
                             id = tag.id,
                             name = tag.name,
                             type = GameFilterType.TAGS,
+                            tag = tag,
                         )
                     }
                 }

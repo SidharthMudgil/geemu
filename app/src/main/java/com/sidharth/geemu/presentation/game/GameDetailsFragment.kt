@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.sidharth.geemu.core.enums.GameFilterType
 import com.sidharth.geemu.databinding.FragmentGameDetailsBinding
 import com.sidharth.geemu.domain.model.Creator
+import com.sidharth.geemu.domain.model.Tag
 import com.sidharth.geemu.presentation.game.adapter.GameDetailsAdapter
 import com.sidharth.geemu.presentation.game.callback.OnCreatorClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnItemClickCallback
@@ -77,11 +78,17 @@ class GameDetailsFragment
         findNavController().navigate(action)
     }
 
-    override fun onItemClick(id: Int, name: String, type: GameFilterType) {
+    override fun onItemClick(
+        id: Int,
+        name: String,
+        type: GameFilterType,
+        tag: Tag?
+    ) {
         val action = GameDetailsFragmentDirections.actionGameDetailsFragmentToGamesFragment(
             query = id.toString(),
             name = name,
             type = type,
+            tag = tag,
         )
         findNavController().navigate(action)
     }
