@@ -15,4 +15,5 @@
     <string name="description">Description</string>
     <string name="timeline">Timeline</string>
     <string name="tags">Tags</string>
+    <string name="game_details">Game Details</string>
 </resources>

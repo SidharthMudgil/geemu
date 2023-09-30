@@ -20,6 +20,7 @@ import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.presentation.games.adapter.GamesAdapter
 import com.sidharth.geemu.presentation.games.callback.OnGameClickCallback
 import com.sidharth.geemu.presentation.games.viewmodel.GamesViewModel
+import com.sidharth.geemu.presentation.viewmodel.UserDataViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -27,6 +28,7 @@ import kotlinx.coroutines.launch
 class GamesFragment : Fragment(), OnGameClickCallback {
 
     private val gamesViewModel: GamesViewModel by viewModels()
+    private val userDataViewModel: UserDataViewModel by viewModels()
     private val args: GamesFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -43,7 +45,7 @@ class GamesFragment : Fragment(), OnGameClickCallback {
         if (args.type == GameFilterType.TAGS) {
             binding.btnSave.visibility = VISIBLE
             binding.btnSave.setOnClickListener {
-                gamesViewModel.followTag(args.tag!!)
+                userDataViewModel.followTag(args.tag!!)
             }
         }
         binding.rvItems.layoutManager = LinearLayoutManager(

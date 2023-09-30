@@ -16,14 +16,14 @@ import com.sidharth.geemu.databinding.FragmentProfileBinding
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.presentation.profile.adapter.CollectionsAdapter
 import com.sidharth.geemu.presentation.profile.callback.OnGameClickCallback
-import com.sidharth.geemu.presentation.profile.viewmodel.ProfileViewModel
+import com.sidharth.geemu.presentation.viewmodel.UserDataViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment(), OnGameClickCallback {
 
-    private val profileViewModel by viewModels<ProfileViewModel>()
+    private val userDataViewModel: UserDataViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +36,7 @@ class ProfileFragment : Fragment(), OnGameClickCallback {
         )
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                profileViewModel.collections.collect {
+                userDataViewModel.collections.collect {
                     binding.rvCollections.adapter = CollectionsAdapter(
                         collections = it,
                         onGameClickCallback = this@ProfileFragment

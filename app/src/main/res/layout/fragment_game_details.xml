@@ -6,14 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".presentation.game.GameDetailsFragment">
 
-    <View
-        android:id="@+id/appbar"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_title"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/item_space_large"
+        android:layout_marginTop="@dimen/section_margin"
+        android:ellipsize="end"
+        android:gravity="start|center"
+        android:includeFontPadding="false"
+        android:text="@string/game_details"
+        android:textFontWeight="700"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_share"
+        app:layout_constraintStart_toEndOf="@+id/btn_back"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
 
@@ -25,11 +32,11 @@
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:src="@drawable/ic_back"
-        app:layout_constraintBottom_toBottomOf="@+id/appbar"
+        app:layout_constraintBottom_toTopOf="@+id/rv_game_details"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/appbar"
+        app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -56,7 +63,7 @@
         android:clickable="true"
         android:src="@drawable/ic_save"
         app:layout_constraintBottom_toBottomOf="@+id/btn_back"
-        app:layout_constraintEnd_toEndOf="@+id/appbar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toEndOf="@+id/btn_back"
         app:layout_constraintTop_toTopOf="@+id/btn_back"
@@ -66,10 +73,12 @@
         android:id="@+id/rv_game_details"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/section_margin"
         android:clipToPadding="false"
+        android:nestedScrollingEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appbar" />
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

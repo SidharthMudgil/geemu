@@ -18,14 +18,14 @@ import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Tag
 import com.sidharth.geemu.presentation.following.adapter.GamesAdapter
 import com.sidharth.geemu.presentation.following.callback.OnGameClickCallback
-import com.sidharth.geemu.presentation.following.viewmodel.FollowingViewModel
+import com.sidharth.geemu.presentation.viewmodel.UserDataViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class FollowingFragment : Fragment(), OnGameClickCallback {
 
-    private val followingViewModel: FollowingViewModel by viewModels()
+    private val userDataViewModel: UserDataViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,7 +39,7 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
         )
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                followingViewModel.following.collect {
+                userDataViewModel.following.collect {
                     it.forEach { tag ->
                         val chip = Chip(requireContext())
                         chip.text = tag.name
@@ -63,7 +63,7 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
         }
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                followingViewModel.games.collect {
+                userDataViewModel.games.collect {
                     binding.rvFollowing.adapter = GamesAdapter(
                         onGameClickCallback = this@FollowingFragment,
                         games = it
@@ -76,7 +76,7 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
     }
 
     private fun filterList(tag: Tag? = null) {
-        followingViewModel.fetchFilteredGames(tag?.name)
+        userDataViewModel.fetchFilteredGames(tag?.name)
     }
 
     override fun onGameClick(game: Game) {
@@ -85,6 +85,6 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
     }
 
     private fun unfollow(tag: Tag) {
-        followingViewModel.unfollowTag(tag)
+        userDataViewModel.unfollowTag(tag)
     }
 }
