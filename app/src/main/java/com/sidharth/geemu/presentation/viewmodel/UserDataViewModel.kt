@@ -38,7 +38,6 @@ class UserDataViewModel @Inject constructor(
     init {
         updateCollectionsData()
         fetchFollowingTags()
-        fetchFilteredGames()
     }
 
     private fun updateCollectionsData() = viewModelScope.launch {
@@ -62,34 +61,28 @@ class UserDataViewModel @Inject constructor(
         updateCollectionsData()
     }
 
-    fun fetchFilteredGames(id: String? = null) = viewModelScope.launch {
-        if (id == null && following.value.isNotEmpty()) {
-            val tagIds = following.value.joinToString(",") { it.id.toString() }
-            getGameUseCase.getGamesByTags(tagIds).collect { _games.emit(it) }
-        } else if (id != null) {
-            getGameUseCase.getGamesByTags(id).collect { _games.emit(it) }
-        }
-    }
-
     private fun fetchFollowingTags() = viewModelScope.launch {
         tagUseCase.getTags().collect {
             _following.emit(it)
+            fetchFilteredGames(
+                it.joinToString(",") { tag -> tag.id.toString() }
+            )
         }
     }
 
     fun followTag(tag: Tag) = viewModelScope.launch {
-        val newFollowing = following.value.toMutableList()
-        newFollowing.add(tag)
-        _following.emit(newFollowing)
-        fetchFilteredGames()
         tagUseCase.followTag(tag)
+        fetchFollowingTags()
     }
 
     fun unfollowTag(tag: Tag) = viewModelScope.launch {
-        val newFollowing = following.value.toMutableList()
-        newFollowing.remove(tag)
-        _following.emit(newFollowing)
-        fetchFilteredGames()
         tagUseCase.unfollowTag(tag)
+        fetchFollowingTags()
+    }
+
+    fun fetchFilteredGames(tags: String) = viewModelScope.launch {
+        getGameUseCase.getGamesByTags(tags).collect {
+            _games.emit(it)
+        }
     }
 }

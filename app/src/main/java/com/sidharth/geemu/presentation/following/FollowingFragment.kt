@@ -34,9 +34,6 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
     ): View {
         val binding = FragmentFollowingBinding.inflate(inflater)
 
-        binding.rvFollowing.layoutManager = LinearLayoutManager(
-            requireContext(), VERTICAL, false
-        )
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 userDataViewModel.following.collect {
@@ -61,6 +58,9 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
                 }
             }
         }
+        binding.rvFollowing.layoutManager = LinearLayoutManager(
+            requireContext(), VERTICAL, false
+        )
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 userDataViewModel.games.collect {
@@ -75,8 +75,8 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
         return binding.root
     }
 
-    private fun filterList(tag: Tag? = null) {
-        userDataViewModel.fetchFilteredGames(tag?.name)
+    private fun filterList(tag: Tag) {
+        userDataViewModel.fetchFilteredGames(tag.id.toString())
     }
 
     override fun onGameClick(game: Game) {
