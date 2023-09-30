@@ -12,6 +12,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
+import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
+import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
+import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
 import com.sidharth.geemu.databinding.FragmentProfileBinding
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.presentation.profile.adapter.CollectionsAdapter
@@ -36,11 +39,58 @@ class ProfileFragment : Fragment(), OnGameClickCallback {
         )
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                userDataViewModel.collections.collect {
+                userDataViewModel.collections.collect { collections ->
                     binding.rvCollections.adapter = CollectionsAdapter(
-                        collections = it,
+                        collections = collections,
                         onGameClickCallback = this@ProfileFragment
                     )
+                    val genreCountMap = collections.associate {collection->
+                        collection.name to collection.games
+                            .flatMap { it.genres.split(", ") }
+                            .count()
+                    }
+
+                    AAChartModel()
+                        .chartType(AAChartType.Pie)
+                        .series(
+                            arrayOf(
+                                AASeriesElement().name("Game Count").data(
+                                    genreCountMap.map { arrayOf(it.key, it.value) }.toTypedArray()
+                                )
+                            )
+                        ).apply {
+                            binding.chartGenresDistribution.aa_drawChartWithChartModel(this)
+                        }
+
+                    AAChartModel()
+                        .chartType(AAChartType.Bar)
+                        .series(
+                            arrayOf(
+                                AASeriesElement().name("Game Count").data(
+                                    collections.map { arrayOf(it.name, it.games.size) }
+                                        .toTypedArray()
+                                )
+                            )
+                        ).apply {
+                            binding.chartCollectionOverview.aa_drawChartWithChartModel(this)
+                        }
+                }
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                userDataViewModel.following.collect { tags ->
+                    AAChartModel()
+                        .chartType(AAChartType.Bubble)
+                        .series(
+                            arrayOf(
+                                AASeriesElement().name("Game Count").data(
+                                    tags.map { it.name }.toTypedArray()
+                                )
+                            )
+                        ).apply {
+                            binding.chartPopularTags.aa_drawChartWithChartModel(this)
+                        }
                 }
             }
         }

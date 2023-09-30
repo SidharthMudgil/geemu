@@ -16,4 +16,7 @@
     <string name="timeline">Timeline</string>
     <string name="tags">Tags</string>
     <string name="game_details">Game Details</string>
+    <string name="genres_distribution">Genres Distribution</string>
+    <string name="popular_tags">Popular Tags</string>
+    <string name="collection_overview">Collection Overview</string>
 </resources>
