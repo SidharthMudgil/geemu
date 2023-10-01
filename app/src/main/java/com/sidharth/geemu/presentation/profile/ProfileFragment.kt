@@ -53,8 +53,9 @@ class ProfileFragment : Fragment(), OnGameClickCallback {
 
                     val topGenres = genreCountMap.take(4)
                     val other = genreCountMap.drop(4).sumOf { it.second }
-
-                    val data = (topGenres + Pair("Others", other)).toMap()
+                    val data = if (other > 0) {
+                        (topGenres + Pair("Others", other)).toMap()
+                    } else topGenres.toMap()
 
                     AAChartModel()
                         .chartType(AAChartType.Pie)
@@ -87,7 +88,8 @@ class ProfileFragment : Fragment(), OnGameClickCallback {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 userDataViewModel.following.collect { tags ->
-                    val popularTags = tags.sortedByDescending { it.count }.take(10).sortedBy { it.name }
+                    val popularTags =
+                        tags.sortedByDescending { it.count }.take(10).sortedBy { it.name }
                     AAChartModel()
                         .chartType(AAChartType.Column)
                         .categories(popularTags.map { it.name }.toTypedArray())
