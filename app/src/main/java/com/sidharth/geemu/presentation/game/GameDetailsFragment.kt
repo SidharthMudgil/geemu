@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -22,8 +23,8 @@ import com.sidharth.geemu.presentation.game.adapter.GameDetailsAdapter
 import com.sidharth.geemu.presentation.game.callback.OnCreatorClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnItemClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnMediaClickCallback
-import com.sidharth.geemu.presentation.game.viewmodel.CollectionViewModel
 import com.sidharth.geemu.presentation.game.viewmodel.GameDetailsViewModel
+import com.sidharth.geemu.presentation.viewmodel.UserDataViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -32,7 +33,7 @@ class GameDetailsFragment
     : Fragment(), OnCreatorClickCallback, OnItemClickCallback, OnMediaClickCallback {
 
     private val gameDetailsViewModel: GameDetailsViewModel by viewModels()
-    private val collectionViewModel: CollectionViewModel by viewModels()
+    private val userDataViewModel: UserDataViewModel by activityViewModels()
     private val args: GameDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -66,7 +67,7 @@ class GameDetailsFragment
         }
 
         binding.btnSave.setOnClickListener {
-            collectionViewModel.addGameToCollection(args.game, 0)
+            userDataViewModel.addGameToCollection(args.game, 0)
         }
 
         return binding.root
