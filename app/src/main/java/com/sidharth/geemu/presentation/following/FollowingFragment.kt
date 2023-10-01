@@ -34,6 +34,12 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
     ): View {
         val binding = FragmentFollowingBinding.inflate(inflater)
 
+        binding.cgFollowing.setOnCheckedStateChangeListener { _, checkedIds ->
+            if (checkedIds.isEmpty()) {
+                filterList("", true)
+            }
+        }
+
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 userDataViewModel.following.collect {
@@ -45,7 +51,7 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
                         binding.cgFollowing.addView(chip)
                         chip.setOnClickListener {
                             chip.isCloseIconVisible = false
-                            filterList(tag)
+                            filterList(tag.id.toString())
                         }
                         chip.setOnLongClickListener {
                             chip.isCloseIconVisible = true
@@ -76,8 +82,8 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
         return binding.root
     }
 
-    private fun filterList(tag: Tag) {
-        userDataViewModel.fetchFilteredGames(tag.id.toString())
+    private fun filterList(id: String, fetchAll: Boolean = false) {
+        userDataViewModel.fetchFilteredGames(id, fetchAll)
     }
 
     override fun onGameClick(game: Game) {

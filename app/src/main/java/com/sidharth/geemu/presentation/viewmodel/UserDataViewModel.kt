@@ -80,8 +80,13 @@ class UserDataViewModel @Inject constructor(
         fetchFollowingTags()
     }
 
-    fun fetchFilteredGames(tags: String) = viewModelScope.launch {
-        getGameUseCase.getGamesByTags(tags).collect {
+    fun fetchFilteredGames(tags: String, fetchAll: Boolean = false) = viewModelScope.launch {
+        getGameUseCase.getGamesByTags(
+            when (fetchAll) {
+                true -> following.value.joinToString(",") { it.id.toString() }
+                else -> tags
+            }
+        ).collect {
             _games.emit(it)
         }
     }
