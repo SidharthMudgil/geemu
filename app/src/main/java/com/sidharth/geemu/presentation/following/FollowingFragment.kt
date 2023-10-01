@@ -37,6 +37,7 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 userDataViewModel.following.collect {
+                    binding.cgFollowing.removeAllViews()
                     it.forEach { tag ->
                         val chip = Chip(requireContext())
                         chip.text = tag.name
