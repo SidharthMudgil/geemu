@@ -44,18 +44,24 @@ class ProfileFragment : Fragment(), OnGameClickCallback {
                         collections = collections,
                         onGameClickCallback = this@ProfileFragment
                     )
-                    val genreCountMap = collections.associate {collection->
-                        collection.name to collection.games
-                            .flatMap { it.genres.split(", ") }
-                            .count()
-                    }
+                    val genreCountMap = collections
+                        .flatMap { it.games }
+                        .flatMap { it.genres.split(", ") }
+                        .groupingBy { it }
+                        .eachCount()
+                        .toList().sortedByDescending { it.second }
+
+                    val topGenres = genreCountMap.take(4)
+                    val other = genreCountMap.drop(4).sumOf { it.second }
+
+                    val data = (topGenres + Pair("Others", other)).toMap()
 
                     AAChartModel()
                         .chartType(AAChartType.Pie)
                         .series(
                             arrayOf(
                                 AASeriesElement().name("Game Count").data(
-                                    genreCountMap.map { arrayOf(it.key, it.value) }.toTypedArray()
+                                    data.map { arrayOf(it.key, it.value) }.toTypedArray()
                                 )
                             )
                         ).apply {
@@ -64,6 +70,7 @@ class ProfileFragment : Fragment(), OnGameClickCallback {
 
                     AAChartModel()
                         .chartType(AAChartType.Bar)
+                        .categories(collections.map { it.name }.toTypedArray())
                         .series(
                             arrayOf(
                                 AASeriesElement().name("Game Count").data(
@@ -80,12 +87,16 @@ class ProfileFragment : Fragment(), OnGameClickCallback {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 userDataViewModel.following.collect { tags ->
+                    val popularTags = tags.sortedByDescending { it.count }.take(10).sortedBy { it.name }
                     AAChartModel()
-                        .chartType(AAChartType.Bubble)
+                        .chartType(AAChartType.Column)
+                        .categories(popularTags.map { it.name }.toTypedArray())
                         .series(
                             arrayOf(
                                 AASeriesElement().name("Game Count").data(
-                                    tags.map { it.name }.toTypedArray()
+                                    popularTags.map {
+                                        arrayOf(it.name, it.count)
+                                    }.toTypedArray()
                                 )
                             )
                         ).apply {
