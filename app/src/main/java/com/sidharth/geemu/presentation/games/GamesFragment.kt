@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -15,6 +16,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import androidx.recyclerview.widget.RecyclerView.VISIBLE
+import com.sidharth.geemu.R
 import com.sidharth.geemu.core.enums.GameFilterType
 import com.sidharth.geemu.databinding.FragmentGamesBinding
 import com.sidharth.geemu.domain.model.Game
@@ -31,6 +33,7 @@ class GamesFragment : Fragment(), OnGameClickCallback {
     private val gamesViewModel: GamesViewModel by viewModels()
     private val userDataViewModel: UserDataViewModel by activityViewModels()
     private val args: GamesFragmentArgs by navArgs()
+    private var isTagFollowed: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,12 +46,6 @@ class GamesFragment : Fragment(), OnGameClickCallback {
             filter = args.type,
         )
         binding.tvTitle.text = args.name
-        if (args.type == GameFilterType.TAGS) {
-            binding.btnSave.visibility = VISIBLE
-            binding.btnSave.setOnClickListener {
-                userDataViewModel.followTag(args.tag!!)
-            }
-        }
         binding.rvItems.layoutManager = LinearLayoutManager(
             requireContext(), VERTICAL, false
         )
@@ -59,6 +56,38 @@ class GamesFragment : Fragment(), OnGameClickCallback {
                         games = it,
                         onGameClickCallback = this@GamesFragment,
                     )
+                }
+            }
+        }
+
+        if (args.type == GameFilterType.TAGS){
+            viewLifecycleOwner.lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    userDataViewModel.following.collect { it ->
+                        isTagFollowed = it.contains(args.tag).also {
+                            val drawable = when (it) {
+                                true -> R.drawable.ic_saved
+                                else -> R.drawable.ic_save
+                            }
+                            binding.btnSave.setImageDrawable(
+                                ResourcesCompat.getDrawable(
+                                    resources,
+                                    drawable,
+                                    null
+                                )
+                            )
+                        }
+                    }
+                }
+            }
+            if (args.type == GameFilterType.TAGS) {
+                binding.btnSave.visibility = VISIBLE
+                binding.btnSave.setOnClickListener {
+                    if (isTagFollowed) {
+                        userDataViewModel.unfollowTag(args.tag!!)
+                    } else {
+                        userDataViewModel.followTag(args.tag!!)
+                    }
                 }
             }
         }

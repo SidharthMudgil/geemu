@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -15,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
+import com.sidharth.geemu.R
 import com.sidharth.geemu.core.enums.GameFilterType
 import com.sidharth.geemu.databinding.FragmentGameDetailsBinding
 import com.sidharth.geemu.domain.model.Creator
@@ -35,6 +37,7 @@ class GameDetailsFragment
     private val gameDetailsViewModel: GameDetailsViewModel by viewModels()
     private val userDataViewModel: UserDataViewModel by activityViewModels()
     private val args: GameDetailsFragmentArgs by navArgs()
+    private var isGameInCollection: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,16 +61,37 @@ class GameDetailsFragment
                 }
             }
         }
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                userDataViewModel.games.collect { it ->
+                    isGameInCollection = it.contains(args.game).also {
+                        val drawable = when (it) {
+                            true -> R.drawable.ic_saved
+                            else -> R.drawable.ic_save
+                        }
+                        binding.btnSave.setImageDrawable(
+                            ResourcesCompat.getDrawable(
+                                resources,
+                                drawable,
+                                null
+                            )
+                        )
+                    }
+                }
+            }
+        }
         binding.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
-
         binding.btnShare.setOnClickListener {
             Toast.makeText(requireContext(), "Shared", Toast.LENGTH_LONG).show()
         }
-
         binding.btnSave.setOnClickListener {
-            userDataViewModel.addGameToCollection(args.game, 0)
+            if (isGameInCollection) {
+                userDataViewModel.removeGameFromCollection(args.game)
+            } else {
+                userDataViewModel.addGameToCollection(args.game, 0)
+            }
         }
 
         return binding.root
