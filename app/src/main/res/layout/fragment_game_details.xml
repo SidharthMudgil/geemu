@@ -6,79 +6,60 @@
     android:layout_height="match_parent"
     tools:context=".presentation.game.GameDetailsFragment">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/item_space_large"
-        android:layout_marginTop="@dimen/section_margin"
-        android:ellipsize="end"
-        android:gravity="start|center"
-        android:includeFontPadding="false"
-        android:text="@string/game_details"
-        android:textFontWeight="700"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_share"
-        app:layout_constraintStart_toEndOf="@+id/btn_back"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/btn_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/white_space"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:src="@drawable/ic_back"
-        app:layout_constraintBottom_toTopOf="@+id/rv_game_details"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/RoundedImageView" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/btn_share"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/item_space_large"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:src="@drawable/ic_share"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_back"
-        app:layout_constraintEnd_toStartOf="@+id/btn_save"
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintStart_toEndOf="@+id/btn_back"
-        app:layout_constraintTop_toTopOf="@+id/btn_back"
-        app:shapeAppearanceOverlay="@style/RoundedImageView" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/btn_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/white_space"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:src="@drawable/ic_save"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_back"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintStart_toEndOf="@+id/btn_back"
-        app:layout_constraintTop_toTopOf="@+id/btn_back"
-        app:shapeAppearanceOverlay="@style/RoundedImageView" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_game_details"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/section_margin"
         android:clipToPadding="false"
         android:nestedScrollingEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_card_game3" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_action"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/item_space_large"
+        android:orientation="horizontal"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="1dp"
+        app:contentPadding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
+        app:strokeWidth="0dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/btn_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|start"
+            android:layout_marginEnd="@dimen/item_space_large"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:padding="3dp"
+            android:src="@drawable/ic_share"
+            app:shapeAppearanceOverlay="@style/RoundedImageView"
+            app:tint="@color/black" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|end"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:padding="3dp"
+            android:src="@drawable/ic_add"
+            app:shapeAppearanceOverlay="@style/RoundedImageView"
+            app:tint="@color/black" />
+
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
