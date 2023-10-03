@@ -66,8 +66,8 @@ class GamesFragment : Fragment(), OnGameClickCallback {
                     userDataViewModel.following.collect { it ->
                         isTagFollowed = it.contains(args.tag).also {
                             val drawable = when (it) {
-                                true -> R.drawable.ic_saved
-                                else -> R.drawable.ic_save
+                                true -> R.drawable.ic_added
+                                else -> R.drawable.ic_add
                             }
                             binding.btnSave.setImageDrawable(
                                 ResourcesCompat.getDrawable(

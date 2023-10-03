@@ -63,11 +63,11 @@ class GameDetailsFragment
         }
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                userDataViewModel.games.collect { it ->
-                    isGameInCollection = it.contains(args.game).also {
+                userDataViewModel.collections.collect { it ->
+                    isGameInCollection = it.flatMap { it.games }.contains(args.game).also {
                         val drawable = when (it) {
-                            true -> R.drawable.ic_saved
-                            else -> R.drawable.ic_save
+                            true -> R.drawable.ic_added
+                            else -> R.drawable.ic_add
                         }
                         binding.btnSave.setImageDrawable(
                             ResourcesCompat.getDrawable(
@@ -79,9 +79,6 @@ class GameDetailsFragment
                     }
                 }
             }
-        }
-        binding.btnBack.setOnClickListener {
-            findNavController().popBackStack()
         }
         binding.btnShare.setOnClickListener {
             Toast.makeText(requireContext(), "Shared", Toast.LENGTH_LONG).show()
