@@ -19,4 +19,8 @@
     <string name="genres_distribution">Genres Distribution</string>
     <string name="popular_tags">Popular Tags</string>
     <string name="collection_overview">Collection Overview</string>
+    <string name="played">Played</string>
+    <string name="completed">Completed</string>
+    <string name="not_playing">Not Playing</string>
+    <string name="playing">Playing</string>
 </resources>
