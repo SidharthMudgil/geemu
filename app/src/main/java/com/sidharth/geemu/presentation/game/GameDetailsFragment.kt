@@ -38,12 +38,13 @@ class GameDetailsFragment
     private val userDataViewModel: UserDataViewModel by activityViewModels()
     private val args: GameDetailsFragmentArgs by navArgs()
     private var isGameInCollection: Boolean = false
+    private lateinit var binding: FragmentGameDetailsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentGameDetailsBinding.inflate(inflater)
+        binding = FragmentGameDetailsBinding.inflate(inflater)
 
         gameDetailsViewModel.fetchGameDetails(args.game.id)
         binding.rvGameDetails.layoutManager = LinearLayoutManager(
@@ -87,11 +88,26 @@ class GameDetailsFragment
             if (isGameInCollection) {
                 userDataViewModel.removeGameFromCollection(args.game)
             } else {
-                userDataViewModel.addGameToCollection(args.game, 0)
+                showBottomSheet()
             }
         }
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        findNavController().currentBackStackEntry
+            ?.savedStateHandle
+            ?.getLiveData<Int>(ModalBottomSheet.KEY)
+            ?.observe(viewLifecycleOwner) { collection ->
+                userDataViewModel.addGameToCollection(args.game, collection)
+            }
+    }
+
+    private fun showBottomSheet() {
+        val action = GameDetailsFragmentDirections.actionGameDetailsFragmentToModalBottomSheet()
+        findNavController().navigate(action)
     }
 
     override fun onCreatorClick(creator: Creator) {

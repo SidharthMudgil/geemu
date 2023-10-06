@@ -52,6 +52,9 @@
         <argument
             android:name="game"
             app:argType="com.sidharth.geemu.domain.model.Game" />
+        <action
+            android:id="@+id/action_gameDetailsFragment_to_modalBottomSheet"
+            app:destination="@id/modalBottomSheet" />
     </fragment>
     <fragment
         android:id="@+id/creatorDetailsFragment"
@@ -104,4 +107,8 @@
             android:name="preview"
             app:argType="string" />
     </fragment>
+    <dialog
+        android:id="@+id/modalBottomSheet"
+        android:name="com.sidharth.geemu.presentation.game.ModalBottomSheet"
+        android:label="ModalBottomSheet" />
 </navigation>
