@@ -53,7 +53,7 @@ android {
 dependencies {
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
+    implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -63,10 +63,10 @@ dependencies {
     val lifecycleVersion = "2.6.2"
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
-    implementation("androidx.activity:activity-ktx:1.7.2")
+    implementation("androidx.activity:activity-ktx:1.8.0")
 
     // navigation
-    val navigationVersion = "2.7.3"
+    val navigationVersion = "2.7.4"
     implementation("androidx.navigation:navigation-fragment-ktx:$navigationVersion")
     implementation("androidx.navigation:navigation-ui-ktx:$navigationVersion")
 
@@ -87,6 +87,9 @@ dependencies {
 
     // image loading - Coil
     implementation("io.coil-kt:coil:2.4.0")
+
+    // Paging
+    implementation("androidx.paging:paging-common-ktx:3.2.1")
 
     // video - Media3
     val media3Version = "1.1.1"
