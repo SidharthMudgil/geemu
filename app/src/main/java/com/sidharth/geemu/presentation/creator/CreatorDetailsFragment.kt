@@ -1,6 +1,7 @@
 package com.sidharth.geemu.presentation.creator
 
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -80,7 +81,7 @@ class CreatorDetailsFragment : Fragment(), OnGameClickCallback {
                         tvRatings.text = creator.rating
                         tvReviews.text = "${creator.reviewsCount}"
                         tvGamesCount.text = "${creator.gamesCount}"
-                        tvDescription.text = creator.description
+                        tvDescription.text = Html.fromHtml(creator.description, Html.FROM_HTML_MODE_LEGACY)
                     }
                 }
             }
