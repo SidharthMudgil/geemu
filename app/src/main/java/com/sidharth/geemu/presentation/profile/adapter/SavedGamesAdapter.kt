@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
 import com.sidharth.geemu.core.constant.Constants
 import com.sidharth.geemu.core.util.BlurTransformation
-import com.sidharth.geemu.databinding.ItemCardGame2Binding
+import com.sidharth.geemu.databinding.ItemCardGame4Binding
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.presentation.profile.callback.OnGameClickCallback
 
@@ -17,7 +17,7 @@ class SavedGamesAdapter(
 ) : Adapter<SavedGamesAdapter.GameViewHolder>() {
 
     inner class GameViewHolder(
-        private val binding: ItemCardGame2Binding
+        private val binding: ItemCardGame4Binding
     ) : ViewHolder(binding.root) {
         fun bind(game: Game) {
             binding.apply {
@@ -31,16 +31,13 @@ class SavedGamesAdapter(
                     else -> ivCover.load(game.image)
                 }
                 tvName.text = game.name
-                tvRatings.text = game.rating
-                tvGenres.text = game.genres
-                tvReleaseDate.text = game.release
                 cvGame.setOnClickListener { onGameClickCallback.onGameClick(game) }
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
-        val binding = ItemCardGame2Binding.inflate(
+        val binding = ItemCardGame4Binding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
 

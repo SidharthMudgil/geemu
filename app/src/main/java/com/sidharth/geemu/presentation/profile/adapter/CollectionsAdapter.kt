@@ -3,6 +3,7 @@ package com.sidharth.geemu.presentation.profile.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -28,6 +29,9 @@ class CollectionsAdapter(
                     games = collection.games,
                     onGameClickCallback = onGameClickCallback
                 )
+                if (rvItems.onFlingListener == null) {
+                    LinearSnapHelper().attachToRecyclerView(rvItems)
+                }
             }
         }
     }
