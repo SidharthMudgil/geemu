@@ -15,12 +15,13 @@ class GamesPagingSource @Inject constructor(
             val nextPageNumber = params.key ?: 1
             val response = remoteDataSource.getGames(
                 page = nextPageNumber,
-                pageSize = 20
+                pageSize = 20,
+                ordering = "-rating",
+                metacritic = "1,100",
+                excludeAdditions = true,
             )
-            val data = response?.toGames() ?: emptyList()
-
             LoadResult.Page(
-                data = data,
+                data = response?.toGames() ?: emptyList(),
                 prevKey = if (nextPageNumber == 1) null else nextPageNumber - 1,
                 nextKey = if (response?.next == null) null else nextPageNumber + 1
             )
@@ -29,7 +30,10 @@ class GamesPagingSource @Inject constructor(
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, Game>): Int {
-        return 1
+    override fun getRefreshKey(state: PagingState<Int, Game>): Int? {
+        return state.anchorPosition?.let { anchorPosition ->
+            state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
+                ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
+        }
     }
 }
