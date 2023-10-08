@@ -48,6 +48,6 @@ object Constants {
     )
 
     val EMPTY_EXPLORE_DATA = ExploreData(
-        emptyList(), emptyList(), emptyList(), emptyList()
+        emptyList(), emptyList(), emptyList()
     )
 }

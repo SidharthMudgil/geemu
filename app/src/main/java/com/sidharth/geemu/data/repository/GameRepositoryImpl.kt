@@ -1,9 +1,12 @@
 package com.sidharth.geemu.data.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import com.sidharth.geemu.data.mapper.ResponseMapper
 import com.sidharth.geemu.data.mapper.ResponseMapper.toCreatorDetails
 import com.sidharth.geemu.data.mapper.ResponseMapper.toGames
 import com.sidharth.geemu.data.mapper.ResponseMapper.toGenres
+import com.sidharth.geemu.data.remote.source.GamesPagingSource
 import com.sidharth.geemu.data.remote.source.RemoteDataSource
 import com.sidharth.geemu.domain.repository.GameRepository
 import kotlinx.coroutines.flow.flow
@@ -11,6 +14,7 @@ import javax.inject.Inject
 
 class GameRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
+    private val gamesPagingSource: GamesPagingSource,
 ) : GameRepository {
     override suspend fun getGames(
         page: Int?,
@@ -65,6 +69,16 @@ class GameRepositoryImpl @Inject constructor(
             )?.toGames() ?: listOf()
         )
     }
+
+    override suspend fun getGamesPagingSource() = Pager(
+        config = PagingConfig(
+            pageSize = 20,
+            enablePlaceholders = false
+        ),
+        pagingSourceFactory = {
+            gamesPagingSource
+        }
+    ).flow
 
     override suspend fun getGameDetails(id: Int) = flow {
         val gameDetails = remoteDataSource.getGameDetails(id)

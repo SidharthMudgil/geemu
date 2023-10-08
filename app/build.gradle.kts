@@ -89,7 +89,7 @@ dependencies {
     implementation("io.coil-kt:coil:2.4.0")
 
     // Paging
-    implementation("androidx.paging:paging-common-ktx:3.2.1")
+    implementation("androidx.paging:paging-runtime-ktx:3.2.1")
 
     // video - Media3
     val media3Version = "1.1.1"

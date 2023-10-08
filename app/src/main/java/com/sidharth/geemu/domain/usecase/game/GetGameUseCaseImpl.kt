@@ -1,5 +1,6 @@
 package com.sidharth.geemu.domain.usecase.game
 
+import androidx.paging.PagingData
 import com.sidharth.geemu.core.util.DateTimeUtils
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Genre
@@ -8,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class GetGameUseCaseImpl @Inject constructor(
-    private val gameRepository: GameRepository
+    private val gameRepository: GameRepository,
 ) : GetGameUseCase {
 
     override suspend fun getGenres(): Flow<List<Genre>> {
@@ -34,12 +35,8 @@ class GetGameUseCaseImpl @Inject constructor(
         )
     }
 
-    override suspend fun getBestOfAllTime(): Flow<List<Game>> {
-        return gameRepository.getGames(
-            ordering = "-rating",
-            metacritic = "1,100",
-            excludeAdditions = true,
-        )
+    override suspend fun getBestOfAllTime(): Flow<PagingData<Game>> {
+        return gameRepository.getGamesPagingSource()
     }
 
     override suspend fun getGamesBySearch(query: String): Flow<List<Game>> {
