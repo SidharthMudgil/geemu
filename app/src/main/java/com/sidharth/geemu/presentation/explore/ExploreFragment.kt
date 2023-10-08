@@ -1,5 +1,6 @@
 package com.sidharth.geemu.presentation.explore
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,12 +26,14 @@ import com.sidharth.geemu.presentation.explore.viewmodel.ExploreViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+
 @AndroidEntryPoint
 class ExploreFragment : Fragment(),
     OnSearchButtonClickCallback, OnGenreClickCallback, OnGameClickCallback {
 
     private val exploreViewModel by viewModels<ExploreViewModel>()
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,7 +57,6 @@ class ExploreFragment : Fragment(),
                 }
             }
         }
-
         binding.rvBestGames.layoutManager = LinearLayoutManager(
             requireContext(), VERTICAL, false
         )
