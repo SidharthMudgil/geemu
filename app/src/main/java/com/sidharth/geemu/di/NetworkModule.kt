@@ -3,6 +3,7 @@ package com.sidharth.geemu.di
 import com.sidharth.geemu.BuildConfig
 import com.sidharth.geemu.core.constant.Constants.BASE_URL
 import com.sidharth.geemu.data.remote.service.RAWGService
+import com.sidharth.geemu.data.remote.source.GamesPagingSource
 import com.sidharth.geemu.data.remote.source.RemoteDataSource
 import dagger.Module
 import dagger.Provides
@@ -54,5 +55,13 @@ class NetworkModule {
         rawgService: RAWGService
     ): RemoteDataSource {
         return RemoteDataSource(rawgService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGamesPagingSource(
+        remoteDataSource: RemoteDataSource
+    ): GamesPagingSource {
+        return GamesPagingSource(remoteDataSource)
     }
 }
