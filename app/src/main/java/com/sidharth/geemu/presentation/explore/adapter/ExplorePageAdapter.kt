@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
-import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.sidharth.geemu.databinding.ItemSectionItemsBinding
 import com.sidharth.geemu.databinding.ItemSectionSearchBinding
@@ -26,14 +25,12 @@ class ExplorePageAdapter(
     private val genres: List<Genre>,
     private val upcoming: List<Game>,
     private val bestOfYear: List<Game>,
-    private val bestOfAllTime: List<Game>,
 ) : Adapter<ViewHolder>() {
     private enum class ExploreSection {
         SEARCH,
         GENRES,
         GAMES_TYPE1,
         GAMES_TYPE2,
-        GAMES_TYPE3
     }
 
     inner class SearchSectionViewHolder(
@@ -69,23 +66,16 @@ class ExplorePageAdapter(
         private val type: ItemsAdapter.CardType,
         private val binding: ItemSectionItemsBinding
     ) : ViewHolder(binding.root) {
-        fun bind(games: List<Any>) {
+        fun bind() {
             binding.apply {
                 tvLabel.text = when (type) {
                     ItemsAdapter.CardType.GENRE -> "Genres"
                     ItemsAdapter.CardType.GAME_TYPE1 -> "Upcoming"
                     ItemsAdapter.CardType.GAME_TYPE2 -> "Best of the Year"
-                    ItemsAdapter.CardType.GAME_TYPE3 -> "Best of All Time"
                 }
-                rvItems.layoutManager = when (type) {
-                    ItemsAdapter.CardType.GAME_TYPE3 -> LinearLayoutManager(
-                        binding.root.context, VERTICAL, false
-                    )
-
-                    else -> LinearLayoutManager(
+                rvItems.layoutManager = LinearLayoutManager(
                         binding.root.context, HORIZONTAL, false
                     )
-                }
                 rvItems.adapter = when (type) {
                     ItemsAdapter.CardType.GENRE -> ItemsAdapter(
                         type = type,
@@ -93,15 +83,27 @@ class ExplorePageAdapter(
                         onItemClickCallback = onGenreClickCallback
                     )
 
-                    else -> {
+                    ItemsAdapter.CardType.GAME_TYPE1 -> {
                         if (rvItems.onFlingListener == null) {
                             LinearSnapHelper().attachToRecyclerView(rvItems)
                         }
 
                         ItemsAdapter(
                             type = type,
-                            items = games,
-                            onItemClickCallback = onGameClickCallback
+                            items = upcoming,
+                            onItemClickCallback = onGameClickCallback,
+                        )
+                    }
+
+                    ItemsAdapter.CardType.GAME_TYPE2 -> {
+                        if (rvItems.onFlingListener == null) {
+                            LinearSnapHelper().attachToRecyclerView(rvItems)
+                        }
+
+                        ItemsAdapter(
+                            type = type,
+                            items = bestOfYear,
+                            onItemClickCallback = onGameClickCallback,
                         )
                     }
                 }
@@ -115,7 +117,6 @@ class ExplorePageAdapter(
             1 -> ExploreSection.GENRES.ordinal
             2 -> ExploreSection.GAMES_TYPE1.ordinal
             3 -> ExploreSection.GAMES_TYPE2.ordinal
-            4 -> ExploreSection.GAMES_TYPE3.ordinal
             else -> throw IllegalStateException("Invalid ViewType")
         }
     }
@@ -159,15 +160,6 @@ class ExplorePageAdapter(
                 )
             }
 
-            ExploreSection.GAMES_TYPE3.ordinal -> {
-                ItemsSectionViewHolder(
-                    type = ItemsAdapter.CardType.GAME_TYPE3,
-                    binding = ItemSectionItemsBinding.inflate(
-                        inflater, parent, false
-                    )
-                )
-            }
-
             else -> throw IllegalStateException("Invalid ViewType")
         }
     }
@@ -175,15 +167,14 @@ class ExplorePageAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (position) {
             0 -> ((holder) as SearchSectionViewHolder).bind()
-            1 -> (holder as ItemsSectionViewHolder).bind(genres)
-            2 -> (holder as ItemsSectionViewHolder).bind(upcoming)
-            3 -> (holder as ItemsSectionViewHolder).bind(bestOfYear)
-            4 -> (holder as ItemsSectionViewHolder).bind(bestOfAllTime)
+            1 -> (holder as ItemsSectionViewHolder).bind()
+            2 -> (holder as ItemsSectionViewHolder).bind()
+            3 -> (holder as ItemsSectionViewHolder).bind()
         }
     }
 
     override fun getItemCount(): Int {
-        return 5
+        return 4
     }
 
     override fun onViewRecycled(holder: ViewHolder) {

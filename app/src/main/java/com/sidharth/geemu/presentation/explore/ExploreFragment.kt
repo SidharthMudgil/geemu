@@ -11,12 +11,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.sidharth.geemu.core.enums.GameFilterType
 import com.sidharth.geemu.databinding.FragmentExploreBinding
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Genre
+import com.sidharth.geemu.presentation.explore.adapter.BestOfAllTimeAdapter
 import com.sidharth.geemu.presentation.explore.adapter.ExplorePageAdapter
 import com.sidharth.geemu.presentation.explore.callback.OnGameClickCallback
 import com.sidharth.geemu.presentation.explore.callback.OnGenreClickCallback
@@ -30,15 +30,12 @@ class ExploreFragment : Fragment(),
     OnSearchButtonClickCallback, OnGenreClickCallback, OnGameClickCallback {
 
     private val exploreViewModel by viewModels<ExploreViewModel>()
-    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentExploreBinding.inflate(inflater)
-
-        recyclerView = binding.rvExplore
 
         binding.rvExplore.layoutManager = LinearLayoutManager(
             requireContext(), VERTICAL, false
@@ -53,9 +50,19 @@ class ExploreFragment : Fragment(),
                         genres = it.genres,
                         upcoming = it.upcoming,
                         bestOfYear = it.bestOfYear,
-                        bestOfAllTime = it.bestOfAllTime,
                     )
                 }
+            }
+        }
+
+        binding.rvBestGames.layoutManager = LinearLayoutManager(
+            requireContext(), VERTICAL, false
+        )
+        val adapter = BestOfAllTimeAdapter(this)
+        binding.rvBestGames.adapter = adapter
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                exploreViewModel.bestOfAllTime.collect { adapter.submitData(it) }
             }
         }
 
