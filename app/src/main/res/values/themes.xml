@@ -1,10 +1,11 @@
 <resources>
-    <!-- Base application theme. -->
+
     <style name="Base.Theme.geemu" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="fontFamily">@font/inter</item>
         <item name="android:windowBackground">@color/grey900</item>
         <item name="android:statusBarColor">@color/grey900</item>
         <item name="chipStyle">@style/Widget.App.Chip</item>
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
     </style>
 
@@ -19,11 +20,35 @@
         <item name="android:padding">10dp</item>
     </style>
 
+    <style name="Widget.App.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationView</item>
+        <item name="itemActiveIndicatorStyle">
+            @style/Widget.App.BottomNavigationView.ActiveIndicator
+        </item>
+        <item name="elevation">0dp</item>
+        <item name="itemIconTint">@color/chip_background</item>
+        <item name="itemTextColor">@color/chip_background</item>
+    </style>
+
+    <style name="ThemeOverlay.App.BottomNavigationView" parent="">
+        <item name="colorSurface">@color/grey900</item>
+        <item name="colorOnSurfaceVariant">@color/grey100</item>
+    </style>
+
+    <style name="Widget.App.BottomNavigationView.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/grey300</item>
+    </style>
+
     <style name="Widget.App.Chip" parent="Widget.Material3.Chip.Suggestion">
         <item name="elevation">0dp</item>
         <item name="android:textColor">@color/grey100</item>
-        <item name="chipBackgroundColor">@color/grey700</item>
+        <item name="chipBackgroundColor">@color/chip_background</item>
         <item name="chipStrokeWidth">0dp</item>
+        <item name="android:selectable">false</item>
+        <item name="chipStrokeColor">@color/grey700</item>
+        <item name="android:clickable">true</item>
+        <item name="android:checkable">false</item>
+        <item name="android:iconTint">@color/grey300</item>
         <item name="shapeAppearanceOverlay">@style/CircularImageView</item>
     </style>
 
