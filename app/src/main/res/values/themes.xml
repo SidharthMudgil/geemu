@@ -26,8 +26,8 @@
             @style/Widget.App.BottomNavigationView.ActiveIndicator
         </item>
         <item name="elevation">0dp</item>
-        <item name="itemIconTint">@color/chip_background</item>
-        <item name="itemTextColor">@color/chip_background</item>
+        <item name="itemIconTint">@color/bottom_nav_menu_item</item>
+        <item name="itemTextColor">@color/bottom_nav_menu_item</item>
     </style>
 
     <style name="ThemeOverlay.App.BottomNavigationView" parent="">
@@ -36,7 +36,7 @@
     </style>
 
     <style name="Widget.App.BottomNavigationView.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">@color/grey300</item>
+        <item name="android:color">@color/grey700</item>
     </style>
 
     <style name="Widget.App.Chip" parent="Widget.Material3.Chip.Suggestion">
