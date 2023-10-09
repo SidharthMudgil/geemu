@@ -5,9 +5,19 @@
         <item name="android:windowBackground">@color/grey900</item>
         <item name="android:statusBarColor">@color/grey900</item>
         <item name="chipStyle">@style/Widget.App.Chip</item>
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
     </style>
 
     <style name="Theme.geemu" parent="Base.Theme.geemu" />
+
+    <style name="ThemeOverlay.App.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.App.BottomSheet</item>
+    </style>
+
+    <style name="Widget.App.BottomSheet" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="backgroundTint">@color/grey800</item>
+        <item name="android:padding">10dp</item>
+    </style>
 
     <style name="Widget.App.Chip" parent="Widget.Material3.Chip.Suggestion">
         <item name="elevation">0dp</item>

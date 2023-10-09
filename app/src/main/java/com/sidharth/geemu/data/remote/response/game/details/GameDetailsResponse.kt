@@ -7,7 +7,7 @@ data class GameDetailsResponse(
     @SerializedName("slug") val slug: String,
     @SerializedName("name") val name: String,
     @SerializedName("name_original") val nameOriginal: String,
-    @SerializedName("description") val description: String,
+    @SerializedName("description") val description: String?,
     @SerializedName("metacritic") val metacritic: Int,
     @SerializedName("metacritic_platforms") val metacriticPlatforms: List<MetacriticPlatform>,
     @SerializedName("released") val released: String,
@@ -56,7 +56,7 @@ data class GameDetailsResponse(
     @SerializedName("publishers") val publishers: List<Publisher>,
     @SerializedName("esrb_rating") val esrbRating: ESRBRating,
     @SerializedName("clip") val clip: Any?,
-    @SerializedName("description_raw") val descriptionRaw: String,
+    @SerializedName("description_raw") val descriptionRaw: String?,
 )
 
 data class MetacriticPlatform(

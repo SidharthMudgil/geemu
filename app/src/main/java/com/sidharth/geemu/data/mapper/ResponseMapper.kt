@@ -37,7 +37,7 @@ object ResponseMapper {
             name = details?.name ?: "",
             image = details?.backgroundImage ?: details?.backgroundImageAdditional ?: "",
             background = details?.backgroundImageAdditional ?: details?.backgroundImage ?: "",
-            description = details?.descriptionRaw ?: "",
+            description = details?.description ?: details?.descriptionRaw ?: "",
             release = details?.released ?: "",
             rating = details?.rating ?: 0.0,
             esrbRating = details?.esrbRating?.name ?: "",

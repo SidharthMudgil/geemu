@@ -1,5 +1,6 @@
 package com.sidharth.geemu.presentation.game.adapter
 
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View.GONE
 import android.view.ViewGroup
@@ -57,7 +58,7 @@ class GameDetailsAdapter(
                 tvRelease.text = if (gameDetails.release.isNotBlank())
                     gameDetails.release.toPrettyFormat()
                 else gameDetails.release
-                tvDescription.text = gameDetails.description
+                tvDescription.text = Html.fromHtml(gameDetails.description, Html.FROM_HTML_MODE_LEGACY)
                 rbRating.rating = gameDetails.rating.toFloat()
                 gameDetails.platforms.forEach {
                     val chip = Chip(root.context)
