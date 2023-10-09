@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/label_list_gap"
     android:layout_marginEnd="@dimen/item_space_large">
 
     <com.google.android.material.card.MaterialCardView
