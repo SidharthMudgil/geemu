@@ -6,7 +6,7 @@
     android:layout_width="220dp"
     android:layout_height="270dp"
     android:layout_marginEnd="@dimen/item_space"
-    app:cardBackgroundColor="#EEEEEE"
+    app:cardBackgroundColor="@color/grey800"
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:strokeWidth="0dp">
 
@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="10dp"
+            android:background="@color/grey900"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toTopOf="@+id/tv_name"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,6 +35,7 @@
             android:includeFontPadding="false"
             android:marqueeRepeatLimit="marquee_forever"
             android:maxLines="1"
+            android:textColor="@color/grey100"
             android:textFontWeight="700"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/flow_genres"
@@ -66,6 +68,7 @@
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
             android:text="@string/genres"
+            android:textColor="@color/grey100"
             android:textSize="11sp" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -75,6 +78,7 @@
             android:includeFontPadding="false"
             android:maxLength="20"
             android:maxLines="1"
+            android:textColor="@color/grey100"
             android:textFontWeight="600"
             android:textSize="12sp"
             tools:text="Action, Adventure" />
@@ -83,7 +87,7 @@
             android:id="@+id/flow_release_rating"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#CCCCCC"
+            android:background="@color/grey700"
             android:orientation="vertical"
             android:padding="10dp"
             app:constraint_referenced_ids="flow_release_Date,flow_ratings"
@@ -111,6 +115,7 @@
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
             android:text="@string/release"
+            android:textColor="@color/grey100"
             android:textSize="11sp" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -118,6 +123,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
+            android:textColor="@color/grey100"
             android:textFontWeight="600"
             android:textSize="12sp"
             tools:text="2022-02-45" />
@@ -137,6 +143,7 @@
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
             android:text="@string/rating"
+            android:textColor="@color/grey100"
             android:textSize="11sp" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -144,6 +151,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
+            android:textColor="@color/grey100"
             android:textFontWeight="600"
             android:textSize="12sp"
             tools:text="4.41 / 5" />

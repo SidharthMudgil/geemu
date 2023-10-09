@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_marginBottom="@dimen/item_space"
-    app:cardBackgroundColor="#EEEEEE"
+    app:cardBackgroundColor="@color/grey700"
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:strokeWidth="0dp">
 
@@ -21,7 +21,7 @@
             android:layout_margin="5dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintDimensionRatio="10:7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,6 +50,7 @@
             android:includeFontPadding="false"
             android:marqueeRepeatLimit="marquee_forever"
             android:maxLines="1"
+            android:textColor="@color/grey100"
             android:textFontWeight="600"
             android:textSize="16sp"
             tools:text="Action, Adve uas dasfu gasuf gasu gfaus ag dasi nture" />
@@ -70,6 +71,7 @@
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
             android:text="@string/genres"
+            android:textColor="@color/grey100"
             android:textSize="11sp" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -79,6 +81,7 @@
             android:includeFontPadding="false"
             android:maxLength="20"
             android:maxLines="1"
+            android:textColor="@color/grey100"
             android:textFontWeight="700"
             android:textSize="12sp"
             tools:text="Action, Adventure" />
@@ -99,6 +102,7 @@
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
             android:text="@string/rating"
+            android:textColor="@color/grey100"
             android:textSize="11sp" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -106,6 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
+            android:textColor="@color/grey100"
             android:textFontWeight="700"
             android:textSize="12sp"
             tools:text="4.41 / 5" />

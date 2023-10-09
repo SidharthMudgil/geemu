@@ -6,7 +6,7 @@
     android:layout_width="200dp"
     android:layout_height="150dp"
     android:layout_marginEnd="@dimen/item_space"
-    app:cardBackgroundColor="#EEEEEE"
+    app:cardBackgroundColor="@color/grey700"
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:strokeWidth="0dp">
 
@@ -34,6 +34,7 @@
             android:includeFontPadding="false"
             android:marqueeRepeatLimit="marquee_forever"
             android:maxLines="1"
+            android:textColor="@color/grey100"
             android:textFontWeight="700"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"

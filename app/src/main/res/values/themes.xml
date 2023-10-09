@@ -2,9 +2,20 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.geemu" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="fontFamily">@font/inter</item>
+        <item name="android:windowBackground">@color/grey900</item>
+        <item name="android:statusBarColor">@color/grey900</item>
+        <item name="chipStyle">@style/Widget.App.Chip</item>
     </style>
 
     <style name="Theme.geemu" parent="Base.Theme.geemu" />
+
+    <style name="Widget.App.Chip" parent="Widget.Material3.Chip.Suggestion">
+        <item name="elevation">0dp</item>
+        <item name="android:textColor">@color/grey100</item>
+        <item name="chipBackgroundColor">@color/grey700</item>
+        <item name="chipStrokeWidth">0dp</item>
+        <item name="shapeAppearanceOverlay">@style/CircularImageView</item>
+    </style>
 
     <style name="CircularImageView">
         <item name="cornerFamily">rounded</item>

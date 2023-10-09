@@ -10,7 +10,7 @@
         android:id="@+id/cv_search_box"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardBackgroundColor="#EEEEEE"
+        app:cardBackgroundColor="@color/grey700"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,6 +41,7 @@
         android:layout_height="wrap_content"
         android:text="@string/search_label"
         android:textAlignment="center"
+        android:textColor="@color/grey100"
         android:textFontWeight="600"
         android:textSize="24sp" />
 
@@ -48,6 +49,7 @@
         android:id="@+id/cv_search_bar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        app:cardBackgroundColor="@color/grey100"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:strokeWidth="0dp" />
 
@@ -78,14 +80,16 @@
         app:layout_constraintBottom_toBottomOf="@+id/iv_search_icon"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintTop_toTopOf="@+id/flow_search_bar"
-        app:shapeAppearanceOverlay="@style/CircularImageView" />
+        app:shapeAppearanceOverlay="@style/CircularImageView"
+        app:tint="@color/grey700" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_search_icon"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:importantForAccessibility="no"
-        android:src="@drawable/ic_search" />
+        android:src="@drawable/ic_search"
+        app:tint="@color/grey700" />
 
     <com.sidharth.geemu.core.util.TypewriterEditText
         android:id="@+id/input_search"
@@ -99,6 +103,7 @@
         android:imeOptions="actionSearch"
         android:includeFontPadding="false"
         android:inputType="textPersonName"
+        android:textColor="@color/grey700"
         tools:text="ahf ai fha saud as odah " />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

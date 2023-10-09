@@ -12,6 +12,7 @@
         android:id="@+id/iv_poster"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:background="@color/grey700"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +42,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:includeFontPadding="false"
-        android:textColor="#EEEEEE"
+        android:textColor="@color/grey100"
         android:textSize="11sp"
         tools:text="Releasing on 12 June 2023" />
 
@@ -53,7 +54,7 @@
         android:includeFontPadding="false"
         android:marqueeRepeatLimit="marquee_forever"
         android:maxLines="1"
-        android:textColor="#EEEEEE"
+        android:textColor="@color/grey100"
         android:textFontWeight="600"
         android:textSize="22sp"
         tools:text="Mortal Kombat 1: The new Age of Ul tron" />
@@ -63,7 +64,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:includeFontPadding="false"
-        android:textColor="#EEEEEE"
+        android:textColor="@color/grey100"
         android:textSize="13sp"
         tools:text="Action, Adventure" />
 
