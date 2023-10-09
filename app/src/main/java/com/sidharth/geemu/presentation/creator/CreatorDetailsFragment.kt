@@ -19,6 +19,7 @@ import coil.load
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
+import com.sidharth.geemu.R
 import com.sidharth.geemu.core.util.BlurTransformation
 import com.sidharth.geemu.databinding.FragmentCreatorDetailsBinding
 import com.sidharth.geemu.domain.model.Game
@@ -47,6 +48,7 @@ class CreatorDetailsFragment : Fragment(), OnGameClickCallback {
                     binding.apply {
                         AAChartModel()
                             .chartType(AAChartType.Pie)
+                            .backgroundColor(R.color.grey900)
                             .series(
                                 arrayOf(
                                     AASeriesElement().name("Rating Count")
@@ -62,6 +64,7 @@ class CreatorDetailsFragment : Fragment(), OnGameClickCallback {
 
                         AAChartModel()
                             .chartType(AAChartType.Area)
+                            .backgroundColor(R.color.grey900)
                             .series(
                                 arrayOf(
                                     AASeriesElement().name("Games Count")
@@ -81,7 +84,8 @@ class CreatorDetailsFragment : Fragment(), OnGameClickCallback {
                         tvRatings.text = creator.rating
                         tvReviews.text = "${creator.reviewsCount}"
                         tvGamesCount.text = "${creator.gamesCount}"
-                        tvDescription.text = Html.fromHtml(creator.description, Html.FROM_HTML_MODE_LEGACY)
+                        tvDescription.text =
+                            Html.fromHtml(creator.description, Html.FROM_HTML_MODE_LEGACY)
                     }
                 }
             }
@@ -108,7 +112,8 @@ class CreatorDetailsFragment : Fragment(), OnGameClickCallback {
     }
 
     override fun onGameClick(game: Game) {
-        val action = CreatorDetailsFragmentDirections.actionCreatorDetailsFragmentToGameDetailsFragment(game)
+        val action =
+            CreatorDetailsFragmentDirections.actionCreatorDetailsFragmentToGameDetailsFragment(game)
         findNavController().navigate(action)
     }
 }

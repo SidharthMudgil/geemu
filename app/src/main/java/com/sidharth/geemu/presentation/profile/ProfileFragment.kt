@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
+import com.sidharth.geemu.R
 import com.sidharth.geemu.databinding.FragmentProfileBinding
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.presentation.profile.adapter.CollectionsAdapter
@@ -59,6 +60,7 @@ class ProfileFragment : Fragment(), OnGameClickCallback {
 
                     AAChartModel()
                         .chartType(AAChartType.Pie)
+                        .backgroundColor(R.color.grey900)
                         .series(
                             arrayOf(
                                 AASeriesElement().name("Game Count").data(
@@ -71,6 +73,7 @@ class ProfileFragment : Fragment(), OnGameClickCallback {
 
                     AAChartModel()
                         .chartType(AAChartType.Bar)
+                        .backgroundColor(R.color.grey900)
                         .categories(collections.map { it.name }.toTypedArray())
                         .series(
                             arrayOf(
@@ -92,6 +95,7 @@ class ProfileFragment : Fragment(), OnGameClickCallback {
                         tags.sortedByDescending { it.count }.take(10).sortedBy { it.name }
                     AAChartModel()
                         .chartType(AAChartType.Column)
+                        .backgroundColor(R.color.grey900)
                         .categories(popularTags.map { it.name }.toTypedArray())
                         .series(
                             arrayOf(

@@ -14,6 +14,7 @@ import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
 import com.google.android.material.chip.Chip
+import com.sidharth.geemu.R
 import com.sidharth.geemu.core.enums.GameFilterType
 import com.sidharth.geemu.core.util.DateTimeUtils.toPrettyFormat
 import com.sidharth.geemu.databinding.ItemSectionGameInfo1Binding
@@ -58,7 +59,8 @@ class GameDetailsAdapter(
                 tvRelease.text = if (gameDetails.release.isNotBlank())
                     gameDetails.release.toPrettyFormat()
                 else gameDetails.release
-                tvDescription.text = Html.fromHtml(gameDetails.description, Html.FROM_HTML_MODE_LEGACY)
+                tvDescription.text =
+                    Html.fromHtml(gameDetails.description, Html.FROM_HTML_MODE_LEGACY)
                 rbRating.rating = gameDetails.rating.toFloat()
                 gameDetails.platforms.forEach {
                     val chip = Chip(root.context)
@@ -77,6 +79,7 @@ class GameDetailsAdapter(
             binding.apply {
                 AAChartModel()
                     .chartType(AAChartType.Pie)
+                    .backgroundColor(R.color.grey900)
                     .series(
                         arrayOf(
                             AASeriesElement().name("Rating Count")
