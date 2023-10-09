@@ -34,7 +34,9 @@ class BestOfAllTimeAdapter(
                 tvGenres.text = game.genres
                 tvRatings.text = game.rating
                 cvGame.setOnClickListener {
-                    onGameClickCallback.onGameClick(game)
+                    if (game.id != -1) {
+                        onGameClickCallback.onGameClick(game)
+                    }
                 }
             }
         }

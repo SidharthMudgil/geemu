@@ -1,7 +1,9 @@
 package com.sidharth.geemu.core.constant
 
 import com.sidharth.geemu.domain.model.CreatorDetails
+import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.GameDetails
+import com.sidharth.geemu.domain.model.Genre
 import com.sidharth.geemu.presentation.explore.ExploreData
 
 object Constants {
@@ -47,7 +49,22 @@ object Constants {
         timeline = emptyList()
     )
 
+    private val EMPTY_GENRE = Genre(
+        id = -1,
+        name = "",
+        image = ""
+    )
+
+    val EMPTY_GAME = Game(
+        id = -1,
+        name = "",
+        image = "NIL",
+        genres = "",
+        release = "",
+        rating = ""
+    )
+
     val EMPTY_EXPLORE_DATA = ExploreData(
-        emptyList(), emptyList(), emptyList()
+        List(5) { EMPTY_GENRE }, List(5) { EMPTY_GAME }, List(5) { EMPTY_GAME },
     )
 }

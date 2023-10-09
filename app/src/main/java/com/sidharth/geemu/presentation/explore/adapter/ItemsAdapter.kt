@@ -35,7 +35,9 @@ class ItemsAdapter(
                 ivGenre.load(genre.image)
                 tvGenre.text = genre.name
                 cvGenre.setOnClickListener {
-                    (onItemClickCallback as OnGenreClickCallback).onGenreClick(genre)
+                    if (genre.id!=-1) {
+                        (onItemClickCallback as OnGenreClickCallback).onGenreClick(genre)
+                    }
                 }
             }
         }
@@ -58,7 +60,9 @@ class ItemsAdapter(
                 }
                 tvGame.text = game.name
                 tvGame.isSelected = true
-                tvRelease.text = "Releasing on ${game.release.toPrettyFormat()}"
+                if (game.release.isNotBlank()) {
+                    tvRelease.text = "Releasing on ${game.release.toPrettyFormat()}"
+                }
                 tvGenres.text = game.genres
             }
         }
@@ -84,7 +88,9 @@ class ItemsAdapter(
                 tvName.isSelected = true
                 tvReleaseDate.text = game.release
                 cvGame.setOnClickListener {
-                    (onItemClickCallback as OnGameClickCallback).onGameClick(game)
+                    if (game.id != -1) {
+                        (onItemClickCallback as OnGameClickCallback).onGameClick(game)
+                    }
                 }
             }
         }
