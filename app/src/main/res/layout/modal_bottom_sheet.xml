@@ -26,6 +26,7 @@
             android:padding="@dimen/white_space"
             android:text="@string/playing"
             android:textAlignment="textStart"
+            android:textColor="@color/grey300"
             android:textFontWeight="600"
             android:textSize="16sp" />
 
@@ -39,6 +40,7 @@
             android:padding="@dimen/white_space"
             android:text="@string/not_playing"
             android:textAlignment="textStart"
+            android:textColor="@color/grey300"
             android:textFontWeight="600"
             android:textSize="16sp" />
 
@@ -52,6 +54,7 @@
             android:padding="@dimen/white_space"
             android:text="@string/completed"
             android:textAlignment="textStart"
+            android:textColor="@color/grey300"
             android:textFontWeight="600"
             android:textSize="16sp" />
 
@@ -65,6 +68,7 @@
             android:padding="@dimen/white_space"
             android:text="@string/played"
             android:textAlignment="textStart"
+            android:textColor="@color/grey300"
             android:textFontWeight="600"
             android:textSize="16sp" />
 

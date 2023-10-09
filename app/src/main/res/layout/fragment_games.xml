@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/white_space"
         android:text="@string/filtered_games"
-        android:textColor="@color/grey100"
+        android:textColor="@color/grey300"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:includeFontPadding="false"
-        android:textColor="@color/grey100"
+        android:textColor="@color/grey300"
         android:textFontWeight="700"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,7 +50,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_label"
         app:shapeAppearanceOverlay="@style/RoundedImageView"
-        app:tint="@color/black" />
+        app:tint="@color/grey100" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_items"

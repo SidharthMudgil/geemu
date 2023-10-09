@@ -34,7 +34,7 @@
             android:includeFontPadding="false"
             android:marqueeRepeatLimit="marquee_forever"
             android:maxLines="1"
-            android:textColor="@color/grey100"
+            android:textColor="@color/grey300"
             android:textFontWeight="700"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"

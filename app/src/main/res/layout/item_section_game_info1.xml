@@ -9,7 +9,7 @@
         android:id="@+id/iv_background"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:background="#389471"
+        android:background="@color/grey700"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +56,7 @@
         android:layout_marginStart="@dimen/white_space"
         android:layout_marginTop="250dp"
         android:layout_marginEnd="@dimen/white_space"
-        android:background="#892373"
+        android:background="@color/grey700"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="3:4"
@@ -110,6 +110,7 @@
         android:includeFontPadding="false"
         android:marqueeRepeatLimit="marquee_forever"
         android:maxLines="1"
+        android:textColor="@color/grey300"
         android:textFontWeight="600"
         android:textSize="16sp"
         tools:text="Prince of Persia the Sands of Storm II asd das" />
@@ -120,6 +121,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:numStars="5"
+        android:progressTint="@color/grey100"
         android:stepSize="0.1" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -130,6 +132,7 @@
         android:ellipsize="end"
         android:includeFontPadding="false"
         android:maxLines="2"
+        android:textColor="@color/grey300"
         android:textSize="13sp"
         tools:text="Sunday, 23 June 2015" />
 
@@ -141,6 +144,7 @@
         android:ellipsize="end"
         android:includeFontPadding="false"
         android:maxLines="2"
+        android:textColor="@color/grey300"
         android:textSize="13sp"
         tools:text="Action, Adventure, RPG, Kartoos" />
 
@@ -151,7 +155,8 @@
         android:layout_marginStart="@dimen/white_space"
         android:layout_marginTop="@dimen/section_margin"
         android:layout_marginEnd="@dimen/white_space"
-        android:textSize="18sp"
+        android:textColor="@color/grey300"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"

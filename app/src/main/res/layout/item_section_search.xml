@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:text="@string/search_label"
         android:textAlignment="center"
-        android:textColor="@color/grey100"
+        android:textColor="@color/grey300"
         android:textFontWeight="600"
         android:textSize="24sp" />
 

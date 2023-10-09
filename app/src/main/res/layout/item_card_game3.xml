@@ -50,7 +50,7 @@
             android:includeFontPadding="false"
             android:marqueeRepeatLimit="marquee_forever"
             android:maxLines="1"
-            android:textColor="@color/grey100"
+            android:textColor="@color/grey300"
             android:textFontWeight="600"
             android:textSize="16sp"
             tools:text="Action, Adve uas dasfu gasuf gasu gfaus ag dasi nture" />
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
             android:text="@string/genres"
-            android:textColor="@color/grey100"
+            android:textColor="@color/grey300"
             android:textSize="11sp" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -81,7 +81,7 @@
             android:includeFontPadding="false"
             android:maxLength="20"
             android:maxLines="1"
-            android:textColor="@color/grey100"
+            android:textColor="@color/grey300"
             android:textFontWeight="700"
             android:textSize="12sp"
             tools:text="Action, Adventure" />
@@ -102,7 +102,7 @@
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
             android:text="@string/rating"
-            android:textColor="@color/grey100"
+            android:textColor="@color/grey300"
             android:textSize="11sp" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -110,7 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            android:textColor="@color/grey100"
+            android:textColor="@color/grey300"
             android:textFontWeight="700"
             android:textSize="12sp"
             tools:text="4.41 / 5" />

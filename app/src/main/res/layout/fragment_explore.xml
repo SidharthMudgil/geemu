@@ -32,7 +32,7 @@
             android:layout_marginStart="@dimen/white_space"
             android:layout_marginTop="@dimen/section_margin"
             android:text="@string/best_of_all_time"
-            android:textColor="@color/grey100"
+            android:textColor="@color/grey300"
             android:textFontWeight="600"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

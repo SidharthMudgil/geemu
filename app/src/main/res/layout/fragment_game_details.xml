@@ -22,8 +22,9 @@
         android:id="@+id/cv_action"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/item_space_large"
+        android:layout_margin="@dimen/white_space"
         android:orientation="horizontal"
+        app:cardBackgroundColor="@color/grey900"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:cardElevation="1dp"
         app:contentPadding="5dp"
@@ -46,7 +47,7 @@
             android:padding="3dp"
             android:src="@drawable/ic_share"
             app:shapeAppearanceOverlay="@style/RoundedImageView"
-            app:tint="@color/black" />
+            app:tint="@color/grey100" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/btn_save"
@@ -58,7 +59,7 @@
             android:padding="3dp"
             android:src="@drawable/ic_add"
             app:shapeAppearanceOverlay="@style/RoundedImageView"
-            app:tint="@color/black" />
+            app:tint="@color/grey100" />
 
     </com.google.android.material.card.MaterialCardView>
 
