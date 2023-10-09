@@ -6,7 +6,6 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.sidharth.geemu.core.constant.Constants.EMPTY_EXPLORE_DATA
 import com.sidharth.geemu.domain.model.Game
-import com.sidharth.geemu.domain.model.Genre
 import com.sidharth.geemu.domain.usecase.game.GetGameUseCase
 import com.sidharth.geemu.presentation.explore.ExploreData
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,32 +24,33 @@ class ExploreViewModel @Inject constructor(
     val bestOfAllTime: StateFlow<PagingData<Game>> get() = _bestOfAllTime
 
     init {
-        fetchExploreData()
+        fetchGenres()
+        fetchUpcomingGames()
+        fetchBestOfTheYear()
         fetchBestOfAllTime()
     }
 
-    private fun fetchBestOfAllTime() = viewModelScope.launch {
-        getGameUseCase.getBestOfAllTime().cachedIn(viewModelScope)
-            .collect {
-            _bestOfAllTime.emit(it)
+    private fun fetchGenres() = viewModelScope.launch {
+        getGameUseCase.getGenres().collect {
+            _exploreData.emit(_exploreData.value.copy(genres = it))
         }
     }
 
-    private fun fetchExploreData() = viewModelScope.launch {
-        var genres: List<Genre> = listOf()
-        var upcoming: List<Game> = listOf()
-        var bestOfYear: List<Game> = listOf()
+    private fun fetchUpcomingGames() = viewModelScope.launch {
+        getGameUseCase.getUpcomingGames().collect {
+            _exploreData.emit(_exploreData.value.copy(upcoming = it))
+        }
+    }
 
-        getGameUseCase.getGenres().collect { genres = it }
-        getGameUseCase.getUpcomingGames().collect { upcoming = it }
-        getGameUseCase.getBestOfTheYear().collect { bestOfYear = it }
+    private fun fetchBestOfTheYear() = viewModelScope.launch {
+        getGameUseCase.getBestOfTheYear().collect {
+            _exploreData.emit(_exploreData.value.copy(bestOfYear = it))
+        }
+    }
 
-        _exploreData.emit(
-            ExploreData(
-                genres = genres,
-                upcoming = upcoming,
-                bestOfYear = bestOfYear,
-            )
-        )
+    private fun fetchBestOfAllTime() = viewModelScope.launch {
+        getGameUseCase.getBestOfAllTime().cachedIn(viewModelScope).collect {
+            _bestOfAllTime.emit(it)
+        }
     }
 }
