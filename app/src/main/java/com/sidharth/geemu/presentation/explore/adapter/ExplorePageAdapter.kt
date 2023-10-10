@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
+import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.sidharth.geemu.databinding.ItemSectionItemsBinding
 import com.sidharth.geemu.databinding.ItemSectionSearchBinding
@@ -17,7 +18,6 @@ import com.sidharth.geemu.presentation.explore.callback.OnGameClickCallback
 import com.sidharth.geemu.presentation.explore.callback.OnGenreClickCallback
 import com.sidharth.geemu.presentation.explore.callback.OnSearchButtonClickCallback
 
-
 class ExplorePageAdapter(
     private val onSearchButtonClickCallback: OnSearchButtonClickCallback,
     private val onGenreClickCallback: OnGenreClickCallback,
@@ -25,12 +25,14 @@ class ExplorePageAdapter(
     private val genres: List<Genre>,
     private val upcoming: List<Game>,
     private val bestOfYear: List<Game>,
+    private val bestOfAllTime: List<Game>,
 ) : Adapter<ViewHolder>() {
     private enum class ExploreSection {
         SEARCH,
         GENRES,
         GAMES_TYPE1,
         GAMES_TYPE2,
+        GAMES_TYPE3,
     }
 
     inner class SearchSectionViewHolder(
@@ -72,10 +74,18 @@ class ExplorePageAdapter(
                     ItemsAdapter.CardType.GENRE -> "Genres"
                     ItemsAdapter.CardType.GAME_TYPE1 -> "Upcoming"
                     ItemsAdapter.CardType.GAME_TYPE2 -> "Best of the Year"
+                    ItemsAdapter.CardType.GAME_TYPE3 -> "Best of All Time"
                 }
-                rvItems.layoutManager = LinearLayoutManager(
+                rvItems.layoutManager = when (type) {
+                    ItemsAdapter.CardType.GAME_TYPE3 -> LinearLayoutManager(
+                        binding.root.context, VERTICAL, false
+                    )
+
+                    else -> LinearLayoutManager(
                         binding.root.context, HORIZONTAL, false
                     )
+                }
+
                 rvItems.adapter = when (type) {
                     ItemsAdapter.CardType.GENRE -> ItemsAdapter(
                         type = type,
@@ -106,6 +116,14 @@ class ExplorePageAdapter(
                             onItemClickCallback = onGameClickCallback,
                         )
                     }
+
+                    ItemsAdapter.CardType.GAME_TYPE3 -> {
+                        ItemsAdapter(
+                            type = type,
+                            items = bestOfAllTime,
+                            onItemClickCallback = onGameClickCallback,
+                        )
+                    }
                 }
             }
         }
@@ -117,6 +135,7 @@ class ExplorePageAdapter(
             1 -> ExploreSection.GENRES.ordinal
             2 -> ExploreSection.GAMES_TYPE1.ordinal
             3 -> ExploreSection.GAMES_TYPE2.ordinal
+            4 -> ExploreSection.GAMES_TYPE3.ordinal
             else -> throw IllegalStateException("Invalid ViewType")
         }
     }
@@ -160,6 +179,15 @@ class ExplorePageAdapter(
                 )
             }
 
+            ExploreSection.GAMES_TYPE3.ordinal -> {
+                ItemsSectionViewHolder(
+                    type = ItemsAdapter.CardType.GAME_TYPE3,
+                    binding = ItemSectionItemsBinding.inflate(
+                        inflater, parent, false
+                    )
+                )
+            }
+
             else -> throw IllegalStateException("Invalid ViewType")
         }
     }
@@ -170,11 +198,12 @@ class ExplorePageAdapter(
             1 -> (holder as ItemsSectionViewHolder).bind()
             2 -> (holder as ItemsSectionViewHolder).bind()
             3 -> (holder as ItemsSectionViewHolder).bind()
+            4 -> (holder as ItemsSectionViewHolder).bind()
         }
     }
 
     override fun getItemCount(): Int {
-        return 4
+        return 5
     }
 
     override fun onViewRecycled(holder: ViewHolder) {

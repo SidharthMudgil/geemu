@@ -65,6 +65,9 @@ object Constants {
     )
 
     val EMPTY_EXPLORE_DATA = ExploreData(
-        List(5) { EMPTY_GENRE }, List(5) { EMPTY_GAME }, List(5) { EMPTY_GAME },
+        List(5) { EMPTY_GENRE },
+        List(5) { EMPTY_GAME },
+        List(5) { EMPTY_GAME },
+        List(5) { EMPTY_GAME }
     )
 }

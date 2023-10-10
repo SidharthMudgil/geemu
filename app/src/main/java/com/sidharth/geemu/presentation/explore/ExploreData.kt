@@ -7,4 +7,5 @@ data class ExploreData(
     val genres: List<Genre>,
     val upcoming: List<Game>,
     val bestOfYear: List<Game>,
+    val bestOfAllTime: List<Game>,
 )

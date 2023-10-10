@@ -1,6 +1,5 @@
 package com.sidharth.geemu.domain.usecase.game
 
-import androidx.paging.PagingData
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Genre
 import kotlinx.coroutines.flow.Flow
@@ -13,7 +12,7 @@ interface GetGameUseCase {
 
     suspend fun getBestOfTheYear(): Flow<List<Game>>
 
-    suspend fun getBestOfAllTime(): Flow<PagingData<Game>>
+    suspend fun getBestOfAllTime(): Flow<List<Game>>
 
     suspend fun getGamesBySearch(query: String): Flow<List<Game>>
 

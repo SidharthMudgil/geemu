@@ -17,7 +17,6 @@ import com.sidharth.geemu.core.enums.GameFilterType
 import com.sidharth.geemu.databinding.FragmentExploreBinding
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Genre
-import com.sidharth.geemu.presentation.explore.adapter.BestOfAllTimeAdapter
 import com.sidharth.geemu.presentation.explore.adapter.ExplorePageAdapter
 import com.sidharth.geemu.presentation.explore.callback.OnGameClickCallback
 import com.sidharth.geemu.presentation.explore.callback.OnGenreClickCallback
@@ -43,6 +42,7 @@ class ExploreFragment : Fragment(),
         binding.rvExplore.layoutManager = LinearLayoutManager(
             requireContext(), VERTICAL, false
         )
+        binding.rvExplore.setItemViewCacheSize(10)
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 exploreViewModel.exploreData.collect {
@@ -53,18 +53,9 @@ class ExploreFragment : Fragment(),
                         genres = it.genres,
                         upcoming = it.upcoming,
                         bestOfYear = it.bestOfYear,
+                        bestOfAllTime = it.bestOfAllTime,
                     )
                 }
-            }
-        }
-        binding.rvBestGames.layoutManager = LinearLayoutManager(
-            requireContext(), VERTICAL, false
-        )
-        val adapter = BestOfAllTimeAdapter(this)
-        binding.rvBestGames.adapter = adapter
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                exploreViewModel.bestOfAllTime.collect { adapter.submitData(it) }
             }
         }
 

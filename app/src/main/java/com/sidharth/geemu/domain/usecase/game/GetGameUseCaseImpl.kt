@@ -1,6 +1,5 @@
 package com.sidharth.geemu.domain.usecase.game
 
-import androidx.paging.PagingData
 import com.sidharth.geemu.core.util.DateTimeUtils
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Genre
@@ -35,8 +34,14 @@ class GetGameUseCaseImpl @Inject constructor(
         )
     }
 
-    override suspend fun getBestOfAllTime(): Flow<PagingData<Game>> {
-        return gameRepository.getGamesPagingSource()
+    override suspend fun getBestOfAllTime(): Flow<List<Game>> {
+        return gameRepository.getGames(
+            page = 1,
+            pageSize = 20,
+            ordering = "-rating",
+            metacritic = "1,100",
+            excludeAdditions = true,
+        )
     }
 
     override suspend fun getGamesBySearch(query: String): Flow<List<Game>> {
