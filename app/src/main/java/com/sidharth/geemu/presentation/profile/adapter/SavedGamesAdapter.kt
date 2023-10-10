@@ -1,6 +1,8 @@
 package com.sidharth.geemu.presentation.profile.adapter
 
 import android.view.LayoutInflater
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -32,6 +34,18 @@ class SavedGamesAdapter(
                 }
                 tvName.text = game.name
                 cvGame.setOnClickListener { onGameClickCallback.onGameClick(game) }
+                cvGame.setOnLongClickListener {
+                    btnRemove.visibility = VISIBLE
+                    btnRemove.setOnClickListener {
+                        onGameClickCallback.onGameRemove(game)
+                    }
+                    true
+                }
+                cvGame.setOnFocusChangeListener { _, hasFocus ->
+                    if (hasFocus.not()) {
+                        btnRemove.visibility = GONE
+                    }
+                }
             }
         }
     }

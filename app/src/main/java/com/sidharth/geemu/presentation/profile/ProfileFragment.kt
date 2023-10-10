@@ -87,4 +87,12 @@ class ProfileFragment : Fragment(), OnGameClickCallback {
         val action = ProfileFragmentDirections.actionProfileFragmentToGameDetailsFragment(game)
         findNavController().navigate(action)
     }
+
+    override fun onGameRemove(game: Game) {
+        userDataViewModel.removeGameFromCollection(game)
+    }
+
+    override fun onGameMove(game: Game, collection: Int) {
+        userDataViewModel.moveGameToCollection(game, collection)
+    }
 }

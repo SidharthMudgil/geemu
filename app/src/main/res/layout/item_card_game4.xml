@@ -44,6 +44,23 @@
             app:layout_constraintVertical_bias="1"
             tools:text="Elden Ring: The lords of the Rings" />
 
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/btn_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/label_list_gap"
+            android:background="?attr/selectableItemBackground"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_close"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0"
+            app:tint="@color/grey100" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
