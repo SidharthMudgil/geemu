@@ -110,5 +110,5 @@
     <dialog
         android:id="@+id/modalBottomSheet"
         android:name="com.sidharth.geemu.presentation.game.ModalBottomSheet"
-        android:label="ModalBottomSheet" />
+        android:label="ModalBottomSheet" /><action android:id="@+id/action_global_profileFragment" app:destination="@id/profileFragment"/><action android:id="@+id/action_global_exploreFragment" app:destination="@id/exploreFragment"/><action android:id="@+id/action_global_followingFragment" app:destination="@id/followingFragment"/>
 </navigation>

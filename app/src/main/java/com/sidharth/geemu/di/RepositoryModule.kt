@@ -1,7 +1,7 @@
 package com.sidharth.geemu.di
 
 import com.sidharth.geemu.data.local.LocalDataSource
-import com.sidharth.geemu.data.remote.source.GamesPagingSource
+import com.sidharth.geemu.data.remote.source.GamesPagingSourceFactory
 import com.sidharth.geemu.data.remote.source.RemoteDataSource
 import com.sidharth.geemu.data.repository.GameRepositoryImpl
 import com.sidharth.geemu.data.repository.UserDataRepositoryImpl
@@ -21,11 +21,11 @@ class RepositoryModule {
     @Singleton
     fun provideGameRepository(
         remoteDataSource: RemoteDataSource,
-        gamesPagingSource: GamesPagingSource
+        gamesPagingSourceFactory: GamesPagingSourceFactory
     ): GameRepository {
         return GameRepositoryImpl(
             remoteDataSource = remoteDataSource,
-            gamesPagingSource = gamesPagingSource,
+            gamesPagingSourceFactory = gamesPagingSourceFactory,
         )
     }
 

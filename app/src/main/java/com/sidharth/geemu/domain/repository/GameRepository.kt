@@ -34,7 +34,30 @@ interface GameRepository {
         excludeGameSeries: Boolean? = null,
     ): Flow<List<Game>>
 
-    suspend fun getGamesPagingSource(): Flow<PagingData<Game>>
+    suspend fun getGamesPagingSource(
+        pageSize: Int?,
+        ordering: String?,
+        search: String?,
+        searchPrecise: Boolean?,
+        searchExact: Boolean?,
+        parentPlatforms: String?,
+        platforms: String?,
+        platformsCount: Int?,
+        creators: String?,
+        developers: String?,
+        publishers: String?,
+        genres: String?,
+        tags: String?,
+        stores: String?,
+        dates: String?,
+        updated: String?,
+        metacritic: String?,
+        excludeStores: String?,
+        excludeCollection: Int?,
+        excludeAdditions: Boolean?,
+        excludeParents: Boolean?,
+        excludeGameSeries: Boolean?
+    ): Flow<PagingData<Game>>
 
     suspend fun getGameDetails(id: Int): Flow<GameDetails>
 

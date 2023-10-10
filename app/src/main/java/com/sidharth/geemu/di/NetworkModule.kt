@@ -3,7 +3,6 @@ package com.sidharth.geemu.di
 import com.sidharth.geemu.BuildConfig
 import com.sidharth.geemu.core.constant.Constants.BASE_URL
 import com.sidharth.geemu.data.remote.service.RAWGService
-import com.sidharth.geemu.data.remote.source.GamesPagingSource
 import com.sidharth.geemu.data.remote.source.RemoteDataSource
 import dagger.Module
 import dagger.Provides
@@ -31,13 +30,13 @@ class NetworkModule {
                     .writeTimeout(120, TimeUnit.SECONDS)
                     .readTimeout(60, TimeUnit.SECONDS)
                     .addInterceptor {
-                    val url = it.request().url.newBuilder()
-                        .addQueryParameter("key", BuildConfig.API_KEY)
-                        .build()
+                        val url = it.request().url.newBuilder()
+                            .addQueryParameter("key", BuildConfig.API_KEY)
+                            .build()
 
-                    val request = it.request().newBuilder().url(url).build()
-                    it.proceed(request)
-                }.build()
+                        val request = it.request().newBuilder().url(url).build()
+                        it.proceed(request)
+                    }.build()
             ).build()
     }
 
@@ -55,13 +54,5 @@ class NetworkModule {
         rawgService: RAWGService
     ): RemoteDataSource {
         return RemoteDataSource(rawgService)
-    }
-
-    @Provides
-    @Singleton
-    fun provideGamesPagingSource(
-        remoteDataSource: RemoteDataSource
-    ): GamesPagingSource {
-        return GamesPagingSource(remoteDataSource)
     }
 }

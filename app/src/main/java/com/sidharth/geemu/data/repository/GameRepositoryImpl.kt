@@ -6,7 +6,7 @@ import com.sidharth.geemu.data.mapper.ResponseMapper
 import com.sidharth.geemu.data.mapper.ResponseMapper.toCreatorDetails
 import com.sidharth.geemu.data.mapper.ResponseMapper.toGames
 import com.sidharth.geemu.data.mapper.ResponseMapper.toGenres
-import com.sidharth.geemu.data.remote.source.GamesPagingSource
+import com.sidharth.geemu.data.remote.source.GamesPagingSourceFactory
 import com.sidharth.geemu.data.remote.source.RemoteDataSource
 import com.sidharth.geemu.domain.repository.GameRepository
 import kotlinx.coroutines.flow.flow
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class GameRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
-    private val gamesPagingSource: GamesPagingSource,
+    private val gamesPagingSourceFactory: GamesPagingSourceFactory,
 ) : GameRepository {
     override suspend fun getGames(
         page: Int?,
@@ -70,13 +70,59 @@ class GameRepositoryImpl @Inject constructor(
         )
     }
 
-    override suspend fun getGamesPagingSource() = Pager(
+    override suspend fun getGamesPagingSource(
+        pageSize: Int?,
+        ordering: String?,
+        search: String?,
+        searchPrecise: Boolean?,
+        searchExact: Boolean?,
+        parentPlatforms: String?,
+        platforms: String?,
+        platformsCount: Int?,
+        creators: String?,
+        developers: String?,
+        publishers: String?,
+        genres: String?,
+        tags: String?,
+        stores: String?,
+        dates: String?,
+        updated: String?,
+        metacritic: String?,
+        excludeStores: String?,
+        excludeCollection: Int?,
+        excludeAdditions: Boolean?,
+        excludeParents: Boolean?,
+        excludeGameSeries: Boolean?
+    ) = Pager(
         config = PagingConfig(
             pageSize = 20,
             enablePlaceholders = false
         ),
         pagingSourceFactory = {
-            gamesPagingSource
+            gamesPagingSourceFactory.create(
+                pageSize = pageSize,
+                ordering = ordering,
+                search = search,
+                searchPrecise = searchPrecise,
+                searchExact = searchExact,
+                parentPlatforms = parentPlatforms,
+                platforms = platforms,
+                platformsCount = platformsCount,
+                creators = creators,
+                developers = developers,
+                publishers = publishers,
+                genres = genres,
+                tags = tags,
+                stores = stores,
+                dates = dates,
+                updated = updated,
+                metacritic = metacritic,
+                excludeStores = excludeStores,
+                excludeCollection = excludeCollection,
+                excludeAdditions = excludeAdditions,
+                excludeParents = excludeParents,
+                excludeGameSeries = excludeGameSeries
+            )
         }
     ).flow
 
