@@ -6,6 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".presentation.following.FollowingFragment">
 
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_no_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="tv_no_following,loading"
+        app:flow_verticalStyle="packed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_no_following"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/followed_tag_will_appear_here"
+        android:textAlignment="center"
+        android:textColor="@color/grey300"
+        android:textFontWeight="700"
+        android:textSize="24sp" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/no_following"
+        app:lottie_repeatMode="restart" />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_label"
         android:layout_width="wrap_content"
@@ -15,6 +46,7 @@
         android:text="@string/following"
         android:textColor="@color/grey300"
         android:textFontWeight="600"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
@@ -27,6 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="none"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
@@ -58,6 +91,7 @@
         android:text="@string/filtered_games"
         android:textColor="@color/grey300"
         android:textFontWeight="600"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
@@ -71,6 +105,7 @@
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:padding="@dimen/white_space"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

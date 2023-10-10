@@ -3,6 +3,8 @@ package com.sidharth.geemu.presentation.following
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -39,29 +41,16 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
                 filterList("", true)
             }
         }
-
+        binding.loading.playAnimation()
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 userDataViewModel.following.collect {
-                    binding.cgFollowing.removeAllViews()
-                    it.forEach { tag ->
-                        val chip = Chip(requireContext())
-                        chip.text = tag.name
-                        chip.isCheckable = true
-                        binding.cgFollowing.addView(chip)
-                        chip.setOnClickListener {
-                            chip.isCloseIconVisible = false
-                            filterList(tag.id.toString())
-                        }
-                        chip.setOnLongClickListener {
-                            chip.isCloseIconVisible = true
-                            true
-                        }
-                        chip.setOnCloseIconClickListener {
-                            binding.cgFollowing.removeView(chip)
-                            unfollow(tag)
-                        }
+                    if (it.isNotEmpty()) {
+                        onData(binding)
+                    } else {
+                        onNoData(binding)
                     }
+                    createAddChips(it, binding)
                 }
             }
         }
@@ -80,6 +69,44 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
         }
 
         return binding.root
+    }
+
+    private fun createAddChips(tags: List<Tag>, binding: FragmentFollowingBinding) {
+        binding.cgFollowing.removeAllViews()
+        tags.forEach { tag ->
+            val chip = Chip(requireContext())
+            chip.text = tag.name
+            chip.isCheckable = true
+            binding.cgFollowing.addView(chip)
+            chip.setOnClickListener {
+                chip.isCloseIconVisible = false
+                filterList(tag.id.toString())
+            }
+            chip.setOnLongClickListener {
+                chip.isCloseIconVisible = true
+                true
+            }
+            chip.setOnCloseIconClickListener {
+                binding.cgFollowing.removeView(chip)
+                unfollow(tag)
+            }
+        }
+    }
+
+    private fun onData(binding: FragmentFollowingBinding) {
+        binding.loading.visibility = GONE
+        binding.tvNoFollowing.visibility = GONE
+        binding.tvLabel.visibility = VISIBLE
+        binding.scrollView.visibility = VISIBLE
+        binding.rvFollowing.visibility = VISIBLE
+    }
+
+    private fun onNoData(binding: FragmentFollowingBinding) {
+        binding.loading.visibility = VISIBLE
+        binding.tvNoFollowing.visibility = VISIBLE
+        binding.tvLabel.visibility = GONE
+        binding.scrollView.visibility = GONE
+        binding.rvFollowing.visibility = GONE
     }
 
     private fun filterList(id: String, fetchAll: Boolean = false) {

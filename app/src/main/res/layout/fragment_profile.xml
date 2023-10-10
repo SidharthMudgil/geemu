@@ -12,11 +12,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/empty_collection"
+            app:lottie_repeatMode="restart" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_collections"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,6 +47,7 @@
             android:textColor="@color/grey300"
             android:textFontWeight="600"
             android:textSize="16sp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
@@ -47,6 +62,7 @@
             android:layout_marginStart="@dimen/white_space"
             android:layout_marginTop="@dimen/label_list_gap"
             android:layout_marginEnd="@dimen/white_space"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
@@ -64,6 +80,7 @@
             android:textColor="@color/grey300"
             android:textFontWeight="600"
             android:textSize="16sp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
@@ -78,13 +95,13 @@
             android:layout_marginStart="@dimen/white_space"
             android:layout_marginTop="@dimen/label_list_gap"
             android:layout_marginEnd="@dimen/white_space"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_collection_overview"
             app:layout_constraintVertical_bias="0" />
-
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_popular_tags"
@@ -96,6 +113,7 @@
             android:textColor="@color/grey300"
             android:textFontWeight="600"
             android:textSize="16sp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
@@ -111,6 +129,7 @@
             android:layout_marginTop="@dimen/label_list_gap"
             android:layout_marginEnd="@dimen/white_space"
             android:layout_marginBottom="@dimen/white_space"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"

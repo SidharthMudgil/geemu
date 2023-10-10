@@ -24,4 +24,5 @@
     <string name="not_playing">Not Playing</string>
     <string name="playing">Playing</string>
     <string name="best_of_all_time">Best of All Time</string>
+    <string name="followed_tag_will_appear_here">Followed Tag will appear here</string>
 </resources>
