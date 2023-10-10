@@ -92,10 +92,7 @@ dependencies {
     implementation("androidx.paging:paging-runtime-ktx:3.2.1")
 
     // video - Media3
-    val media3Version = "1.1.1"
-    implementation("androidx.media3:media3-exoplayer:$media3Version")
-    implementation("androidx.media3:media3-exoplayer-dash:$media3Version")
-    implementation("androidx.media3:media3-ui:$media3Version")
+    implementation("com.devbrackets.android:exomedia:5.0.0")
 
     // ui
     implementation("androidx.core:core-splashscreen:1.0.1") // splash screen

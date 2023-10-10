@@ -5,5 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".presentation.video.VideoFragment">
 
+    <com.devbrackets.android.exomedia.ui.widget.VideoView
+        android:id="@+id/video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
