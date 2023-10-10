@@ -5,15 +5,15 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".GeemuApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/geemu"
-        android:name=".GeemuApp"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.geemu"
+        android:theme="@style/Theme.Starting"
         tools:targetApi="31">
         <activity
             android:name=".presentation.MainActivity"

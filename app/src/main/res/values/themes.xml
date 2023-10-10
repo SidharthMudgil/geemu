@@ -11,6 +11,14 @@
 
     <style name="Theme.geemu" parent="Base.Theme.geemu" />
 
+    <style name="Theme.Starting" parent="Theme.SplashScreen">
+        <item name="android:statusBarColor">@color/grey900</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/ic_launcher_background</item>
+        <item name="windowSplashScreenBackground">@color/grey900</item>
+        <item name="postSplashScreenTheme">@style/Theme.geemu</item>
+    </style>
+
     <style name="ThemeOverlay.App.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/Widget.App.BottomSheet</item>
     </style>
