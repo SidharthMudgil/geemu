@@ -28,32 +28,47 @@ import kotlinx.coroutines.launch
 class FollowingFragment : Fragment(), OnGameClickCallback {
 
     private val userDataViewModel: UserDataViewModel by activityViewModels()
+    private lateinit var binding: FragmentFollowingBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentFollowingBinding.inflate(inflater)
+        binding = FragmentFollowingBinding.inflate(inflater)
 
+        setupFollowingChips()
+        observeFollowingData()
+        setupFollowingRecyclerView()
+        binding.loading.playAnimation()
+
+        return binding.root
+    }
+
+    private fun setupFollowingChips() {
         binding.cgFollowing.setOnCheckedStateChangeListener { _, checkedIds ->
             if (checkedIds.isEmpty()) {
                 filterList("", true)
             }
         }
-        binding.loading.playAnimation()
+    }
+
+    private fun observeFollowingData() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 userDataViewModel.following.collect {
                     if (it.isNotEmpty()) {
-                        onData(binding)
+                        onData()
                     } else {
-                        onNoData(binding)
+                        onNoData()
                     }
-                    createAddChips(it, binding)
+                    createAddChips(it)
                 }
             }
         }
+    }
+
+    private fun setupFollowingRecyclerView() {
         binding.rvFollowing.layoutManager = LinearLayoutManager(
             requireContext(), VERTICAL, false
         )
@@ -67,33 +82,35 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
                 }
             }
         }
-
-        return binding.root
     }
 
-    private fun createAddChips(tags: List<Tag>, binding: FragmentFollowingBinding) {
+    private fun createAddChips(tags: List<Tag>) {
         binding.cgFollowing.removeAllViews()
         tags.forEach { tag ->
             val chip = Chip(requireContext())
             chip.text = tag.name
             chip.isCheckable = true
             binding.cgFollowing.addView(chip)
-            chip.setOnClickListener {
-                chip.isCloseIconVisible = false
-                filterList(tag.id.toString())
-            }
-            chip.setOnLongClickListener {
-                chip.isCloseIconVisible = true
-                true
-            }
-            chip.setOnCloseIconClickListener {
-                binding.cgFollowing.removeView(chip)
-                unfollow(tag)
-            }
+            setupChipClickListeners(chip, tag)
         }
     }
 
-    private fun onData(binding: FragmentFollowingBinding) {
+    private fun setupChipClickListeners(chip: Chip, tag: Tag) {
+        chip.setOnClickListener {
+            chip.isCloseIconVisible = false
+            filterList(tag.id.toString())
+        }
+        chip.setOnLongClickListener {
+            chip.isCloseIconVisible = true
+            true
+        }
+        chip.setOnCloseIconClickListener {
+            binding.cgFollowing.removeView(chip)
+            unfollow(tag)
+        }
+    }
+
+    private fun onData() {
         binding.loading.visibility = GONE
         binding.tvNoFollowing.visibility = GONE
         binding.tvLabel.visibility = VISIBLE
@@ -101,7 +118,7 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
         binding.rvFollowing.visibility = VISIBLE
     }
 
-    private fun onNoData(binding: FragmentFollowingBinding) {
+    private fun onNoData() {
         binding.loading.visibility = VISIBLE
         binding.tvNoFollowing.visibility = VISIBLE
         binding.tvLabel.visibility = GONE
