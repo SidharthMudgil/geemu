@@ -101,5 +101,5 @@ dependencies {
     implementation("androidx.core:core-splashscreen:1.0.1") // splash screen
     implementation("com.github.AAChartModel:AAChartCore-Kotlin:7.2.1") // chart
     implementation("com.github.stfalcon-studio:StfalconImageViewer:v1.0.1") // pinch to zoom
-
+    implementation("com.airbnb.android:lottie:6.1.0") // lottie
 }
