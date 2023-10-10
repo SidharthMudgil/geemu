@@ -8,10 +8,10 @@
 
     <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/flow_no_data"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:constraint_referenced_ids="tv_no_following,loading"
+        app:constraint_referenced_ids="loading,tv_no_following"
         app:flow_verticalStyle="packed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,11 +22,10 @@
         android:id="@+id/tv_no_following"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/followed_tag_will_appear_here"
+        android:text="@string/no_following"
         android:textAlignment="center"
         android:textColor="@color/grey300"
-        android:textFontWeight="700"
-        android:textSize="24sp" />
+        android:textFontWeight="700" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/loading"
