@@ -15,7 +15,7 @@ object Constants {
         "https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700200186.jpg"
 
     val EMPTY_GAME_DETAILS = GameDetails(
-        id = 0,
+        id = -1,
         name = "",
         image = "",
         background = "",
@@ -37,7 +37,7 @@ object Constants {
     )
 
     val EMPTY_CREATOR_DETAILS = CreatorDetails(
-        id = 0,
+        id = -1,
         name = "",
         image = "",
         background = "",

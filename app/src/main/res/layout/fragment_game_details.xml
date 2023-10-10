@@ -6,12 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".presentation.game.GameDetailsFragment">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/bird_waiting"
+        app:lottie_repeatMode="restart" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_game_details"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:nestedScrollingEnabled="false"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/white_space"
         android:orientation="horizontal"
+        android:visibility="gone"
         app:cardBackgroundColor="@color/grey900"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:cardElevation="1dp"

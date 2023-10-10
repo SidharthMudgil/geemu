@@ -3,6 +3,8 @@ package com.sidharth.geemu.presentation.game
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
@@ -17,6 +19,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.sidharth.geemu.R
+import com.sidharth.geemu.core.constant.Constants
 import com.sidharth.geemu.core.enums.GameFilterType
 import com.sidharth.geemu.databinding.FragmentGameDetailsBinding
 import com.sidharth.geemu.domain.model.Creator
@@ -50,9 +53,15 @@ class GameDetailsFragment
         binding.rvGameDetails.layoutManager = LinearLayoutManager(
             requireContext(), VERTICAL, false
         )
+        binding.loading.playAnimation()
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 gameDetailsViewModel.gameDetails.collect {
+                    if (it != Constants.EMPTY_GAME_DETAILS){
+                        binding.loading.visibility = GONE
+                        binding.rvGameDetails.visibility = VISIBLE
+                        binding.cvAction.visibility = VISIBLE
+                    }
                     binding.rvGameDetails.adapter = GameDetailsAdapter(
                         gameDetails = it,
                         onMediaClickCallback = this@GameDetailsFragment,
