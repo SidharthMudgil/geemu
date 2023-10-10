@@ -2,6 +2,7 @@ package com.sidharth.geemu.presentation.games.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
@@ -21,6 +22,10 @@ class GamesAdapter(
     ) : ViewHolder(binding.root) {
         fun bind(game: Game) {
             binding.apply {
+                if (game.id == -1) {
+                    flowData.visibility = RecyclerView.GONE
+                }
+
                 when {
                     game.image.isBlank() -> {
                         ivGame.load(Constants.BACKGROUND_IMAGE) {

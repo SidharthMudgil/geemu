@@ -42,7 +42,6 @@ class ExploreFragment : Fragment(),
         binding.rvExplore.layoutManager = LinearLayoutManager(
             requireContext(), VERTICAL, false
         )
-        binding.rvExplore.setItemViewCacheSize(10)
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 exploreViewModel.exploreData.collect {

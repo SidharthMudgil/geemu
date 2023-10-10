@@ -2,6 +2,7 @@ package com.sidharth.geemu.presentation.games.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.sidharth.geemu.core.constant.Constants
 import com.sidharth.geemu.core.enums.GameFilterType
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.usecase.game.GetGameUseCase
@@ -16,7 +17,7 @@ class GamesViewModel @Inject constructor(
     private val getGameUseCase: GetGameUseCase,
 ) : ViewModel() {
 
-    private val _games = MutableStateFlow<List<Game>>(emptyList())
+    private val _games = MutableStateFlow(List(10) { Constants.EMPTY_GAME })
     val games: StateFlow<List<Game>> get() = _games
 
     fun fetchGames(query: String, filter: GameFilterType) = viewModelScope.launch {
