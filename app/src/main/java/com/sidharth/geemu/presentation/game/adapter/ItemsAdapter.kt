@@ -11,7 +11,7 @@ import com.sidharth.geemu.core.constant.Constants
 import com.sidharth.geemu.core.enums.GameFilterType
 import com.sidharth.geemu.core.util.BlurTransformation
 import com.sidharth.geemu.databinding.ItemCardCreatorBinding
-import com.sidharth.geemu.databinding.ItemCardGame2Binding
+import com.sidharth.geemu.databinding.ItemCardGame4Binding
 import com.sidharth.geemu.databinding.ItemCardLabelImageBinding
 import com.sidharth.geemu.databinding.ItemCardScreenshotBinding
 import com.sidharth.geemu.domain.model.Creator
@@ -83,7 +83,7 @@ class ItemsAdapter(
     }
 
     inner class AdditionViewHolder(
-        private val binding: ItemCardGame2Binding
+        private val binding: ItemCardGame4Binding
     ) : ViewHolder(binding.root) {
         fun bind(item: Any) {
             binding.apply {
@@ -97,9 +97,6 @@ class ItemsAdapter(
                     else -> ivCover.load(item.image)
                 }
                 tvName.text = item.name
-                tvRatings.text = item.rating
-                tvGenres.text = item.genres
-                tvReleaseDate.text = item.release
             }
         }
     }
@@ -153,7 +150,7 @@ class ItemsAdapter(
             }
 
             CardType.ADDITION -> AdditionViewHolder(
-                ItemCardGame2Binding.inflate(
+                ItemCardGame4Binding.inflate(
                     inflater, parent, false
                 )
             )

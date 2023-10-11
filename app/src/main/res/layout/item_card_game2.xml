@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_game"
-    android:layout_width="220dp"
-    android:layout_height="270dp"
+    android:layout_width="150dp"
+    android:layout_height="200dp"
     android:layout_marginEnd="@dimen/item_space"
-    app:cardBackgroundColor="@color/grey900"
+    app:cardBackgroundColor="@color/transparent"
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:strokeWidth="0dp">
 
@@ -18,143 +18,52 @@
             android:id="@+id/iv_cover"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="@dimen/label_list_gap"
             android:background="@color/grey700"
             android:scaleType="centerCrop"
-            app:layout_constraintBottom_toTopOf="@+id/tv_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:ellipsize="marquee"
-            android:includeFontPadding="false"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:maxLines="1"
-            android:textColor="@color/grey300"
-            android:textFontWeight="700"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/flow_genres"
+            app:layout_constraintBottom_toTopOf="@+id/flow_game"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1"
-            tools:text="Elden Ring: The lords of the Rings" />
+            app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
         <androidx.constraintlayout.helper.widget.Flow
-            android:id="@+id/flow_genres"
+            android:id="@+id/flow_game"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal"
-            app:constraint_referenced_ids="tv_genres_label,tv_genres"
-            app:flow_horizontalStyle="spread_inside"
-            app:flow_verticalAlign="center"
-            app:layout_constraintBottom_toTopOf="@+id/flow_release_Date"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_genres_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:includeFontPadding="false"
-            android:text="@string/genres"
-            android:textColor="@color/grey300"
-            android:textSize="11sp" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_genres"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:includeFontPadding="false"
-            android:maxLength="20"
-            android:maxLines="1"
-            android:textColor="@color/grey300"
-            android:textFontWeight="600"
-            android:textSize="12sp"
-            tools:text="Action, Adventure" />
-
-        <androidx.constraintlayout.helper.widget.Flow
-            android:id="@+id/flow_release_rating"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/grey700"
+            android:layout_margin="@dimen/label_list_gap"
             android:orientation="vertical"
-            android:padding="10dp"
-            app:constraint_referenced_ids="flow_release_Date,flow_ratings"
+            app:constraint_referenced_ids="tv_name,rb_rating"
             app:flow_horizontalAlign="center"
-            app:flow_verticalGap="10dp"
-            app:flow_verticalStyle="packed"
+            app:flow_verticalGap="@dimen/label_list_gap"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1" />
 
-        <androidx.constraintlayout.helper.widget.Flow
-            android:id="@+id/flow_release_Date"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:constraint_referenced_ids="tv_release_label,tv_release_date"
-            app:flow_horizontalStyle="spread_inside"
-            app:flow_verticalAlign="center" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_release_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
             android:includeFontPadding="false"
-            android:text="@string/release"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            android:textAlignment="center"
             android:textColor="@color/grey300"
-            android:textSize="11sp" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_release_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:includeFontPadding="false"
-            android:textColor="@color/grey300"
-            android:textFontWeight="600"
             android:textSize="12sp"
-            tools:text="2022-02-45" />
+            tools:text="Elden Ring: The lords of the Rings" />
 
-        <androidx.constraintlayout.helper.widget.Flow
-            android:id="@+id/flow_ratings"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:constraint_referenced_ids="tv_rating_label,tv_ratings"
-            app:flow_horizontalStyle="spread_inside"
-            app:flow_verticalAlign="center" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_rating_label"
+        <RatingBar
+            android:id="@+id/rb_rating"
+            style="@style/Widget.AppCompat.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:includeFontPadding="false"
-            android:text="@string/rating"
-            android:textColor="@color/grey300"
-            android:textSize="11sp" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_ratings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:includeFontPadding="false"
-            android:textColor="@color/grey300"
-            android:textFontWeight="600"
-            android:textSize="12sp"
-            tools:text="4.41 / 5" />
+            android:numStars="5"
+            android:progressTint="#FFD700"
+            android:stepSize="0.1"
+            tools:rating="2.4" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

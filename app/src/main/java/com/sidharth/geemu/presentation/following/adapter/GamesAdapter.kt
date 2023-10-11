@@ -1,5 +1,6 @@
 package com.sidharth.geemu.presentation.following.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
@@ -19,6 +20,7 @@ class GamesAdapter(
     inner class GameViewHolder(
         private val binding: ItemCardGame3Binding
     ) : ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(game: Game) {
             binding.apply {
                 when {
@@ -31,7 +33,7 @@ class GamesAdapter(
                     else -> ivGame.load(game.image)
                 }
                 tvGame.text = game.name
-                tvRatings.text = game.rating
+                tvRatings.text = "${game.rating} / 5"
                 tvGenres.text = game.genres
                 cvGame.setOnClickListener { onGameClickCallback.onGameClick(game) }
             }

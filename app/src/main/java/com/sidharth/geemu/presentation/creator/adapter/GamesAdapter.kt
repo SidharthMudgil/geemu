@@ -31,9 +31,7 @@ class GamesAdapter(
                     else -> ivCover.load(game.image)
                 }
                 tvName.text = game.name
-                tvRatings.text = game.rating
-                tvGenres.text = game.genres
-                tvReleaseDate.text = game.release
+                rbRating.rating = game.rating.toFloat()
                 cvGame.setOnClickListener { onGameClickCallback.onGameClick(game) }
             }
         }

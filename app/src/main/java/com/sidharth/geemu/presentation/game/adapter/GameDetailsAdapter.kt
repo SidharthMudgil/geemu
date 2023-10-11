@@ -54,7 +54,6 @@ class GameDetailsAdapter(
                 }
                 ivBackground.load(gameDetails.background)
                 tvName.text = gameDetails.name
-                tvName.isSelected = true
                 tvGenres.text = gameDetails.genres.joinToString(", ") { it.name }
                 tvRelease.text = if (gameDetails.release.isNotBlank())
                     gameDetails.release.toPrettyFormat()

@@ -37,7 +37,7 @@ class ItemsAdapter(
                 ivGenre.load(genre.image)
                 tvGenre.text = genre.name
                 cvGenre.setOnClickListener {
-                    if (genre.id!=-1) {
+                    if (genre.id != -1) {
                         (onItemClickCallback as OnGenreClickCallback).onGenreClick(genre)
                     }
                 }
@@ -76,8 +76,7 @@ class ItemsAdapter(
         fun bind(game: Game) {
             binding.apply {
                 if (game.id == -1) {
-                    flowGenres.visibility = GONE
-                    flowReleaseRating.visibility = GONE
+                    flowGame.visibility = GONE
                 }
 
                 when {
@@ -90,10 +89,7 @@ class ItemsAdapter(
                     else -> ivCover.load(game.image)
                 }
                 tvName.text = game.name
-                tvRatings.text = game.rating
-                tvGenres.text = game.genres
-                tvName.isSelected = true
-                tvReleaseDate.text = game.release
+                rbRating.rating = game.rating.toFloat()
                 cvGame.setOnClickListener {
                     if (game.id != -1) {
                         (onItemClickCallback as OnGameClickCallback).onGameClick(game)
@@ -106,6 +102,7 @@ class ItemsAdapter(
     inner class GameCard3ViewHolder(
         private val binding: ItemCardGame3Binding
     ) : ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(game: Game) {
             binding.apply {
                 if (game.id == -1) {
@@ -124,7 +121,7 @@ class ItemsAdapter(
                 tvGame.text = game.name
                 tvGame.isSelected = true
                 tvGenres.text = game.genres
-                tvRatings.text = game.rating
+                tvRatings.text = "${game.rating} / 5"
                 cvGame.setOnClickListener {
                     if (game.id != -1) {
                         (onItemClickCallback as OnGameClickCallback).onGameClick(game)

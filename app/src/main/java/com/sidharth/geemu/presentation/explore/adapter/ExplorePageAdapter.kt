@@ -108,10 +108,6 @@ class ExplorePageAdapter(
                     }
 
                     ItemsAdapter.CardType.GAME_TYPE2 -> {
-                        if (rvItems.onFlingListener == null) {
-                            LinearSnapHelper().attachToRecyclerView(rvItems)
-                        }
-
                         ItemsAdapter(
                             type = type,
                             items = bestOfYear,
