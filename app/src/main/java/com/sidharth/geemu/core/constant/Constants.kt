@@ -61,7 +61,7 @@ object Constants {
         image = "NIL",
         genres = "",
         release = "",
-        rating = ""
+        rating = 0.0
     )
 
     val EMPTY_EXPLORE_DATA = ExploreData(

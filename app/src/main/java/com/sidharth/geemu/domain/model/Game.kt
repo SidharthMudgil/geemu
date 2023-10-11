@@ -10,5 +10,5 @@ data class Game(
     val image: String,
     val genres: String,
     val release: String,
-    val rating: String,
+    val rating: Double,
 ) : Parcelable

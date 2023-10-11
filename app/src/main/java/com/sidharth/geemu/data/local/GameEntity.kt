@@ -12,6 +12,6 @@ data class GameEntity(
     @ColumnInfo("image") val image: String,
     @ColumnInfo("genres") val genres: String,
     @ColumnInfo("release") val release: String,
-    @ColumnInfo("rating") val rating: String,
+    @ColumnInfo("rating") val rating: Double,
     @ColumnInfo("collection") val collection: Int,
 )
