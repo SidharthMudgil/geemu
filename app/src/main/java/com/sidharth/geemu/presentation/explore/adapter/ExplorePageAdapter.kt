@@ -1,5 +1,6 @@
 package com.sidharth.geemu.presentation.explore.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
@@ -70,13 +71,66 @@ class ExplorePageAdapter(
         private val type: ItemsAdapter.CardType,
         private val binding: ItemSectionItemsBinding
     ) : ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind() {
             binding.apply {
-                tvLabel.text = when (type) {
-                    ItemsAdapter.CardType.GENRE -> "Genres"
-                    ItemsAdapter.CardType.GAME_TYPE1 -> "Upcoming"
-                    ItemsAdapter.CardType.GAME_TYPE2 -> "Best of the Year"
-                    ItemsAdapter.CardType.GAME_TYPE3 -> "Best of All Time"
+                when (type) {
+                    ItemsAdapter.CardType.GENRE -> {
+                        tvLabel.text = "Genres"
+                        rvItems.adapter = ItemsAdapter(
+                            type = type,
+                            items = genres,
+                            onItemClickCallback = onGenreClickCallback
+                        )
+                    }
+
+                    ItemsAdapter.CardType.GAME_TYPE1 -> {
+                        tvLabel.text = "Upcoming"
+
+                        if (rvItems.onFlingListener == null) {
+                            LinearSnapHelper().attachToRecyclerView(rvItems)
+                        }
+                        rvItems.adapter = ItemsAdapter(
+                            type = type,
+                            items = upcoming,
+                            onItemClickCallback = onGameClickCallback,
+                        )
+                    }
+
+                    ItemsAdapter.CardType.GAME_TYPE2 -> {
+                        tvLabel.text = "Best of the Year"
+
+                        rvItems.adapter =  ItemsAdapter(
+                            type = type,
+                            items = bestOfYear,
+                            onItemClickCallback = onGameClickCallback,
+                        )
+                    }
+
+                    ItemsAdapter.CardType.GAME_TYPE3 -> {
+                        tvLabel.text = "Best of All Time"
+
+                        MaterialDividerItemDecoration(
+                            binding.root.context,
+                            LinearLayoutManager.VERTICAL
+                        ).apply {
+                            isLastItemDecorated = false
+                            dividerColor = binding.root.context.getColor(R.color.grey700)
+                            dividerInsetStart =
+                                binding.root.context.resources.getDimension(R.dimen.white_space)
+                                    .toInt()
+                            dividerInsetEnd =
+                                binding.root.context.resources.getDimension(R.dimen.white_space)
+                                    .toInt()
+                            binding.rvItems.addItemDecoration(this)
+                        }
+                        rvItems.adapter =   ItemsAdapter(
+                            type = type,
+                            items = bestOfAllTime,
+                            onItemClickCallback = onGameClickCallback,
+                        )
+
+                    }
                 }
                 rvItems.layoutManager = when (type) {
                     ItemsAdapter.CardType.GAME_TYPE3 -> LinearLayoutManager(
@@ -86,49 +140,6 @@ class ExplorePageAdapter(
                     else -> LinearLayoutManager(
                         binding.root.context, HORIZONTAL, false
                     )
-                }
-
-                rvItems.adapter = when (type) {
-                    ItemsAdapter.CardType.GENRE -> ItemsAdapter(
-                        type = type,
-                        items = genres,
-                        onItemClickCallback = onGenreClickCallback
-                    )
-
-                    ItemsAdapter.CardType.GAME_TYPE1 -> {
-                        if (rvItems.onFlingListener == null) {
-                            LinearSnapHelper().attachToRecyclerView(rvItems)
-                        }
-
-                        ItemsAdapter(
-                            type = type,
-                            items = upcoming,
-                            onItemClickCallback = onGameClickCallback,
-                        )
-                    }
-
-                    ItemsAdapter.CardType.GAME_TYPE2 -> {
-                        ItemsAdapter(
-                            type = type,
-                            items = bestOfYear,
-                            onItemClickCallback = onGameClickCallback,
-                        )
-                    }
-
-                    ItemsAdapter.CardType.GAME_TYPE3 -> {
-                        MaterialDividerItemDecoration(binding.root.context, LinearLayoutManager.VERTICAL).apply {
-                            isLastItemDecorated = false
-                            dividerColor = binding.root.context.getColor(R.color.grey700)
-                            dividerInsetStart = binding.root.context.resources.getDimension(R.dimen.white_space).toInt()
-                            dividerInsetEnd = binding.root.context.resources.getDimension(R.dimen.white_space).toInt()
-                            binding.rvItems.addItemDecoration(this)
-                        }
-                        ItemsAdapter(
-                            type = type,
-                            items = bestOfAllTime,
-                            onItemClickCallback = onGameClickCallback,
-                        )
-                    }
                 }
             }
         }

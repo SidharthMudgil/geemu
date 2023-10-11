@@ -13,7 +13,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import coil.load
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
@@ -91,9 +90,7 @@ class CreatorDetailsFragment : Fragment(), OnGameClickCallback {
                     binding.rvItems.layoutManager = LinearLayoutManager(
                         binding.root.context, HORIZONTAL, false
                     )
-                    if (binding.rvItems.onFlingListener == null) {
-                        LinearSnapHelper().attachToRecyclerView(binding.rvItems)
-                    }
+
                     binding.rvItems.adapter = GamesAdapter(
                         games = it,
                         onGameClickCallback = this@CreatorDetailsFragment

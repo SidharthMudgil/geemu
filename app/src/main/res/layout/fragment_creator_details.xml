@@ -266,6 +266,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/label_list_gap"
             android:layout_marginBottom="@dimen/white_space"
+            android:clipToPadding="false"
             android:orientation="horizontal"
             android:paddingStart="@dimen/white_space"
             android:paddingEnd="@dimen/white_space"

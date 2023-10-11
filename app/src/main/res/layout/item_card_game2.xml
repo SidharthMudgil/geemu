@@ -57,11 +57,13 @@
 
         <RatingBar
             android:id="@+id/rb_rating"
-            style="@style/Widget.AppCompat.RatingBar.Small"
+            style="@android:style/Widget.DeviceDefault.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:numStars="5"
             android:progressTint="#FFD700"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
             android:stepSize="0.1"
             tools:rating="2.4" />
 
