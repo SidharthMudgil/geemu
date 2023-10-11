@@ -1,5 +1,6 @@
 package com.sidharth.geemu.presentation.game.adapter
 
+import android.annotation.SuppressLint
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.View.GONE
@@ -45,6 +46,7 @@ class GameDetailsAdapter(
     inner class GameInfo1ViewHolder(
         private val binding: ItemSectionGameInfo1Binding
     ) : ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind() {
             binding.apply {
                 ivImage.load(gameDetails.image)
@@ -52,7 +54,6 @@ class GameDetailsAdapter(
                 if (gameDetails.esrbRating.isBlank()) {
                     cvEsrb.visibility = GONE
                 }
-                ivBackground.load(gameDetails.background)
                 tvName.text = gameDetails.name
                 tvGenres.text = gameDetails.genres.joinToString(", ") { it.name }
                 tvRelease.text = if (gameDetails.release.isNotBlank())
@@ -60,7 +61,7 @@ class GameDetailsAdapter(
                 else gameDetails.release
                 tvDescription.text =
                     Html.fromHtml(gameDetails.description, Html.FROM_HTML_MODE_LEGACY)
-                rbRating.rating = gameDetails.rating.toFloat()
+                tvRatings.text = "(${gameDetails.rating})"
                 gameDetails.platforms.forEach {
                     val chip = Chip(root.context)
                     chip.text = it.name

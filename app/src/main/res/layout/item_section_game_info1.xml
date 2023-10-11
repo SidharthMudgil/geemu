@@ -6,32 +6,35 @@
     android:layout_height="wrap_content">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_background"
+        android:id="@+id/iv_image"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:layout_margin="@dimen/white_space"
         android:background="@color/grey700"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintVertical_bias="0"
+        app:shapeAppearanceOverlay="@style/RoundedLargeImageView" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cv_esrb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/white_space"
+        android:layout_margin="@dimen/section_margin"
         app:cardBackgroundColor="#34000000"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:contentPadding="@dimen/label_list_gap"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_background"
-        app:layout_constraintEnd_toEndOf="@+id/iv_background"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_image"
+        app:layout_constraintEnd_toEndOf="@+id/iv_image"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="@+id/iv_background"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/iv_image"
+        app:layout_constraintTop_toTopOf="@id/iv_image"
         app:layout_constraintVertical_bias="0"
-        app:strokeColor="@color/white"
+        app:strokeColor="@color/grey900"
         app:strokeWidth="1dp">
 
         <com.google.android.material.textview.MaterialTextView
@@ -42,43 +45,165 @@
             android:includeFontPadding="false"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
-            android:textColor="@color/white"
+            android:textColor="@color/grey100"
             android:textFontWeight="700"
             android:textSize="11sp"
             tools:text="mature" />
 
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_image"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_name"
         android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/white_space"
-        android:layout_marginTop="250dp"
-        android:layout_marginEnd="@dimen/white_space"
-        android:background="@color/grey700"
-        android:scaleType="centerCrop"
+        android:layout_marginTop="@dimen/section_margin"
+        android:includeFontPadding="false"
+        android:maxLines="2"
+        android:textColor="@color/grey300"
+        android:textFontWeight="800"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="3:4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/iv_background"
+        app:layout_constraintTop_toBottomOf="@+id/iv_image"
         app:layout_constraintVertical_bias="0"
-        app:shapeAppearanceOverlay="@style/RoundedImageView" />
+        app:layout_constraintWidth_percent=".8"
+        tools:text="Prince of Persia the Sands of Storm II asd das" />
 
-    <HorizontalScrollView
-        android:id="@+id/sv1"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_ratings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/white_space"
+        android:drawableStart="@drawable/ic_star"
+        android:gravity="center"
+        android:textColor="@color/grey300"
+        app:drawableTint="@color/golden"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@+id/tv_name"
+        app:layout_constraintTop_toTopOf="@+id/tv_name"
+        app:layout_constraintVertical_bias="0"
+        tools:text="(4.5)" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_release"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/white_space"
+        android:layout_marginTop="@dimen/label_list_gap"
+        android:layout_marginEnd="@dimen/white_space"
+        android:drawableStart="@drawable/ic_release"
+        android:drawablePadding="@dimen/label_list_gap"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:maxLines="2"
+        android:textColor="@color/grey300"
+        android:textSize="13sp"
+        app:drawableTint="@color/grey300"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_genres"
+        app:layout_constraintVertical_bias="0"
+        tools:text="Sunday, 23 June 2015" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_genres"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/white_space"
+        android:layout_marginTop="@dimen/label_list_gap"
+        android:drawableStart="@drawable/ic_genre"
+        android:drawablePadding="@dimen/label_list_gap"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:textColor="@color/grey300"
+        android:textSize="13sp"
+        app:drawableTint="@color/grey300"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name"
+        app:layout_constraintVertical_bias="0"
+        tools:text="Action, Adventure, RPG, Kartoos" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_description_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/white_space"
+        android:layout_marginTop="@dimen/section_margin"
+        android:layout_marginEnd="@dimen/white_space"
+        android:includeFontPadding="false"
+        android:text="@string/game_description"
+        android:textColor="@color/grey300"
+        android:textFontWeight="700"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_release"
+        app:layout_constraintVertical_bias="0" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_background"
-        app:layout_constraintEnd_toEndOf="@id/iv_background"
+        android:layout_marginStart="@dimen/white_space"
+        android:layout_marginTop="@dimen/label_list_gap"
+        android:layout_marginEnd="@dimen/white_space"
+        android:includeFontPadding="false"
+        android:textColor="@color/grey300"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toEndOf="@+id/iv_image"
-        app:layout_constraintTop_toTopOf="@id/iv_image">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_description_label"
+        app:layout_constraintVertical_bias="0"
+        tools:text="my name is sidharth mudgil and  ad a sda ssthis is the custom game " />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_platforms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/white_space"
+        android:layout_marginTop="@dimen/section_margin"
+        android:layout_marginEnd="@dimen/white_space"
+        android:includeFontPadding="false"
+        android:text="@string/available_on_platforms"
+        android:textColor="@color/grey300"
+        android:textFontWeight="700"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_description"
+        app:layout_constraintVertical_bias="0" />
+
+    <HorizontalScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/label_list_gap"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_platforms"
+        app:layout_constraintVertical_bias="0">
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/cg_platforms"
@@ -87,82 +212,5 @@
             app:singleLine="true" />
 
     </HorizontalScrollView>
-
-    <androidx.constraintlayout.helper.widget.Flow
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/item_space"
-        android:orientation="vertical"
-        app:constraint_referenced_ids="tv_name,tv_release,tv_genres,rb_rating"
-        app:flow_horizontalAlign="start"
-        app:flow_verticalStyle="spread"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_image"
-        app:layout_constraintTop_toBottomOf="@+id/iv_background" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/label_list_gap"
-        android:ellipsize="marquee"
-        android:includeFontPadding="false"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:maxLines="1"
-        android:textColor="@color/grey300"
-        android:textFontWeight="600"
-        android:textSize="16sp"
-        tools:text="Prince of Persia the Sands of Storm II asd das" />
-
-    <RatingBar
-        android:id="@+id/rb_rating"
-        style="@style/Widget.AppCompat.RatingBar.Small"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:numStars="5"
-        android:progressTint="@color/grey100"
-        android:stepSize="0.1" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_release"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/label_list_gap"
-        android:ellipsize="end"
-        android:includeFontPadding="false"
-        android:maxLines="2"
-        android:textColor="@color/grey300"
-        android:textSize="13sp"
-        tools:text="Sunday, 23 June 2015" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_genres"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/label_list_gap"
-        android:ellipsize="end"
-        android:includeFontPadding="false"
-        android:maxLines="2"
-        android:textColor="@color/grey300"
-        android:textSize="13sp"
-        tools:text="Action, Adventure, RPG, Kartoos" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/white_space"
-        android:layout_marginTop="@dimen/section_margin"
-        android:layout_marginEnd="@dimen/white_space"
-        android:textColor="@color/grey300"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_image"
-        app:layout_constraintVertical_bias="0"
-        tools:text="my name is sidharth mudgil and  ad a sda ssthis is the custom game " />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

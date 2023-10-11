@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="card_corner_radius">8dp</dimen>
+    <dimen name="card_corner_radius_large">30dp</dimen>
     <dimen name="white_space">8dp</dimen>
     <dimen name="item_space">10dp</dimen>
     <dimen name="section_margin">15dp</dimen>

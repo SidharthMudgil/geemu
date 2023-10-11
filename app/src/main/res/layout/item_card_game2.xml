@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:numStars="5"
-            android:progressTint="#FFD700"
+            android:progressTint="@color/golden"
             android:scaleX="0.8"
             android:scaleY="0.8"
             android:stepSize="0.1"
