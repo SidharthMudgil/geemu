@@ -2,8 +2,8 @@
 
     <style name="Base.Theme.geemu" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="fontFamily">@font/inter</item>
-        <item name="android:windowBackground">@color/grey900</item>
-        <item name="android:statusBarColor">@color/grey900</item>
+        <item name="android:windowBackground">@color/grey800</item>
+        <item name="android:statusBarColor">@color/grey800</item>
         <item name="chipStyle">@style/Widget.App.Chip</item>
         <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
@@ -12,10 +12,10 @@
     <style name="Theme.geemu" parent="Base.Theme.geemu" />
 
     <style name="Theme.Starting" parent="Theme.SplashScreen">
-        <item name="android:statusBarColor">@color/grey900</item>
+        <item name="android:statusBarColor">@color/grey800</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher</item>
         <item name="windowSplashScreenIconBackgroundColor">@color/ic_launcher_background</item>
-        <item name="windowSplashScreenBackground">@color/grey900</item>
+        <item name="windowSplashScreenBackground">@color/grey800</item>
         <item name="postSplashScreenTheme">@style/Theme.geemu</item>
     </style>
 
@@ -24,7 +24,7 @@
     </style>
 
     <style name="Widget.App.BottomSheet" parent="Widget.Material3.BottomSheet.Modal">
-        <item name="backgroundTint">@color/grey800</item>
+        <item name="backgroundTint">@color/grey900</item>
         <item name="android:padding">10dp</item>
     </style>
 
@@ -39,7 +39,7 @@
     </style>
 
     <style name="ThemeOverlay.App.BottomNavigationView" parent="">
-        <item name="colorSurface">@color/grey900</item>
+        <item name="colorSurface">@color/grey800</item>
         <item name="colorOnSurfaceVariant">@color/grey100</item>
     </style>
 

@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.sidharth.geemu.R
 import com.sidharth.geemu.databinding.ItemSectionItemsBinding
 import com.sidharth.geemu.databinding.ItemSectionSearchBinding
 import com.sidharth.geemu.domain.model.Game
@@ -118,6 +120,13 @@ class ExplorePageAdapter(
                     }
 
                     ItemsAdapter.CardType.GAME_TYPE3 -> {
+                        MaterialDividerItemDecoration(binding.root.context, LinearLayoutManager.VERTICAL).apply {
+                            isLastItemDecorated = false
+                            dividerColor = binding.root.context.getColor(R.color.grey700)
+                            dividerInsetStart = binding.root.context.resources.getDimension(R.dimen.white_space).toInt()
+                            dividerInsetEnd = binding.root.context.resources.getDimension(R.dimen.white_space).toInt()
+                            binding.rvItems.addItemDecoration(this)
+                        }
                         ItemsAdapter(
                             type = type,
                             items = bestOfAllTime,

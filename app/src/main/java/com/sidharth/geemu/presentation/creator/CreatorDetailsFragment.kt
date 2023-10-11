@@ -48,7 +48,7 @@ class CreatorDetailsFragment : Fragment(), OnGameClickCallback {
                     binding.apply {
                         AAChartModel()
                             .chartType(AAChartType.Pie)
-                            .backgroundColor(R.color.grey900)
+                            .backgroundColor(R.color.grey800)
                             .series(
                                 arrayOf(
                                     AASeriesElement().name("Rating Count")
@@ -64,7 +64,7 @@ class CreatorDetailsFragment : Fragment(), OnGameClickCallback {
 
                         AAChartModel()
                             .chartType(AAChartType.Area)
-                            .backgroundColor(R.color.grey900)
+                            .backgroundColor(R.color.grey800)
                             .series(
                                 arrayOf(
                                     AASeriesElement().name("Games Count")

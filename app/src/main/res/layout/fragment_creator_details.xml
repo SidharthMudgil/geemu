@@ -29,7 +29,7 @@
             android:id="@+id/iv_image"
             android:layout_width="0dp"
             android:layout_height="150dp"
-            android:background="@color/grey800"
+            android:background="@color/grey900"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toTopOf="@+id/tv_name"
             app:layout_constraintDimensionRatio="1:1"

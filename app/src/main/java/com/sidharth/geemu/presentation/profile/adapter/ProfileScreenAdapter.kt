@@ -95,7 +95,7 @@ class ProfileScreenAdapter(
 
             return AAChartModel()
                 .chartType(AAChartType.Pie)
-                .backgroundColor(R.color.grey900)
+                .backgroundColor(R.color.grey800)
                 .series(
                     arrayOf(
                         AASeriesElement().name("Game Count").data(
@@ -108,7 +108,7 @@ class ProfileScreenAdapter(
         private fun generateCollectionOverviewChart(): AAChartModel {
             return AAChartModel()
                 .chartType(AAChartType.Bar)
-                .backgroundColor(R.color.grey900)
+                .backgroundColor(R.color.grey800)
                 .categories(collections.map { it.name }.toTypedArray())
                 .series(
                     arrayOf(
@@ -125,7 +125,7 @@ class ProfileScreenAdapter(
 
             return AAChartModel()
                 .chartType(AAChartType.Column)
-                .backgroundColor(R.color.grey900)
+                .backgroundColor(R.color.grey800)
                 .categories(popular.map { it.name }.toTypedArray())
                 .series(
                     arrayOf(

@@ -38,7 +38,7 @@
         android:layout_margin="@dimen/white_space"
         android:orientation="horizontal"
         android:visibility="gone"
-        app:cardBackgroundColor="@color/grey900"
+        app:cardBackgroundColor="@color/grey800"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:cardElevation="1dp"
         app:contentPadding="5dp"

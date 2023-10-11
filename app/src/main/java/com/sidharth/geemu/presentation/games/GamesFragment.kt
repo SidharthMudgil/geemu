@@ -16,6 +16,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import androidx.recyclerview.widget.RecyclerView.VISIBLE
+import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.sidharth.geemu.R
 import com.sidharth.geemu.core.enums.GameFilterType
 import com.sidharth.geemu.databinding.FragmentGamesBinding
@@ -30,6 +31,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class GamesFragment : Fragment(), OnGameClickCallback {
 
+    private lateinit var binding: FragmentGamesBinding
     private val gamesViewModel: GamesViewModel by viewModels()
     private val userDataViewModel: UserDataViewModel by activityViewModels()
     private val args: GamesFragmentArgs by navArgs()
@@ -39,16 +41,37 @@ class GamesFragment : Fragment(), OnGameClickCallback {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentGamesBinding.inflate(inflater)
+        binding = FragmentGamesBinding.inflate(inflater)
 
+        fetchGames()
+        setupRecyclerView()
+        observeFilteredGames()
+        observeFollowingTags()
+        setupClickListeners()
+
+        return binding.root
+    }
+
+    private fun fetchGames() {
         gamesViewModel.fetchGames(
             query = args.query,
             filter = args.type,
         )
+    }
+
+    private fun setupRecyclerView() {
         binding.tvTitle.text = args.name
-        binding.rvItems.layoutManager = LinearLayoutManager(
-            requireContext(), VERTICAL, false
-        )
+        binding.rvItems.layoutManager = LinearLayoutManager(requireContext(), VERTICAL, false)
+        MaterialDividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL).apply {
+            isLastItemDecorated = false
+            dividerColor = requireContext().getColor(R.color.grey700)
+            dividerInsetStart = resources.getDimension(R.dimen.white_space).toInt()
+            dividerInsetEnd = resources.getDimension(R.dimen.white_space).toInt()
+            binding.rvItems.addItemDecoration(this)
+        }
+    }
+
+    private fun observeFilteredGames() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 gamesViewModel.games.collect {
@@ -59,40 +82,41 @@ class GamesFragment : Fragment(), OnGameClickCallback {
                 }
             }
         }
+    }
 
-        if (args.type == GameFilterType.TAGS){
-            viewLifecycleOwner.lifecycleScope.launch {
-                repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    userDataViewModel.following.collect { it ->
-                        isTagFollowed = it.contains(args.tag).also {
-                            val drawable = when (it) {
-                                true -> R.drawable.ic_added
-                                else -> R.drawable.ic_add
-                            }
-                            binding.btnSave.setImageDrawable(
-                                ResourcesCompat.getDrawable(
-                                    resources,
-                                    drawable,
-                                    null
-                                )
-                            )
-                        }
+    private fun observeFollowingTags() {
+        if (args.type != GameFilterType.TAGS) {
+            return
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                userDataViewModel.following.collect {
+                    val drawable = when (it.contains(args.tag)) {
+                        true -> R.drawable.ic_added
+                        else -> R.drawable.ic_add
                     }
-                }
-            }
-            if (args.type == GameFilterType.TAGS) {
-                binding.btnSave.visibility = VISIBLE
-                binding.btnSave.setOnClickListener {
-                    if (isTagFollowed) {
-                        userDataViewModel.unfollowTag(args.tag!!)
-                    } else {
-                        userDataViewModel.followTag(args.tag!!)
-                    }
+                    binding.btnSave.setImageDrawable(
+                        ResourcesCompat.getDrawable(
+                            resources, drawable, null
+                        )
+                    )
                 }
             }
         }
+    }
 
-        return binding.root
+    private fun setupClickListeners() {
+        if (args.type != GameFilterType.TAGS) {
+            return
+        }
+        binding.btnSave.visibility = VISIBLE
+        binding.btnSave.setOnClickListener {
+            if (isTagFollowed) {
+                userDataViewModel.unfollowTag(args.tag!!)
+            } else {
+                userDataViewModel.followTag(args.tag!!)
+            }
+        }
     }
 
     override fun onGameClick(game: Game) {
