@@ -15,6 +15,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.google.android.material.chip.Chip
+import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.sidharth.geemu.R
 import com.sidharth.geemu.databinding.FragmentFollowingBinding
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Tag
@@ -38,8 +40,9 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
         binding = FragmentFollowingBinding.inflate(inflater)
 
         setupFollowingChips()
+        setupRecyclerView()
         observeFollowingData()
-        setupFollowingRecyclerView()
+        observeSavedGames()
         binding.loading.playAnimation()
 
         return binding.root
@@ -50,6 +53,17 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
             if (checkedIds.isEmpty()) {
                 filterList("", true)
             }
+        }
+    }
+
+    private fun setupRecyclerView() {
+        binding.rvFollowing.layoutManager = LinearLayoutManager(requireContext(), VERTICAL, false)
+        MaterialDividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL).apply {
+            isLastItemDecorated = false
+            dividerColor = requireContext().getColor(R.color.grey700)
+            dividerInsetStart = resources.getDimension(R.dimen.white_space).toInt()
+            dividerInsetEnd = resources.getDimension(R.dimen.white_space).toInt()
+            binding.rvFollowing.addItemDecoration(this)
         }
     }
 
@@ -68,10 +82,7 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
         }
     }
 
-    private fun setupFollowingRecyclerView() {
-        binding.rvFollowing.layoutManager = LinearLayoutManager(
-            requireContext(), VERTICAL, false
-        )
+    private fun observeSavedGames() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 userDataViewModel.games.collect {

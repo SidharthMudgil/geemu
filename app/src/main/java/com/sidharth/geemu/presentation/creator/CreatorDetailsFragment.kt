@@ -23,6 +23,8 @@ import com.sidharth.geemu.R
 import com.sidharth.geemu.core.util.BlurTransformation
 import com.sidharth.geemu.databinding.FragmentCreatorDetailsBinding
 import com.sidharth.geemu.domain.model.Game
+import com.sidharth.geemu.domain.model.Rating
+import com.sidharth.geemu.domain.model.Timeline
 import com.sidharth.geemu.presentation.creator.adapter.GamesAdapter
 import com.sidharth.geemu.presentation.creator.callback.OnGameClickCallback
 import com.sidharth.geemu.presentation.creator.viewmodel.CreatorViewModel
@@ -32,6 +34,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class CreatorDetailsFragment : Fragment(), OnGameClickCallback {
 
+    private lateinit var binding: FragmentCreatorDetailsBinding
     private val creatorViewModel: CreatorViewModel by viewModels()
     private val args: CreatorDetailsFragmentArgs by navArgs()
 
@@ -39,42 +42,31 @@ class CreatorDetailsFragment : Fragment(), OnGameClickCallback {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentCreatorDetailsBinding.inflate(inflater)
+        binding = FragmentCreatorDetailsBinding.inflate(inflater)
 
+        fetchCreatorDetails()
+        observeCreatorDetails()
+        observeSavedGames()
+
+        return binding.root
+    }
+
+    private fun fetchCreatorDetails() {
         creatorViewModel.fetchData(args.id)
+    }
+
+    private fun observeCreatorDetails() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 creatorViewModel.creatorDetails.collect { creator ->
                     binding.apply {
-                        AAChartModel()
-                            .chartType(AAChartType.Pie)
-                            .backgroundColor(R.color.grey800)
-                            .series(
-                                arrayOf(
-                                    AASeriesElement().name("Rating Count")
-                                        .data(
-                                            creator.ratings.map {
-                                                arrayOf(it.title, it.count)
-                                            }.toTypedArray()
-                                        )
-                                )
-                            ).apply {
-                                chartRating.aa_drawChartWithChartModel(this)
-                            }
+                        generateRatingChart(creator.ratings).apply {
+                            chartRating.aa_drawChartWithChartModel(this)
+                        }
 
-                        AAChartModel()
-                            .chartType(AAChartType.Area)
-                            .backgroundColor(R.color.grey800)
-                            .series(
-                                arrayOf(
-                                    AASeriesElement().name("Games Count")
-                                        .data(creator.timeline.map {
-                                            arrayOf(it.year, it.count)
-                                        }.toTypedArray())
-                                )
-                            ).apply {
-                                chartTimeline.aa_drawChartWithChartModel(this)
-                            }
+                        generateTimelineChart(creator.timeline).apply {
+                            chartTimeline.aa_drawChartWithChartModel(this)
+                        }
 
                         ivImage.load(creator.image)
                         ivBackground.load(creator.background) {
@@ -90,7 +82,9 @@ class CreatorDetailsFragment : Fragment(), OnGameClickCallback {
                 }
             }
         }
+    }
 
+    private fun observeSavedGames() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 creatorViewModel.games.collect {
@@ -107,8 +101,35 @@ class CreatorDetailsFragment : Fragment(), OnGameClickCallback {
                 }
             }
         }
+    }
 
-        return binding.root
+    private fun generateRatingChart(ratings: List<Rating>): AAChartModel {
+        return AAChartModel()
+            .chartType(AAChartType.Pie)
+            .backgroundColor(R.color.grey800)
+            .series(
+                arrayOf(
+                    AASeriesElement()
+                        .name("Rating Count")
+                        .data(
+                            ratings.map { arrayOf(it.title, it.count) }.toTypedArray()
+                        )
+                )
+            )
+    }
+
+    private fun generateTimelineChart(timeline: List<Timeline>): AAChartModel {
+        return AAChartModel()
+            .chartType(AAChartType.Area)
+            .backgroundColor(R.color.grey800)
+            .series(
+                arrayOf(
+                    AASeriesElement().name("Games Count")
+                        .data(timeline.map {
+                            arrayOf(it.year, it.count)
+                        }.toTypedArray())
+                )
+            )
     }
 
     override fun onGameClick(game: Game) {

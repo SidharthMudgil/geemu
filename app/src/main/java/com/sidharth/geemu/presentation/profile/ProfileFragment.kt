@@ -25,17 +25,29 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class ProfileFragment : Fragment(), OnGameClickCallback {
 
+    private lateinit var binding: FragmentProfileBinding
     private val userDataViewModel: UserDataViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentProfileBinding.inflate(inflater)
+        binding = FragmentProfileBinding.inflate(inflater)
 
+        setupRecyclerView()
+        observeCollections()
+        observeFollowing()
+
+        return binding.root
+    }
+
+    private fun setupRecyclerView() {
         binding.rvProfile.layoutManager = LinearLayoutManager(
             requireContext(), VERTICAL, false
         )
+    }
+
+    private fun observeCollections() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 userDataViewModel.collections.collect { collections ->
@@ -53,7 +65,9 @@ class ProfileFragment : Fragment(), OnGameClickCallback {
                 }
             }
         }
+    }
 
+    private fun observeFollowing() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 userDataViewModel.following.collect { tags ->
@@ -65,8 +79,6 @@ class ProfileFragment : Fragment(), OnGameClickCallback {
                 }
             }
         }
-
-        return binding.root
     }
 
     private fun onNoData(binding: FragmentProfileBinding) {

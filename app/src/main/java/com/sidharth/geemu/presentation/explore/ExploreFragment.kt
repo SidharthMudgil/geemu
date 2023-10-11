@@ -30,6 +30,7 @@ import kotlinx.coroutines.launch
 class ExploreFragment : Fragment(),
     OnSearchButtonClickCallback, OnGenreClickCallback, OnGameClickCallback {
 
+    private lateinit var binding: FragmentExploreBinding
     private val exploreViewModel by viewModels<ExploreViewModel>()
 
     @SuppressLint("ClickableViewAccessibility")
@@ -37,11 +38,21 @@ class ExploreFragment : Fragment(),
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentExploreBinding.inflate(inflater)
+        binding = FragmentExploreBinding.inflate(inflater)
 
+        setupRecyclerView()
+        observeExploreData()
+
+        return binding.root
+    }
+
+    private fun setupRecyclerView() {
         binding.rvExplore.layoutManager = LinearLayoutManager(
             requireContext(), VERTICAL, false
         )
+    }
+
+    private fun observeExploreData() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 exploreViewModel.exploreData.collect {
@@ -57,8 +68,6 @@ class ExploreFragment : Fragment(),
                 }
             }
         }
-
-        return binding.root
     }
 
     override fun onGameClick(game: Game) {

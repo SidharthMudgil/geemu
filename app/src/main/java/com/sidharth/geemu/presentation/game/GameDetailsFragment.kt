@@ -38,11 +38,11 @@ import kotlinx.coroutines.launch
 class GameDetailsFragment
     : Fragment(), OnCreatorClickCallback, OnItemClickCallback, OnMediaClickCallback {
 
+    private lateinit var binding: FragmentGameDetailsBinding
     private val gameDetailsViewModel: GameDetailsViewModel by viewModels()
     private val userDataViewModel: UserDataViewModel by activityViewModels()
     private val args: GameDetailsFragmentArgs by navArgs()
     private var isGameInCollection: Boolean = false
-    private lateinit var binding: FragmentGameDetailsBinding
     private var game: Game? = null
 
     override fun onCreateView(
@@ -51,12 +51,24 @@ class GameDetailsFragment
     ): View {
         binding = FragmentGameDetailsBinding.inflate(inflater)
 
+        setupRecyclerView()
+        observeGameDetails()
+        observeCollections()
+        setupClickListeners()
+
+        return binding.root
+    }
+
+    private fun setupRecyclerView() {
         game = args.game
         gameDetailsViewModel.fetchGameDetails(args.game?.id ?: args.id)
         binding.rvGameDetails.layoutManager = LinearLayoutManager(
             requireContext(), VERTICAL, false
         )
         binding.loading.playAnimation()
+    }
+
+    private fun observeGameDetails() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 gameDetailsViewModel.gameDetails.collect { it ->
@@ -71,7 +83,7 @@ class GameDetailsFragment
                             image = it.image,
                             genres = it.genres.joinToString(", ") { it.name }.take(2),
                             release = it.release,
-                            rating = it.rating.toString(),
+                            rating = it.rating,
                         )
                     }
                     binding.rvGameDetails.adapter = GameDetailsAdapter(
@@ -83,25 +95,38 @@ class GameDetailsFragment
                 }
             }
         }
+    }
+
+    private fun observeCollections() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 userDataViewModel.collections.collect { it ->
-                    isGameInCollection = it.flatMap { it.games }.contains(args.game).also {
-                        val drawable = when (it) {
-                            true -> R.drawable.ic_added
-                            else -> R.drawable.ic_add
-                        }
-                        binding.btnSave.setImageDrawable(
-                            ResourcesCompat.getDrawable(
-                                resources,
-                                drawable,
-                                null
-                            )
-                        )
+                    val drawable = when (it.flatMap { it.games }.contains(args.game)) {
+                        true -> R.drawable.ic_added
+                        else -> R.drawable.ic_add
                     }
+                    binding.btnSave.setImageDrawable(
+                        ResourcesCompat.getDrawable(resources, drawable, null
+                        )
+                    )
                 }
             }
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        findNavController().currentBackStackEntry
+            ?.savedStateHandle
+            ?.getLiveData<Int>(ModalBottomSheet.KEY)
+            ?.observe(viewLifecycleOwner) { collection ->
+                if (args.game != null || game != null) {
+                    userDataViewModel.addGameToCollection(args.game ?: game!!, collection)
+                }
+            }
+    }
+
+    private fun setupClickListeners() {
         binding.btnShare.setOnClickListener {
             Intent(Intent.ACTION_SEND).apply {
                 type = "text/plain"
@@ -123,20 +148,6 @@ class GameDetailsFragment
                 showBottomSheet()
             }
         }
-
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        findNavController().currentBackStackEntry
-            ?.savedStateHandle
-            ?.getLiveData<Int>(ModalBottomSheet.KEY)
-            ?.observe(viewLifecycleOwner) { collection ->
-                if (args.game != null || game != null) {
-                    userDataViewModel.addGameToCollection(args.game ?: game!!, collection)
-                }
-            }
     }
 
     private fun showBottomSheet() {
