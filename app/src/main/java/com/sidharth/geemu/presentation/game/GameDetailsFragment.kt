@@ -1,12 +1,12 @@
 package com.sidharth.geemu.presentation.game
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -23,6 +23,7 @@ import com.sidharth.geemu.core.constant.Constants
 import com.sidharth.geemu.core.enums.GameFilterType
 import com.sidharth.geemu.databinding.FragmentGameDetailsBinding
 import com.sidharth.geemu.domain.model.Creator
+import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Tag
 import com.sidharth.geemu.presentation.game.adapter.GameDetailsAdapter
 import com.sidharth.geemu.presentation.game.callback.OnCreatorClickCallback
@@ -42,6 +43,7 @@ class GameDetailsFragment
     private val args: GameDetailsFragmentArgs by navArgs()
     private var isGameInCollection: Boolean = false
     private lateinit var binding: FragmentGameDetailsBinding
+    private var game: Game? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,18 +51,28 @@ class GameDetailsFragment
     ): View {
         binding = FragmentGameDetailsBinding.inflate(inflater)
 
-        gameDetailsViewModel.fetchGameDetails(args.game.id)
+        game = args.game
+        gameDetailsViewModel.fetchGameDetails(args.game?.id ?: args.id)
         binding.rvGameDetails.layoutManager = LinearLayoutManager(
             requireContext(), VERTICAL, false
         )
         binding.loading.playAnimation()
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                gameDetailsViewModel.gameDetails.collect {
-                    if (it != Constants.EMPTY_GAME_DETAILS){
+                gameDetailsViewModel.gameDetails.collect { it ->
+                    if (it != Constants.EMPTY_GAME_DETAILS) {
                         binding.loading.visibility = GONE
                         binding.rvGameDetails.visibility = VISIBLE
                         binding.cvAction.visibility = VISIBLE
+
+                        game = Game(
+                            id = it.id,
+                            name = it.name,
+                            image = it.image,
+                            genres = it.genres.joinToString(", ") { it.name }.take(2),
+                            release = it.release,
+                            rating = it.rating.toString(),
+                        )
                     }
                     binding.rvGameDetails.adapter = GameDetailsAdapter(
                         gameDetails = it,
@@ -91,11 +103,22 @@ class GameDetailsFragment
             }
         }
         binding.btnShare.setOnClickListener {
-            Toast.makeText(requireContext(), "Shared", Toast.LENGTH_LONG).show()
+            Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                if (args.game != null || game != null) {
+                    putExtra(
+                        Intent.EXTRA_TEXT,
+                        "https://www.geemu.com/game/${args.game?.id ?: game?.id!!}"
+                    )
+                }
+                startActivity(this)
+            }
         }
         binding.btnSave.setOnClickListener {
             if (isGameInCollection) {
-                userDataViewModel.removeGameFromCollection(args.game)
+                if (args.game != null || game != null) {
+                    userDataViewModel.removeGameFromCollection(args.game ?: game!!)
+                }
             } else {
                 showBottomSheet()
             }
@@ -110,7 +133,9 @@ class GameDetailsFragment
             ?.savedStateHandle
             ?.getLiveData<Int>(ModalBottomSheet.KEY)
             ?.observe(viewLifecycleOwner) { collection ->
-                userDataViewModel.addGameToCollection(args.game, collection)
+                if (args.game != null || game != null) {
+                    userDataViewModel.addGameToCollection(args.game ?: game!!, collection)
+                }
             }
     }
 

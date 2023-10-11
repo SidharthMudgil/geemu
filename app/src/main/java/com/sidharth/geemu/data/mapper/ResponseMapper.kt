@@ -35,8 +35,8 @@ object ResponseMapper {
         return GameDetails(
             id = details?.id ?: 0,
             name = details?.name ?: "",
-            image = details?.backgroundImage ?: details?.backgroundImageAdditional ?: "",
-            background = details?.backgroundImageAdditional ?: details?.backgroundImage ?: "",
+            image = details?.backgroundImage ?: details?.backgroundImageAdditional ?: "https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700200186.jpg",
+            background = details?.backgroundImageAdditional ?: details?.backgroundImage ?: "https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700200186.jpg",
             description = details?.description ?: details?.descriptionRaw ?: "",
             release = details?.released ?: "",
             rating = details?.rating ?: 0.0,

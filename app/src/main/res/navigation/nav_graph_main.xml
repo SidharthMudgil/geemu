@@ -79,7 +79,9 @@
             app:popExitAnim="@anim/pop_out" />
         <argument
             android:name="game"
-            app:argType="com.sidharth.geemu.domain.model.Game" />
+            android:defaultValue="@null"
+            app:argType="com.sidharth.geemu.domain.model.Game"
+            app:nullable="true" />
         <action
             android:id="@+id/action_gameDetailsFragment_to_modalBottomSheet"
             app:destination="@id/modalBottomSheet"
@@ -87,6 +89,16 @@
             app:exitAnim="@anim/exit_anim"
             app:popEnterAnim="@anim/pop_in"
             app:popExitAnim="@anim/pop_out" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="www.geemu.com/game/{id}" />
+        <argument
+            android:name="id"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <deepLink
+            android:id="@+id/deepLink2"
+            app:uri="geemu.com/game/{id}" />
     </fragment>
     <fragment
         android:id="@+id/creatorDetailsFragment"
