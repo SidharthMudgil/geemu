@@ -8,7 +8,7 @@ Geemu is a sleek and intuitive Android app that serves as a client for the RAWG 
 
 ## Screenshots
 
-| ![ss](./images/explore.jpeg) | | ![ss](./images/following.jpeg) | | ![ss](./images/profile.jpeg) | | ![ss](./images/game.jpeg) | | ![ss](./images/games.jpeg) | | ![ss](./images/creator.jpeg) | 
+| ![ss](./images/explore.jpeg) | ![ss](./images/following.jpeg) | ![ss](./images/profile.jpeg) | ![ss](./images/game.jpeg) | ![ss](./images/games.jpeg) | ![ss](./images/creator.jpeg) | 
 | -------------------------- | -------------------------- | -------------------------- | -------------------------- | -------------------------- | -------------------------- |
 
 ## Installation
