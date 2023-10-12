@@ -5,6 +5,8 @@ Geemu is a sleek and intuitive Android app that serves as a client for the RAWG 
 
 - [Screenshots](#screenshots)
 - [Installation](#installation)
+- [License](#license)
+- [Contribute](#how-to-contribute)
 
 ## Screenshots
 
