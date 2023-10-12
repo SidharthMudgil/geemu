@@ -21,7 +21,7 @@ import com.sidharth.geemu.R
 import com.sidharth.geemu.core.enums.GameFilterType
 import com.sidharth.geemu.databinding.FragmentGamesBinding
 import com.sidharth.geemu.domain.model.Game
-import com.sidharth.geemu.presentation.games.adapter.GamesAdapter
+import com.sidharth.geemu.presentation.games.adapter.GamesPagerAdapter
 import com.sidharth.geemu.presentation.games.callback.OnGameClickCallback
 import com.sidharth.geemu.presentation.games.viewmodel.GamesViewModel
 import com.sidharth.geemu.presentation.viewmodel.UserDataViewModel
@@ -72,13 +72,14 @@ class GamesFragment : Fragment(), OnGameClickCallback {
     }
 
     private fun observeFilteredGames() {
+        val adapter = GamesPagerAdapter(
+            onGameClickCallback = this@GamesFragment,
+        )
+        binding.rvItems.adapter = adapter
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 gamesViewModel.games.collect {
-                    binding.rvItems.adapter = GamesAdapter(
-                        games = it,
-                        onGameClickCallback = this@GamesFragment,
-                    )
+                    adapter.submitData(it)
                 }
             }
         }

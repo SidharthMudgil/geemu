@@ -2,6 +2,7 @@ package com.sidharth.geemu.presentation.games.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import com.sidharth.geemu.core.constant.Constants
 import com.sidharth.geemu.core.enums.GameFilterType
 import com.sidharth.geemu.domain.model.Game
@@ -17,8 +18,8 @@ class GamesViewModel @Inject constructor(
     private val getGameUseCase: GetGameUseCase,
 ) : ViewModel() {
 
-    private val _games = MutableStateFlow(List(10) { Constants.EMPTY_GAME })
-    val games: StateFlow<List<Game>> get() = _games
+    private val _games = MutableStateFlow(PagingData.from(List(10) { Constants.EMPTY_GAME }))
+    val games: StateFlow<PagingData<Game>> get() = _games
 
     fun fetchGames(query: String, filter: GameFilterType) = viewModelScope.launch {
         when (filter) {

@@ -1,7 +1,6 @@
 package com.sidharth.geemu.presentation
 
 import android.animation.ObjectAnimator
-import android.content.Intent
 import android.os.Bundle
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -30,11 +29,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(activityMainBinding.root)
         navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
         setupBottomNavigationBar()
-    }
-
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        navHostFragment?.findNavController()?.handleDeepLink(intent)
     }
 
     private fun setupBottomNavigationBar() {

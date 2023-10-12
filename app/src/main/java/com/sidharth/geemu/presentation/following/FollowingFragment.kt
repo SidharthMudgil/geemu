@@ -20,7 +20,7 @@ import com.sidharth.geemu.R
 import com.sidharth.geemu.databinding.FragmentFollowingBinding
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Tag
-import com.sidharth.geemu.presentation.following.adapter.GamesAdapter
+import com.sidharth.geemu.presentation.following.adapter.GamesPagerAdapter
 import com.sidharth.geemu.presentation.following.callback.OnGameClickCallback
 import com.sidharth.geemu.presentation.viewmodel.UserDataViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -83,13 +83,14 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
     }
 
     private fun observeSavedGames() {
+        val adapter = GamesPagerAdapter(
+            onGameClickCallback = this@FollowingFragment
+        )
+        binding.rvFollowing.adapter = adapter
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                userDataViewModel.games.collect {
-                    binding.rvFollowing.adapter = GamesAdapter(
-                        onGameClickCallback = this@FollowingFragment,
-                        games = it
-                    )
+                userDataViewModel.filteredGames.collect {
+                    adapter.submitData(it)
                 }
             }
         }

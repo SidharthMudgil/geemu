@@ -2,6 +2,8 @@ package com.sidharth.geemu.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import com.sidharth.geemu.core.constant.Constants
 import com.sidharth.geemu.domain.model.Collection
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Tag
@@ -29,11 +31,12 @@ class UserDataViewModel @Inject constructor(
         )
     )
     private val _following = MutableStateFlow<List<Tag>>(emptyList())
-    private val _games = MutableStateFlow<List<Game>>(emptyList())
+    private val _filteredGames =
+        MutableStateFlow(PagingData.from(List(10) { Constants.EMPTY_GAME }))
 
     val collections: StateFlow<List<Collection>> get() = _collections
     val following: StateFlow<List<Tag>> get() = _following
-    val games: StateFlow<List<Game>> get() = _games
+    val filteredGames: StateFlow<PagingData<Game>> get() = _filteredGames
 
     init {
         updateCollectionsData()
@@ -87,7 +90,7 @@ class UserDataViewModel @Inject constructor(
                 else -> tags
             }
         ).collect {
-            _games.emit(it)
+            _filteredGames.emit(it)
         }
     }
 }

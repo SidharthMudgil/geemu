@@ -1,5 +1,6 @@
 package com.sidharth.geemu.domain.usecase.game
 
+import androidx.paging.PagingData
 import com.sidharth.geemu.core.util.DateTimeUtils
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Genre
@@ -44,10 +45,6 @@ class GetGameUseCaseImpl @Inject constructor(
         )
     }
 
-    override suspend fun getGamesBySearch(query: String): Flow<List<Game>> {
-        return gameRepository.getGames(search = query)
-    }
-
     override suspend fun getGamesByCreators(creators: String): Flow<List<Game>> {
         return gameRepository.getGames(
             creators = creators,
@@ -56,19 +53,23 @@ class GetGameUseCaseImpl @Inject constructor(
         )
     }
 
-    override suspend fun getGamesByDevelopers(developers: String): Flow<List<Game>> {
-        return gameRepository.getGames(developers = developers)
+    override suspend fun getGamesBySearch(query: String): Flow<PagingData<Game>> {
+        return gameRepository.getGamesPagingSource(search = query)
     }
 
-    override suspend fun getGamesByGenres(genres: String): Flow<List<Game>> {
-        return gameRepository.getGames(genres = genres)
+    override suspend fun getGamesByDevelopers(developers: String): Flow<PagingData<Game>> {
+        return gameRepository.getGamesPagingSource(developers = developers)
     }
 
-    override suspend fun getGamesByPublishers(publishers: String): Flow<List<Game>> {
-        return gameRepository.getGames(publishers = publishers)
+    override suspend fun getGamesByGenres(genres: String): Flow<PagingData<Game>> {
+        return gameRepository.getGamesPagingSource(genres = genres)
     }
 
-    override suspend fun getGamesByTags(tags: String): Flow<List<Game>> {
-        return gameRepository.getGames(tags = tags)
+    override suspend fun getGamesByPublishers(publishers: String): Flow<PagingData<Game>> {
+        return gameRepository.getGamesPagingSource(publishers = publishers)
+    }
+
+    override suspend fun getGamesByTags(tags: String): Flow<PagingData<Game>> {
+        return gameRepository.getGamesPagingSource(tags = tags)
     }
 }
