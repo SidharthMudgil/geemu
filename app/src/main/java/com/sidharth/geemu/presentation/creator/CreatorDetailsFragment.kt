@@ -16,9 +16,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import coil.load
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
+import com.github.aachartmodel.aainfographics.aachartcreator.AAChartSymbolStyleType
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
+import com.github.aachartmodel.aainfographics.aaoptionsmodel.AAStyle
 import com.sidharth.geemu.R
+import com.sidharth.geemu.core.constant.Constants
 import com.sidharth.geemu.core.util.BlurTransformation
 import com.sidharth.geemu.databinding.FragmentCreatorDetailsBinding
 import com.sidharth.geemu.domain.model.Game
@@ -104,13 +107,19 @@ class CreatorDetailsFragment : Fragment(), OnGameClickCallback {
         return AAChartModel()
             .chartType(AAChartType.Pie)
             .backgroundColor(R.color.grey800)
+            .colorsTheme(Constants.colors)
+            .axesTextColor("#EAEAEA")
+            .markerSymbolStyle(AAChartSymbolStyleType.BorderBlank)
+            .borderRadius(0)
+            .legendEnabled(false)
+            .dataLabelsStyle(AAStyle().color("#EAEAEA"))
             .series(
                 arrayOf(
                     AASeriesElement()
                         .name("Rating Count")
                         .data(
                             ratings.map { arrayOf(it.title, it.count) }.toTypedArray()
-                        )
+                        ).borderWidth(0)
                 )
             )
     }
@@ -118,6 +127,15 @@ class CreatorDetailsFragment : Fragment(), OnGameClickCallback {
     private fun generateTimelineChart(timeline: List<Timeline>): AAChartModel {
         return AAChartModel()
             .chartType(AAChartType.Area)
+            .legendEnabled(false)
+            .colorsTheme(Constants.colors)
+            .axesTextColor("#EAEAEA")
+            .markerSymbolStyle(AAChartSymbolStyleType.BorderBlank)
+            .borderRadius(0)
+            .yAxisLabelsEnabled(false)
+            .yAxisTitle("")
+            .yAxisGridLineWidth(0.1)
+            .yAxisLineWidth(0)
             .backgroundColor(R.color.grey800)
             .series(
                 arrayOf(

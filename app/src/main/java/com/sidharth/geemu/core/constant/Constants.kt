@@ -70,4 +70,12 @@ object Constants {
         List(5) { EMPTY_GAME },
         List(5) { EMPTY_GAME }
     )
+
+    val colors = arrayOf<Any>(
+        "#C05780", "#FF828B", "#FFD872", "#FF5678", "#FC6238",
+        "#00A5E3", "#8DD7BF", "#FF96C5", "#FF5768", "#FFBF65",
+        "#F2D4CC", "#E77577", "#6C88C4", "#E7C582", "#00BOBA",
+        "#0065A2", "#FF6F68", "#FFDACC", "#FF60A8", "#CFF800",
+        "#FF5C77", "#4DD091", "#FFEC59", "#FFA23A", "#74737A"
+    )
 }

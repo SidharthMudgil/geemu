@@ -24,7 +24,7 @@
     <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
         android:id="@+id/chart"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="200dp"
         android:layout_marginStart="@dimen/white_space"
         android:layout_marginTop="@dimen/label_list_gap"
         android:layout_marginEnd="@dimen/white_space"

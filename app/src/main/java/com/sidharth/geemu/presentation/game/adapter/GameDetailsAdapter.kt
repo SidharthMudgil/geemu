@@ -12,10 +12,13 @@ import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
+import com.github.aachartmodel.aainfographics.aachartcreator.AAChartSymbolStyleType
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
+import com.github.aachartmodel.aainfographics.aaoptionsmodel.AAStyle
 import com.google.android.material.chip.Chip
 import com.sidharth.geemu.R
+import com.sidharth.geemu.core.constant.Constants
 import com.sidharth.geemu.core.enums.GameFilterType
 import com.sidharth.geemu.core.util.DateTimeUtils.toPrettyFormat
 import com.sidharth.geemu.databinding.ItemSectionGameInfo1Binding
@@ -80,6 +83,12 @@ class GameDetailsAdapter(
                 AAChartModel()
                     .chartType(AAChartType.Pie)
                     .backgroundColor(R.color.grey800)
+                    .colorsTheme(Constants.colors)
+                    .axesTextColor("#EAEAEA")
+                    .markerSymbolStyle(AAChartSymbolStyleType.BorderBlank)
+                    .borderRadius(0)
+                    .dataLabelsStyle(AAStyle().color("#EAEAEA"))
+                    .legendEnabled(false)
                     .series(
                         arrayOf(
                             AASeriesElement().name("Rating Count")
@@ -87,7 +96,7 @@ class GameDetailsAdapter(
                                     gameDetails.ratings.map {
                                         arrayOf(it.title, it.count)
                                     }.toTypedArray()
-                                )
+                                ).borderWidth(0)
                         )
                     ).apply {
                         chartRating.aa_drawChartWithChartModel(this)

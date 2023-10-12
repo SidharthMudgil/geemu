@@ -8,9 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
+import com.github.aachartmodel.aainfographics.aachartcreator.AAChartSymbolStyleType
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
+import com.github.aachartmodel.aainfographics.aaoptionsmodel.AAStyle
 import com.sidharth.geemu.R
+import com.sidharth.geemu.core.constant.Constants
 import com.sidharth.geemu.databinding.ItemSectionChartBinding
 import com.sidharth.geemu.databinding.ItemSectionCollectionBinding
 import com.sidharth.geemu.domain.model.Collection
@@ -96,11 +99,17 @@ class ProfileScreenAdapter(
             return AAChartModel()
                 .chartType(AAChartType.Pie)
                 .backgroundColor(R.color.grey800)
+                .colorsTheme(Constants.colors)
+                .legendEnabled(false)
+                .axesTextColor("#EAEAEA")
+                .markerSymbolStyle(AAChartSymbolStyleType.BorderBlank)
+                .borderRadius(0)
+                .dataLabelsStyle(AAStyle().color("#EAEAEA"))
                 .series(
                     arrayOf(
                         AASeriesElement().name("Game Count").data(
                             data.map { arrayOf(it.key, it.value) }.toTypedArray()
-                        )
+                        ).borderWidth(0)
                     )
                 )
         }
@@ -110,12 +119,23 @@ class ProfileScreenAdapter(
                 .chartType(AAChartType.Bar)
                 .backgroundColor(R.color.grey800)
                 .categories(collections.map { it.name }.toTypedArray())
+                .colorsTheme(Constants.colors)
+                .axesTextColor("#EAEAEA")
+                .markerSymbolStyle(AAChartSymbolStyleType.BorderBlank)
+                .borderRadius(0)
+                .dataLabelsStyle(AAStyle().color("#EAEAEA"))
+                .legendEnabled(false)
+                .yAxisTitle("")
+                .yAxisLabelsEnabled(false)
+                .yAxisGridLineWidth(0.1)
+                .yAxisLineWidth(0)
+                .xAxisGridLineWidth(0)
                 .series(
                     arrayOf(
                         AASeriesElement().name("Game Count").data(
                             collections.map { arrayOf(it.name, it.games.size) }
                                 .toTypedArray()
-                        )
+                        ).colorByPoint(true).size(10)
                     )
                 )
         }
@@ -126,6 +146,17 @@ class ProfileScreenAdapter(
             return AAChartModel()
                 .chartType(AAChartType.Column)
                 .backgroundColor(R.color.grey800)
+                .colorsTheme(Constants.colors)
+                .axesTextColor("#EAEAEA")
+                .markerSymbolStyle(AAChartSymbolStyleType.BorderBlank)
+                .borderRadius(0)
+                .legendEnabled(false)
+                .yAxisTitle("")
+                .yAxisGridLineWidth(0.1)
+                .yAxisLineWidth(0)
+                .yAxisLabelsEnabled(false)
+                .xAxisGridLineWidth(0)
+                .dataLabelsStyle(AAStyle().color("#EAEAEA"))
                 .categories(popular.map { it.name }.toTypedArray())
                 .series(
                     arrayOf(
@@ -133,7 +164,7 @@ class ProfileScreenAdapter(
                             popular.map {
                                 arrayOf(it.name, it.count)
                             }.toTypedArray()
-                        )
+                        ).colorByPoint(true)
                     )
                 )
         }
