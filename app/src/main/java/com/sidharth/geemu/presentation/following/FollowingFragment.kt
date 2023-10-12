@@ -124,7 +124,6 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
     private fun onData() {
         binding.loading.visibility = GONE
         binding.tvNoFollowing.visibility = GONE
-        binding.tvLabel.visibility = VISIBLE
         binding.scrollView.visibility = VISIBLE
         binding.rvFollowing.visibility = VISIBLE
     }
@@ -132,7 +131,6 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
     private fun onNoData() {
         binding.loading.visibility = VISIBLE
         binding.tvNoFollowing.visibility = VISIBLE
-        binding.tvLabel.visibility = GONE
         binding.scrollView.visibility = GONE
         binding.rvFollowing.visibility = GONE
     }

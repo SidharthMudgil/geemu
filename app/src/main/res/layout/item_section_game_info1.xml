@@ -9,7 +9,6 @@
         android:id="@+id/iv_image"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_margin="@dimen/white_space"
         android:background="@color/grey700"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -35,7 +34,7 @@
         app:layout_constraintTop_toTopOf="@id/iv_image"
         app:layout_constraintVertical_bias="0"
         app:strokeColor="@color/grey900"
-        app:strokeWidth="1dp">
+        app:strokeWidth="0dp">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_esrb"
@@ -197,6 +196,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/label_list_gap"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/white_space"
+        android:paddingEnd="@dimen/white_space"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
