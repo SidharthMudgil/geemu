@@ -3,6 +3,7 @@ package com.sidharth.geemu.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.sidharth.geemu.core.constant.Constants
 import com.sidharth.geemu.domain.model.Collection
 import com.sidharth.geemu.domain.model.Game
@@ -89,7 +90,7 @@ class UserDataViewModel @Inject constructor(
                 true -> following.value.joinToString(",") { it.id.toString() }
                 else -> tags
             }
-        ).collect {
+        ).cachedIn(viewModelScope).collect {
             _filteredGames.emit(it)
         }
     }

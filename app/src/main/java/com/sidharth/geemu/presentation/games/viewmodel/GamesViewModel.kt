@@ -3,6 +3,7 @@ package com.sidharth.geemu.presentation.games.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.sidharth.geemu.core.constant.Constants
 import com.sidharth.geemu.core.enums.GameFilterType
 import com.sidharth.geemu.domain.model.Game
@@ -23,23 +24,33 @@ class GamesViewModel @Inject constructor(
 
     fun fetchGames(query: String, filter: GameFilterType) = viewModelScope.launch {
         when (filter) {
-            GameFilterType.DEVELOPER -> getGameUseCase.getGamesByDevelopers(query).collect {
+            GameFilterType.DEVELOPER -> getGameUseCase.getGamesByDevelopers(query)
+                .cachedIn(viewModelScope)
+                .collect {
                 _games.emit(it)
             }
 
-            GameFilterType.GENRES -> getGameUseCase.getGamesByGenres(query).collect {
+            GameFilterType.GENRES -> getGameUseCase.getGamesByGenres(query)
+                .cachedIn(viewModelScope)
+                .collect {
                 _games.emit(it)
             }
 
-            GameFilterType.TAGS -> getGameUseCase.getGamesByTags(query).collect {
+            GameFilterType.TAGS -> getGameUseCase.getGamesByTags(query)
+                .cachedIn(viewModelScope)
+                .collect {
                 _games.emit(it)
             }
 
-            GameFilterType.PUBLISHER -> getGameUseCase.getGamesByPublishers(query).collect {
+            GameFilterType.PUBLISHER -> getGameUseCase.getGamesByPublishers(query)
+                .cachedIn(viewModelScope)
+                .collect {
                 _games.emit(it)
             }
 
-            GameFilterType.SEARCH -> getGameUseCase.getGamesBySearch(query).collect {
+            GameFilterType.SEARCH -> getGameUseCase.getGamesBySearch(query)
+                .cachedIn(viewModelScope)
+                .collect {
                 _games.emit(it)
             }
         }
