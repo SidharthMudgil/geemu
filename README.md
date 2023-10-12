@@ -1,5 +1,5 @@
 # Geemu: Your Ultimate Gaming Companion 🎮
-Geemu is a sleek and intuitive Android app that serves as a client for the RAWG API. Discover a world of games, stay updated on upcoming releases, explore top charts, and follow your favorite gaming tags. With Geemu, you can curate your personal game collection, track visual insights, and stay immersed in the gaming universe. Your gateway to seamless gaming experiences. Level up with Geemu! 🔥✨"
+Geemu is a sleek and intuitive Android app that serves as a client for the RAWG API. Discover a world of games, stay updated on upcoming releases, explore top charts, and follow your favorite gaming tags. With Geemu, you can curate your personal game collection, track visual insights, and stay immersed in the gaming universe. Your gateway to seamless gaming experiences. Level up with Geemu! 🔥✨
 
 ## Table of Contents
 
