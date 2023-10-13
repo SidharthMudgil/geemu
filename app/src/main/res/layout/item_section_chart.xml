@@ -12,7 +12,7 @@
         android:layout_marginTop="@dimen/section_margin"
         android:text="@string/genres_distribution"
         android:textColor="@color/grey300"
-        android:textFontWeight="600"
+        android:textFontWeight="700"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

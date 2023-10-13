@@ -39,11 +39,11 @@ class GameDetailsAdapter(
     private enum class GameDetailsSection {
         GAME_INFO1,
         SCREENSHOTS,
+        GAME_INFO2,
+        ADDITIONS,
         CREATORS,
         DEVELOPERS,
         PUBLISHERS,
-        ADDITIONS,
-        GAME_INFO2,
     }
 
     inner class GameInfo1ViewHolder(
@@ -59,9 +59,11 @@ class GameDetailsAdapter(
                 }
                 tvName.text = gameDetails.name
                 tvGenres.text = gameDetails.genres.joinToString(", ") { it.name }
-                tvRelease.text = if (gameDetails.release.isNotBlank())
-                    gameDetails.release.toPrettyFormat()
-                else gameDetails.release
+                if (gameDetails.release.isNotBlank()) {
+                    tvRelease.text = gameDetails.release.toPrettyFormat()
+                } else {
+                    tvRelease.visibility = GONE
+                }
                 tvDescription.text =
                     Html.fromHtml(gameDetails.description, Html.FROM_HTML_MODE_LEGACY)
                 tvRatings.text = "(${gameDetails.rating})"
@@ -79,45 +81,54 @@ class GameDetailsAdapter(
         private val binding: ItemSectionGameInfo2Binding
     ) : ViewHolder(binding.root) {
         fun bind() {
-            binding.apply {
-                AAChartModel()
-                    .chartType(AAChartType.Pie)
-                    .backgroundColor(R.color.grey800)
-                    .colorsTheme(Constants.colors)
-                    .axesTextColor("#EAEAEA")
-                    .markerSymbolStyle(AAChartSymbolStyleType.BorderBlank)
-                    .borderRadius(0)
-                    .dataLabelsStyle(AAStyle().color("#EAEAEA"))
-                    .legendEnabled(false)
-                    .series(
-                        arrayOf(
-                            AASeriesElement().name("Rating Count")
-                                .data(
-                                    gameDetails.ratings.map {
-                                        arrayOf(it.title, it.count)
-                                    }.toTypedArray()
-                                ).borderWidth(0)
-                        )
-                    ).apply {
-                        chartRating.aa_drawChartWithChartModel(this)
-                    }
-
-                cgTags.isClickable = true
-                gameDetails.tags.forEach { tag ->
-                    val chip = Chip(root.context)
-                    chip.text = tag.name
-                    chip.isClickable = true
-                    cgTags.addView(chip)
-                    chip.setOnClickListener {
-                        (onItemClickCallback as OnItemClickCallback).onItemClick(
-                            id = tag.id,
-                            name = tag.name,
-                            type = GameFilterType.TAGS,
-                            tag = tag,
-                        )
-                    }
+            binding.cgTags.isClickable = true
+            gameDetails.tags.forEach { tag ->
+                val chip = Chip(binding.root.context)
+                chip.text = tag.name
+                chip.isClickable = true
+                binding.cgTags.addView(chip)
+                chip.setOnClickListener {
+                    (onItemClickCallback as OnItemClickCallback).onItemClick(
+                        id = tag.id,
+                        name = tag.name,
+                        type = GameFilterType.TAGS,
+                        tag = tag,
+                    )
                 }
             }
+
+            if (gameDetails.tags.isEmpty()) {
+                binding.hv.visibility = GONE
+                binding.tvTags.visibility = GONE
+            }
+
+            if (gameDetails.ratings.isEmpty()) {
+                binding.chartRating.visibility = GONE
+                binding.tvRatingsChart.visibility = GONE
+                return
+            }
+
+            AAChartModel()
+                .chartType(AAChartType.Pie)
+                .backgroundColor(R.color.grey800)
+                .colorsTheme(Constants.colors)
+                .axesTextColor("#EAEAEA")
+                .markerSymbolStyle(AAChartSymbolStyleType.BorderBlank)
+                .borderRadius(0)
+                .dataLabelsStyle(AAStyle().color("#EAEAEA"))
+                .legendEnabled(false)
+                .series(
+                    arrayOf(
+                        AASeriesElement().name("Rating Count")
+                            .data(
+                                gameDetails.ratings.map {
+                                    arrayOf(it.title, it.count)
+                                }.toTypedArray()
+                            ).borderWidth(0)
+                    )
+                ).apply {
+                    binding.chartRating.aa_drawChartWithChartModel(this)
+                }
         }
     }
 
@@ -177,11 +188,11 @@ class GameDetailsAdapter(
         return when (position) {
             0 -> GameDetailsSection.GAME_INFO1.ordinal
             1 -> GameDetailsSection.SCREENSHOTS.ordinal
-            2 -> GameDetailsSection.CREATORS.ordinal
-            3 -> GameDetailsSection.DEVELOPERS.ordinal
-            4 -> GameDetailsSection.PUBLISHERS.ordinal
-            5 -> GameDetailsSection.ADDITIONS.ordinal
-            6 -> GameDetailsSection.GAME_INFO2.ordinal
+            2 -> GameDetailsSection.GAME_INFO2.ordinal
+            3 -> GameDetailsSection.ADDITIONS.ordinal
+            4 -> GameDetailsSection.CREATORS.ordinal
+            5 -> GameDetailsSection.DEVELOPERS.ordinal
+            6 -> GameDetailsSection.PUBLISHERS.ordinal
             else -> throw IllegalStateException("Invalid ViewType")
         }
     }
@@ -259,11 +270,11 @@ class GameDetailsAdapter(
         when (position) {
             0 -> (holder as GameInfo1ViewHolder).bind()
             1 -> (holder as ItemSectionViewHolder).bind(gameDetails.trailers.plus(gameDetails.screenshots))
-            2 -> (holder as ItemSectionViewHolder).bind(gameDetails.creators)
-            3 -> (holder as ItemSectionViewHolder).bind(gameDetails.developers)
-            4 -> (holder as ItemSectionViewHolder).bind(gameDetails.publishers)
-            5 -> (holder as ItemSectionViewHolder).bind(gameDetails.additions)
-            6 -> (holder as GameInfo2ViewHolder).bind()
+            2 -> (holder as GameInfo2ViewHolder).bind()
+            3 -> (holder as ItemSectionViewHolder).bind(gameDetails.additions)
+            4 -> (holder as ItemSectionViewHolder).bind(gameDetails.creators)
+            5 -> (holder as ItemSectionViewHolder).bind(gameDetails.developers)
+            6 -> (holder as ItemSectionViewHolder).bind(gameDetails.publishers)
         }
     }
 
