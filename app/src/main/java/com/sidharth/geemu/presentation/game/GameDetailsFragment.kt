@@ -26,6 +26,7 @@ import com.sidharth.geemu.domain.model.Creator
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Tag
 import com.sidharth.geemu.presentation.game.adapter.GameDetailsAdapter
+import com.sidharth.geemu.presentation.game.callback.OnAdditionClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnCreatorClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnItemClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnMediaClickCallback
@@ -36,7 +37,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class GameDetailsFragment
-    : Fragment(), OnCreatorClickCallback, OnItemClickCallback, OnMediaClickCallback {
+    : Fragment(), OnCreatorClickCallback, OnItemClickCallback, OnMediaClickCallback, OnAdditionClickCallback {
 
     private lateinit var binding: FragmentGameDetailsBinding
     private val gameDetailsViewModel: GameDetailsViewModel by viewModels()
@@ -91,6 +92,7 @@ class GameDetailsFragment
                         onMediaClickCallback = this@GameDetailsFragment,
                         onItemClickCallback = this@GameDetailsFragment,
                         onCreatorClickCallback = this@GameDetailsFragment,
+                        onAdditionClickCallback = this@GameDetailsFragment,
                     )
                 }
             }
@@ -181,6 +183,13 @@ class GameDetailsFragment
             preview = preview,
             low = low,
             high = high,
+        )
+        findNavController().navigate(action)
+    }
+
+    override fun onAdditionClick(game: Game) {
+        val action = GameDetailsFragmentDirections.actionGameDetailsFragmentSelf(
+            game = game
         )
         findNavController().navigate(action)
     }

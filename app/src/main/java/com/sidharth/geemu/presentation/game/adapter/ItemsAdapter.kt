@@ -19,6 +19,7 @@ import com.sidharth.geemu.domain.model.Developer
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Publisher
 import com.sidharth.geemu.domain.model.Trailer
+import com.sidharth.geemu.presentation.game.callback.OnAdditionClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnCreatorClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnItemClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnMediaClickCallback
@@ -97,6 +98,9 @@ class ItemsAdapter(
                     else -> ivCover.load(item.image)
                 }
                 tvName.text = item.name
+                cvGame.setOnClickListener {
+                    (onItemClickCallback as OnAdditionClickCallback).onAdditionClick(item)
+                }
             }
         }
     }

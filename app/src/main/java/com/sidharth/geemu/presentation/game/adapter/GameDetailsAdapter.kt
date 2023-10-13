@@ -26,6 +26,7 @@ import com.sidharth.geemu.databinding.ItemSectionGameInfo1Binding
 import com.sidharth.geemu.databinding.ItemSectionGameInfo2Binding
 import com.sidharth.geemu.databinding.ItemSectionItemsBinding
 import com.sidharth.geemu.domain.model.GameDetails
+import com.sidharth.geemu.presentation.game.callback.OnAdditionClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnCreatorClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnItemClickCallback
 import com.sidharth.geemu.presentation.game.callback.OnMediaClickCallback
@@ -35,6 +36,7 @@ class GameDetailsAdapter(
     private val onMediaClickCallback: OnMediaClickCallback,
     private val onItemClickCallback: OnMediaClickCallback,
     private val onCreatorClickCallback: OnCreatorClickCallback,
+    private val onAdditionClickCallback: OnAdditionClickCallback,
 ) : Adapter<ViewHolder>() {
 
     private enum class GameDetailsSection {
@@ -165,6 +167,7 @@ class GameDetailsAdapter(
                     ItemsAdapter.CardType.ADDITION -> ItemsAdapter(
                         type = type,
                         items = items,
+                        onItemClickCallback = onAdditionClickCallback,
                     )
 
                     ItemsAdapter.CardType.CREATOR -> ItemsAdapter(
