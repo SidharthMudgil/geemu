@@ -1,6 +1,7 @@
 package com.sidharth.geemu.domain.usecase.game
 
 import androidx.paging.PagingData
+import com.sidharth.geemu.data.remote.source.GamesPagingSource
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Genre
 import kotlinx.coroutines.flow.Flow
@@ -26,4 +27,6 @@ interface GetGameUseCase {
     suspend fun getGamesByPublishers(publishers: String): Flow<PagingData<Game>>
 
     suspend fun getGamesByTags(tags: String): Flow<PagingData<Game>>
+
+    suspend fun getGamesPagingSource(tags: String): GamesPagingSource
 }

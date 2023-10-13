@@ -1,6 +1,6 @@
 package com.sidharth.geemu.domain.repository
 
-import androidx.paging.PagingData
+import com.sidharth.geemu.data.remote.source.GamesPagingSource
 import com.sidharth.geemu.domain.model.CreatorDetails
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.GameDetails
@@ -57,7 +57,7 @@ interface GameRepository {
         excludeAdditions: Boolean? = null,
         excludeParents: Boolean? = null,
         excludeGameSeries: Boolean? = null
-    ): Flow<PagingData<Game>>
+    ): GamesPagingSource
 
     suspend fun getGameDetails(id: Int): Flow<GameDetails>
 

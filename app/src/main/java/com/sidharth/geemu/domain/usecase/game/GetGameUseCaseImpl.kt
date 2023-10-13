@@ -1,7 +1,10 @@
 package com.sidharth.geemu.domain.usecase.game
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.sidharth.geemu.core.util.DateTimeUtils
+import com.sidharth.geemu.data.remote.source.GamesPagingSource
 import com.sidharth.geemu.domain.model.Game
 import com.sidharth.geemu.domain.model.Genre
 import com.sidharth.geemu.domain.repository.GameRepository
@@ -54,22 +57,61 @@ class GetGameUseCaseImpl @Inject constructor(
     }
 
     override suspend fun getGamesBySearch(query: String): Flow<PagingData<Game>> {
-        return gameRepository.getGamesPagingSource(search = query)
+        val gamesPagingSource = gameRepository.getGamesPagingSource(search = query)
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { gamesPagingSource }
+        ).flow
     }
 
     override suspend fun getGamesByDevelopers(developers: String): Flow<PagingData<Game>> {
-        return gameRepository.getGamesPagingSource(developers = developers)
+        val gamesPagingSource = gameRepository.getGamesPagingSource(developers = developers)
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { gamesPagingSource }
+        ).flow
     }
 
     override suspend fun getGamesByGenres(genres: String): Flow<PagingData<Game>> {
-        return gameRepository.getGamesPagingSource(genres = genres)
+        val gamesPagingSource = gameRepository.getGamesPagingSource(genres = genres)
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { gamesPagingSource }
+        ).flow
     }
 
     override suspend fun getGamesByPublishers(publishers: String): Flow<PagingData<Game>> {
-        return gameRepository.getGamesPagingSource(publishers = publishers)
+        val gamesPagingSource = gameRepository.getGamesPagingSource(publishers = publishers)
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { gamesPagingSource }
+        ).flow
     }
 
     override suspend fun getGamesByTags(tags: String): Flow<PagingData<Game>> {
+        val gamesPagingSource = gameRepository.getGamesPagingSource(tags = tags)
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { gamesPagingSource }
+        ).flow
+    }
+
+    override suspend fun getGamesPagingSource(tags: String): GamesPagingSource {
         return gameRepository.getGamesPagingSource(tags = tags)
     }
 }

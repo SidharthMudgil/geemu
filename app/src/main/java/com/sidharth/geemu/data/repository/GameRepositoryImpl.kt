@@ -1,11 +1,10 @@
 package com.sidharth.geemu.data.repository
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import com.sidharth.geemu.data.mapper.ResponseMapper
 import com.sidharth.geemu.data.mapper.ResponseMapper.toCreatorDetails
 import com.sidharth.geemu.data.mapper.ResponseMapper.toGames
 import com.sidharth.geemu.data.mapper.ResponseMapper.toGenres
+import com.sidharth.geemu.data.remote.source.GamesPagingSource
 import com.sidharth.geemu.data.remote.source.GamesPagingSourceFactory
 import com.sidharth.geemu.data.remote.source.RemoteDataSource
 import com.sidharth.geemu.domain.repository.GameRepository
@@ -93,38 +92,32 @@ class GameRepositoryImpl @Inject constructor(
         excludeAdditions: Boolean?,
         excludeParents: Boolean?,
         excludeGameSeries: Boolean?
-    ) = Pager(
-        config = PagingConfig(
-            pageSize = 20,
-            enablePlaceholders = false
-        ),
-        pagingSourceFactory = {
-            gamesPagingSourceFactory.create(
-                pageSize = pageSize,
-                ordering = ordering,
-                search = search,
-                searchPrecise = searchPrecise,
-                searchExact = searchExact,
-                parentPlatforms = parentPlatforms,
-                platforms = platforms,
-                platformsCount = platformsCount,
-                creators = creators,
-                developers = developers,
-                publishers = publishers,
-                genres = genres,
-                tags = tags,
-                stores = stores,
-                dates = dates,
-                updated = updated,
-                metacritic = metacritic,
-                excludeStores = excludeStores,
-                excludeCollection = excludeCollection,
-                excludeAdditions = excludeAdditions,
-                excludeParents = excludeParents,
-                excludeGameSeries = excludeGameSeries
-            )
-        }
-    ).flow
+    ): GamesPagingSource {
+        return gamesPagingSourceFactory.create(
+            pageSize = pageSize,
+            ordering = ordering,
+            search = search,
+            searchPrecise = searchPrecise,
+            searchExact = searchExact,
+            parentPlatforms = parentPlatforms,
+            platforms = platforms,
+            platformsCount = platformsCount,
+            creators = creators,
+            developers = developers,
+            publishers = publishers,
+            genres = genres,
+            tags = tags,
+            stores = stores,
+            dates = dates,
+            updated = updated,
+            metacritic = metacritic,
+            excludeStores = excludeStores,
+            excludeCollection = excludeCollection,
+            excludeAdditions = excludeAdditions,
+            excludeParents = excludeParents,
+            excludeGameSeries = excludeGameSeries
+        )
+    }
 
     override suspend fun getGameDetails(id: Int) = flow {
         val gameDetails = remoteDataSource.getGameDetails(id)
