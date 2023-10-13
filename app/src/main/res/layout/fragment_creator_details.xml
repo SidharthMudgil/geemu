@@ -48,7 +48,7 @@
             android:paddingEnd="15dp"
             android:textAlignment="center"
             android:textColor="@color/grey300"
-            android:textFontWeight="600"
+            android:textFontWeight="700"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/flow_ratings"
             app:layout_constraintEnd_toEndOf="@+id/iv_background"
@@ -74,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/grey300"
-            android:textFontWeight="600"
+            android:textFontWeight="700"
             android:textSize="16sp"
             tools:text="4.92" />
 
@@ -104,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/grey300"
-            android:textFontWeight="600"
+            android:textFontWeight="700"
             android:textSize="13sp"
             tools:text="10" />
 
@@ -134,7 +134,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/grey300"
-            android:textFontWeight="600"
+            android:textFontWeight="700"
             android:textSize="13sp"
             tools:text="2149" />
 
