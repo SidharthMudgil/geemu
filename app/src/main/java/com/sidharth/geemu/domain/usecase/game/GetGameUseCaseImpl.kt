@@ -57,61 +57,56 @@ class GetGameUseCaseImpl @Inject constructor(
     }
 
     override suspend fun getGamesBySearch(query: String): Flow<PagingData<Game>> {
-        val gamesPagingSource = gameRepository.getGamesPagingSource(search = query)
         return Pager(
             config = PagingConfig(
                 pageSize = 20,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { gamesPagingSource }
+            pagingSourceFactory = { gameRepository.getGamesPagingSource(search = query) }
         ).flow
     }
 
     override suspend fun getGamesByDevelopers(developers: String): Flow<PagingData<Game>> {
-        val gamesPagingSource = gameRepository.getGamesPagingSource(developers = developers)
         return Pager(
             config = PagingConfig(
                 pageSize = 20,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { gamesPagingSource }
+            pagingSourceFactory = { gameRepository.getGamesPagingSource(developers = developers) }
         ).flow
     }
 
     override suspend fun getGamesByGenres(genres: String): Flow<PagingData<Game>> {
-        val gamesPagingSource = gameRepository.getGamesPagingSource(genres = genres)
         return Pager(
             config = PagingConfig(
                 pageSize = 20,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { gamesPagingSource }
+            pagingSourceFactory = { gameRepository.getGamesPagingSource(genres = genres) }
         ).flow
     }
 
     override suspend fun getGamesByPublishers(publishers: String): Flow<PagingData<Game>> {
-        val gamesPagingSource = gameRepository.getGamesPagingSource(publishers = publishers)
         return Pager(
             config = PagingConfig(
                 pageSize = 20,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { gamesPagingSource }
+            pagingSourceFactory = { gameRepository.getGamesPagingSource(publishers = publishers) }
         ).flow
     }
 
     override suspend fun getGamesByTags(tags: String): Flow<PagingData<Game>> {
-        val gamesPagingSource = gameRepository.getGamesPagingSource(tags = tags)
         return Pager(
             config = PagingConfig(
                 pageSize = 20,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { gamesPagingSource }
+            pagingSourceFactory = { gameRepository.getGamesPagingSource(tags = tags) }
         ).flow
     }
 
-    override suspend fun getGamesPagingSource(tags: String): GamesPagingSource {
+    override fun getGamesPagingSource(tags: String): GamesPagingSource {
         return gameRepository.getGamesPagingSource(tags = tags)
     }
 }

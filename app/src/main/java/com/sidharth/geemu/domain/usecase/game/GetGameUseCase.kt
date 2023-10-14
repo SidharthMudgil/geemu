@@ -28,5 +28,5 @@ interface GetGameUseCase {
 
     suspend fun getGamesByTags(tags: String): Flow<PagingData<Game>>
 
-    suspend fun getGamesPagingSource(tags: String): GamesPagingSource
+    fun getGamesPagingSource(tags: String): GamesPagingSource
 }

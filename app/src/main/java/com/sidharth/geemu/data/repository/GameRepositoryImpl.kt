@@ -69,7 +69,7 @@ class GameRepositoryImpl @Inject constructor(
         )
     }
 
-    override suspend fun getGamesPagingSource(
+    override fun getGamesPagingSource(
         pageSize: Int?,
         ordering: String?,
         search: String?,
