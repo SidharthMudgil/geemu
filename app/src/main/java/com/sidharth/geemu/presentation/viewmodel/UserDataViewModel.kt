@@ -2,6 +2,8 @@ package com.sidharth.geemu.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.sidharth.geemu.core.constant.Constants
@@ -14,6 +16,7 @@ import com.sidharth.geemu.domain.usecase.tag.TagUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -85,12 +88,20 @@ class UserDataViewModel @Inject constructor(
     }
 
     fun fetchFilteredGames(tags: String, fetchAll: Boolean = false) = viewModelScope.launch {
-        getGameUseCase.getGamesByTags(
-            when (fetchAll) {
-                true -> following.value.joinToString(",") { it.id.toString() }
-                else -> tags
+        val tag = when (fetchAll) {
+            true -> following.value.joinToString(",") { it.id.toString() }
+            else -> tags
+        }
+
+        Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = {
+                getGameUseCase.getGamesPagingSource(tag)
             }
-        ).cachedIn(viewModelScope).collect {
+        ).flow.cachedIn(viewModelScope).collectLatest {
             _filteredGames.emit(it)
         }
     }

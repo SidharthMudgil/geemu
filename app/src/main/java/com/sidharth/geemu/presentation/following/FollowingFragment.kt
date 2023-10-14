@@ -24,6 +24,7 @@ import com.sidharth.geemu.presentation.following.adapter.GamesPagerAdapter
 import com.sidharth.geemu.presentation.following.callback.OnGameClickCallback
 import com.sidharth.geemu.presentation.viewmodel.UserDataViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -31,6 +32,7 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
 
     private val userDataViewModel: UserDataViewModel by activityViewModels()
     private lateinit var binding: FragmentFollowingBinding
+    private lateinit var adapter: GamesPagerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -65,6 +67,10 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
             dividerInsetEnd = resources.getDimension(R.dimen.white_space).toInt()
             binding.rvFollowing.addItemDecoration(this)
         }
+        adapter = GamesPagerAdapter(
+            onGameClickCallback = this@FollowingFragment
+        )
+        binding.rvFollowing.adapter = adapter
     }
 
     private fun observeFollowingData() {
@@ -83,13 +89,9 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
     }
 
     private fun observeSavedGames() {
-        val adapter = GamesPagerAdapter(
-            onGameClickCallback = this@FollowingFragment
-        )
-        binding.rvFollowing.adapter = adapter
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                userDataViewModel.filteredGames.collect {
+                userDataViewModel.filteredGames.collectLatest {
                     adapter.submitData(it)
                 }
             }
@@ -138,6 +140,7 @@ class FollowingFragment : Fragment(), OnGameClickCallback {
 
     private fun filterList(id: String, fetchAll: Boolean = false) {
         userDataViewModel.fetchFilteredGames(id, fetchAll)
+        adapter.refresh()
     }
 
     override fun onGameClick(game: Game) {
