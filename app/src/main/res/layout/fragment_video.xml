@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.media3.ui.PlayerView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/player_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.video.VideoFragment">
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    app:show_buffering="when_playing"
+    app:show_fastforward_button="true"
+    app:show_next_button="false"
+    app:show_previous_button="false"
+    app:show_rewind_button="true"
+    app:show_shuffle_button="false"
+    app:show_vr_button="false"
+    tools:context=".presentation.video.VideoFragment" />
