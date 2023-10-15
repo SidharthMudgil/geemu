@@ -1,14 +1,19 @@
 package com.sidharth.geemu.presentation.video
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.navigation.fragment.navArgs
+import com.sidharth.geemu.R
 import com.sidharth.geemu.databinding.FragmentVideoBinding
 
 class VideoFragment : Fragment() {
@@ -58,6 +63,39 @@ class VideoFragment : Fragment() {
             prepare()
         }
         binding.playerView.player = player
+        openFullScreen()
+    }
+
+    private fun openFullScreen() {
+        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        binding.playerView.setBackgroundColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.black
+            )
+        )
+        (binding.playerView.layoutParams as FrameLayout.LayoutParams).apply {
+            width = FrameLayout.LayoutParams.MATCH_PARENT
+            height = FrameLayout.LayoutParams.MATCH_PARENT
+            binding.playerView.layoutParams = this
+        }
+        binding.playerView.windowInsetsController?.hide(WindowInsetsCompat.Type.systemBars())
+    }
+
+    private fun closeFullScreen() {
+        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR
+        binding.playerView.setBackgroundColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.grey800
+            )
+        )
+        (binding.playerView.layoutParams as FrameLayout.LayoutParams).apply {
+            width = FrameLayout.LayoutParams.MATCH_PARENT
+            height = 0
+            binding.playerView.layoutParams = this
+        }
+        binding.playerView.windowInsetsController?.show(WindowInsetsCompat.Type.systemBars())
     }
 
     private fun releasePlayer() {
@@ -65,11 +103,11 @@ class VideoFragment : Fragment() {
         playbackPosition = player.currentPosition
         binding.playerView.onPause()
         player.release()
+        closeFullScreen()
     }
 
     companion object {
         const val STATE_RESUME_POSITION = "resumePosition"
-        const val STATE_PLAYER_FULLSCREEN = "playerFullscreen"
         const val STATE_PLAYER_PLAYING = "playerOnPlay"
     }
 }
