@@ -25,10 +25,7 @@ git clone https://github.com/SidharthMudgil/geemu.git
 3. Build the project and install it on your Android device.
 
 ### APK Installation
-1. Download the latest APK file from the "Releases" section of this GitHub repository.
-
-      | [Download APK](https://github.com/SidharthMudgil/geemu/releases/latest/download/lg-motion.apk) | [Download AAB](https://github.com/SidharthMudgil/geemu/releases/latest/download/lg-motion.aab) |
-      | -------------------------- | -------------------------- |
+1. Download the [latest APK](https://github.com/SidharthMudgil/geemu/releases/latest/download/geemu.apk) file from the "Releases" section of this GitHub repository.
 
 2. Enable "Unknown Sources" in your Android device settings to allow the installation of apps from external sources.
 
