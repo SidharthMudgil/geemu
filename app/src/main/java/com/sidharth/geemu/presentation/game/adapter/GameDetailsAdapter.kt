@@ -2,7 +2,6 @@ package com.sidharth.geemu.presentation.game.adapter
 
 import android.annotation.SuppressLint
 import android.text.Html
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View.GONE
 import android.view.ViewGroup
@@ -69,7 +68,6 @@ class GameDetailsAdapter(
                 }
                 tvDescription.text =
                     Html.fromHtml(gameDetails.description, Html.FROM_HTML_MODE_LEGACY)
-                Log.d("description", gameDetails.description)
                 tvRatings.text = "(${gameDetails.rating})"
                 gameDetails.platforms.forEach {
                     val chip = Chip(root.context)
