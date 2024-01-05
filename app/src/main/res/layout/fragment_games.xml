@@ -60,7 +60,6 @@
         android:clipToPadding="false"
         android:paddingStart="@dimen/white_space"
         android:paddingEnd="@dimen/white_space"
-        android:text="@string/hello_blank_fragment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

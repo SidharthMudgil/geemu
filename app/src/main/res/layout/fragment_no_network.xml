@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/white_space"
+    tools:context=".presentation.nonetwork.NoNetworkFragment">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/img_no_network"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/ic_no_network"
+        android:tint="@color/grey100" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_no_network"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/white_space"
+        android:text="@string/no_network_label"
+        android:textColor="@color/grey300"
+        android:textFontWeight="600"
+        android:textSize="18sp" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_no_network_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/no_network_description"
+        android:textColor="@color/grey300"
+        android:textSize="16sp" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="img_no_network,tv_no_network,tv_no_network_desc"
+        app:flow_verticalGap="@dimen/label_list_gap"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
