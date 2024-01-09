@@ -25,7 +25,7 @@ git clone https://github.com/SidharthMudgil/geemu.git
 3. Build the project and install it on your Android device.
 
 ### APK Installation
-1. Download the [latest APK](https://github.com/SidharthMudgil/geemu/releases/latest/download/geemu.apk) file from the "Releases" section of this GitHub repository.
+1. Download the [latest APK](https://play.google.com/store/apps/details?id=com.sidharth.geemu&pcampaignid=web_share) file from the "Play store".
 
 2. Enable "Unknown Sources" in your Android device settings to allow the installation of apps from external sources.
 
