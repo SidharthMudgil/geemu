@@ -34,10 +34,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(activityMainBinding.root)
         navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
         if (NetworkUtils.isNetworkConnected(this).not()) {
-            runOnUiThread {
-                navHostFragment?.findNavController()?.navigate(
-                    ExploreFragmentDirections.actionExploreFragmentToNoNetworkFragment()
-                )
+            if (navHostFragment?.findNavController()?.currentDestination?.id == R.id.exploreFragment) {
+                runOnUiThread {
+                    navHostFragment?.findNavController()?.navigate(
+                        ExploreFragmentDirections.actionExploreFragmentToNoNetworkFragment()
+                    )
+                }
             }
         }
         setupNetworkCallback()
