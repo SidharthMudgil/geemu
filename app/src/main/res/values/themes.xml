@@ -29,18 +29,13 @@
     </style>
 
     <style name="Widget.App.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
-        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationView</item>
         <item name="itemActiveIndicatorStyle">
             @style/Widget.App.BottomNavigationView.ActiveIndicator
         </item>
+        <item name="itemBackground">@color/grey900</item>
         <item name="elevation">0dp</item>
         <item name="itemIconTint">@color/bottom_nav_menu_item</item>
         <item name="itemTextColor">@color/bottom_nav_menu_item</item>
-    </style>
-
-    <style name="ThemeOverlay.App.BottomNavigationView" parent="">
-        <item name="colorSurface">@color/grey800</item>
-        <item name="colorOnSurfaceVariant">@color/grey100</item>
     </style>
 
     <style name="Widget.App.BottomNavigationView.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
