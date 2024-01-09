@@ -33,6 +33,7 @@
         <item name="itemActiveIndicatorStyle">
             @style/Widget.App.BottomNavigationView.ActiveIndicator
         </item>
+        <item name="itemBackground">@color/grey800</item>
         <item name="elevation">0dp</item>
         <item name="itemIconTint">@color/bottom_nav_menu_item</item>
         <item name="itemTextColor">@color/bottom_nav_menu_item</item>
