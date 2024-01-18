@@ -60,7 +60,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     // lifecycle
-    val lifecycleVersion = "2.6.2"
+    val lifecycleVersion = "2.7.0"
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
     implementation("androidx.activity:activity-ktx:1.8.2")
@@ -90,6 +90,9 @@ dependencies {
 
     // Paging
     implementation("androidx.paging:paging-runtime-ktx:3.2.1")
+
+    // In-app Update
+    implementation("com.google.android.play:app-update:2.1.0")
 
     // video - Media3
     val media3Version = "1.2.0"
