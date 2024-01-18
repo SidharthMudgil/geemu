@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
                     val totalBytesToDownload = state.totalBytesToDownload()
                     Log.d(
                         "Download Percentage",
-                        "${bytesDownloaded / totalBytesToDownload * 100}% downloaded"
+                        "$bytesDownloaded $totalBytesToDownload"
                     )
                 }
 
