@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         when (result.resultCode) {
             RESULT_OK -> {
                 shouldUpdate = true
+                checkForUpdateAvailability()
                 Log.d("InAppUpdateTask", "Update flow result: OKAY ${result.resultCode}")
             }
 
