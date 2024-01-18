@@ -43,21 +43,24 @@ class MainActivity : AppCompatActivity() {
     private val appUpdateManager: AppUpdateManager by lazy {
         AppUpdateManagerFactory.create(this)
     }
+    private var shouldUpdate = true
     private lateinit var installStateUpdatedListener: InstallStateUpdatedListener
     private val activityResultLauncher = registerForActivityResult(
         ActivityResultContracts.StartIntentSenderForResult()
     ) { result ->
         when (result.resultCode) {
             RESULT_OK -> {
-                Log.d("Update flow result", "OKAY ${result.resultCode}")
+                shouldUpdate = true
+                Log.d("InAppUpdateTask", "Update flow result: OKAY ${result.resultCode}")
             }
 
             RESULT_CANCELED -> {
-                Log.d("Update flow result", "CANCELLED ${result.resultCode}")
+                shouldUpdate = false
+                Log.d("InAppUpdateTask", "Update flow result: CANCELLED ${result.resultCode}")
             }
 
             ActivityResult.RESULT_IN_APP_UPDATE_FAILED -> {
-                Log.d("Update flow result", "FAILED ${result.resultCode}")
+                Log.d("InAppUpdateTask", "Update flow result: FAILED ${result.resultCode}")
             }
         }
     }
@@ -113,12 +116,7 @@ class MainActivity : AppCompatActivity() {
         installStateUpdatedListener = InstallStateUpdatedListener { state ->
             when (state.installStatus()) {
                 InstallStatus.DOWNLOADING -> {
-                    val bytesDownloaded = state.bytesDownloaded()
-                    val totalBytesToDownload = state.totalBytesToDownload()
-                    Log.d(
-                        "Download Percentage",
-                        "$bytesDownloaded $totalBytesToDownload"
-                    )
+                    Log.d("InAppUpdateTask", "Downloading")
                 }
 
                 InstallStatus.DOWNLOADED -> {
@@ -126,7 +124,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 InstallStatus.INSTALLED -> {
-//                    appUpdateManager.unregisterListener(installStateUpdatedListener)
+                    Log.d("InAppUpdateTask", "Installed")
                 }
 
                 else -> {
@@ -134,7 +132,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        appUpdateManager.registerListener(installStateUpdatedListener)
     }
 
     private fun setupNetworkCallback() {
@@ -192,37 +189,30 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkForUpdateAvailability() {
         appUpdateManager.appUpdateInfo.addOnSuccessListener { updateInfo ->
-            Log.d("InAppUpdateTask", "Inside On Success Listener")
-
-            Log.d(
-                "InAppUpdateTask",
-                "${updateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE}"
-            )
-
             when {
-                updateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-                        && updateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)
-                        && (updateInfo.clientVersionStalenessDays()
-                    ?: 0) >= DAYS_FOR_FLEXIBLE_UPDATE -> {
-                    Log.d("InAppUpdateTask", "starting immediate update")
-                    startImmediateUpdate(updateInfo)
+                updateInfo.installStatus() == InstallStatus.DOWNLOADED -> {
+                    popupSnackbarForCompleteUpdate()
                 }
 
                 updateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
                         && updateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)
                         && (updateInfo.clientVersionStalenessDays()
-                    ?: 0) >= DAYS_FOR_FLEXIBLE_UPDATE -> {
-                    Log.d("InAppUpdateTask", "starting flexible update")
+                    ?: 0) >= DAYS_FOR_FLEXIBLE_UPDATE
+                        && shouldUpdate -> {
                     startFlexibleUpdate(updateInfo)
                 }
 
-                updateInfo.installStatus() == InstallStatus.DOWNLOADED -> {
-                    Log.d("InAppUpdateTask", "Update downloaded")
-                    popupSnackbarForCompleteUpdate()
+                updateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                        && updateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)
+                        && (updateInfo.clientVersionStalenessDays()
+                    ?: 0) >= DAYS_FOR_FLEXIBLE_UPDATE
+                        && shouldUpdate -> {
+                    Log.d("InAppUpdateTask", "starting immediate update")
+                    startImmediateUpdate(updateInfo)
                 }
 
-                updateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS -> {
-                    Log.d("InAppUpdateTask", "Update In Progress")
+                updateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
+                        && shouldUpdate -> {
                     startImmediateUpdate(updateInfo)
                 }
             }
@@ -238,6 +228,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startFlexibleUpdate(appUpdateInfo: AppUpdateInfo) {
+        appUpdateManager.registerListener(installStateUpdatedListener)
         appUpdateManager.startUpdateFlowForResult(
             appUpdateInfo,
             activityResultLauncher,
