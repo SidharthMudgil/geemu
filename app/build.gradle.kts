@@ -17,14 +17,15 @@ android {
         applicationId = "com.sidharth.geemu"
         minSdk = 27
         targetSdk = 35
-        versionCode = 2
-        versionName = "1.0.1"
+        versionCode = 3
+        versionName = "1.0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        val localProps = gradleLocalProperties(rootDir, providers)
         buildConfigField(
             "String",
             "API_KEY",
-            "\"${gradleLocalProperties(rootDir).getProperty("API_KEY")}\""
+            "\"${localProps.getProperty("API_KEY")}\""
         )
     }
 
@@ -89,7 +90,7 @@ dependencies {
     implementation("io.coil-kt:coil:2.4.0")
 
     // Paging
-    implementation("androidx.paging:paging-runtime-ktx:3.3.6")
+    implementation("androidx.paging:paging-runtime-ktx:3.2.1")
 
     // video - Media3
     val media3Version = "1.2.0"
