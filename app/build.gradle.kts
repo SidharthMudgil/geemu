@@ -11,12 +11,12 @@ plugins {
 
 android {
     namespace = "com.sidharth.geemu"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.sidharth.geemu"
         minSdk = 27
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 2
         versionName = "1.0.1"
 
@@ -89,7 +89,7 @@ dependencies {
     implementation("io.coil-kt:coil:2.4.0")
 
     // Paging
-    implementation("androidx.paging:paging-runtime-ktx:3.2.1")
+    implementation("androidx.paging:paging-runtime-ktx:3.3.6")
 
     // video - Media3
     val media3Version = "1.2.0"
@@ -99,7 +99,7 @@ dependencies {
 
     // ui
     implementation("androidx.core:core-splashscreen:1.0.1") // splash screen
-    implementation("com.github.AAChartModel:AAChartCore-Kotlin:7.2.1") // chart
-    implementation("com.github.stfalcon-studio:StfalconImageViewer:v1.0.1") // pinch to zoom
+    implementation("com.github.AAChartModel:AAChartCore-Kotlin:7.4.0") // chart
+    implementation("com.github.SandaruwanDMC:StfalconImageViewerUpdate:1.0.0") // pinch to zoom
     implementation("com.airbnb.android:lottie:6.1.0") // lottie
 }
