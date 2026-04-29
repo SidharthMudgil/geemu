@@ -2,7 +2,7 @@
 
 **Last updated:** January 4, 2024
 
-This privacy notice for LG Motion ("we," "us," or "our") explains that we do not collect, process, share, keep, or collect any personal information or data when you use our services ("Services").
+This privacy notice for Geemu ("we," "us," or "our") explains that we do not collect, process, share, keep, or collect any personal information or data when you use our services ("Services").
 
 ## Table of Contents
 - [No Information Collection](#no-information-collection)
@@ -14,10 +14,10 @@ This privacy notice for LG Motion ("we," "us," or "our") explains that we do not
 - [Contact Us](#contact-us)
 
 ## No Information Collection
-We want to reassure our users that LG Motion does not collect any personal information or data from users in any form, including but not limited to email addresses, names, phone numbers, addresses, cookies, or any other personally identifiable information.
+We want to reassure our users that Geemu does not collect any personal information or data from users in any form, including but not limited to email addresses, names, phone numbers, addresses, cookies, or any other personally identifiable information.
 
 ## No Sensitive Information Processing
-LG Motion does not process sensitive personal information under any circumstances.
+Geemu does not process sensitive personal information under any circumstances.
 
 ## No Information Sharing
 We do not share any information with any third parties since we do not collect any user information.
@@ -33,5 +33,5 @@ We may update this privacy policy from time to time. Any changes will be effecti
 
 ## Contact Us
 If you have any questions or concerns about this privacy policy, please contact us at:
-- Sidharth Mudgil
+- Sidharth Mudgil (Developer)
 - GitHub: [https://github.com/SidharthMudgil/](https://github.com/SidharthMudgil/)
