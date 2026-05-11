@@ -2,7 +2,9 @@
 
 **Last updated:** January 4, 2024
 
-This privacy notice for Geemu ("we," "us," or "our") explains that we do not collect, process, share, keep, or collect any personal information or data when you use our services ("Services").
+This Privacy Policy applies to the Android application "**Find latest PC games**" (also referred to as "Geemu"), published on Google Play by "**smudg**".
+
+Find latest PC games does not collect, store, process, or share any personal user data when you use the application.
 
 ## Table of Contents
 - [No Information Collection](#no-information-collection)
@@ -14,24 +16,43 @@ This privacy notice for Geemu ("we," "us," or "our") explains that we do not col
 - [Contact Us](#contact-us)
 
 ## No Information Collection
-We want to reassure our users that Geemu does not collect any personal information or data from users in any form, including but not limited to email addresses, names, phone numbers, addresses, cookies, or any other personally identifiable information.
+
+Find latest PC games does not collect any personal information or user data, including but not limited to:
+- Names
+- Email addresses
+- Phone numbers
+- Location data
+- Contacts
+- Device identifiers
+- Cookies
+- Any other personally identifiable information
 
 ## No Sensitive Information Processing
-Geemu does not process sensitive personal information under any circumstances.
+
+Find latest PC games does not process or collect any sensitive personal information.
 
 ## No Information Sharing
-We do not share any information with any third parties since we do not collect any user information.
+
+Since Find latest PC games does not collect user data, no information is shared with third parties.
 
 ## No Data Retention
-Since we do not collect any user information, we do not retain any data related to our users.
+
+Find latest PC games does not retain any user data because no personal information is collected or stored.
 
 ## Children's Privacy
-Our Services are not directed to individuals under the age of 13, and we do not knowingly collect any personal information from children.
+
+Find latest PC games is not directed toward children under the age of 13. We do not knowingly collect personal information from children.
 
 ## Updates to This Privacy Policy
-We may update this privacy policy from time to time. Any changes will be effective immediately upon posting the revised privacy policy.
+
+We may update this Privacy Policy from time to time. Any updates will be reflected on this page with a revised "Last updated" date.
 
 ## Contact Us
-If you have any questions or concerns about this privacy policy, please contact us at:
-- Sidharth Mudgil (Developer)
-- GitHub: [https://github.com/SidharthMudgil/](https://github.com/SidharthMudgil/)
+
+If you have any questions regarding this Privacy Policy, you may contact:
+
+Developer: **smudg**
+
+Application: **Find latest PC games (Geemu)**
+
+GitHub: https://github.com/SidharthMudgil/
